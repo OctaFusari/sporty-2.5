@@ -1,0 +1,74 @@
+<div>
+    <div>
+        <h1 *ngIf="this.userData != undefined">{{this.userData.nome}} {{this.userData.cognome}}</h1>
+    </div>
+    <div>
+        <div class="container">
+            <a>Attività</a>
+        </div>
+        <div class="container">
+            <a>Atleti</a>
+        </div>
+        <div class="container">
+            <a>Bacheca</a>
+        </div>
+        <div class="container">
+            <a>Allenamenti</a>
+        </div>
+    </div>
+    <div class="centro">
+        <div class="sezione__sinistra">
+            <div class="container">
+                <app-attivita></app-attivita>
+                <app-atleti></app-atleti>
+            </div>
+        </div>
+        <div class="sezione__destra">
+            <div class="container">
+                <h2>Bacheca</h2>
+                <div>
+                    <div><a>Rinnovo iscrizione</a></div>
+                    <div><a>Campeggio (22-08-2022)</a></div>
+                    <div><a>Iscrizione campeggio</a></div>
+                </div>
+                <div>
+                    <a>Clicca per tutte le news</a>
+                </div>
+            </div>
+            <div class="container">
+                <h2>Allenamenti</h2>
+                <div>
+                    <div>
+                        <div style="display: none;">
+                            <div>
+                                <h3>Octavian</h3>
+                            </div>
+                            <div>
+                                <div>
+                                    <a>Allenatore: </a><a>Manuel Tomasini</a>
+                                </div>
+                                <div>
+                                    <a>Sport: </a>
+                                    <a>Skiroll classico</a>
+                                </div>
+                                <div>
+                                    <a>Note: </a>
+                                    <a>2h di skiroll classico con lavori di qualità + veloce di 20min</a>
+                                </div>
+                                <div>
+                                    <a>Totale: </a><a>2h 30min</a>
+                                </div>
+                            </div>
+                            <div>
+                                <a>Aggiungi al diario </a>
+                            </div>
+                        </div>
+                        <div>
+                            <a>Non ci sono allenamenti</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

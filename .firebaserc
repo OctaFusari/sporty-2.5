@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "sporty-687fa": {
+      "hosting": {
+        "sporty": [
+          "sporty-687fa"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "sporty-687fa"
+  }
+}

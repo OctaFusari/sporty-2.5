@@ -98,6 +98,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "sporty:build:production",
+            "firebaseProject": "sporty-687fa",
+            "firebaseHostingSite": "sporty-687fa"
+          }
         }
       }
     }

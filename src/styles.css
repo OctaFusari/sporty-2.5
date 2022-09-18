@@ -1,1 +1,120 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;0,800;0,900;1,400&display=swap');
+@font-face {
+    font-family: "Montserrat";
+    src: local("Montserrat"), url(./assets/fonts/Montserrat-BlackItalic.ttf) format("truetype");
+}
+
+:root {
+    --background: #141414;
+    --sporty-blue: #0080FB;
+    --sporty-dark-blue: rgb(0, 104, 202);
+    --sporty-blue-trasparent: #0082fb85;
+    --text: #d6d6d6;
+    --text-minor: #8a8a8a;
+    --container: #181818;
+    --card: #202020;
+    --container-trasparent: #18181885;
+    --card-trasparent: #20202085;
+    --allert: #fbab00;
+    --error: #fb0000;
+    --approved: #00c42a;
+    --octimal: #007E6D;
+    --sfondo: url(./assets/blob-scene-haikei.svg)
+}
+
+body,
+html {
+    scroll-behavior: smooth;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+body {
+    height: 100%;
+    background: var(--sfondo);
+    background-size: cover;
+    background-position: 0;
+}
+
+:host {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    transition: all 0.2s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    color: var(--text);
+}
+
+a,
+p,
+textarea,
+input {
+    color: var(--text-minor);
+}
+
+input:hover {
+    color: var(--sporty-blue);
+    text-decoration: none;
+}
+
+button {
+    color: var(--text);
+    border: none;
+    width: max-content;
+    cursor: pointer;
+}
+
+.button__blue {
+    background-color: var(--sporty-blue);
+}
+
+.button__blue:hover {
+    background-color: var(--sporty-blue-trasparent);
+}
+
+.ultrabig__text {
+    font-size: 5rem;
+    font-weight: 900;
+}
+
+.big__text {
+    font-size: 1.5rem;
+}
+
+.text {
+    font-size: 1rem;
+}
+
+.little__text {
+    font-size: 0.8rem;
+}
+
+.button {
+    border-radius: 15px;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+    margin: 0.2vw 0.4vw 0.2vw 0.4vw;
+}
+
+@media only screen and (max-width: 450px) {
+    .ultrabig__text {
+        font-size: 3rem;
+        font-weight: 900;
+    }
+}
