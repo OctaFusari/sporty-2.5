@@ -1,1 +1,376 @@
-<p>atleti works!</p>
+<div class="container__titolo" *ngIf="section == 0">
+    <h1>Atleti attivi</h1>
+</div>
+<div class="container__titolo" *ngIf="section == 1">
+    <h1>Creazione atleta</h1>
+    <svg (click)="close()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m6.3 19.6-1.85-1.9 5.675-5.7L4.45 6.25l1.85-1.9 5.725 5.75L17.7 4.35l1.85 1.9L13.875 12l5.675 5.7-1.85 1.9-5.675-5.75Z"/></svg>
+</div>
+<div class="container__titolo" *ngIf="section == 2">
+    <h1>{{this.atleta.nome}} {{this.atleta.cognome}}</h1>
+    <svg (click)="close()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m6.3 19.6-1.85-1.9 5.675-5.7L4.45 6.25l1.85-1.9 5.725 5.75L17.7 4.35l1.85 1.9L13.875 12l5.675 5.7-1.85 1.9-5.675-5.75Z"/></svg>
+</div>
+<div *ngIf="(this.atleti.length > 0) && (section == 0)">
+    <div class="container__atleti">
+        <div *ngFor="let atleta of atleti; let i = index">
+            <div (click)="guardaAtleta(i)" class="card cardcenterd">
+                <h3>{{atleta.nome}} {{atleta.cognome}}</h3>
+            </div>
+        </div>
+        <div class="add__atleta__button">
+            <button style="border: none; background:transparent">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z"/></svg>
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="(this.atleti.length == 0) && (section == 0)">
+    <a>Nessun atleta presente</a>
+    <button class="button button__blue" (click)="this.section = 1">Aggiungi atleta</button>
+</div>
+<div class="aggiungi__atleta" *ngIf="section == 1">
+
+</div>
+<div class="container__atleta" *ngIf="section == 2">
+    <div class="impostazioni__atleta">
+        <div *ngIf="this.nav == 0" class="container__atleta__inside">
+            <div class="container__atleta__inside__sector1">
+                <div class="inputs__container">
+                    <div>
+                        <h3>Nome: </h3>
+                        <div class="inputs__nomods" *ngIf="bottonemodifiche == 0">
+                            <a>{{this.atleta.nome}}</a>
+                        </div>
+                        <input *ngIf="bottonemodifiche == 1" class="input__style" type="text" placeholder="Nome" #nome value="{{this.atleta.nome}}">
+                    </div>
+                    <div>
+                        <h3>Cognome: </h3>
+                        <div class="inputs__nomods" *ngIf="bottonemodifiche == 0">
+                            <a>{{this.atleta.cognome}}</a>
+                        </div>
+                        <input *ngIf="bottonemodifiche == 1" class="input__style" type="text" placeholder="Cognome" #cognome value="{{this.atleta.cognome}}">
+                    </div>
+                    <div>
+                        <h3>Email: </h3>
+                        <div class="inputs__nomods" *ngIf="bottonemodifiche == 0">
+                            <a>{{this.atleta.email}}</a>
+                        </div>
+                        <input *ngIf="bottonemodifiche == 1" class="input__style" type="text" placeholder="Mail" #email value="{{this.atleta.email}}">
+                    </div>
+                    <div>
+                        <h3>Data di nascita: </h3>
+                        <div class="inputs__nomods" *ngIf="bottonemodifiche == 0">
+                            <a>{{this.atleta.datadinascita}}</a>
+                        </div>
+                        <input *ngIf="bottonemodifiche == 1" class="input__style" type="date" placeholder="Data di nascita" #datadinascita value="{{this.atleta.datadinascita}}">
+                    </div>
+                    <div>
+                        <h3>Luogo di nascita: </h3>
+                        <div class="inputs__nomods" *ngIf="bottonemodifiche == 0">
+                            <a>{{this.atleta.luogodinascita}}</a>
+                        </div>
+                        <input *ngIf="bottonemodifiche == 1" class="input__style" type="text" placeholder="Città" #luogodinascita value="{{this.atleta.luogodinascita}}">
+                    </div>
+                    <div>
+                        <h3>Codice fiscale: </h3>
+                        <div class="inputs__nomods" *ngIf="bottonemodifiche == 0">
+                            <a>{{this.atleta.codicefiscale}}</a>
+                        </div>
+                        <input *ngIf="bottonemodifiche == 1" class="input__style" type="text" placeholder="Codice fiscale" #codicefiscale value="{{this.atleta.codicefiscale}}">
+                    </div>
+                    <div>
+                        <h3>Residenza: </h3>
+                        <div class="inputs__nomods" *ngIf="bottonemodifiche == 0">
+                            <a>{{this.atleta.residenza}}</a>
+                        </div>
+                        <input *ngIf="bottonemodifiche == 1" class="input__style" type="text" placeholder="Città + via + numero civico" #residenza value="{{this.atleta.residenza}}">
+                    </div>
+                    <div>
+                        <h3>Telefono: </h3>
+                        <div class="inputs__nomods" *ngIf="bottonemodifiche == 0">
+                            <a>{{this.atleta.telefono}}</a>
+                        </div>
+                        <input *ngIf="bottonemodifiche == 1" class="input__style" type="text" placeholder="Telefono" #telefono value="{{this.atleta.telefono}}">
+                    </div>
+                </div>
+                <button class="button button__blue" (click)="bottonemodifiche = 1" *ngIf="bottonemodifiche == 0">Modifica</button>
+                <button class="button button__blue" (click)="bottonemodifiche = 0" *ngIf="bottonemodifiche == 1">Salva modifiche</button>
+                <button class="button button__blue" (click)="bottonemodifiche = 0" *ngIf="bottonemodifiche == 1">Elimina atleta</button>
+
+            </div>
+            <div class="container__atleta__inside__sector2">
+                <div class="titles__sezione__docs">
+                    <h3 (click)="containerAtletaInside = 0" [ngClass]="{'active': this.containerAtletaInside == 0, 'deactive': this.containerAtletaInside != 0}">Stagione</h3>
+                    <h3 (click)="containerAtletaInside = 1" [ngClass]="{'active': this.containerAtletaInside == 1, 'deactive': this.containerAtletaInside != 1}">Immagini</h3>
+                </div>
+                <div class="card card__stagione">
+                    <div class="container__atleta__inside__stagione" *ngIf="containerAtletaInside == 0">
+                        <div>
+                            <h3>{{this.stagioneAtleta.nomestagione}}</h3>
+                        </div>
+                        <div class="container__atleta__inside__stagione__deep">
+                            <div class="card__stagione__section1">
+                                <div class="littlecard">
+                                    <h3>Squadra:</h3>
+                                    <a>{{this.atleta.squadra}}</a>
+                                </div>
+                                <div class="littlecard">
+                                    <h3>Periodo:</h3>
+                                    <a>{{this.stagioneAtleta.datainizio}} - {{this.stagioneAtleta.datafine}}</a>
+                                </div>
+                                <button (click)="aperturaPopup = 1" class="button littlecard">Vedi Documenti</button>
+                                <div class="popup" *ngIf="(aperturaPopup == 1) || (aperturaPopup == 2) || (aperturaPopup == 3) || (aperturaPopup == 4)">
+                                    <div class="popupInside">
+                                        <div class="close__popup">
+                                            <svg (click)="aperturaPopup = 0" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m6.3 19.6-1.85-1.9 5.675-5.7L4.45 6.25l1.85-1.9 5.725 5.75L17.7 4.35l1.85 1.9L13.875 12l5.675 5.7-1.85 1.9-5.675-5.75Z"/></svg>
+                                        </div>
+                                        <div>
+                                            <button (click)="aperturaPopup = 2" class="button button__blue">Svolgimento attività</button>
+                                            <button (click)="aperturaPopup = 3" class="button button__blue">Utilizzo dati</button>
+                                            <button (click)="aperturaPopup = 4" class="button button__blue">Utilizzo immagini</button>
+                                        </div>
+                                        <div *ngIf="aperturaPopup == 2">
+                                            <p>{{this.stagioneAtleta.documentoattivita}}</p>
+                                            <div>
+                                                <svg *ngIf="this.atleta.doc1 == 1" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Z"/></svg>
+                                                <svg *ngIf="this.atleta.doc1 == 0" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M20.95 32.2 35.5 17.6l-2.4-2.4-12.15 12.15-5.85-5.8-2.4 2.4ZM9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Zm0-29.8v29.8V9.1Z"/></svg>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="aperturaPopup == 3">
+                                            <p>{{this.stagioneAtleta.documentodati}}</p>
+                                            <div>
+                                                <svg *ngIf="this.atleta.doc2 == 1" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Z"/></svg>
+                                                <svg *ngIf="this.atleta.doc2 == 0" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M20.95 32.2 35.5 17.6l-2.4-2.4-12.15 12.15-5.85-5.8-2.4 2.4ZM9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Zm0-29.8v29.8V9.1Z"/></svg>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="aperturaPopup == 4">
+                                            <p>{{this.stagioneAtleta.documentoimmagini}}</p>
+                                            <div>
+                                                <svg *ngIf="this.atleta.doc3 == 1" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Z"/></svg>
+                                                <svg *ngIf="this.atleta.doc3 == 0" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M20.95 32.2 35.5 17.6l-2.4-2.4-12.15 12.15-5.85-5.8-2.4 2.4ZM9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Zm0-29.8v29.8V9.1Z"/></svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="popupInside__background" (click)="aperturaPopup = 0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card__stagione__section2 littlecard">
+                                <h3>Corso:</h3>
+                                <div *ngFor="let corso of this.stagioneAtleta.corsi; let i = index">
+                                    <div *ngIf="i == this.atleta.corso">
+                                        <span>{{corso[0]}}</span>
+                                        <div>
+                                            <div>
+                                                <p>{{corso[1]}}</p>
+                                            </div>
+                                            <div>
+                                                <span>Prezzo: </span><a>{{corso[2]}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container__atleta__inside__codumenti " *ngIf="containerAtletaInside == 1">
+                        <div>
+                            <h2>Documenti atleta</h2>
+                            <div class="little__menu">
+                                <div>
+                                    <a (click)="apriImg(this.atleta.immagini.bonifico)">Bonifico</a>
+                                </div>
+                                <div>
+                                    <a (click)="apriImg(this.atleta.immagini.certificatomedico)">Certificato Medico</a>
+                                </div>
+                                <div>
+                                    <a (click)="apriImg(this.atleta.immagini.firma)">Firma</a>
+                                </div>
+                                <div>
+                                    <a (click)="apriImg(this.atleta.immagini.bonificocampeggio)">Bonifico campeggio</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="
+                            margin: 0 0 0 2vw;">
+                                <img *ngIf="this.emptyURL == 1" [src]="imgURL" alt="immagine assente">
+                                <a *ngIf="this.emptyURL == 2">Immagine assente</a>
+                                <a *ngIf="this.emptyURL == 0">Scegli immagine</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="this.nav == 2">
+            <h2>Rinnovo atleta</h2>
+            <div class="conainer__squadre">
+                <div class="card__squadre button__grey" *ngFor="let squadra of this.squadreArray">
+                    <h2>{{squadra.nomesquadra}}</h2>
+                    <div>
+                        <ul>
+                            <li>{{squadra.codicesquadra}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="conainer__stagioni">
+
+            </div>
+            <div class="conainer__atleta__rinnovo" style="display: none;">
+                <div class="container__atleta__inside">
+                    <div class="container__atleta__inside__sector1">
+                        <div class="inputs__container">
+                            <div>
+                                <h3>Nome: </h3>
+                                <input class="input__style" type="text" placeholder="Nome" #nome value="{{this.atleta.nome}}">
+                            </div>
+                            <div>
+                                <h3>Cognome: </h3>
+                                <input class="input__style" type="text" placeholder="Cognome" #cognome value="{{this.atleta.cognome}}">
+                            </div>
+                            <div>
+                                <h3>Email: </h3>
+                                <input class="input__style" type="text" placeholder="Mail" #email value="{{this.atleta.email}}">
+                            </div>
+                            <div>
+                                <h3>Data di nascita: </h3>
+                                <input class="input__style" type="date" placeholder="Data di nascita" #datadinascita value="{{this.atleta.datadinascita}}">
+                            </div>
+                            <div>
+                                <h3>Luogo di nascita: </h3>
+                                <input class="input__style" type="text" placeholder="Città" #luogodinascita value="{{this.atleta.luogodinascita}}">
+                            </div>
+                            <div>
+                                <h3>Codice fiscale: </h3>
+                                <input class="input__style" type="text" placeholder="Codice fiscale" #codicefiscale value="{{this.atleta.codicefiscale}}">
+                            </div>
+                            <div>
+                                <h3>Residenza: </h3>
+                                <input class="input__style" type="text" placeholder="Città + via + numero civico" #residenza value="{{this.atleta.residenza}}">
+                            </div>
+                            <div>
+                                <h3>Telefono: </h3>
+                                <input class="input__style" type="text" placeholder="Telefono" #telefono value="{{this.atleta.telefono}}">
+                            </div>
+                        </div>
+                        <button class="button button__blue">Salva</button>
+                    </div>
+                    <div class="container__atleta__inside__sector2">
+                        <div class="titles__sezione__docs">
+                            <h3 (click)="containerAtletaInside = 0" [ngClass]="{'active': this.containerAtletaInside == 0, 'deactive': this.containerAtletaInside != 0}">Stagione</h3>
+                            <h3 (click)="containerAtletaInside = 1" [ngClass]="{'active': this.containerAtletaInside == 1, 'deactive': this.containerAtletaInside != 1}">Immagini</h3>
+                        </div>
+                        <div class="card card__stagione">
+                            <div class="container__atleta__inside__stagione" *ngIf="containerAtletaInside == 0">
+                                <div>
+                                    <h3>{{this.stagioneAtleta.nomestagione}}</h3>
+                                </div>
+                                <div class="container__atleta__inside__stagione__deep">
+                                    <div class="card__stagione__section1">
+                                        <div class="littlecard">
+                                            <h3>Squadra:</h3>
+                                            <a>{{this.atleta.squadra}}</a>
+                                        </div>
+                                        <div class="littlecard">
+                                            <h3>Periodo:</h3>
+                                            <a>{{this.stagioneAtleta.datainizio}} - {{this.stagioneAtleta.datafine}}</a>
+                                        </div>
+                                        <button (click)="aperturaPopup = 1" class="button littlecard">Vedi Documenti</button>
+                                        <div class="popup" *ngIf="(aperturaPopup == 1) || (aperturaPopup == 2) || (aperturaPopup == 3) || (aperturaPopup == 4)">
+                                            <div class="popupInside">
+                                                <div class="close__popup">
+                                                    <svg (click)="aperturaPopup = 0" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m6.3 19.6-1.85-1.9 5.675-5.7L4.45 6.25l1.85-1.9 5.725 5.75L17.7 4.35l1.85 1.9L13.875 12l5.675 5.7-1.85 1.9-5.675-5.75Z"/></svg>
+                                                </div>
+                                                <div>
+                                                    <button (click)="aperturaPopup = 2" class="button button__blue">Svolgimento attività</button>
+                                                    <button (click)="aperturaPopup = 3" class="button button__blue">Utilizzo dati</button>
+                                                    <button (click)="aperturaPopup = 4" class="button button__blue">Utilizzo immagini</button>
+                                                </div>
+                                                <div *ngIf="aperturaPopup == 2">
+                                                    <p>{{this.stagioneAtleta.documentoattivita}}</p>
+                                                    <div>
+                                                        <svg *ngIf="this.atleta.doc1 == 1" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Z"/></svg>
+                                                        <svg *ngIf="this.atleta.doc1 == 0" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M20.95 32.2 35.5 17.6l-2.4-2.4-12.15 12.15-5.85-5.8-2.4 2.4ZM9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Zm0-29.8v29.8V9.1Z"/></svg>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="aperturaPopup == 3">
+                                                    <p>{{this.stagioneAtleta.documentodati}}</p>
+                                                    <div>
+                                                        <svg *ngIf="this.atleta.doc2 == 1" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Z"/></svg>
+                                                        <svg *ngIf="this.atleta.doc2 == 0" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M20.95 32.2 35.5 17.6l-2.4-2.4-12.15 12.15-5.85-5.8-2.4 2.4ZM9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Zm0-29.8v29.8V9.1Z"/></svg>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="aperturaPopup == 4">
+                                                    <p>{{this.stagioneAtleta.documentoimmagini}}</p>
+                                                    <div>
+                                                        <svg *ngIf="this.atleta.doc3 == 1" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Z"/></svg>
+                                                        <svg *ngIf="this.atleta.doc3 == 0" xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M20.95 32.2 35.5 17.6l-2.4-2.4-12.15 12.15-5.85-5.8-2.4 2.4ZM9.1 42.3q-1.35 0-2.375-1.025T5.7 38.9V9.1q0-1.4 1.025-2.4t2.375-1h29.8q1.4 0 2.4 1t1 2.4v29.8q0 1.35-1 2.375T38.9 42.3Zm0-3.4h29.8V9.1H9.1v29.8Zm0-29.8v29.8V9.1Z"/></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popupInside__background" (click)="aperturaPopup = 0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card__stagione__section2 littlecard">
+                                        <h3>Corso:</h3>
+                                        <div *ngFor="let corso of this.stagioneAtleta.corsi; let i = index">
+                                            <div *ngIf="i == this.atleta.corso">
+                                                <span>{{corso[0]}}</span>
+                                                <div>
+                                                    <div>
+                                                        <p>{{corso[1]}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <span>Prezzo: </span><a>{{corso[2]}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container__atleta__inside__codumenti " *ngIf="containerAtletaInside == 1">
+                                <div>
+                                    <h2>Documenti atleta</h2>
+                                    <div class="little__menu">
+                                        <div>
+                                            <a (click)="apriImg(this.atleta.immagini.bonifico)">Bonifico</a>
+                                        </div>
+                                        <div>
+                                            <a (click)="apriImg(this.atleta.immagini.certificatomedico)">Certificato Medico</a>
+                                        </div>
+                                        <div>
+                                            <a (click)="apriImg(this.atleta.immagini.firma)">Firma</a>
+                                        </div>
+                                        <div>
+                                            <a (click)="apriImg(this.atleta.immagini.bonificocampeggio)">Bonifico campeggio</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="
+                                    margin: 0 0 0 2vw;">
+                                        <img *ngIf="this.emptyURL == 1" [src]="imgURL" alt="immagine assente">
+                                        <a *ngIf="this.emptyURL == 2">Immagine assente</a>
+                                        <a *ngIf="this.emptyURL == 0">Scegli immagine</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigators">
+            <a (click)="this.nav = 0" [ngClass]="{'active': this.nav == 0, 'deactive': this.nav != 0}">Informazioni</a>
+            <a (click)="this.nav = 2" [ngClass]="{'active': this.nav == 2, 'deactive': this.nav != 2}">Rinnovo</a>
+        </div>
+    </div>
+    <div class="container__atleta" style="display: none;">
+        <div>
+
+        </div>
+    </div>
+</div>

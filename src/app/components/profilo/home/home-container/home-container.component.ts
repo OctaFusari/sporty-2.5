@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HomeContainerComponent implements OnInit {
   @Input() userData:any = "";
+  containerCentrale:number = 0
   constructor() { }
 
   ngOnInit(): void {

@@ -12,6 +12,10 @@
     grid-template-areas: ". .";
 }
 
+.container__profilo__inside {
+    padding: 1vw;
+}
+
 .container2 {
     grid-area: container2;
     text-align: center;
@@ -73,7 +77,7 @@ svg {
     overflow: hidden;
     border-radius: 1rem;
     height: 100%;
-    position: absolute;
+    position: fixed;
 }
 
 .barralattotal2 {

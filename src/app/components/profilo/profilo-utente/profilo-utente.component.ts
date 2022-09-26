@@ -19,7 +19,6 @@ export class ProfiloUtenteComponent implements OnInit {
     const db = getDatabase();
     const starCountRef = ref(db, 'utenti/' + idutente);
     onValue(starCountRef, (snapshot) => {
-      console.log(snapshot.val())
       this.userData = snapshot.val();
     });
     return this.userData

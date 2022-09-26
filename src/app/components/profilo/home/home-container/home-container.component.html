@@ -1,26 +1,20 @@
 <div>
-    <div>
+    <div class="sezione__top">
         <h1 *ngIf="this.userData != undefined">{{this.userData.nome}} {{this.userData.cognome}}</h1>
     </div>
-    <div>
-        <div class="container">
+    <div class="sezione__superiore">
+        <div (click)="containerCentrale = 1" class="container">
             <a>Attività</a>
         </div>
-        <div class="container">
+        <div (click)="containerCentrale = 0" class="container">
             <a>Atleti</a>
-        </div>
-        <div class="container">
-            <a>Bacheca</a>
-        </div>
-        <div class="container">
-            <a>Allenamenti</a>
         </div>
     </div>
     <div class="centro">
         <div class="sezione__sinistra">
             <div class="container">
-                <app-attivita></app-attivita>
-                <app-atleti></app-atleti>
+                <app-attivita *ngIf="containerCentrale == 1"></app-attivita>
+                <app-atleti [userData]="userData" *ngIf="containerCentrale == 0"></app-atleti>
             </div>
         </div>
         <div class="sezione__destra">

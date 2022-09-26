@@ -10,6 +10,7 @@ export class UtentiComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
