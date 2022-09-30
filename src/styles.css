@@ -6,13 +6,14 @@
 
 :root {
     --background: #141414;
+    --background-text: #121212;
     --sporty-blue: #0080FB;
-    --sporty-dark-blue: rgb(0, 104, 202);
+    --sporty-dark-blue: rgb(0, 96, 185);
     --sporty-blue-trasparent: #0082fb85;
     --text: #d6d6d6;
     --text-minor: #8a8a8a;
     --container: #181818;
-    --card: #202020;
+    --card: #1d1d1d;
     --card-little: #242424;
     --container-trasparent: #18181885;
     --card-trasparent: #20202085;
@@ -63,6 +64,7 @@ h6 {
 
 span {
     color: var(--text);
+    font-size: 1rem;
 }
 
 a,
@@ -71,6 +73,7 @@ textarea,
 input,
 ul {
     color: var(--text-minor);
+    font-size: 1rem;
 }
 
 ul {
@@ -93,6 +96,8 @@ svg:hover {
     background-color: var(--card);
     border-radius: 1rem;
     border: 1px solid var(--card);
+    resize: vertical;
+    width: 90%;
 }
 
 .input__style:focus {
@@ -118,11 +123,16 @@ button {
 }
 
 .button__blue:hover {
-    background-color: var(--sporty-blue-trasparent);
+    background-color: var(--sporty-dark-blue);
 }
 
 .ultrabig__text {
     font-size: 5rem;
+    font-weight: 900;
+}
+
+.mediumbig__text {
+    font-size: 4rem;
     font-weight: 900;
 }
 
@@ -262,5 +272,26 @@ button {
     .ultrabig__text {
         font-size: 3rem;
         font-weight: 900;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    h2 {
+        font-size: 1.3rem;
+    }
+    h3 {
+        font-size: 1.1rem;
+    }
+    span {
+        color: var(--text);
+        font-size: 0.9rem;
+    }
+    a,
+    p,
+    textarea,
+    input,
+    ul {
+        color: var(--text-minor);
+        font-size: 0.9rem;
     }
 }

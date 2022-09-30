@@ -13,6 +13,10 @@ export class ProfiloUtenteComponent implements OnInit {
 
   
   userData:any =""
+  atleti:any[] = [];
+  preselection:number = 0;
+  userDataindex:any = "";
+  profileData:any = "wellavariniziale";
 
   ngOnInit(){
     var idutente = localStorage.getItem("sportyId")
@@ -20,8 +24,26 @@ export class ProfiloUtenteComponent implements OnInit {
     const starCountRef = ref(db, 'utenti/' + idutente);
     onValue(starCountRef, (snapshot) => {
       this.userData = snapshot.val();
+      this.atleti = Object.keys(this.userData.atleti).map(index => {
+        let person = this.userData.atleti[index];
+        return person;
+      });
     });
+    if(localStorage.getItem("SportyprofileData") == null){
+      this.profileData = "wellavariniziale"
+      this.preselection = 0
+    }else{
+      this.profileData = localStorage.getItem("SportyprofileData")
+      this.preselection = 1
+    }
     return this.userData
+  }
+
+  saveProfilo(var1:any, var2:any){
+    this.userDataindex = var1;
+    this.profileData = var2;
+    localStorage.setItem("SportyuserDataindex", var2);
+    localStorage.setItem("SportyprofileData", var2);
   }
 
   expand() {
@@ -60,6 +82,8 @@ export class ProfiloUtenteComponent implements OnInit {
   
   logout() {
     localStorage.removeItem('sportyId');
+    localStorage.removeItem('SportyuserDataindex');
+    localStorage.removeItem('SportyprofileData');
     document.documentElement.style.setProperty('--sfondo', 'url(./assets/blob-scene-haikei.svg)');
     this.ac.appSection = 2;
   }

@@ -32,7 +32,10 @@
             <div class="input__container">
                 <input class="" placeholder="email" #email type="text">
                 <input class="" placeholder="password" #password type="password">
-                <button class="button button__blue" (click)="accedi(email.value, password.value)">Accedi</button>
+                <div style="margin-bottom: 1vw;">
+                    <button class="button button__blue" (click)="accedi(email.value, password.value)">Accedi</button>
+                </div>
+                <a>Password dimenticata?</a>
                 <div>
                     <a *ngIf="this.errorSI == 1">C'è stato un errore</a>
                     <a *ngIf="this.errorSI == 2">Accesso consentito</a>

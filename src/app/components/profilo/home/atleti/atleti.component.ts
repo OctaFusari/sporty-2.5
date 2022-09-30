@@ -9,13 +9,7 @@ import { getDatabase, onValue, ref } from 'firebase/database';
 export class AtletiComponent implements OnInit {
   @Input() userData:any = undefined;
   atleti:any[] = [];
-  atleta:any = "";
-  section:number = 0;
   bottonemodifiche:number = 0;
-  nav:number = 0;
-  stagioneAtleta:any = "";
-  aperturaPopup:number = 0;
-  containerAtletaInside:number=0;
   squadreArray:any[] = [];
 
   constructor() { }
@@ -35,25 +29,8 @@ export class AtletiComponent implements OnInit {
   }
 
   close(){
-    this.atleta = "";
-    this.section = 0;
     this.bottonemodifiche = 0;
-    this.nav = 0;
     this.emptyURL = 0
-  }
-
-  guardaAtleta(indexAtleta:any){
-    for(let i=0;i<=this.atleti.length;i++){
-      if(i == indexAtleta){
-        this.atleta = this.atleti[i]
-      }
-    }
-    this.section = 2
-    const db = getDatabase();
-    const starCountRef = ref(db, 'squadre/' + this.atleta.squadra + "/stagioni/" + this.atleta.stagione);
-    onValue(starCountRef, (snapshot) => {
-      this.stagioneAtleta = snapshot.val();
-    });
   }
 
   imgURL:any;

@@ -380,6 +380,75 @@ svg {
     padding: 0.25rem;
 }
 
+.container__profili {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__profili__inside {
+    display: grid;
+    margin: 15vw 8vw 8vw 8vw;
+    grid-template-columns: 1fr 0.2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "container__profili__inside__1 container__profili__inside__2""container__profili__inside__3 container__profili__inside__3";
+    z-index: 99;
+}
+
+.container__profili__inside__1 h1 {
+    line-height: 2cm;
+}
+
+.container__profili__inside__1 {
+    grid-area: container__profili__inside__1;
+}
+
+.container__profili__inside__2 {
+    grid-area: container__profili__inside__2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__profili__inside__3 {
+    margin-top: 3vw;
+    text-align: center;
+    grid-area: container__profili__inside__3;
+}
+
+.card {
+    background: var(--sporty-blue) !important;
+}
+
+.backg {
+    position: absolute;
+    z-index: 0;
+}
+
+.backg h1 {
+    font-size: 30rem;
+    font-weight: 900;
+    color: var(--background-text);
+}
+
+.circlebutton {
+    border-radius: 100%;
+    height: 150px;
+    width: 150px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 1vw;
+}
+
+.circlebutton__little {
+    border-radius: 100%;
+    height: 125px;
+    width: 125px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin: 1vw;
+}
+
 @media screen and (max-width: 800px) {
     .barralattotal2 {
         display: block;
