@@ -24,29 +24,55 @@
     </div>
 </div>
 <div *ngIf="this.sezioneSquadra == 2">
-    <h1>{{this.squadraScelta.nomesquadra}}</h1>
-    <div>
-        <div>
-            <div>
-                <h2>codice: <h3 style="color: var(--text-minor);">{{this.squadraScelta.codicesquadra}}</h3></h2>
-            </div>
-            <div>
-                <h2>sede squadra: <h3 style="color: var(--text-minor);">{{this.squadraScelta.sedesquadra}}</h3></h2>
-            </div>
-            <div>
-                <h2>email: <h3 style="color: var(--text-minor);">{{this.squadraScelta.emailsquadra}}</h3></h2>
-            </div>
+    <div class="container container__info__squadra_superiore">
+        <div class="container__info__squadra_superiore__inside">
+            <h1>{{this.squadraScelta.nomesquadra}}</h1>
         </div>
-        <div>
+        <div class="button__iscrizione">
             <button class="circle__button button__blue">
                 Iscriviti
             </button>
         </div>
     </div>
+    <div class="container container__info__squadra">
+        <div>
+            <div class="card__accedi__gestori">
+                <h3>Accedi all'area gestori</h3><button class="button__blue button">Accedi</button>
+            </div>
+            <div class="card__accedi__gestori">
+                <div>
+                    <h3>sede squadra:
+
+                    </h3>
+                    <div>
+                        <a style="color: var(--text-minor);">{{this.squadraScelta.sedesquadra}}</a>
+                    </div>
+                </div>
+                <div>
+                    <h3>email:
+                    </h3>
+                    <div>
+                        <a style="color: var(--text-minor);">{{this.squadraScelta.emailsquadra}}</a>
+                    </div>
+                </div>
+                <div>
+                    <h3>codice:
+                    </h3>
+                    <div>
+                        <a style="color: var(--text-minor);">{{this.squadraScelta.codicesquadra}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card__accedi__gestori bacheca">
+            <h2>Bacheca</h2>
+            <a>Non è stato aggiunto niente</a>
+        </div>
+    </div>
 </div>
 <div *ngIf="this.sezioneSquadra == 3">
-    
+
 </div>
 <div *ngIf="this.sezioneSquadra == 4">
-    
+
 </div>

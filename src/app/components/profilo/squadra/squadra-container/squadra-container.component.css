@@ -1,5 +1,3 @@
-
-
 .container__profili {
     display: flex;
     align-items: center;
@@ -22,15 +20,59 @@
     justify-content: center;
 }
 
-.container__profili__inside__2{
+.container__profili__inside__2 {
     text-align: center;
 }
 
-.container__profili__inside__2 button{
+.container__profili__inside__2 button {
     margin: 2vw;
 }
 
-.card__squadra{
+.card__squadra {
     width: 200px;
     height: 150px;
+}
+
+.container__info__squadra {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+}
+
+.container__info__squadra_superiore {
+    margin: 0vw 6vw 0vw 6vw;
+    height: 18vw;
+    border-radius: 2rem;
+    background: var(--sfondo-squadra);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-position: center;
+    display: grid;
+    grid-template-columns: 3fr 0.5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+}
+
+.container__info__squadra_superiore__inside {
+    margin-left: -6vw;
+    width: min-content;
+    height: fit-content;
+    border-radius: 2rem;
+    padding: 1vw;
+    background-color: var(--container-trasparent);
+}
+
+.card__accedi__gestori {
+    background: var(--card);
+    border-radius: 2rem;
+    padding: 1vw;
+    margin: 0.8vw;
+}
+
+.button__iscrizione {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

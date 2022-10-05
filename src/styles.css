@@ -15,13 +15,14 @@
     --container: #181818;
     --card: #1d1d1d;
     --card-little: #242424;
-    --container-trasparent: #18181885;
+    --container-trasparent: #1818189d;
     --card-trasparent: #20202085;
     --allert: #fbab00;
     --error: #fb0000;
     --approved: #00c42a;
     --octimal: #007E6D;
-    --sfondo: url(./assets/blob-scene-haikei.svg)
+    --sfondo: url(./assets/blob-scene-haikei.svg);
+    --sfondo-squadra: url("http://www.gsbrentonico.org/site/wp-content/uploads/2017/03/image3.jpg")
 }
 
 body,
@@ -191,8 +192,8 @@ button {
 }
 
 .circle__button {
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
     border-radius: 100%;
     padding: 0.8vw;
     margin: 0.8vw;
