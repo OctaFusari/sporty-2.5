@@ -137,7 +137,7 @@ button {
 }
 
 .big__h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 .big__text {
@@ -168,7 +168,7 @@ button {
 .card {
     background: var(--card);
     border-radius: 2rem;
-    padding: 0.8vw;
+    padding: 1vw;
     margin: 0.8vw;
     width: min-content;
     height: fit-content;
@@ -191,8 +191,8 @@ button {
 }
 
 .circle__button {
-    height: 4vw;
-    width: 4vw;
+    height: 100px;
+    width: 100px;
     border-radius: 100%;
     padding: 0.8vw;
     margin: 0.8vw;

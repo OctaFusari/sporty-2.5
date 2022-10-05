@@ -1,1 +1,52 @@
-<p>squadra-container works!</p>
+<div class="container__profili" *ngIf="this.sezioneSquadra == 0 || this.sezioneSquadra == 1">
+    <div class="container__profili__inside">
+        <div class="container__profili__inside__1">
+            <h1 class="big__h1">Benvenuto in Squadre</h1>
+        </div>
+        <div class="container__profili__inside__2">
+            <div *ngIf="this.sezioneSquadra == 0">
+                <button class="button button__blue" (click)="sezioneSquadra = 2">Crea Squadra</button>
+                <button class="button button__blue" (click)="sezioneSquadra = 1">Cerca squadra</button>
+            </div>
+            <div *ngIf="this.sezioneSquadra == 1">
+                <h2 style="color: var(--sporty-blue);">Cerca Squadra</h2>
+                <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue (keyup.enter)="cercaSquadra(squadravalue.value)">
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="this.sezioneSquadra == 1">
+    <div class="card card__squadra" *ngFor="let squadra of this.arraySquadre" (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
+        <h2>{{squadra.nomesquadra}}</h2>
+        <div>
+            <a>{{squadra.codicesquadra}}</a>
+        </div>
+    </div>
+</div>
+<div *ngIf="this.sezioneSquadra == 2">
+    <h1>{{this.squadraScelta.nomesquadra}}</h1>
+    <div>
+        <div>
+            <div>
+                <h2>codice: <h3 style="color: var(--text-minor);">{{this.squadraScelta.codicesquadra}}</h3></h2>
+            </div>
+            <div>
+                <h2>sede squadra: <h3 style="color: var(--text-minor);">{{this.squadraScelta.sedesquadra}}</h3></h2>
+            </div>
+            <div>
+                <h2>email: <h3 style="color: var(--text-minor);">{{this.squadraScelta.emailsquadra}}</h3></h2>
+            </div>
+        </div>
+        <div>
+            <button class="circle__button button__blue">
+                Iscriviti
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="this.sezioneSquadra == 3">
+    
+</div>
+<div *ngIf="this.sezioneSquadra == 4">
+    
+</div>

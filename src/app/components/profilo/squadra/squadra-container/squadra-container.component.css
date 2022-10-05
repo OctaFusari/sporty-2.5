@@ -1,0 +1,36 @@
+
+
+.container__profili {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__profili__inside {
+    margin: 12vw 8vw 8vw 8vw;
+}
+
+.container__profili__inside__1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__profili__inside__2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__profili__inside__2{
+    text-align: center;
+}
+
+.container__profili__inside__2 button{
+    margin: 2vw;
+}
+
+.card__squadra{
+    width: 200px;
+    height: 150px;
+}

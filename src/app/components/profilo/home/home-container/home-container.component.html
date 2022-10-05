@@ -1,10 +1,6 @@
 <div>
     <div class="sezione__top">
         <h1 class="big__h1" (click)="changeProfile()" *ngIf="this.userData != undefined">{{this.userData.nome}} {{this.userData.cognome}}</h1>
-        <div>
-            <a *ngIf="this.squadra.nomesquadra == ''">nessuna</a>
-            <a *ngIf="this.squadra.nomesquadra != ''">Squadra: {{this.squadra.nomesquadra}}</a>
-        </div>
     </div>
     <div class="centro">
         <div class="sezione__sinistra">
