@@ -191,7 +191,7 @@
         </div>
     </div>
     <div class="container__profilo__inside">
-        <app-home-container (changeProfilevent)="changeProfile($event)" [userData]="userData" [userDataindex]="userDataindex" [profileData]="profileData" *ngIf="this.section == 0"></app-home-container>
+        <app-home-container (changeProfilevent)="changeProfile($event)" [userDataindex]="userDataindex" [profileData]="profileData" *ngIf="this.section == 0"></app-home-container>
         <app-diario [userData]="userData" *ngIf="this.section == 1"></app-diario>
         <app-allenatore-container [userData]="userData" *ngIf="this.section == 2"></app-allenatore-container>
         <app-squadra-container [userData]="userData" *ngIf="this.section == 3"></app-squadra-container>

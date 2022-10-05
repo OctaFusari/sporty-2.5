@@ -11,7 +11,6 @@ export class ProfiloUtenteComponent implements OnInit {
 
   constructor(public ac: AppComponent) { }
 
-  
   userData:any =""
   atleti:any[] = [];
   preselection:number = 0;
@@ -33,11 +32,11 @@ export class ProfiloUtenteComponent implements OnInit {
         return person;
       });
     });
-    if(localStorage.getItem("SportyprofileData") == null){
+    if(localStorage.getItem("Sportyprofileid") == null){
       this.profileData = "wellavariniziale"
       this.preselection = 0
     }else{
-      this.profileData = localStorage.getItem("SportyprofileData")
+      this.profileData = localStorage.getItem("Sportyprofileid")
       this.preselection = 1
     }
     return this.userData
@@ -46,8 +45,7 @@ export class ProfiloUtenteComponent implements OnInit {
   saveProfilo(var1:any, var2:any){
     this.userDataindex = var1;
     this.profileData = var2;
-    localStorage.setItem("SportyuserDataindex", var2);
-    localStorage.setItem("SportyprofileData", var2);
+    localStorage.setItem("Sportyprofileid", var2);
   }
 
   expand() {
@@ -86,8 +84,7 @@ export class ProfiloUtenteComponent implements OnInit {
   
   logout() {
     localStorage.removeItem('sportyId');
-    localStorage.removeItem('SportyuserDataindex');
-    localStorage.removeItem('SportyprofileData');
+    localStorage.removeItem('Sportyprofileid');
     document.documentElement.style.setProperty('--sfondo', 'url(./assets/blob-scene-haikei.svg)');
     this.ac.appSection = 2;
   }
