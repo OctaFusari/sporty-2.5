@@ -18,6 +18,10 @@ export class ProfiloUtenteComponent implements OnInit {
   userDataindex:any = "";
   profileData:any = "wellavariniziale";
 
+  changeProfile(changeProfilevent: any) {
+    this.preselection = changeProfilevent;
+  }
+
   ngOnInit(){
     var idutente = localStorage.getItem("sportyId")
     const db = getDatabase();
