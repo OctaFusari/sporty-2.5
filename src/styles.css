@@ -25,6 +25,18 @@
     --sfondo-squadra: url("http://www.gsbrentonico.org/site/wp-content/uploads/2017/03/image3.jpg")
 }
 
+.error {
+    color: var(--error) !important;
+}
+
+.allert {
+    color: var(--allert) !important;
+}
+
+.approved {
+    color: var(--approved) !important;
+}
+
 body,
 html {
     scroll-behavior: smooth;

@@ -8,7 +8,7 @@
 .container__profilo {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: 2.5cm auto;
+    grid-template-columns: 2.5cm 1fr;
     grid-template-areas: ". .";
 }
 
@@ -389,7 +389,7 @@ svg {
 .container__profili__inside {
     display: grid;
     margin: 15vw 8vw 8vw 8vw;
-    grid-template-columns: 1fr 0.2fr;
+    grid-template-columns: 1fr auto;
     grid-template-rows: 1fr;
     grid-template-areas: "container__profili__inside__1 container__profili__inside__2""container__profili__inside__3 container__profili__inside__3";
     z-index: 99;
@@ -401,10 +401,12 @@ svg {
 
 .container__profili__inside__1 {
     grid-area: container__profili__inside__1;
+    margin-right: 1vw;
 }
 
 .container__profili__inside__2 {
     grid-area: container__profili__inside__2;
+    margin-left: 1vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -447,6 +449,13 @@ svg {
     font-size: 1.2rem;
     font-weight: 900;
     margin: 1vw;
+}
+
+.input__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". .";
 }
 
 @media screen and (max-width: 800px) {

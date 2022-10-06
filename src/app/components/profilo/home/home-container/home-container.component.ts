@@ -10,15 +10,24 @@ import { getDatabase, onValue, ref } from 'firebase/database';
 export class HomeContainerComponent implements OnInit {
 
   @Output() changeProfilevent = new EventEmitter<any>();
-  
+  @Output() scegliSquadra = new EventEmitter<any>();
   @Input() userDataindex:any = "";
   userData:any = "";
  /* [userData]="userData" */
   @Input() profileData:any = "";
-  squadra:any = ""
+  squadra:any = "";
 
-  addNewItem() {
+  scegliSquadraFunction(){
+    this.scegliSquadra.emit(3);
+  }
 
+  changeProfile() {
+    this.changeProfilevent.emit(0);
+    localStorage.removeItem('Sportyprofileid');
+    this.userDataindex = "";
+    this.userData = "";
+    this.profileData = "";
+   this.squadra = ""
   }
 
   constructor() { }
@@ -45,16 +54,7 @@ export class HomeContainerComponent implements OnInit {
     }catch{
       this.squadra = ''
     }
-
-  }
-
-  changeProfile() {
-    this.changeProfilevent.emit(0);
-    localStorage.removeItem('Sportyprofileid');
-    this.userDataindex = "";
-    this.userData = "";
-    this.profileData = "";
-   this.squadra = ""
+    console.log(this.squadra.length)
   }
 
 }
