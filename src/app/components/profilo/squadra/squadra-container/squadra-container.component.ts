@@ -12,6 +12,29 @@ export class SquadraContainerComponent implements OnInit {
   arraySquadre: any[] = [];
   squadraScelta:any = "";
   sezioneIscrizione:number = 0;
+  atletaBase:any = {
+    atletaid: "",
+    nome: "",
+    cognome: "",
+    email: "",
+    datadinascita: "",
+    luogodinascita: "",
+    codicefiscale: "",
+    residenza: "",
+    telefono: "",
+    doc1: "",
+    doc2: "",
+    doc3: "",
+    immagini:"",
+    conferma: "",
+    stagione:"",
+    squadra: "",
+    datascadenza: "",
+    corso: "",
+    documenti:"",
+    messaggi:"",
+    allenamenti:""
+  }
 
   constructor() { }
 
@@ -31,6 +54,10 @@ export class SquadraContainerComponent implements OnInit {
       })
     })
 
+  }
+
+  iscrizioneStagione(){
+    
   }
 
 }
