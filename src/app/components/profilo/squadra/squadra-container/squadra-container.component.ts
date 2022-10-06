@@ -11,6 +11,7 @@ export class SquadraContainerComponent implements OnInit {
   sezioneSquadra:number = 0;
   arraySquadre: any[] = [];
   squadraScelta:any = "";
+  sezioneIscrizione:number = 0;
 
   constructor() { }
 
