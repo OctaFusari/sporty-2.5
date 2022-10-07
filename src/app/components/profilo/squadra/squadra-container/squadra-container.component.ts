@@ -56,8 +56,20 @@ export class SquadraContainerComponent implements OnInit {
 
   }
 
-  iscrizioneStagione(){
-    
+  creazioneSquadra(){
+
+  }
+
+  stagione(){
+    const db = getDatabase();
+    let stagioni:any [] = []
+    const starCountRef2 = ref(db, 'squadre/'+this.squadraScelta.codicesquadra+"/stagioni");
+    onValue(starCountRef2, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        stagioni.push(childSnapshot.val)
+      })
+    })
+    console.log()
   }
 
 }
