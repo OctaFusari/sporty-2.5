@@ -5,7 +5,7 @@
 }
 
 .container__squadra__iniziale__inside {
-    margin: 12vw 8vw 8vw 8vw;
+    margin: 12vw 8vw 4vw 8vw;
 }
 
 .container__squadra__iniziale__inside__1 {
@@ -26,6 +26,15 @@
 
 .container__squadra__iniziale__inside__2 button {
     margin: 2vw;
+}
+
+.container__card__squadra {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card__squadra {
@@ -50,18 +59,25 @@
     background-position: 50% 0;
     background-position: center;
     display: grid;
-    grid-template-columns: 3fr 0.5fr;
+    grid-template-columns: 0.5fr 3fr 0.5fr;
     grid-template-rows: 1fr;
-    grid-template-areas: ". .";
+    grid-template-areas: "container__info__squadra_superiore__inside . button__iscrizione";
 }
 
-.container__info__squadra_superiore__inside {
+.container__info__squadra_superiore__inside__container {
+    background-color: var(--container-trasparent);
     margin-left: -6vw;
     width: min-content;
     height: fit-content;
     border-radius: 2rem;
     padding: 1vw;
-    background-color: var(--container-trasparent);
+}
+
+.container__info__squadra_superiore__inside {
+    grid-area: container__info__squadra_superiore__inside;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card__accedi__gestori {
@@ -72,6 +88,7 @@
 }
 
 .button__iscrizione {
+    grid-area: button__iscrizione;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,4 +160,18 @@
     left: 0;
     bottom: 0;
     right: 0;
+}
+
+.container__counter {
+    text-align: center;
+    border-radius: 2rem;
+    background-color: var(--container-trasparent);
+    display: flex;
+}
+
+.sqadra__ptgestori__centro {
+    display: grid;
+    grid-template-columns: auto 20vw;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
 }

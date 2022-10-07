@@ -39,6 +39,7 @@ export class SquadraContainerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   cercaSquadra(squadravalue:any){
