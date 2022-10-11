@@ -31,7 +31,11 @@
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
             </div>
             <div>
-                <input class="input__style" type="password" placeholder="password">
+                <input class="input__style" type="password" placeholder="password" #pass (keyup.enter)="accediSquadra(pass.value)">
+            </div>
+            <div style="height: 2vw;">
+                <a class="approved" *ngIf="this.message == 1">Acesso avvenuto con successo</a>
+                <a class="error" *ngIf="this.message == 2">Acesso negato</a>
             </div>
         </div>
         <div class="popup__accedi__squadra__esci" (click)="this.sezioneSquadra = 2">
@@ -149,7 +153,7 @@
         </div>
         <div *ngIf="sezioneIscrizione == 2">
             <button class="button button__blue" (click)="this.sezioneIscrizione = 2">Torna indietro</button>
-            <button class="button button__blue" (click)="this.sezioneSquadra = 4; this.sezioneIscrizione = 0">Salva e chiudi</button>
+            <button class="button button__blue" (click)="this.sezioneSquadra = 5; this.sezioneIscrizione = 0">Salva e chiudi</button>
             <div style="display: none;">
                 <a class="error">Devi accettare i documenti</a>
                 <a class="approved">Atleta iscritto con successo</a>
@@ -163,30 +167,30 @@
             <div class="container__info__squadra_superiore__inside__container">
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
                 <div style="display: flex; margin-top:2vw">
-                    <button class="button button__blue">Stagioni</button>
-                    <button class="button button__blue">Atleti</button>
-                    <button class="button button__blue">Allenamenti</button>
+                    <button (click)="this.centrovar = 0" class="button" [ngClass]="{'open': centrovar === 0, 'notopen' :  centrovar != 0 }">Stagioni</button>
+                    <button (click)="this.centrovar = 1" class="button" [ngClass]="{'open': centrovar === 1, 'notopen' :  centrovar != 1 }">Atleti</button>
+                    <button (click)="this.centrovar = 2" class="button" [ngClass]="{'open': centrovar === 2, 'notopen' :  centrovar != 2 }">Allenamenti</button>
                 </div>
             </div>
         </div>
         <div class="button__iscrizione">
             <div class="container__counter">
-                <div class="container">
+                <div class="card">
                     <h3>0</h3>
                     <div>
-                        <a>Bonifici</a>
+                        <a>Stagioni</a>
                     </div>
                 </div>
-                <div class="container">
+                <div class="card">
                     <h3>0</h3>
                     <div>
-                        <a>Certificati medici</a>
+                        <a>Iscritti</a>
                     </div>
                 </div>
-                <div class="container">
+                <div class="card">
                     <h3>0</h3>
                     <div>
-                        <a>Firme</a>
+                        <a>Documenti</a>
                     </div>
                 </div>
             </div>
@@ -194,9 +198,9 @@
     </div>
     <div class="sqadra__ptgestori__centro">
         <div class="container">
-            <div class="card__accedi__gestori">
-
-            </div>
+            <app-stagioni *ngIf="this.centrovar == 0"></app-stagioni>
+            <app-utenti *ngIf="this.centrovar == 1"></app-utenti>
+            <app-allenamenti *ngIf="this.centrovar == 2"></app-allenamenti>
         </div>
         <div class="container">
             <h2>Bacheca</h2>

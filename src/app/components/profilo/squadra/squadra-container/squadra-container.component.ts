@@ -12,6 +12,8 @@ export class SquadraContainerComponent implements OnInit {
   arraySquadre: any[] = [];
   squadraScelta:any = "";
   sezioneIscrizione:number = 0;
+  message:number = 0;
+  centrovar:any = 0;
   atletaBase:any = {
     atletaid: "",
     nome: "",
@@ -71,6 +73,27 @@ export class SquadraContainerComponent implements OnInit {
       })
     })
     console.log()
+  }
+
+  accediSquadra(pass:any){
+    if(pass == this.squadraScelta.passwordteam){
+      const db = getDatabase();
+      const starCountRef2 = ref(db, 'squadre/'+this.squadraScelta.passwordteam);
+      onValue(starCountRef2, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          this.squadraScelta.push(childSnapshot.val)
+        })
+      })
+
+      this.message = 1
+      this.sezioneSquadra = 4
+    }else if(pass != this.squadraScelta.passwordteam){
+      this.message = 2
+    }
+    console.log(this.message)
+    setInterval(() => {
+      this.message = 0;
+    }, 2000)
   }
 
 }

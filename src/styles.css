@@ -37,6 +37,14 @@
     color: var(--approved) !important;
 }
 
+.open{
+    background: var(--sporty-blue) !important;
+}
+.notopen{
+    background: var(--sporty-blue) !important;
+    background: var(--card) !important;
+}
+
 body,
 html {
     scroll-behavior: smooth;
