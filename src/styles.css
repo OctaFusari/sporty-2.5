@@ -10,6 +10,7 @@
     --sporty-blue: #0080FB;
     --sporty-dark-blue: rgb(0, 96, 185);
     --sporty-blue-trasparent: #0082fb85;
+    --text-white: #d6d6d6;
     --text: #d6d6d6;
     --text-minor: #8a8a8a;
     --container: #181818;
@@ -22,6 +23,7 @@
     --approved: #00c42a;
     --octimal: #007E6D;
     --sfondo: url(./assets/blob-scene-haikei.svg);
+    --sfondo2: url(./assets/blob-scene-haikei1.svg);
     --sfondo-squadra: url("http://www.gsbrentonico.org/site/wp-content/uploads/2017/03/image3.jpg")
 }
 
@@ -37,10 +39,11 @@
     color: var(--approved) !important;
 }
 
-.open{
+.open {
     background: var(--sporty-blue) !important;
 }
-.notopen{
+
+.notopen {
     background: var(--sporty-blue) !important;
     background: var(--card) !important;
 }

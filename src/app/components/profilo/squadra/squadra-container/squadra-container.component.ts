@@ -60,7 +60,7 @@ export class SquadraContainerComponent implements OnInit {
   }
 
   creazioneSquadra(){
-
+    
   }
 
   stagione(){

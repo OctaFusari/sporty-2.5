@@ -1,6 +1,6 @@
 <div id="superior">
     <div class="toolbar" role="banner">
-        <h3 (click)="section = 0">Sporty</h3>
+        <h3 (click)="section = 0" (click)="changecolor(1)">Sporty</h3>
         <div class="spacer"></div>
         <a aria-label="Accedi" rel="noopener" title="Accedi" (click)="section = 1">
             Accedi
@@ -49,43 +49,18 @@
                 <h3 *ngIf="regPt1 == 0" class="paragrafo__centrale">Scegli quale tipologia di account fa al caso tuo.</h3>
                 <p>Hai già un account Sporty? <a (click)="section = 1" style="color: var(--sporty-blue);">Accedi</a></p>
             </div>
-            <div class="input__container" *ngIf="regPt1 == 1">
+            <div class="input__container">
                 <input placeholder="nome" #nome type="text">
                 <input placeholder="cognome" #cognome type="text">
                 <input placeholder="email" #email type="text">
                 <input placeholder="password" #password type="password">
-                <button class="button button__blue" (click)="this.regPt1 = 0">Vai avanti</button>
+                <button class="button button__blue" (click)="registrati(nome.value, cognome.value,email.value, password.value)">Registrati</button>
                 <div>
                     <a *ngIf="this.errorSU == 1">La password non va bene</a>
                     <a *ngIf="this.errorSU == 2">Email già in uso</a>
                     <a *ngIf="this.errorSU == 3">C'è stato un errore</a>
                     <a *ngIf="this.errorSU == 4">Account creato con successo</a>
                 </div>
-            </div>
-            <div class="input__container" *ngIf="regPt1 == 0">
-                <div class="accounts_type">
-                    <button (click)="changeAccountType(0)">
-                        <h2>Semplice</h2>
-                        <p>Per famiglia o singolo atleta</p>
-                    </button>
-                    <button (click)="changeAccountType(1)">
-                        <h2>Allenatore</h2>
-                        <p>Per gestire gli allenamenti e gli atleti</p>
-                    </button>
-                    <button (click)="changeAccountType(2)">
-                        <h2>Gestore</h2>
-                        <p>Gestione squadra sportiva</p>
-                    </button>
-                    <button (click)="changeAccountType(3)">
-                        <h2>Completo</h2>
-                        <p>Per chi vuole avere tutte le funzionalità</p>
-                    </button>
-                </div>
-                <div style="text-align: center;margin-bottom:0.8vw">
-                    <a style="font-size: 0.8em">Di default l'account viene inpostato su "Semplice"</a>
-                </div>
-                <button class="button button__blue" (click)="regPt1 = 1">Torna dietro</button>
-                <button class="button button__blue" (click)="section = 1">Accedi a Sporty</button>
             </div>
         </div>
     </div>

@@ -21,18 +21,18 @@
     text-align: center;
     font-size: 100%;
     margin: 100% -1.5rem 1% -1.5rem;
-    color: var(--text);
+    color: var(--text-white);
 }
 
 .container2 a {
     font-family: 'Poppins', sans-serif;
     font-weight: 900;
     font-size: 1.2rem;
-    color: var(--text);
+    color: var(--text-white);
 }
 
 svg {
-    fill: var(--text);
+    fill: var(--text-white);
     cursor: pointer;
 }
 
@@ -92,7 +92,7 @@ svg {
     display: flex;
     flex-flow: column nowrap;
     background: var(--sporty-blue);
-    color: var(--text);
+    color: var(--text-white);
     padding: 1.5rem;
     border-radius: 1rem;
     flex: 0 1 auto;
@@ -157,7 +157,7 @@ svg {
     align-items: center;
     padding: 0;
     background: none;
-    color: var(--text);
+    color: var(--text-white);
     border: 0;
     overflow: hidden;
     border-radius: 0.5rem;
@@ -165,14 +165,14 @@ svg {
     outline-offset: -2px;
     transition-property: background, color;
     transition-duration: 250ms;
-    color: var(--text);
+    color: var(--text-white);
     flex: 0 0 auto;
     position: absolute;
     left: 100%;
 }
 
 .is-active .sidenav__button {
-    color: var(--text);
+    color: var(--text-white);
 }
 
 .sidenav__button:focus-visible {
@@ -181,7 +181,7 @@ svg {
 
 .sidenav__button:focus-visible,
 .sidenav__button:hover svg {
-    fill: var(--text)8c !important;
+    fill: var(--text-white) !important;
 }
 
 .sidenav__button-icon {
@@ -221,7 +221,7 @@ svg {
 
 .header .sidenav__button-icon {
     width: auto;
-    color: var(--text);
+    color: var(--text-white);
 }
 
 .header .sidenav__button-icon>* {
@@ -230,7 +230,7 @@ svg {
 }
 
 .header .sidenav__button-icon>*:hover {
-    color: var(--text);
+    color: var(--text-white);
 }
 
 .is-collapsed .header .sidenav__button-icon>* {
@@ -246,7 +246,7 @@ svg {
 .nav {
     overflow: hidden;
     overflow-y: auto;
-    scrollbar-color: var(--text) transparent;
+    scrollbar-color: var(--text-white) transparent;
     scrollbar-width: thin;
     transition: scrollbar-color 200ms;
 }
@@ -262,7 +262,7 @@ svg {
 }
 
 .nav::-webkit-scrollbar-thumb {
-    background: var(--text);
+    background: var(--text-white);
 }
 
 .nav::-webkit-scrollbar-corner {
@@ -270,7 +270,7 @@ svg {
 }
 
 .nav:hover {
-    scrollbar-color: var(--text) var(--sporty-dark-blue);
+    scrollbar-color: var(--text-white) var(--sporty-dark-blue);
 }
 
 .nav:hover::-webkit-scrollbar-track {
@@ -313,7 +313,7 @@ svg {
     align-items: center;
     padding: 0;
     background: none;
-    color: var(--text);
+    color: var(--text-white);
     border: 0;
     overflow: hidden;
     border-radius: 0.5rem;
@@ -326,7 +326,7 @@ svg {
 }
 
 .is-active .nav__button {
-    color: var(--text);
+    color: var(--text-white);
 }
 
 .nav__button:focus-visible {
@@ -336,7 +336,7 @@ svg {
 .nav__button:focus-visible,
 .nav__button:hover {
     background: var(--sporty-blue);
-    color: var(--text);
+    color: var(--text-white);
 }
 
 .nav__icon {
