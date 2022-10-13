@@ -15,6 +15,7 @@ export class PaginainizialeComponent implements OnInit {
   constructor(public ac: AppComponent) { }
 
   ngOnInit(): void {
+    this.changecolor(this.mode)
   }
 
   /* Variabili */

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ref, onValue, getDatabase } from 'firebase/database';
+import { atleta } from 'src/app/objects/atleta';
 
 @Component({
   selector: 'app-squadra-container',
@@ -14,7 +15,7 @@ export class SquadraContainerComponent implements OnInit {
   sezioneIscrizione:number = 0;
   message:number = 0;
   centrovar:any = 0;
-  atletaBase:any = {
+  atletaBase:atleta = {
     atletaid: "",
     nome: "",
     cognome: "",
@@ -78,11 +79,9 @@ export class SquadraContainerComponent implements OnInit {
   accediSquadra(pass:any){
     if(pass == this.squadraScelta.passwordteam){
       const db = getDatabase();
-      const starCountRef2 = ref(db, 'squadre/'+this.squadraScelta.passwordteam);
+      const starCountRef2 = ref(db, 'squadre/'+this.squadraScelta.codicesquadra);
       onValue(starCountRef2, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          this.squadraScelta.push(childSnapshot.val)
-        })
+          this.squadraScelta = (snapshot.val)
       })
 
       this.message = 1

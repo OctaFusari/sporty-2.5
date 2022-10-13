@@ -1,1 +1,62 @@
-<p>impostazioni works!</p>
+<div>
+    <div>
+        <h1 style="margin-left: 1vw;">Impostazioni</h1>
+        <div class="container__up">
+            <div class="container">
+                <h2>Account</h2>
+                <div>
+                    <a>Accesso eseguito come {{userData.nome}} {{userData.cognome}}</a>
+                </div>
+            </div>
+            <div class="container">
+                <h3 class="elimina">Elimina account</h3>
+                <h3 class="modifica">Cambia password</h3>
+            </div>
+        </div>
+        <div class="container">
+            <h2>Dati utente</h2>
+
+            <div class="input__container">
+                <div>
+                    <h3>Nome</h3>
+                    <input class="input__style__noactive" placeholder="Nome">
+                </div>
+                <div>
+                    <h3>Cognome</h3>
+                    <input class="input__style__noactive" placeholder="Cognome">
+                </div>
+                <div>
+                    <h3>Email</h3>
+                    <input class="input__style__noactive" placeholder="Email">
+                </div>
+                <div>
+                    <h3>Data di nascita</h3>
+                    <input class="input__style__noactive" placeholder="Data di nascita">
+                </div>
+                <div>
+                    <h3>Luogo di nascita</h3>
+                    <input class="input__style__noactive" placeholder="Luogo di nascita">
+                </div>
+                <div>
+                    <h3>Codice fiscale</h3>
+                    <input class="input__style__noactive" placeholder="Codice fiscale">
+                </div>
+                <div>
+                    <h3>Residenza</h3>
+                    <input class="input__style__noactive" placeholder="Residenza">
+                </div>
+                <div>
+                    <h3>Telefono</h3>
+                    <input class="input__style__noactive" placeholder="Telefono">
+                </div>
+                <div>
+                    <h3>Squadra</h3>
+                    <div class="squadra">
+                        <a *ngIf="this.userData.squadra != ''">{{userData.squadra}}</a>
+                        <a *ngIf="this.userData.squadra == ''">nessuna</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

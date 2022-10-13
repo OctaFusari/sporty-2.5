@@ -9,4 +9,6 @@ export interface stagione{
     documentoimmagini:string;
     iscrittistagione: any;
     nomestagione:any;
+    documenti:any;
+    immagini:any;
 }

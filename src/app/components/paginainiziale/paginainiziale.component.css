@@ -26,9 +26,10 @@
     border-radius: 10px;
     /*     background-color: var(--container-trasparent);
     padding: 2vh 1vh 2vh 1vh; */
-    margin: 15vw auto 20vw;
+    margin: 12vw auto 20vw;
     padding: 0 16px;
     max-width: 800px;
+    width: fit-content;
     /* flex-direction: column; */
     /* align-items: center; */
 }
@@ -38,7 +39,7 @@
 #section__due {
     height: 313px;
     display: grid;
-    grid-template-columns: min-content;
+    grid-template-columns: min-content min-content;
     grid-template-rows: 1fr;
     grid-template-areas: ". .";
     align-items: center;
@@ -78,14 +79,16 @@ footer {
     grid-area: f_c3;
 }
 
-.toolbar a:hover {
+.toolbar button:hover {
     border: 2px solid var(--sporty-blue);
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
     color: var(--text);
 }
 
-.toolbar a {
+.toolbar button {
+    padding: 0.2vw;
+    background-color: rgba(0, 0, 0, 0);
     border: 2px solid rgba(40, 40, 40, 0);
     border-radius: 10px;
     line-height: 0.8cm;
@@ -248,4 +251,18 @@ input:focus {
 
 .octitxt1 {
     cursor: pointer;
+    fill:#3b3b3b44
+}
+
+.minibar__destra{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+    align-items: center;
+    align-content: center;
+}
+
+.minibar__destra div{
+    margin: 0vw 1vw 0vw 1vw;
 }

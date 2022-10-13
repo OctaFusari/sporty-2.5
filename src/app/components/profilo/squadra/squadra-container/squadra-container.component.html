@@ -198,7 +198,7 @@
     </div>
     <div class="sqadra__ptgestori__centro">
         <div class="container">
-            <app-stagioni *ngIf="this.centrovar == 0"></app-stagioni>
+            <app-stagioni [squadraScelta]="squadraScelta" *ngIf="this.centrovar == 0"></app-stagioni>
             <app-utenti *ngIf="this.centrovar == 1"></app-utenti>
             <app-allenamenti *ngIf="this.centrovar == 2"></app-allenamenti>
         </div>

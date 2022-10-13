@@ -1,0 +1,39 @@
+.input__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". .";
+}
+
+.input__container div{
+    display: flex;
+    margin: 0.3rem;
+}
+
+.input__container h3{
+    padding:  0rem 0.4rem 0rem 0.4rem;
+}
+
+.squadra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.container__up{
+    display: grid;
+    grid-template-columns: auto max-content;
+    grid-template-rows: auto;
+    grid-template-areas: ". .";
+}
+
+.elimina:hover{
+    color: var(--error);
+    cursor: pointer;
+}
+
+.modifica:hover{
+    color: var(--sporty-blue);
+    cursor: pointer;
+}
