@@ -49,7 +49,8 @@ export class PaginainizialeComponent implements OnInit {
           residenza:"",
           telefono:"",
           atleti:"",
-          squadra:""
+          squadra:"",
+          gestore:""
         });
 
         set(ref(db, 'utenti/' + user.uid + "/atleti/" + user.uid), {
@@ -73,7 +74,9 @@ export class PaginainizialeComponent implements OnInit {
           corso: "",
           documenti:"",
           messaggi:"",
-          allenamenti:""
+          allenamenti:"",
+          tema:"",
+          gestore:""
         });
         
         this.errorSU = 4;

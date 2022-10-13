@@ -37,11 +37,6 @@
     justify-content: center;
 }
 
-.card__squadra {
-    width: 200px;
-    height: 150px;
-}
-
 .container__info__squadra {
     display: grid;
     grid-template-columns: 1fr 2fr;

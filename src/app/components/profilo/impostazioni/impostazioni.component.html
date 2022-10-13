@@ -13,47 +13,63 @@
                 <h3 class="modifica">Cambia password</h3>
             </div>
         </div>
-        <div class="container">
-            <h2>Dati utente</h2>
+        <div class="container__up">
+            <div class="container">
+                <h2>Dati utente</h2>
 
-            <div class="input__container">
-                <div>
-                    <h3>Nome</h3>
-                    <input class="input__style__noactive" placeholder="Nome">
+                <div class="input__container">
+                    <div>
+                        <h3>Nome</h3>
+                        <input class="input__style__noactive" placeholder="Nome">
+                    </div>
+                    <div>
+                        <h3>Cognome</h3>
+                        <input class="input__style__noactive" placeholder="Cognome">
+                    </div>
+                    <div>
+                        <h3>Email</h3>
+                        <input class="input__style__noactive" placeholder="Email">
+                    </div>
+                    <div>
+                        <h3>Data di nascita</h3>
+                        <input class="input__style__noactive" placeholder="Data di nascita">
+                    </div>
+                    <div>
+                        <h3>Luogo di nascita</h3>
+                        <input class="input__style__noactive" placeholder="Luogo di nascita">
+                    </div>
+                    <div>
+                        <h3>Codice fiscale</h3>
+                        <input class="input__style__noactive" placeholder="Codice fiscale">
+                    </div>
+                    <div>
+                        <h3>Residenza</h3>
+                        <input class="input__style__noactive" placeholder="Residenza">
+                    </div>
+                    <div>
+                        <h3>Telefono</h3>
+                        <input class="input__style__noactive" placeholder="Telefono">
+                    </div>
+                    <div>
+                        <h3>Squadra</h3>
+                        <div class="squadra">
+                            <a *ngIf="this.userData.squadra != ''">{{userData.squadra}}</a>
+                            <a *ngIf="this.userData.squadra == ''">nessuna</a>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="container">
+                <h2>Modalità</h2>
                 <div>
-                    <h3>Cognome</h3>
-                    <input class="input__style__noactive" placeholder="Cognome">
-                </div>
-                <div>
-                    <h3>Email</h3>
-                    <input class="input__style__noactive" placeholder="Email">
-                </div>
-                <div>
-                    <h3>Data di nascita</h3>
-                    <input class="input__style__noactive" placeholder="Data di nascita">
-                </div>
-                <div>
-                    <h3>Luogo di nascita</h3>
-                    <input class="input__style__noactive" placeholder="Luogo di nascita">
-                </div>
-                <div>
-                    <h3>Codice fiscale</h3>
-                    <input class="input__style__noactive" placeholder="Codice fiscale">
-                </div>
-                <div>
-                    <h3>Residenza</h3>
-                    <input class="input__style__noactive" placeholder="Residenza">
-                </div>
-                <div>
-                    <h3>Telefono</h3>
-                    <input class="input__style__noactive" placeholder="Telefono">
-                </div>
-                <div>
-                    <h3>Squadra</h3>
-                    <div class="squadra">
-                        <a *ngIf="this.userData.squadra != ''">{{userData.squadra}}</a>
-                        <a *ngIf="this.userData.squadra == ''">nessuna</a>
+                    <a>Modifica il tema colori di Sporty</a>
+                    <div class="scelta__tema__container">
+                        <div value="0" class="scelta__tema" (click)="changecolor(0)">
+                            <a>chiaro</a>
+                        </div>
+                        <div value="1" class="scelta__tema" (click)="changecolor(1)">
+                            <a>scuro</a>
+                        </div>
                     </div>
                 </div>
             </div>

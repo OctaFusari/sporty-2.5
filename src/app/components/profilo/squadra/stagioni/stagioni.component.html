@@ -1,11 +1,18 @@
 <div>
-    <div>
-        <h1></h1>
+    <div class="card__fit card" *ngFor="let stagione of this.stagioni">
+        <h2>{{stagione.nomestagione}}</h2>
         <div>
-            <a></a>
+            <div>
+                <h3>Data inizio</h3>
+                <a>{{stagione.datainizio}}</a>
+            </div>
+            <div>
+                <h3>Data fine</h3>
+                <a>{{stagione.datafine}}</a>
+            </div>
         </div>
         <div>
-            <a></a>
+            <a>{{stagione.iscrittistagione}}</a>
         </div>
     </div>
 </div>
@@ -16,10 +23,10 @@
 
         </div>
         <div>
-            
+
         </div>
         <div>
-            
+
         </div>
     </div>
 </div>

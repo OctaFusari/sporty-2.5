@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ref, onValue, getDatabase } from 'firebase/database';
+import { ref, onValue, getDatabase, update, set } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
 
 @Component({
@@ -36,13 +36,23 @@ export class SquadraContainerComponent implements OnInit {
     corso: "",
     documenti:"",
     messaggi:"",
-    allenamenti:""
+    allenamenti:"",
+    tema:"",
+    gestore:""
   }
 
   constructor() { }
 
   ngOnInit(): void {
-    
+    if(this.userData.gestore != ""){
+      const db = getDatabase();
+      console.log(this.userData)
+      const starCountRef = ref(db, 'squadre/'+this.userData.gestore);
+      onValue(starCountRef, (snapshot) => {
+          this.squadraScelta = snapshot.val()
+      })
+      this.sezioneSquadra = 4
+    }
   }
 
   cercaSquadra(squadravalue:any){
@@ -79,10 +89,74 @@ export class SquadraContainerComponent implements OnInit {
   accediSquadra(pass:any){
     if(pass == this.squadraScelta.passwordteam){
       const db = getDatabase();
-      const starCountRef2 = ref(db, 'squadre/'+this.squadraScelta.codicesquadra);
-      onValue(starCountRef2, (snapshot) => {
-          this.squadraScelta = (snapshot.val)
+      const starCountRef = ref(db, 'squadre/'+this.squadraScelta.codicesquadra);
+      onValue(starCountRef, (snapshot) => {
+          this.squadraScelta = snapshot.val()
       })
+
+      try{
+        const postData = {
+          atletaid:this.userData.atletaid,
+          nome:this.userData.nome,
+          cognome:this.userData.cognome,
+          email:this.userData.email,
+          datadinascita: this.userData.datadinascita,
+          luogodinascita: this.userData.luogodinascita,
+          codicefiscale: this.userData.codicefiscale,
+          residenza: this.userData.residenza,
+          telefono: this.userData.telefono,
+          doc1:this.userData.doc1,
+          doc2:this.userData.doc2,
+          doc3:this.userData.doc3,
+          immagini:this.userData.immagini,
+          conferma: this.userData.conferma,
+          stagione:this.userData.stagione,
+          squadra: this.userData.squadra,
+          datascadenza: this.userData.datascadenza,
+          corso: this.userData.corso,
+          documenti:this.userData.documenti,
+          messaggi:this.userData.messaggi,
+          allenamenti:this.userData.allenamenti,
+          tema:this.userData.tema,
+          gestore:this.squadraScelta.idsquadra
+        }
+        const updates: any = {};
+        updates['utenti/' + localStorage.getItem("sportyId") + "/atleti/" + this.userData.atletaid] = postData;
+        update(ref(db), updates);
+  
+      }catch{
+        set(ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("sportyId")), {
+          atletaid:localStorage.getItem("sportyId"),
+          nome:this.userData.nome,
+          cognome:this.userData.cognome,
+          email:this.userData.email,
+          datadinascita: "",
+          luogodinascita: "",
+          codicefiscale: "",
+          residenza: "",
+          telefono: "",
+          doc1:"",
+          doc2:"",
+          doc3:"",
+          immagini:"",
+          conferma: "",
+          stagione:"",
+          squadra: "",
+          datascadenza: "",
+          corso: "",
+          documenti:"",
+          messaggi:"",
+          allenamenti:"",
+          tema:"",
+          gestore:this.squadraScelta.idsquadra
+        });
+        const starCountRef = ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("sportyId"));
+        onValue(starCountRef, (snapshot) => {
+          this.userData = snapshot.val();
+        });
+
+      }
+
 
       this.message = 1
       this.sezioneSquadra = 4

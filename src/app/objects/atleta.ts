@@ -20,4 +20,6 @@ export interface atleta{
     documenti:any;
     messaggi:any;
     allenamenti:any;
+    tema:any;
+    gestore:any;
 }

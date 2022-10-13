@@ -10,4 +10,5 @@ export interface utente{
     telefono: string;
     atleti:any;
     squadra:string;
+    gestore:any;
 }
