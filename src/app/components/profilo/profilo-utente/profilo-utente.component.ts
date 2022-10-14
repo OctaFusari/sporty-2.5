@@ -15,6 +15,7 @@ export class ProfiloUtenteComponent implements OnInit {
   atleti:any[] = [];
   preselection:number = 0;
   userDataindex:any = "";
+  idsporty:any = localStorage.getItem('sportyId')
   profileData:any = "wellavariniziale";
 
   changeProfile(changeProfilevent: any) {

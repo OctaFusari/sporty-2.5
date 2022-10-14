@@ -89,12 +89,11 @@ export class SquadraContainerComponent implements OnInit {
   accediSquadra(pass:any){
     if(pass == this.squadraScelta.passwordteam){
       const db = getDatabase();
-      const starCountRef = ref(db, 'squadre/'+this.squadraScelta.codicesquadra);
+      const starCountRef = ref(db, 'squadre/'+this.squadraScelta.idsquadra);
       onValue(starCountRef, (snapshot) => {
           this.squadraScelta = snapshot.val()
       })
 
-      try{
         const postData = {
           atletaid:this.userData.atletaid,
           nome:this.userData.nome,
@@ -124,40 +123,7 @@ export class SquadraContainerComponent implements OnInit {
         updates['utenti/' + localStorage.getItem("sportyId") + "/atleti/" + this.userData.atletaid] = postData;
         update(ref(db), updates);
   
-      }catch{
-        set(ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("sportyId")), {
-          atletaid:localStorage.getItem("sportyId"),
-          nome:this.userData.nome,
-          cognome:this.userData.cognome,
-          email:this.userData.email,
-          datadinascita: "",
-          luogodinascita: "",
-          codicefiscale: "",
-          residenza: "",
-          telefono: "",
-          doc1:"",
-          doc2:"",
-          doc3:"",
-          immagini:"",
-          conferma: "",
-          stagione:"",
-          squadra: "",
-          datascadenza: "",
-          corso: "",
-          documenti:"",
-          messaggi:"",
-          allenamenti:"",
-          tema:"",
-          gestore:this.squadraScelta.idsquadra
-        });
-        const starCountRef = ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("sportyId"));
-        onValue(starCountRef, (snapshot) => {
-          this.userData = snapshot.val();
-        });
-
-      }
-
-
+      
       this.message = 1
       this.sezioneSquadra = 4
     }else if(pass != this.squadraScelta.passwordteam){
