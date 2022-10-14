@@ -17,9 +17,6 @@
             <h2 style="font-size: 2rem; color:var(--sporty-blue)">Chi è l'atleta oggi?</h2>
         </div>
         <div class="container__profili__inside__2">
-            <button class="circlebutton button__blue" (click)="saveProfilo(1, this.userData.idutente); preselection = 1">
-                {{this.userData.nome}} {{this.userData.cognome}}
-            </button>
             <button class="circlebutton__little button__blue" *ngFor="let atleta of atleti" (click)="saveProfilo(1, atleta.atletaid); preselection = 1">
                 {{atleta.nome}} {{atleta.cognome}}
             </button>

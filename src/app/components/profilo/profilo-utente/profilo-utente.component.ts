@@ -22,21 +22,68 @@ export class ProfiloUtenteComponent implements OnInit {
   }
 
   ngOnInit(){
-    var idutente = localStorage.getItem("sportyId")
     const db = getDatabase();
-    const starCountRef = ref(db, 'utenti/' + idutente);
-    onValue(starCountRef, (snapshot) => {
-      this.userData = snapshot.val();
-      this.atleti = Object.keys(this.userData.atleti).map(index => {
-        let person = this.userData.atleti[index];
-        return person;
-      });
-    });
+    let verificautente:any =""
+
     if(localStorage.getItem("Sportyprofileid") == null){
       this.profileData = "wellavariniziale"
       this.preselection = 0
+      const starCountRef = ref(db, 'utenti/' + localStorage.getItem("sportyId"));
+      onValue(starCountRef, (snapshot) => {
+        this.userData = snapshot.val();
+        try{
+          const starCountRef2 = ref(db, 'utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("sportyId"));
+          onValue(starCountRef2, (snapshot) => {
+            verificautente = snapshot.val();
+          });
+          console.log(verificautente)
+            this.atleti = Object.keys(this.userData.atleti).map(index => {
+              let person = this.userData.atleti[index];
+              return person;
+            });
+        }catch{
+          set(ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/"+localStorage.getItem("sportyId")), {
+            atletaid: localStorage.getItem("sportyId"),
+            nome: this.userData.nome,
+            cognome: this.userData.cognome,
+            email: this.userData.email,
+            datadinascita: "",
+            luogodinascita: "",
+            codicefiscale: "",
+            residenza: "",
+            telefono: "",
+            doc1:"",
+            doc2:"",
+            doc3:"",
+            immagini:"",
+            conferma: "",
+            stagione:"",
+            squadra: "",
+            datascadenza: "",
+            corso: "",
+            documenti:"",
+            messaggi:"",
+            allenamenti:"",
+            tema:"",
+            gestore:""
+          });     
+          const starCountRef = ref(db, 'utenti/' + localStorage.getItem("sportyId"));
+          onValue(starCountRef, (snapshot) => {
+            this.userData = snapshot.val();
+    
+            this.atleti = Object.keys(this.userData.atleti).map(index => {
+              let person = this.userData.atleti[index];
+              return person;
+            });
+          });
+        }
+      }); 
     }else{
       this.profileData = localStorage.getItem("Sportyprofileid")
+      const starCountRef = ref(db, 'utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("Sportyprofileid"));
+      onValue(starCountRef, (snapshot) => {
+        this.userData = snapshot.val();
+      });
       this.preselection = 1
     }
     return this.userData
@@ -134,9 +181,9 @@ export class ProfiloUtenteComponent implements OnInit {
             codicefiscale: val6,
             residenza: val7,
             telefono: val8,
-            doc1: "",
-            doc2: "",
-            doc3: "",
+            doc1:"",
+            doc2:"",
+            doc3:"",
             immagini:"",
             conferma: "",
             stagione:"",
@@ -145,7 +192,9 @@ export class ProfiloUtenteComponent implements OnInit {
             corso: "",
             documenti:"",
             messaggi:"",
-            allenamenti:""
+            allenamenti:"",
+            tema:"",
+            gestore:""
           });
           this.message = 1
       }
