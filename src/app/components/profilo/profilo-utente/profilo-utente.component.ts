@@ -37,7 +37,6 @@ export class ProfiloUtenteComponent implements OnInit {
           onValue(starCountRef2, (snapshot) => {
             verificautente = snapshot.val();
           });
-          console.log(verificautente)
             this.atleti = Object.keys(this.userData.atleti).map(index => {
               let person = this.userData.atleti[index];
               return person;
@@ -87,7 +86,7 @@ export class ProfiloUtenteComponent implements OnInit {
       });
       this.preselection = 1
     }
-    return this.userData
+    return console.log(this.userData)
   }
 
   saveProfilo(var1:any, var2:any){
