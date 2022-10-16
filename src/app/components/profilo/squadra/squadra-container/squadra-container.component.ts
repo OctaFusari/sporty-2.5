@@ -15,6 +15,7 @@ export class SquadraContainerComponent implements OnInit {
   sezioneIscrizione:number = 0;
   message:number = 0;
   centrovar:any = 0;
+  stagionicounter:any [] = []
   atletaBase:atleta = {
     atletaid: "",
     nome: "",
@@ -43,14 +44,14 @@ export class SquadraContainerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     if(this.userData.gestore != ""){
       const db = getDatabase();
       const starCountRef = ref(db, 'squadre/'+this.userData.gestore);
       onValue(starCountRef, (snapshot) => {
           this.squadraScelta = snapshot.val()
+          this.sezioneSquadra = 4
       })
-      this.sezioneSquadra = 4
     }
   }
 
@@ -75,11 +76,10 @@ export class SquadraContainerComponent implements OnInit {
 
   stagione(){
     const db = getDatabase();
-    let stagioni:any [] = []
     const starCountRef2 = ref(db, 'squadre/'+this.squadraScelta.codicesquadra+"/stagioni");
     onValue(starCountRef2, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
-        stagioni.push(childSnapshot.val)
+        this.stagionicounter.push(childSnapshot.val)
       })
     })
   }

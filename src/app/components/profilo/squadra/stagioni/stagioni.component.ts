@@ -12,24 +12,21 @@ export class StagioniComponent implements OnInit {
 
   constructor(public sc:SquadraContainerComponent) { }
 
-  ngOnInit(): void {
+  stagioni:any [] = []
+  iscrittiStagionevar:any [] = []
+  
+  ngOnInit(){
     this.sc.stagione()
     this.stagione()
   }
-  stagioni:any [] = []
-
-  iscrittiStagionevar:any [] = []
   stagione(){
     this.stagioni = []
     const db = getDatabase();
     const starCountRef = ref(db, 'squadre/'+this.squadraScelta.codicesquadra+"/stagioni");
     onValue(starCountRef, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
-          this.iscrittiStagionevar = Object.keys(childSnapshot.val().iscrittistagione).map(function(personNamedIndex){
-            childSnapshot.val().iscrittistagione[personNamedIndex];
-        });
-        childSnapshot.val().iscrittistagione = this.iscrittiStagionevar
         this.stagioni.push(childSnapshot.val())
+        console.log(childSnapshot.val())
       })
     })
   }

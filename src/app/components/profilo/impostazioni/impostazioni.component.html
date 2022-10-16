@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="container">
-                <h3 class="elimina">Elimina account</h3>
+                <h3 class="elimina">Elimina profilo</h3>
                 <h3 class="modifica">Cambia password</h3>
             </div>
         </div>
@@ -53,10 +53,19 @@
                     <div>
                         <h3>Squadra</h3>
                         <div class="squadra">
-                            <a *ngIf="this.userData.squadra != ''">{{userData.squadra}}</a>
+                            <a *ngIf="this.userData.squadra != ''">{{this.userData.squadra}}</a>
                             <a *ngIf="this.userData.squadra == ''">nessuna</a>
                         </div>
                     </div>
+                    <div>
+                        <h3 *ngIf="this.userData.gestore != ''">Squadra in gestione</h3>
+                        <div class="squadra">
+                            <a>{{this.userData.gestore}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="button button__blue">Salva modifiche</button>
                 </div>
             </div>
             <div class="container">

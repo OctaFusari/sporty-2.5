@@ -92,13 +92,17 @@ svg {
     display: flex;
     flex-flow: column nowrap;
     background: var(--sporty-blue);
-    color: var(--text-white);
+    color: var(--text-white) !important;
     padding: 1.5rem;
     border-radius: 1rem;
     flex: 0 1 auto;
     width: 16rem;
     max-width: 100%;
     transition: width 250ms ease-out;
+}
+
+.sidenav span {
+    color: var(--text-white) !important;
 }
 
 .sidenav.is-collapsed {
@@ -334,8 +338,9 @@ svg {
 }
 
 .nav__button:focus-visible,
-.nav__button:hover {
-    background: var(--sporty-blue);
+.nav__button:hover,
+.nav__button::after {
+    background: var(--sporty-dark-blue);
     color: var(--text-white);
 }
 

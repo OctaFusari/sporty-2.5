@@ -23,3 +23,5 @@ export interface atleta{
     tema:any;
     gestore:any;
 }
+
+
