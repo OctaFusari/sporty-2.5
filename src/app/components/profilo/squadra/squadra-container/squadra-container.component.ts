@@ -46,7 +46,6 @@ export class SquadraContainerComponent implements OnInit {
   ngOnInit(): void {
     if(this.userData.gestore != ""){
       const db = getDatabase();
-      console.log(this.userData)
       const starCountRef = ref(db, 'squadre/'+this.userData.gestore);
       onValue(starCountRef, (snapshot) => {
           this.squadraScelta = snapshot.val()
@@ -83,7 +82,6 @@ export class SquadraContainerComponent implements OnInit {
         stagioni.push(childSnapshot.val)
       })
     })
-    console.log()
   }
 
   accediSquadra(pass:any){

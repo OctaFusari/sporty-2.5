@@ -30,7 +30,6 @@ export class StagioniComponent implements OnInit {
         });
         childSnapshot.val().iscrittistagione = this.iscrittiStagionevar
         this.stagioni.push(childSnapshot.val())
-        console.log(this.iscrittiStagionevar)
       })
     })
   }

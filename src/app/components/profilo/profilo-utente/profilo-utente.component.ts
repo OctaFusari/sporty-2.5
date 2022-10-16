@@ -23,6 +23,10 @@ export class ProfiloUtenteComponent implements OnInit {
   }
 
   ngOnInit(){
+    this.controlloIniziale()
+  }
+
+  controlloIniziale(){
     const db = getDatabase();
     let verificautente:any =""
 
@@ -80,19 +84,22 @@ export class ProfiloUtenteComponent implements OnInit {
       }); 
     }else{
       this.profileData = localStorage.getItem("Sportyprofileid")
-      const starCountRef = ref(db, 'utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("Sportyprofileid"));
-      onValue(starCountRef, (snapshot) => {
+      const starCountRef1 = ref(db, 'utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("Sportyprofileid"));
+      onValue(starCountRef1, (snapshot) => {
         this.userData = snapshot.val();
       });
       this.preselection = 1
     }
-    return console.log(this.userData)
   }
 
-  saveProfilo(var1:any, var2:any){
-    this.userDataindex = var1;
+  saveProfilo(var2:any){
     this.profileData = var2;
     localStorage.setItem("Sportyprofileid", var2);
+    const db = getDatabase();
+    const starCountRef1 = ref(db, 'utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("Sportyprofileid"));
+    onValue(starCountRef1, (snapshot) => {
+      this.userData = snapshot.val();
+    });
   }
 
   expand() {

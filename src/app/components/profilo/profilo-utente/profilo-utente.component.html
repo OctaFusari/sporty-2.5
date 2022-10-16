@@ -17,7 +17,7 @@
             <h2 style="font-size: 2rem; color:var(--sporty-blue)">Chi è l'atleta oggi?</h2>
         </div>
         <div class="container__profili__inside__2">
-            <button class="button__blue" *ngFor="let atleta of atleti" [ngClass]="{'circlebutton': atleta.atletaid == this.idsporty, 'circlebutton__little' :  atleta.atletaid != this.idsporty}" (click)="saveProfilo(1, atleta.atletaid); preselection = 1">
+            <button class="button__blue" *ngFor="let atleta of atleti" [ngClass]="{'circlebutton': atleta.atletaid == this.idsporty, 'circlebutton__little' :  atleta.atletaid != this.idsporty}" (click)="saveProfilo(atleta.atletaid); preselection = 1">
                 {{atleta.nome}} {{atleta.cognome}} 
             </button>
             <div>
@@ -217,7 +217,7 @@
         </div>
     </div>
     <div class="container__profilo__inside">
-        <app-home-container (scegliSquadra)="this.section = $event" (changeProfilevent)="changeProfile($event)" [userDataindex]="userDataindex" [profileData]="profileData" *ngIf="this.section == 0"></app-home-container>
+        <app-home-container (scegliSquadra)="this.section = $event" (changeProfilevent)="changeProfile($event)" [profileData]="profileData" *ngIf="this.section == 0"></app-home-container>
         <app-diario [userData]="userData" *ngIf="this.section == 1"></app-diario>
         <app-allenatore-container [userData]="userData" *ngIf="this.section == 2"></app-allenatore-container>
         <app-squadra-container [userData]="userData" *ngIf="this.section == 3"></app-squadra-container>

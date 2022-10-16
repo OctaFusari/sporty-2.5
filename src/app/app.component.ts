@@ -17,7 +17,6 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     if(localStorage.getItem("sportyId") != null || undefined || ""){
       this.appSection = 1;
-      document.documentElement.style.setProperty('--sfondo', '#141414');
     }else{
       this.appSection = 2
     }

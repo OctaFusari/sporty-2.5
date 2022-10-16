@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { getDatabase, onValue, ref } from 'firebase/database';
+import { ProfiloUtenteComponent } from '../../profilo-utente/profilo-utente.component';
 
 @Component({
   selector: 'app-home-container',
@@ -8,29 +9,14 @@ import { getDatabase, onValue, ref } from 'firebase/database';
   styleUrls: ['./home-container.component.css']
 })
 export class HomeContainerComponent implements OnInit {
+  
+  constructor(public pu: ProfiloUtenteComponent) { }
 
   @Output() changeProfilevent = new EventEmitter<any>();
   @Output() scegliSquadra = new EventEmitter<any>();
-  @Input() userDataindex:any = "";
   userData:any = "";
- /* [userData]="userData" */
   @Input() profileData:any = "";
   squadra:any = "";
-
-  scegliSquadraFunction(){
-    this.scegliSquadra.emit(3);
-  }
-
-  changeProfile() {
-    this.changeProfilevent.emit(0);
-    localStorage.removeItem('Sportyprofileid');
-    this.userDataindex = "";
-    this.userData = "";
-    this.profileData = "";
-   this.squadra = ""
-  }
-
-  constructor() { }
 
   ngOnInit(): void {
     const db = getDatabase();
@@ -54,7 +40,19 @@ export class HomeContainerComponent implements OnInit {
     }catch{
       this.squadra = ''
     }
-    console.log(this.squadra.length)
+  }
+
+  scegliSquadraFunction(){
+    this.scegliSquadra.emit(3);
+  }
+
+  changeProfile() {
+    this.changeProfilevent.emit(0);
+    localStorage.removeItem('Sportyprofileid');
+    this.userData = "";
+    this.profileData = "";
+   this.squadra = ""
+   this.pu.controlloIniziale()
   }
 
 }
