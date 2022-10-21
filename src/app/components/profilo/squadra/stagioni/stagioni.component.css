@@ -1,0 +1,69 @@
+.container__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". . .";
+}
+
+.container__stagione {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    grid-template-areas:
+        "container__stagione__section__one container__stagione__section__three"
+        "container__stagione__section__two container__stagione__section__three";
+}
+
+.container__stagione__section__one {
+    grid-area: container__stagione__section__one;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr;
+    grid-template-areas:
+        "."".";
+}
+
+.container__stagione__section__two {
+    grid-area: container__stagione__section__two;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr;
+    grid-template-areas:
+        "."".";
+}
+
+.container__stagione__section__three {
+    grid-area: container__stagione__section__three;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr;
+    grid-template-areas:
+        "."".";
+}
+
+.container__stagione__section__inside{
+    overflow-y: scroll;
+}
+
+.corsi__up{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "corsi__up__section__uno . corsi__up__section__two";
+}
+
+.corsi__up__section__uno{
+    grid-area: corsi__up__section__uno;
+}
+
+.corsi__up__section__two{
+    grid-area: corsi__up__section__two;
+}
+
+.stagione__inside__up{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". . .";
+}

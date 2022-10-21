@@ -20,23 +20,17 @@ export class HomeContainerComponent implements OnInit {
 
   ngOnInit(): void {
     const db = getDatabase();
-    if(localStorage.getItem("Sportyprofileid") == localStorage.getItem("sportyId")){
-      const starCountRef = ref(db, 'utenti/' + localStorage.getItem("Sportyprofileid"));
-      onValue(starCountRef, (snapshot: { val: () => any; }) => {
-        this.userData = snapshot.val();
-      });
-    }else{
       const starCountRef = ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("Sportyprofileid"));
       onValue(starCountRef, (snapshot: { val: () => any; }) => {
         this.userData = snapshot.val();
       });
-    }
 
     try{
       const starCountRef = ref(db, 'squadre/' + this.userData.squadra);
       onValue(starCountRef, (snapshot: { val: () => any; }) => {
         this.squadra = snapshot.val();
       });
+      return this.squadra
     }catch{
       this.squadra = ''
     }

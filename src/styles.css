@@ -165,12 +165,12 @@ button {
 }
 
 .button__blue {
-    background-color: var(--sporty-blue);
+    background-color: var(--sporty-blue) !important;
     color: var(--text-white) !important;
 }
 
 .button__blue:hover {
-    background-color: var(--sporty-dark-blue);
+    background-color: var(--sporty-dark-blue) !important;
 }
 
 .ultrabig__text {
@@ -236,8 +236,6 @@ button {
     border-radius: 2rem;
     padding: 0.8vw;
     margin: 0.8vw;
-    width: min-content;
-    height: fit-content;
 }
 
 .cardcenterd {

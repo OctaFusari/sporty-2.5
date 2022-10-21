@@ -39,6 +39,7 @@
 }
 
 .scelta__tema__container {
+    margin: 2vw 0vw 2vw 0vw;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 1fr 1fr;
@@ -53,5 +54,5 @@
     border-radius: 1rem;
     padding: 1vw;
     margin: 0.8vw;
-    background: var(--card);
+    color: var(--text-white) !important;
 }

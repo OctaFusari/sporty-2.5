@@ -67,14 +67,10 @@ export class SquadraContainerComponent implements OnInit {
           }
       })
     })
-
-  }
-
-  creazioneSquadra(){
-    
   }
 
   stagione(){
+    this.stagionicounter.length = 0;
     const db = getDatabase();
     const starCountRef2 = ref(db, 'squadre/'+this.squadraScelta.codicesquadra+"/stagioni");
     onValue(starCountRef2, (snapshot) => {
@@ -131,6 +127,10 @@ export class SquadraContainerComponent implements OnInit {
     setInterval(() => {
       this.message = 0;
     }, 2000)
+  }
+
+  creazioneSquadra(){
+    
   }
 
 }

@@ -12,23 +12,33 @@ export class StagioniComponent implements OnInit {
 
   constructor(public sc:SquadraContainerComponent) { }
 
-  stagioni:any [] = []
+stagioni:any [] = [""]
   iscrittiStagionevar:any [] = []
+  stagioniSection:number = 0
+
+  stagioneData:any = ""
   
   ngOnInit(){
     this.sc.stagione()
     this.stagione()
   }
   stagione(){
-    this.stagioni = []
+    this.stagioni.length = 0;
     const db = getDatabase();
     const starCountRef = ref(db, 'squadre/'+this.squadraScelta.codicesquadra+"/stagioni");
     onValue(starCountRef, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         this.stagioni.push(childSnapshot.val())
-        console.log(childSnapshot.val())
       })
     })
   }
+
+  corsialgorithm(stagione:any){
+    let corsi =  Object.keys(stagione.corsi).map(index => {
+    })
+    console.log(stagione.corsi)
+    console.log(corsi)
+  }
+
 
 }

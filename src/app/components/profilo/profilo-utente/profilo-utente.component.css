@@ -75,7 +75,8 @@ svg {
     display: flex;
     flex-flow: row nowrap;
     overflow: hidden;
-    border-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-top-right-radius: 1rem;
     height: 100%;
     position: fixed;
 }
@@ -94,7 +95,8 @@ svg {
     background: var(--sporty-blue);
     color: var(--text-white) !important;
     padding: 1.5rem;
-    border-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-top-right-radius: 1rem;
     flex: 0 1 auto;
     width: 16rem;
     max-width: 100%;

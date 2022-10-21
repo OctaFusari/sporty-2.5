@@ -4,7 +4,7 @@
             <h1 class="big__h1" (click)="changeProfile()" *ngIf="this.userData != undefined">{{this.userData.nome}} {{this.userData.cognome}}</h1><a style="margin-left: 1vw; cursor:pointer" (click)="changeProfile()">cambia</a>
         </div>
         <div>
-            <a *ngIf="this.squadra.length > 0 ">Squadra: {{this.squadra.nomesquadra}}</a>
+            <a *ngIf="this.squadra.length > 0">Squadra: {{this.squadra.nomesquadra}}</a>
         </div>
     </div>
     <div class="centro">
@@ -14,11 +14,6 @@
             </div>
         </div>
         <div class="sezione__destra">
-            <div *ngIf="this.userData.squadra == ''" class="container">
-                <button (click)="scegliSquadraFunction()" class="button button__blue">
-                    Iscriviti a una squadra
-                </button>
-            </div>
             <div class="container">
                 <h2>Bacheca</h2>
                 <div *ngIf="this.userData.messaggi != ''">
