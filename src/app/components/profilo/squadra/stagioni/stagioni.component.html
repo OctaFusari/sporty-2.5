@@ -21,10 +21,19 @@
     </div>
 </div>
 <div *ngIf="this.stagioniSection == 1">
-    <div class="stagione__inside__up">
-        <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
-        <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
-        <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
+    <div class="stagione__inside__up card">
+        <div>
+            <h1>Nome stagione</h1>
+            <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
+        </div>
+        <div>
+            <h2>Data inizio</h2>
+            <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
+        </div>
+        <div>
+            <h2>Data fine</h2>
+            <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
+        </div>
     </div>
     <div class="container__stagione">
         <div class="container__stagione__section__one card">
