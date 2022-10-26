@@ -12,11 +12,28 @@ export class StagioniComponent implements OnInit {
 
   constructor(public sc:SquadraContainerComponent) { }
 
-stagioni:any [] = [""]
+  stagioni:any [] = [""]
   iscrittiStagionevar:any [] = []
   stagioniSection:number = 0
 
-  stagioneData:any = ""
+  stagioneData:any = "";
+  popup:number = 0;
+
+  blockBodyScroll(){
+    let body = Array.from(
+      document.getElementsByTagName("body"),
+    );
+    if(this.popup == 0){
+      body.forEach(body => {
+        body.style.overflowY = 'scroll';
+      });
+    }else{
+      body.forEach(body => {
+        body.style.overflowY = 'hidden';
+      });
+    }
+    console.log(body)
+  }
   
   ngOnInit(){
     this.sc.stagione()

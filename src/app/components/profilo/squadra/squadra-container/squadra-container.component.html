@@ -24,8 +24,8 @@
     </div>
 </div>
 <div *ngIf="this.sezioneSquadra == 2 || this.sezioneSquadra == 6">
-    <div class="popup__accedi__squadra container__squadra__iniziale" *ngIf="this.sezioneSquadra == 6">
-        <div class="container popup__accedi__squadra__inside">
+    <div class="popup container__squadra__iniziale" *ngIf="this.sezioneSquadra == 6">
+        <div class="container popup__inside">
             <div>
                 <h1>Accedi a </h1>
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
@@ -38,7 +38,7 @@
                 <a class="error" *ngIf="this.message == 2">Acesso negato</a>
             </div>
         </div>
-        <div class="popup__accedi__squadra__esci" (click)="this.sezioneSquadra = 2">
+        <div class="popup__esci" (click)="this.sezioneSquadra = 2">
 
         </div>
     </div>
@@ -203,7 +203,7 @@
     </div>
 </div>
 <div *ngIf="this.sezioneSquadra == 5">
-    
+
 </div>
 
 <div *ngIf="this.sezioneSquadra == 7">
