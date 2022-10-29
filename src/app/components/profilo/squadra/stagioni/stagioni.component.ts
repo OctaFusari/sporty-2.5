@@ -26,15 +26,17 @@ export class StagioniComponent implements OnInit {
     let body = Array.from(
       document.getElementsByTagName("body"),
     );
-    console.log(this.popup + " " + this.popupdocs)
+    let cssi = document.getElementById("cssi");
     if((this.popup == -1) && (this.popupdocs == -1)){
       body.forEach(body => {
         body.style.overflowY = 'scroll';
       });
+        cssi!.style.overflowY = 'scroll';
     }else{
       body.forEach(body => {
         body.style.overflowY = 'hidden';
       });
+        cssi!.style.overflowY = 'hidden';
     }
   }
   

@@ -8,8 +8,7 @@
         </svg>
 
     </div>
-    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni"
-        (click)="this.stagioneData = stagione;this.stagioniSection = 1;">
+    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni" (click)="this.stagioneData = stagione;this.stagioniSection = 1;">
         <h2>{{stagione.nomestagione}}</h2>
         <div>
             <div>
@@ -27,18 +26,15 @@
     <div class="stagione__inside__up card">
         <div>
             <h1>Nome stagione</h1>
-            <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}"
-                value="{{this.stagioneData.nomestagione}}">
+            <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
         </div>
         <div>
             <h2>Data inizio</h2>
-            <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}"
-                value="{{this.stagioneData.datainizio}}">
+            <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
         </div>
         <div>
             <h2>Data fine</h2>
-            <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}"
-                value="{{this.stagioneData.datafine}}">
+            <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
         </div>
     </div>
     <div class="container__stagione">
@@ -47,7 +43,7 @@
                 <h2>Documenti</h2>
                 <p>Documenti che atleta deve leggere o accettare</p>
             </div>
-            <div class="container__stagione__section__inside cssi__docs">
+            <div class="container__stagione__section__inside cssi__docs" id="cssi">
                 <div>
                     <div class="card" style="
                     align-items: center;
@@ -69,8 +65,7 @@
                                     {{this.stagioneData.documentoattivita}}
                                 </textarea>
                             <div style="display: flex;">
-                                <button class="button__blue button"
-                                    (click)="this.popup = -1; blockBodyScroll()">Salva</button>
+                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
                                 <button class="button__red button">Elimina</button>
                             </div>
                         </div>
@@ -89,8 +84,7 @@
                                     {{this.stagioneData.documentodati}}
                                 </textarea>
                             <div style="display: flex;">
-                                <button class="button__blue button"
-                                    (click)="this.popup = -1; blockBodyScroll()">Salva</button>
+                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
                                 <button class="button__red button">Elimina</button>
                             </div>
                         </div>
@@ -109,8 +103,7 @@
                                 {{this.stagioneData.documentoimmagini}}
                             </textarea>
                             <div style="display: flex;">
-                                <button class="button__blue button"
-                                    (click)="this.popup = -1; blockBodyScroll()">Salva</button>
+                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
                                 <button class="button__red button">Elimina</button>
                             </div>
                         </div>
@@ -130,8 +123,7 @@
                                     {{documento.descrizione}}
                                 </textarea>
                             <div style="display: flex;">
-                                <button class="button__blue button"
-                                    (click)="this.popup = -1; blockBodyScroll()">Salva</button>
+                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
                                 <button class="button__red button">Elimina</button>
                             </div>
                         </div>
@@ -174,8 +166,7 @@
             </div>
 
             <div class="container__stagione__section__inside">
-                <div style="cursor: pointer;" class="littlecard"
-                    *ngFor="let corso of this.stagioneData.corsi; let i=index">
+                <div style="cursor: pointer;" class="littlecard" *ngFor="let corso of this.stagioneData.corsi; let i=index">
                     <div *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
                         <span>{{corso[0]}}</span>
                     </div>
