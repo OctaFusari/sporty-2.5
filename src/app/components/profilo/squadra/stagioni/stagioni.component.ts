@@ -18,6 +18,7 @@ export class StagioniComponent implements OnInit {
 
   stagioneData:any = "";
   popup:number = 0;
+  opencorso:number = -1;
 
   blockBodyScroll(){
     let body = Array.from(
@@ -48,13 +49,6 @@ export class StagioniComponent implements OnInit {
         this.stagioni.push(childSnapshot.val())
       })
     })
-  }
-
-  corsialgorithm(stagione:any){
-    let corsi =  Object.keys(stagione.corsi).map(index => {
-    })
-    console.log(stagione.corsi)
-    console.log(corsi)
   }
 
 

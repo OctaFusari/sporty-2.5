@@ -6,7 +6,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z"/></svg>
 
     </div>
-    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni" (click)="this.stagioneData = stagione;this.stagioniSection = 1;corsialgorithm(stagione)">
+    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni" (click)="this.stagioneData = stagione;this.stagioniSection = 1;">
         <h2>{{stagione.nomestagione}}</h2>
         <div>
             <div>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="popup" *ngIf="this.popup == 1">
                     <div class="popup__inside">
-                        <textarea class="input__style">
+                        <textarea class="input__style textareapopup">
                                 {{this.stagioneData.documentoattivita}}
                             </textarea>
                     </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="popup" *ngIf="this.popup == 2">
                     <div class="popup__inside">
-                        <textarea class="input__style">
+                        <textarea class="input__style textareapopup">
                                 {{this.stagioneData.documentodati}}
                             </textarea>
                     </div>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="popup" *ngIf="this.popup == 3">
                     <div class="popup__inside">
-                        <textarea class="input__style">
+                        <textarea class="input__style textareapopup">
                                 {{this.stagioneData.documentoimmagini}}
                             </textarea>
                     </div>
@@ -102,14 +102,20 @@
             <div class="container__stagione__section__inside__superiore">
                 <h2>Immagini</h2>
                 <p>In questa sezione si definiranno le immagini richieste per l'iscrizione alla squadra</p>
+                <div>
+                    <input placeholder="nome cartella immagini" #imgfolder class="input__style">
+                </div>
             </div>
             <div class="container__stagione__section__inside">
-                <div>
-                    <input>
-                </div>
-                <div>
+                <div class="container__stagione__section__inside cssi__docs">
                     <div>
+                        <div class="card" style="
+                        align-items: center;
+                        justify-content: center;
+                        display: flex;">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z"/></svg>
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,8 +134,21 @@
             </div>
 
             <div class="container__stagione__section__inside">
-                <div style="cursor: pointer;" class="littlecard" *ngFor="let corso of this.stagioneData.corsi">
-                    <span>{{corso[0]}}</span>
+                <div style="cursor: pointer;" class="littlecard" *ngFor="let corso of this.stagioneData.corsi; let i=index">
+                    <div *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
+                        <span>{{corso[0]}}</span>
+                    </div>
+                    <div *ngIf="this.opencorso == i">
+                        <div>
+                            <input placeholder="{{corso[0]}}" class="input__style">
+                        </div>
+                        <div>
+                            <textarea class="input__style">{{corso[1]}}</textarea>
+                        </div>
+                        <div>
+                            <input placeholder="{{corso[2]}}" class="input__style">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px">

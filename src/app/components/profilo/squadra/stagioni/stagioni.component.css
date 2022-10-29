@@ -69,7 +69,7 @@
     grid-template-areas: ". . .";
 }
 
-textarea {
+.textareapopup {
     width: 600px;
     height: 500px;
 }
