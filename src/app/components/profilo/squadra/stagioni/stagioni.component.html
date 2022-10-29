@@ -3,10 +3,13 @@
     align-items: center;
     justify-content: center;
     display: flex;">
-        <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+            <path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z" />
+        </svg>
 
     </div>
-    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni" (click)="this.stagioneData = stagione;this.stagioniSection = 1;">
+    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni"
+        (click)="this.stagioneData = stagione;this.stagioniSection = 1;">
         <h2>{{stagione.nomestagione}}</h2>
         <div>
             <div>
@@ -24,15 +27,18 @@
     <div class="stagione__inside__up card">
         <div>
             <h1>Nome stagione</h1>
-            <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
+            <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}"
+                value="{{this.stagioneData.nomestagione}}">
         </div>
         <div>
             <h2>Data inizio</h2>
-            <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
+            <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}"
+                value="{{this.stagioneData.datainizio}}">
         </div>
         <div>
             <h2>Data fine</h2>
-            <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
+            <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}"
+                value="{{this.stagioneData.datafine}}">
         </div>
     </div>
     <div class="container__stagione">
@@ -47,51 +53,92 @@
                     align-items: center;
                     justify-content: center;
                     display: flex;">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
+                            <path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z" />
+                        </svg>
 
                     </div>
                 </div>
-                <div class="littlecard" (click)="this.popup = 1; blockBodyScroll()">
-                    <span>Documento attività</span>
-                </div>
-                <div class="popup" *ngIf="this.popup == 1">
-                    <div class="popup__inside">
-                        <textarea class="input__style textareapopup">
-                                {{this.stagioneData.documentoattivita}}
-                            </textarea>
+                <div>
+                    <div class="littlecard" (click)="this.popup = 1; blockBodyScroll()">
+                        <span>Documento attività</span>
                     </div>
-                    <div (click)="this.popup = 0; blockBodyScroll()" class="popup__esci">
+                    <div class="popup" *ngIf="this.popup == 1">
+                        <div class="popup__inside">
+                            <textarea class="input__style textareapopup">
+                                    {{this.stagioneData.documentoattivita}}
+                                </textarea>
+                            <div style="display: flex;">
+                                <button class="button__blue button"
+                                    (click)="this.popup = -1; blockBodyScroll()">Salva</button>
+                                <button class="button__red button">Elimina</button>
+                            </div>
+                        </div>
+                        <div (click)="this.popup = -1; blockBodyScroll()" class="popup__esci">
 
+                        </div>
                     </div>
                 </div>
-                <div class="littlecard" (click)="this.popup = 2; blockBodyScroll()">
-                    <span>Documento dati</span>
-                </div>
-                <div class="popup" *ngIf="this.popup == 2">
-                    <div class="popup__inside">
-                        <textarea class="input__style textareapopup">
-                                {{this.stagioneData.documentodati}}
-                            </textarea>
+                <div>
+                    <div class="littlecard" (click)="this.popup = 2; blockBodyScroll()">
+                        <span>Documento dati</span>
                     </div>
-                    <div (click)="this.popup = 0; blockBodyScroll()" class="popup__esci">
+                    <div class="popup" *ngIf="this.popup == 2">
+                        <div class="popup__inside">
+                            <textarea class="input__style textareapopup">
+                                    {{this.stagioneData.documentodati}}
+                                </textarea>
+                            <div style="display: flex;">
+                                <button class="button__blue button"
+                                    (click)="this.popup = -1; blockBodyScroll()">Salva</button>
+                                <button class="button__red button">Elimina</button>
+                            </div>
+                        </div>
+                        <div (click)="this.popup = -1; blockBodyScroll()" class="popup__esci">
 
+                        </div>
                     </div>
                 </div>
-                <div class="littlecard" (click)="this.popup = 3; blockBodyScroll()">
-                    <span>Documento immagini</span>
-                </div>
-                <div class="popup" *ngIf="this.popup == 3">
-                    <div class="popup__inside">
-                        <textarea class="input__style textareapopup">
+                <div>
+                    <div class="littlecard" (click)="this.popup = 3; blockBodyScroll()">
+                        <span>Documento immagini</span>
+                    </div>
+                    <div class="popup" *ngIf="this.popup == 3">
+                        <div class="popup__inside">
+                            <textarea class="input__style textareapopup">
                                 {{this.stagioneData.documentoimmagini}}
                             </textarea>
-                    </div>
-                    <div (click)="this.popup = 0; blockBodyScroll()" class="popup__esci">
+                            <div style="display: flex;">
+                                <button class="button__blue button"
+                                    (click)="this.popup = -1; blockBodyScroll()">Salva</button>
+                                <button class="button__red button">Elimina</button>
+                            </div>
+                        </div>
+                        <div (click)="this.popup = -1; blockBodyScroll()" class="popup__esci">
 
+                        </div>
                     </div>
                 </div>
-                <div class="littlecard" *ngFor="let documento of this.stagioneData.documenti">
-                    <span>{{documento.titolo}}</span>
+                <div *ngFor="let documento of this.stagioneData.documenti; let i=index">
+                    <div class="littlecard" (click)="this.popupdocs = i; blockBodyScroll()">
+                        <span>{{documento.titolo}}</span>
+                    </div>
+                    <div class="popup" *ngIf="this.popupdocs == i">
+                        <div class="popup__inside">
+                            <input class="input__style" value="{{documento.titolo}}">
+                            <textarea class="input__style textareapopup">
+                                    {{documento.descrizione}}
+                                </textarea>
+                            <div style="display: flex;">
+                                <button class="button__blue button"
+                                    (click)="this.popup = -1; blockBodyScroll()">Salva</button>
+                                <button class="button__red button">Elimina</button>
+                            </div>
+                        </div>
+                        <div (click)="this.popupdocs = -1; blockBodyScroll()" class="popup__esci">
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px">
@@ -109,13 +156,6 @@
             <div class="container__stagione__section__inside">
                 <div class="container__stagione__section__inside cssi__docs">
                     <div>
-                        <div class="card" style="
-                        align-items: center;
-                        justify-content: center;
-                        display: flex;">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z"/></svg>
-
-                        </div>
                     </div>
                 </div>
             </div>
@@ -134,19 +174,24 @@
             </div>
 
             <div class="container__stagione__section__inside">
-                <div style="cursor: pointer;" class="littlecard" *ngFor="let corso of this.stagioneData.corsi; let i=index">
+                <div style="cursor: pointer;" class="littlecard"
+                    *ngFor="let corso of this.stagioneData.corsi; let i=index">
                     <div *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
                         <span>{{corso[0]}}</span>
                     </div>
                     <div *ngIf="this.opencorso == i">
                         <div>
-                            <input placeholder="{{corso[0]}}" class="input__style">
+                            <input placeholder="{{corso[0]}}" value="{{corso[0]}}" class="input__style">
                         </div>
                         <div>
                             <textarea class="input__style">{{corso[1]}}</textarea>
                         </div>
                         <div>
-                            <input placeholder="{{corso[2]}}" class="input__style">
+                            <input placeholder="{{corso[2]}}" value="{{corso[2]}}" class="input__style">
+                        </div>
+                        <div style="display: flex;">
+                            <button class="button__blue button" (click)="this.opencorso = -1">Salva</button>
+                            <button class="button__red button">Elimina</button>
                         </div>
                     </div>
                 </div>

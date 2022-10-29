@@ -164,9 +164,14 @@
     display: flex;
 }
 
-.sqadra__ptgestori__centro {
+.squadra__ptgestori__centro {
     display: grid;
     grid-template-columns: auto 20vw;
     grid-template-rows: 1fr;
     grid-template-areas: ". .";
+}
+
+.container__bacheca{
+    height: 400px;
+    
 }

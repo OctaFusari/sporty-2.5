@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { getDatabase, onValue, ref } from 'firebase/database';
 import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
+import { documento } from 'src/app/objects/documento';
 
 @Component({
   selector: 'app-stagioni',
@@ -17,14 +18,16 @@ export class StagioniComponent implements OnInit {
   stagioniSection:number = 0
 
   stagioneData:any = "";
-  popup:number = 0;
+  popup:number = -1;
   opencorso:number = -1;
+  popupdocs:number = -1;
 
   blockBodyScroll(){
     let body = Array.from(
       document.getElementsByTagName("body"),
     );
-    if(this.popup == 0){
+    console.log(this.popup + " " + this.popupdocs)
+    if((this.popup == -1) && (this.popupdocs == -1)){
       body.forEach(body => {
         body.style.overflowY = 'scroll';
       });
@@ -33,7 +36,6 @@ export class StagioniComponent implements OnInit {
         body.style.overflowY = 'hidden';
       });
     }
-    console.log(body)
   }
   
   ngOnInit(){

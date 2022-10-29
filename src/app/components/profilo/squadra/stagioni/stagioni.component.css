@@ -8,7 +8,7 @@
 .container__stagione {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 400px 400px;
+    grid-template-rows: 300px 300px;
     grid-template-areas: "container__stagione__section__one container__stagione__section__three" "container__stagione__section__two container__stagione__section__three";
 }
 
@@ -16,7 +16,7 @@
     grid-area: container__stagione__section__one;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr 0.2fr;
+    grid-template-rows: 0.5fr 3fr 0.2fr;
     grid-template-areas: ".""."".";
 }
 
@@ -32,7 +32,7 @@
     grid-area: container__stagione__section__three;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr 0.2fr;
+    grid-template-rows: 0.5fr 3fr 0.2fr;
     grid-template-areas: ".""."".";
 }
 
@@ -43,7 +43,7 @@
 .cssi__docs {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto;
     grid-template-areas: ". . .";
 }
 
