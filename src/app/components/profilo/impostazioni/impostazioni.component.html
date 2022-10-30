@@ -20,35 +20,35 @@
                 <div class="input__container">
                     <div>
                         <h3>Nome</h3>
-                        <input class="input__style__noactive" placeholder="Nome">
+                        <input class="input__style__noactive" placeholder="Nome" #nome value="{{this.userData.nome}}">
                     </div>
                     <div>
                         <h3>Cognome</h3>
-                        <input class="input__style__noactive" placeholder="Cognome">
+                        <input class="input__style__noactive" placeholder="Cognome" #cognome value="{{this.userData.cognome}}">
                     </div>
                     <div>
                         <h3>Email</h3>
-                        <input class="input__style__noactive" placeholder="Email">
+                        <input class="input__style__noactive" placeholder="Email" #email value="{{this.userData.email}}">
                     </div>
                     <div>
                         <h3>Data di nascita</h3>
-                        <input class="input__style__noactive" placeholder="Data di nascita">
+                        <input class="input__style__noactive" placeholder="Data di nascita" #datadinascita value="{{this.userData.datadinascita}}">
                     </div>
                     <div>
                         <h3>Luogo di nascita</h3>
-                        <input class="input__style__noactive" placeholder="Luogo di nascita">
+                        <input class="input__style__noactive" placeholder="Luogo di nascita" #luogodinascita value="{{this.userData.luogodinascita}}">
                     </div>
                     <div>
                         <h3>Codice fiscale</h3>
-                        <input class="input__style__noactive" placeholder="Codice fiscale">
+                        <input class="input__style__noactive" placeholder="Codice fiscale" #codicefiscale value="{{this.userData.codicefiscale}}">
                     </div>
                     <div>
                         <h3>Residenza</h3>
-                        <input class="input__style__noactive" placeholder="Residenza">
+                        <input class="input__style__noactive" placeholder="Residenza" #residenza value="{{this.userData.residenza}}">
                     </div>
                     <div>
                         <h3>Telefono</h3>
-                        <input class="input__style__noactive" placeholder="Telefono">
+                        <input class="input__style__noactive" placeholder="Telefono" #telefono value="{{this.userData.telefono}}">
                     </div>
                     <div>
                         <h3>Squadra</h3>
@@ -65,7 +65,10 @@
                     </div>
                 </div>
                 <div>
-                    <button class="button button__blue">Salva modifiche</button>
+                    <button class="button button__blue" (click)="updateAtleta(nome.value, cognome.value, email.value, datadinascita.value, luogodinascita.value, codicefiscale.value, residenza.value, telefono.value)">Salva modifiche</button>
+                    <a *ngIf="this.message == 1" class="approved">Modifiche salvate</a>
+                    <a *ngIf="this.message == 2" class="error">Nome o cognome assenti</a>
+                    <a *ngIf="this.message == 3" class="error">Errore</a>
                 </div>
             </div>
             <div class="container">

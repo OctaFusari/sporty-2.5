@@ -15,42 +15,60 @@ export class ImpostazioniComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  updateAtleta(){
+  message:number = 0;
+  updateAtleta(nome:any, cognome:any, email:any, datadinascita:any, luogodinascita:any, codicefiscale:any, residenza:any, telefono:any){
     let atleta:atleta
 
     const db = getDatabase();
-
-    atleta = {
-      atletaid:this.userData.atletaid,
-      nome:this.userData.nome,
-      cognome:this.userData.cognome,
-      email:this.userData.email,
-      datadinascita:this.userData.datadinascita,
-      luogodinascita:this.userData.luogodinascita,
-      codicefiscale:this.userData.codicefiscale,
-      residenza:this.userData.residenza,
-      telefono: this.userData.telefono,
-      doc1:this.userData.doc1,
-      doc2:this.userData.doc2,
-      doc3:this.userData.doc3,
-      immagini:this.userData.immagini,
-      conferma:this.userData.conferma,
-      stagione:this.userData.stagione,
-      squadra:this.userData.squadra,
-      datascadenza: this.userData.datascadenza,
-      corso:this.userData.corso,
-      documenti:this.userData.documenti,
-      messaggi:this.userData.messaggi,
-      allenamenti:this.userData.allenamenti,
-      tema:this.userData.tema,
-      gestore:this.userData.gestore
-    };
+    try{
+      if(nome != "" && cognome != ""){
+        atleta = {
+          atletaid:this.userData.atletaid,
+          nome:nome,
+          cognome:cognome,
+          email:email,
+          datadinascita:datadinascita,
+          luogodinascita:luogodinascita,
+          codicefiscale:codicefiscale,
+          residenza:residenza,
+          telefono:telefono,
+          doc1:this.userData.doc1,
+          doc2:this.userData.doc2,
+          doc3:this.userData.doc3,
+          immagini:this.userData.immagini,
+          conferma:this.userData.conferma,
+          stagione:this.userData.stagione,
+          squadra:this.userData.squadra,
+          datascadenza: this.userData.datascadenza,
+          corso:this.userData.corso,
+          documenti:this.userData.documenti,
+          messaggi:this.userData.messaggi,
+          allenamenti:this.userData.allenamenti,
+          tema:this.userData.tema,
+          gestore:this.userData.gestore
+        };
+      
+        const updates:any = {};
+        updates['utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("Sportyprofileid")] = atleta;
+      
+        update(ref(db), updates);
   
-    const updates:any = {};
-    updates['utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("Sportyprofileid")] = atleta;
-  
-    return update(ref(db), updates);
+        this.message = 1
+        setInterval(() => {
+          this.message = 0;
+        },2000)
+      }else{
+        this.message = 2
+        setInterval(() => {
+          this.message = 0;
+        },2000)
+      }
+    }catch{
+      this.message = 3
+      setInterval(() => {
+        this.message = 0;
+      },2000)
+    }
   }
 
   changecolor(mode:any){

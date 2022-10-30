@@ -20,7 +20,7 @@
     --card-trasparent: #20202085;
     --allert: #fbab00;
     --error: #fb0000;
-    --error-trasparent: #fb000087; 
+    --error-trasparent: #fb000087;
     --approved: #00c42a;
     --octimal: #007E6D;
     --sfondo: url(./assets/blob-scene-haikei.svg);
@@ -329,6 +329,29 @@ button {
 .popup__inside svg:hover {
     fill: var(--sporty-blue-trasparent);
     cursor: pointer;
+}
+
+.title__two__sides {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 0.5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "title__two__sides__sez1 . title__two__sides__sez2";
+    align-items: center;
+    justify-content: center;
+}
+
+.title__two__sides__sez1 {
+    grid-area: title__two__sides__sez1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title__two__sides__sez2 {
+    grid-area: title__two__sides__sez2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 450px) {

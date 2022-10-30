@@ -10,15 +10,13 @@
             </div>
             <div *ngIf="this.sezioneSquadra == 1">
                 <h2 style="color: var(--sporty-blue);">Cerca Squadra</h2>
-                <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue
-                    (keyup.enter)="cercaSquadra(squadravalue.value)">
+                <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue (keyup.enter)="cercaSquadra(squadravalue.value)">
             </div>
         </div>
     </div>
 </div>
 <div class="container__card__squadra" *ngIf="this.sezioneSquadra == 1">
-    <div class="card card__big" *ngFor="let squadra of this.arraySquadre"
-        (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
+    <div class="card card__big" *ngFor="let squadra of this.arraySquadre" (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
         <h2>{{squadra.nomesquadra}}</h2>
         <div>
             <a>{{squadra.codicesquadra}}</a>
@@ -33,8 +31,7 @@
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
             </div>
             <div>
-                <input class="input__style" type="password" placeholder="password" #pass
-                    (keyup.enter)="accediSquadra(pass.value)">
+                <input class="input__style" type="password" placeholder="password" #pass (keyup.enter)="accediSquadra(pass.value)">
             </div>
             <div style="height: 2vw;">
                 <a class="approved" *ngIf="this.message == 1">Acesso avvenuto con successo</a>
@@ -60,8 +57,7 @@
     <div class="container container__info__squadra">
         <div>
             <div class="card__accedi__gestori">
-                <h3>Accedi all'area gestori</h3><button class="button__blue button"
-                    (click)="this.sezioneSquadra = 6">Accedi</button>
+                <h3>Accedi all'area gestori</h3><button class="button__blue button" (click)="this.sezioneSquadra = 6">Accedi</button>
             </div>
             <div class="card__accedi__gestori">
                 <div>
@@ -98,8 +94,7 @@
     <div class="container__profili__inside__1">
         <h1 class="big__h1">Iscrizione a</h1>
         <h1 class="big__h1">{{this.squadraScelta.nomesquadra}}</h1>
-        <p>Per poterti iscrivere a {{this.squadraScelta.nomesquadra}} devi inserire tutti i tuoi dati corretti, caricare
-            i file richiesti e accettare i documenti della squadra</p>
+        <p>Per poterti iscrivere a {{this.squadraScelta.nomesquadra}} devi inserire tutti i tuoi dati corretti, caricare i file richiesti e accettare i documenti della squadra</p>
         <div>
             <h3>{{atletaBase.nome}}</h3>
             <h3>{{atletaBase.cognome}}</h3>
@@ -116,12 +111,9 @@
             <input #nome value="{{atletaBase.nome}}" class="input__style" type="text" placeholder="Nome">
             <input #cognome value="{{atletaBase.cognome}}" class="input__style" type="text" placeholder="Cognome">
             <input #email value="{{atletaBase.email}}" class="input__style" type="text" placeholder="Email">
-            <input #datadinascita value="{{atletaBase.datadinascita}}" class="input__style" type="date"
-                placeholder="Data di nascita">
-            <input #luogodinascita value="{{atletaBase.luogodinascita}}" class="input__style" type="text"
-                placeholder="Luogo di nascita">
-            <input #codicefiscale value="{{atletaBase.codicefiscale}}" class="input__style" type="text"
-                placeholder="Codice fiscale">
+            <input #datadinascita value="{{atletaBase.datadinascita}}" class="input__style" type="date" placeholder="Data di nascita">
+            <input #luogodinascita value="{{atletaBase.luogodinascita}}" class="input__style" type="text" placeholder="Luogo di nascita">
+            <input #codicefiscale value="{{atletaBase.codicefiscale}}" class="input__style" type="text" placeholder="Codice fiscale">
             <input #residenza value="{{atletaBase.residenza}}" class="input__style" type="text" placeholder="Residenza">
             <input #telefono value="{{atletaBase.telefono}}" class="input__style" type="text" placeholder="Telefono">
         </div>
@@ -174,14 +166,20 @@
     <div class="container container__info__squadra_superiore">
         <div class="container__info__squadra_superiore__inside">
             <div class="container__info__squadra_superiore__inside__container">
-                <h1>{{this.squadraScelta.nomesquadra}}</h1>
+                <div class="title__two__sides">
+                    <div class="title__two__sides__sez1">
+                        <h1>{{this.squadraScelta.nomesquadra}}</h1>
+                    </div>
+                    <div class="title__two__sides__sez2">
+                        <span>
+                            <svg class="mi1" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.25 22-.4-3.2q-.325-.125-.612-.3-.288-.175-.563-.375L4.7 19.375l-2.75-4.75 2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75 2.975 1.25q.275-.2.575-.375.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3.287.175.562.375l2.975-1.25 2.75 4.75-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95-2.75 4.75-2.95-1.25q-.275.2-.575.375-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z"/></svg>
+                        </span>
+                    </div>
+                </div>
                 <div style="display: flex; margin-top:2vw">
-                    <button (click)="this.centrovar = 0" class="button"
-                        [ngClass]="{'open': centrovar === 0, 'notopen' :  centrovar != 0 }">Stagioni</button>
-                    <button (click)="this.centrovar = 1" class="button"
-                        [ngClass]="{'open': centrovar === 1, 'notopen' :  centrovar != 1 }">Atleti</button>
-                    <button (click)="this.centrovar = 2" class="button"
-                        [ngClass]="{'open': centrovar === 2, 'notopen' :  centrovar != 2 }">Allenamenti</button>
+                    <button (click)="this.centrovar = 0" class="button" [ngClass]="{'open': centrovar === 0, 'notopen' :  centrovar != 0 }">Stagioni</button>
+                    <button (click)="this.centrovar = 1" class="button" [ngClass]="{'open': centrovar === 1, 'notopen' :  centrovar != 1 }">Atleti</button>
+                    <button (click)="this.centrovar = 2" class="button" [ngClass]="{'open': centrovar === 2, 'notopen' :  centrovar != 2 }">Allenamenti</button>
                 </div>
             </div>
         </div>
