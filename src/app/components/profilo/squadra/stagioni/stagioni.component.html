@@ -23,6 +23,9 @@
     </div>
 </div>
 <div *ngIf="this.stagioniSection == 1">
+    <div>
+        <svg (click)="this.stagioniSection = 0" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
+    </div>
     <div class="stagione__inside__up card">
         <div>
             <h1>Nome stagione</h1>
@@ -159,7 +162,7 @@
                         <h2>Corsi</h2>
                     </div>
                     <div class="corsi__up__section__two">
-                        <button class="button button__blue">Aggiungi</button>
+                        <button class="button button__blue" (click)="aggiungicorso()">Aggiungi</button>
                     </div>
                 </div>
                 <p>Qui vengono inseriti tutti i corsi che la squadra offre</p>
@@ -172,17 +175,17 @@
                     </div>
                     <div *ngIf="this.opencorso == i">
                         <div>
-                            <input placeholder="{{corso[0]}}" value="{{corso[0]}}" class="input__style">
+                            <input placeholder="{{corso[0]}}" value="{{corso[0]}}" #corsotitolo class="input__style">
                         </div>
                         <div>
-                            <textarea class="input__style">{{corso[1]}}</textarea>
+                            <textarea #corsodescrizione class="input__style">{{corso[1]}}</textarea>
                         </div>
                         <div>
-                            <input placeholder="{{corso[2]}}" value="{{corso[2]}}" class="input__style">
+                            <input placeholder="{{corso[2]}}" value="{{corso[2]}}" #corsoprezzo class="input__style">
                         </div>
                         <div style="display: flex;">
-                            <button class="button__blue button" (click)="this.opencorso = -1">Salva</button>
-                            <button class="button__red button">Elimina</button>
+                            <button class="button__blue button" (click)="modificacorso(i, corsotitolo.value, corsodescrizione.value, corsoprezzo.value)">Salva</button>
+                            <button class="button__red button" (click)="eliminaCorso(i)">Elimina</button>
                         </div>
                     </div>
                 </div>

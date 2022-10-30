@@ -55,5 +55,25 @@ export class StagioniComponent implements OnInit {
     })
   }
 
+  eliminaCorso(corso:any){
+    this.stagioneData.corsi.splice(corso,1)
+  }
+
+  aggiungicorso(){
+    /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
+    this.stagioneData.corsi.push(["nuovo corso","descrizione","prezzo"])
+  }
+
+  modificacorso(corso:any, val1:any, val2:any, val3:any){
+    for(let i=0; i<this.stagioneData.corsi.length; i++){
+      if(corso == i){
+        this.stagioneData.corsi[corso][0] = val1;
+        this.stagioneData.corsi[corso][1] = val2;
+        this.stagioneData.corsi[corso][2] = val3;
+      }
+    }
+    this.opencorso = -1
+  }
+
 
 }
