@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { deleteUser, getAuth } from 'firebase/auth';
 import { getDatabase, ref, remove, update } from 'firebase/database';
+import { AppComponent } from 'src/app/app.component';
 import { atleta } from 'src/app/objects/atleta';
 import { ProfiloUtenteComponent } from '../profilo-utente/profilo-utente.component';
 
@@ -14,7 +15,7 @@ export class ImpostazioniComponent implements OnInit {
   sportyId = localStorage.getItem("sportyId");
   Sportyprofileid = localStorage.getItem("Sportyprofileid");
 
-  constructor() { }
+  constructor(public ac: AppComponent, public pu: ProfiloUtenteComponent) { }
 
   ngOnInit(): void {
   }
@@ -103,26 +104,28 @@ export class ImpostazioniComponent implements OnInit {
   }
   eliminaAccountpopup:number = 0
   eliminaAccount(conferma:any){
+    const auth = getAuth();
+    const user:any = auth.currentUser;
+
     if(conferma == 1){
       const db = getDatabase();
-      if(localStorage.getItem("sportyId") == localStorage.getItem("Sportyprofileid")){
+      if(this.sportyId == this.Sportyprofileid){
 
         const starCountRefprincipale = ref(db, 'utenti/' + localStorage.getItem("sportyId"));
         remove(starCountRefprincipale);
+        deleteUser(user).then(() => {
+          localStorage.removeItem("sportyId");
+          localStorage.removeItem("Sportyprofileid");
+          localStorage.removeItem("sportyDataTheme");
+        })
+        this.ac.appSection = 2;
       }else{
         const starCountRefsecondario = ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("Sportyprofileid"));
         remove(starCountRefsecondario);
-      }
-      const auth = getAuth();
-      const user:any = auth.currentUser;
-  
-      deleteUser(user).then(() => {
-        localStorage.removeItem("sportyId");
         localStorage.removeItem("Sportyprofileid");
         localStorage.removeItem("sportyDataTheme");
-      }).catch((error) => {
-        
-      });
+        this.pu.preselection = 0
+      }
     }else if(conferma == 2){
       this.eliminaAccountpopup = 0
     }

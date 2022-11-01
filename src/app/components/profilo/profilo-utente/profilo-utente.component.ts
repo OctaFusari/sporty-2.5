@@ -231,6 +231,7 @@ export class ProfiloUtenteComponent implements OnInit {
       setInterval(() => {
         this.message = 0;
       }, 2000)
+      this.preselection = 0
   }
 
 }
