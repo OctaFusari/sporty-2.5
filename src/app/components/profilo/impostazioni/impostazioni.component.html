@@ -9,8 +9,21 @@
                 </div>
             </div>
             <div class="container">
-                <h3 class="elimina">Elimina profilo</h3>
+                <h3 class="elimina" (click)="this.eliminaAccountpopup = 1">Elimina profilo</h3>
                 <h3 class="modifica">Cambia password</h3>
+                <div class="popup" *ngIf="this.eliminaAccountpopup == 1">
+                    <div class="popup__inside card card__popup__little">
+                        <h2 style="margin-bottom: 1vw">Sei sicuro di eliminare l'account?</h2>
+                        <a *ngIf="sportyId == Sportyprofileid">Attenzione questo è l'account principale, se lo eliminerai verranno eliminati anche gli atleti collegati</a>
+                        <div style="margin-top: 1vw">
+                            <button class="button__red button" (click)="eliminaAccount(1)">Si</button>
+                            <button class="button__blue button" (click)="eliminaAccount(2)">No</button>
+                        </div>
+                    </div>
+                    <div class="popup__esci" (click)="this.eliminaAccountpopup = 0">
+
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container__up">

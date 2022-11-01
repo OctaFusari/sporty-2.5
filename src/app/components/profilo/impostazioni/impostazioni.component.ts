@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { getDatabase, ref, update } from 'firebase/database';
+import { deleteUser, getAuth } from 'firebase/auth';
+import { getDatabase, ref, remove, update } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
 import { ProfiloUtenteComponent } from '../profilo-utente/profilo-utente.component';
 
@@ -10,6 +11,8 @@ import { ProfiloUtenteComponent } from '../profilo-utente/profilo-utente.compone
 })
 export class ImpostazioniComponent implements OnInit {
   @Input() userData:any = "";
+  sportyId = localStorage.getItem("sportyId");
+  Sportyprofileid = localStorage.getItem("Sportyprofileid");
 
   constructor() { }
 
@@ -96,6 +99,32 @@ export class ImpostazioniComponent implements OnInit {
       document.documentElement.style.setProperty("--container-trasparent","#1818189d")
       document.documentElement.style.setProperty("--card-trasparent","#20202085")
       document.documentElement.style.setProperty("--sfondo","#141414")
+    }
+  }
+  eliminaAccountpopup:number = 0
+  eliminaAccount(conferma:any){
+    if(conferma == 1){
+      const db = getDatabase();
+      if(localStorage.getItem("sportyId") == localStorage.getItem("Sportyprofileid")){
+
+        const starCountRefprincipale = ref(db, 'utenti/' + localStorage.getItem("sportyId"));
+        remove(starCountRefprincipale);
+      }else{
+        const starCountRefsecondario = ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("Sportyprofileid"));
+        remove(starCountRefsecondario);
+      }
+      const auth = getAuth();
+      const user:any = auth.currentUser;
+  
+      deleteUser(user).then(() => {
+        localStorage.removeItem("sportyId");
+        localStorage.removeItem("Sportyprofileid");
+        localStorage.removeItem("sportyDataTheme");
+      }).catch((error) => {
+        
+      });
+    }else if(conferma == 2){
+      this.eliminaAccountpopup = 0
     }
   }
 

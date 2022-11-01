@@ -246,6 +246,11 @@ button {
     height: 150px;
 }
 
+.card__popup__little{
+    width: 400px;
+    height: 250px;
+}
+
 .littlecard {
     background: var(--card-little);
     border-radius: 2rem;
