@@ -57,6 +57,7 @@ export class StagioniComponent implements OnInit {
 
   eliminaCorso(corso:any){
     this.stagioneData.corsi.splice(corso,1)
+    
   }
 
   aggiungicorso(){

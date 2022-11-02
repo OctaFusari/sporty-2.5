@@ -2,5 +2,5 @@ export interface immagine{
     titolo:string;
     url:string;
     scadenza:string;
-    tipologia:string
+    galleria_folder:string;
 }

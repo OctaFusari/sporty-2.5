@@ -8,9 +8,6 @@ export interface atleta{
     codicefiscale: string;
     residenza: string;
     telefono: any;
-    doc1: any;
-    doc2: any;
-    doc3: any;
     immagini:any;
     conferma: string;
     stagione:any;

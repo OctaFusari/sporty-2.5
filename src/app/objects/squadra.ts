@@ -2,6 +2,7 @@ export interface squadra{
     idsquadra:string;
     codicesquadra:string;
     creator:string;
+    gestori:any;
     emailsquadra:string;
     nomesquadra:string;
     passwordteam:string;

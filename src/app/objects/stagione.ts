@@ -4,11 +4,7 @@ export interface stagione{
     creator:string;
     datafine:string;
     datainizio:string;
-    documentoattivita:string;
-    documentodati:string;
-    documentoimmagini:string;
     iscrittistagione: any;
     nomestagione:any;
-    documenti:any;
-    immagini:any;
+    documenti:any; 
 }

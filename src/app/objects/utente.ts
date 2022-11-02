@@ -9,6 +9,4 @@ export interface utente{
     residenza:string;
     telefono: string;
     atleti:any;
-    squadra:string;
-    gestore:any;
 }
