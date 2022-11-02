@@ -49,11 +49,6 @@
     margin-right: 3cm;
 }
 
-.logo__centrale {
-    font-size: 6rem;
-    font-weight: 900;
-}
-
 footer {
     padding-top: 2cm;
     background-color: var(--background);
@@ -251,10 +246,10 @@ input:focus {
 
 .octitxt1 {
     cursor: pointer;
-    fill:#3b3b3b44
+    fill: #3b3b3b44
 }
 
-.minibar__destra{
+.minibar__destra {
     display: grid;
     grid-template-columns: 1fr 0.4fr;
     grid-template-rows: 1fr;
@@ -263,6 +258,6 @@ input:focus {
     align-content: center;
 }
 
-.minibar__destra div{
+.minibar__destra div {
     margin: 0vw 1vw 0vw 1vw;
 }

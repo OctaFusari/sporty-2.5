@@ -85,6 +85,7 @@ export class ImpostazioniComponent implements OnInit {
       document.documentElement.style.setProperty("--container-trasparent","#a7a7a781")
       document.documentElement.style.setProperty("--card-trasparent","#8a8a8a88")
       document.documentElement.style.setProperty("--sfondo","#ffffff")
+      document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra2.svg)")
     }else if(mode == 1){
       localStorage.setItem("sportyDataTheme", "dark")
       document.documentElement.style.setProperty("--background","#141414")
@@ -97,6 +98,7 @@ export class ImpostazioniComponent implements OnInit {
       document.documentElement.style.setProperty("--container-trasparent","#1818189d")
       document.documentElement.style.setProperty("--card-trasparent","#20202085")
       document.documentElement.style.setProperty("--sfondo","#141414")
+      document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra1.svg)")
     }
   }
   eliminaAccountpopup:number = 0

@@ -45,17 +45,16 @@
                     <button class="button button__blue" (click)="accedi(email.value, password.value)">Accedi</button>
                 </div>
                 <a>Password dimenticata?</a>
-                <div>
-                    <a *ngIf="this.errorSI == 1">C'è stato un errore</a>
-                    <a *ngIf="this.errorSI == 2">Accesso consentito</a>
+                <div class="warning__messages">
+                    <a *ngIf="this.errorSI == 1" class="error">C'è stato un errore</a>
+                    <a *ngIf="this.errorSI == 2" class="approved">Accesso consentito</a>
                 </div>
             </div>
         </div>
         <div id="section__tre" *ngIf="section == 2">
             <div class="section__descrizione">
                 <h1 class="logo__centrale__registrati">Registrati</h1>
-                <h3 *ngIf="regPt1 == 1" class="paragrafo__centrale">Riempi i campi a lato indicati per poter creare il tuo account Sporty.</h3>
-                <h3 *ngIf="regPt1 == 0" class="paragrafo__centrale">Scegli quale tipologia di account fa al caso tuo.</h3>
+                <h3 class="paragrafo__centrale">Riempi i campi a lato indicati per poter creare il tuo account Sporty.</h3>
                 <p>Hai già un account Sporty? <a (click)="section = 1" style="color: var(--sporty-blue);">Accedi</a></p>
             </div>
             <div class="input__container">
@@ -64,11 +63,11 @@
                 <input placeholder="email" #email type="text">
                 <input placeholder="password" #password type="password">
                 <button class="button button__blue" (click)="registrati(nome.value, cognome.value,email.value, password.value)">Registrati</button>
-                <div>
-                    <a *ngIf="this.errorSU == 1">La password non va bene</a>
-                    <a *ngIf="this.errorSU == 2">Email già in uso</a>
-                    <a *ngIf="this.errorSU == 3">C'è stato un errore</a>
-                    <a *ngIf="this.errorSU == 4">Account creato con successo</a>
+                <div class="warning__messages">
+                    <a *ngIf="this.errorSU == 1" class="error">La password non va bene</a>
+                    <a *ngIf="this.errorSU == 2" class="error">Email già in uso</a>
+                    <a *ngIf="this.errorSU == 3" class="error">C'è stato un errore</a>
+                    <a *ngIf="this.errorSU == 4" class="approved">Account creato con successo</a>
                 </div>
             </div>
         </div>

@@ -1,37 +1,54 @@
-<div class="container__squadra__iniziale" *ngIf="this.sezioneSquadra == 0 || this.sezioneSquadra == 1">
-    <div class="container__squadra__iniziale__inside">
+<div class="container__squadra__iniziale" *ngIf="this.sezioneSquadra == 0">
+    <div>
         <div class="container__squadra__iniziale__inside__1">
-            <h1 class="big__h1">Benvenuto in Squadre</h1>
+            <div>
+                <h1 class="big__h1">Benvenuto in Squadre</h1>
+                <h2 style="color: var(--sporty-blue);">Cerca Squadra</h2>
+            </div>
         </div>
         <div class="container__squadra__iniziale__inside__2">
-            <div *ngIf="this.sezioneSquadra == 0">
-                <button class="button button__blue" (click)="sezioneSquadra = 2">Crea Squadra</button>
-                <button class="button button__blue" (click)="sezioneSquadra = 1">Cerca squadra</button>
-            </div>
-            <div *ngIf="this.sezioneSquadra == 1">
-                <h2 style="color: var(--sporty-blue);">Cerca Squadra</h2>
+            <div class="input__button">
                 <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue (keyup.enter)="cercaSquadra(squadravalue.value)">
+                <button style="margin: 0.8vh 0 0.8vh 0;" class="button button__blue" (click)="cercaSquadra(squadravalue.value)">Cerca</button>
+            </div>
+        </div>
+        <div class="container__squadra__iniziale__inside__3">
+            <h2>Crea una nuova squadra</h2>
+            <button class="button" (click)="sezioneSquadra = 1">Crea squadra</button>
+        </div>
+    </div>
+    <div class="container__squadra__iniziale__inside__4">
+        <div class="card card__big" *ngFor="let squadra of this.arraySquadre" (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
+            <h2>{{squadra.nomesquadra}}</h2>
+            <div>
+                <a>{{squadra.codicesquadra}}</a>
             </div>
         </div>
     </div>
 </div>
-<div class="container__card__squadra" *ngIf="this.sezioneSquadra == 1">
-    <div class="card card__big" *ngFor="let squadra of this.arraySquadre" (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
-        <h2>{{squadra.nomesquadra}}</h2>
-        <div>
-            <a>{{squadra.codicesquadra}}</a>
-        </div>
+<div>
+    <h1>Creazione Squadra</h1>
+    <h2>Compila tutti i campi per lacreazione della squadra</h2>
+    <div>
+        <input placeholder="codicesquadra">
+        <input placeholder="federazione">
+        <input placeholder="emailsquadra">
+        <input placeholder="nomesquadra">
+        <input placeholder="passwordteam">
+        <input placeholder="sedesquadra">
+        <input placeholder="codicesquadra">
     </div>
 </div>
 <div *ngIf="this.sezioneSquadra == 2 || this.sezioneSquadra == 6">
-    <div class="popup container__squadra__iniziale" *ngIf="this.sezioneSquadra == 6">
+    <div class="popup" *ngIf="this.sezioneSquadra == 6">
         <div class="container popup__inside">
             <div>
                 <h1>Accedi a </h1>
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
             </div>
-            <div>
+            <div class="input__button">
                 <input class="input__style" type="password" placeholder="password" #pass (keyup.enter)="accediSquadra(pass.value)">
+                <button class="button button__blue" (click)="accediSquadra(pass.value)">Accedi</button>
             </div>
             <div style="height: 2vw;">
                 <a class="approved" *ngIf="this.message == 1">Acesso avvenuto con successo</a>
@@ -44,11 +61,12 @@
     </div>
     <div class="container container__info__squadra_superiore">
         <div class="container__info__squadra_superiore__inside">
+            <button class="button">Chiudi</button>
             <div class="container__info__squadra_superiore__inside__container">
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
             </div>
         </div>
-        <div class="button__iscrizione">
+        <div class="bacheca">
             <button (click)="this.sezioneSquadra = 3" class="circle__button button__blue">
                 Iscriviti
             </button>
@@ -165,6 +183,7 @@
 <div *ngIf="this.sezioneSquadra == 4">
     <div class="container container__info__squadra_superiore">
         <div class="container__info__squadra_superiore__inside">
+            <button class="button">Chiudi</button>
             <div class="container__info__squadra_superiore__inside__container">
                 <div class="title__two__sides">
                     <div class="title__two__sides__sez1">

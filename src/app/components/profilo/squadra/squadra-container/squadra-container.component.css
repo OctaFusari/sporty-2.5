@@ -1,40 +1,23 @@
 .container__squadra__iniziale {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container__squadra__iniziale__inside {
-    margin: 12vw 8vw 4vw 8vw;
-}
-
-.container__squadra__iniziale__inside__1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container__squadra__iniziale__inside__2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.container__squadra__iniziale__inside__2 {
-    text-align: center;
-}
-
-.container__squadra__iniziale__inside__2 button {
-    margin: 2vw;
-}
-
-.container__card__squadra {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    margin: 8vw 8vw 8vw 8vw;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+}
+
+.container__squadra__iniziale__inside__3 {
+    margin-top: 4vw;
+}
+
+.container__squadra__iniziale__inside__4 {
     grid-template-rows: auto;
-    display: flex;
     align-items: center;
     justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". .";
 }
 
 .container__info__squadra {
@@ -61,7 +44,6 @@
 
 .container__info__squadra_superiore__inside__container {
     background-color: var(--container-trasparent);
-    margin-left: -6vw;
     width: min-content;
     height: fit-content;
     border-radius: 2rem;
@@ -69,10 +51,8 @@
 }
 
 .container__info__squadra_superiore__inside {
+    margin-left: -4vw;
     grid-area: container__info__squadra_superiore__inside;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .card__accedi__gestori {
@@ -82,7 +62,7 @@
     margin: 0.8vw;
 }
 
-.bacheca{
+.bacheca {
     grid-area: bacheca;
     display: flex;
     align-items: center;
@@ -124,39 +104,6 @@
     grid-template-areas: ". .";
 }
 
-.popup__accedi__squadra {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin-top: 0 !important;
-    background-color: var(--container-trasparent);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    overflow-y: hidden;
-    overflow-x: hidden;
-    z-index: 99;
-}
-
-.popup__accedi__squadra__inside {
-    overflow-x: hidden;
-    z-index: 99;
-}
-
-.popup__accedi__squadra__esci {
-    z-index: 50;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
-
 .container__counter {
     height: 200px;
     width: 300px;
@@ -168,6 +115,6 @@
     grid-template-areas: "."".";
 }
 
-.container__counter__inside{
+.container__counter__inside {
     overflow-y: scroll;
 }

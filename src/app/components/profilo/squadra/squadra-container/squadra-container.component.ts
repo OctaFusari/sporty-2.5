@@ -54,7 +54,6 @@ export class SquadraContainerComponent implements OnInit {
 
   cercaSquadra(squadravalue:any){
     this.arraySquadre = [];
-    this.sezioneSquadra = 1
     const db = getDatabase();
     const starCountRef2 = ref(db, 'squadre/');
     onValue(starCountRef2, (snapshot) => {

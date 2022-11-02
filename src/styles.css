@@ -25,7 +25,7 @@
     --octimal: #007E6D;
     --sfondo: url(./assets/blob-scene-haikei.svg);
     --sfondo2: url(./assets/blob-scene-haikei1.svg);
-    --sfondo-squadra: url("http://www.gsbrentonico.org/site/wp-content/uploads/2017/03/image3.jpg")
+    --sfondo-squadra: url(./assets/bg-squadra1.svg);
 }
 
 .error {
@@ -49,6 +49,10 @@
     background: var(--card) !important;
 }
 
+.warning__messages {
+    height: 1cm;
+}
+
 body,
 html {
     scroll-behavior: smooth;
@@ -59,7 +63,6 @@ html {
 }
 
 body {
-    height: 100%;
     background: var(--sfondo);
     background-size: cover;
     background-position: 0;
@@ -188,6 +191,13 @@ button {
     background-color: var(--error-trasparent) !important;
 }
 
+.input__button {
+    display: grid;
+    grid-template-columns: max-content min-content;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+}
+
 .ultrabig__text {
     font-size: 5rem;
     font-weight: 900;
@@ -220,6 +230,12 @@ button {
     border-radius: 15px;
     font-size: 1rem;
     padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+    background-color: var(--card);
+    color: var(--text);
+}
+
+.button:hover {
+    background-color: var(--card-trasparent);
 }
 
 .container {
@@ -246,7 +262,7 @@ button {
     height: 150px;
 }
 
-.card__popup__little{
+.card__popup__little {
     width: 400px;
     height: 250px;
 }
@@ -357,6 +373,11 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.logo__centrale {
+    font-size: 6rem;
+    font-weight: 900;
 }
 
 @media only screen and (max-width: 450px) {

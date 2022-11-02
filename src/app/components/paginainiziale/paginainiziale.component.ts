@@ -24,6 +24,7 @@ export class PaginainizialeComponent implements OnInit {
       document.documentElement.style.setProperty("--container-trasparent","#a7a7a781")
       document.documentElement.style.setProperty("--card-trasparent","#8a8a8a88")
       document.documentElement.style.setProperty("--sfondo","url(./assets/blob-scene-haikei1.svg)")
+      document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra1.svg)")
     }else{
       document.documentElement.style.setProperty("--background","#141414")
       document.documentElement.style.setProperty("--background-text","#121212")
@@ -35,6 +36,7 @@ export class PaginainizialeComponent implements OnInit {
       document.documentElement.style.setProperty("--container-trasparent","#1818189d")
       document.documentElement.style.setProperty("--card-trasparent","#20202085")
       document.documentElement.style.setProperty("--sfondo","url(./assets/blob-scene-haikei.svg)")
+      document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra2.svg)")
     }
   }
 
@@ -44,7 +46,6 @@ export class PaginainizialeComponent implements OnInit {
   errorSU:number = 0;
   errorSI:number = 0;
   userData:any = "";
-  regPt1:number = 1;
 
   mode:number = 0
   /* Variabili */
@@ -69,8 +70,6 @@ export class PaginainizialeComponent implements OnInit {
           residenza:"",
           telefono:"",
           atleti:"",
-          squadra:"",
-          gestore:""
         });
 
         set(ref(db, 'utenti/' + user.uid + "/atleti/" + user.uid), {
@@ -83,9 +82,6 @@ export class PaginainizialeComponent implements OnInit {
           codicefiscale: "",
           residenza: "",
           telefono: "",
-          doc1:"",
-          doc2:"",
-          doc3:"",
           immagini:"",
           conferma: "",
           stagione:"",
@@ -107,7 +103,6 @@ export class PaginainizialeComponent implements OnInit {
         onValue(starCountRef, (snapshot) => {
           this.userData = snapshot.val();
         });
-        this.regPt1 = 0;
       })
       .catch((error) => {
         const errorCode = error.code;

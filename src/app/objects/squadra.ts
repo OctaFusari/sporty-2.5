@@ -2,6 +2,7 @@ export interface squadra{
     idsquadra:string;
     codicesquadra:string;
     creator:string;
+    federazione:string;
     gestori:any;
     emailsquadra:string;
     nomesquadra:string;
@@ -11,15 +12,8 @@ export interface squadra{
     copertina:any;
 }
 
+/* 
 
 
-/* idsquadra: this.squadraScelta.idsquadra,
-codicesquadra: this.squadraScelta.codicesquadra,
-creator: this.squadraScelta.creator,
-emailsquadra: this.squadraScelta.emailsquadra,
-nomesquadra: this.squadraScelta.nomesquadra,
-passwordteam: this.squadraScelta.passwordteam,
-sedesquadra: this.squadraScelta.sedesquadra,
-stagioni: this.squadraScelta.stagioni,
-copertina: this.squadraScelta.copertina,
-gestori: this.squadraScelta.gestori */
+
+*/
