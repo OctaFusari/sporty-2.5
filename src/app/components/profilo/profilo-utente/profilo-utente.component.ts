@@ -120,6 +120,7 @@ export class ProfiloUtenteComponent implements OnInit {
     onValue(starCountRef1, (snapshot) => {
       this.userData = snapshot.val();
     });
+    console.log(this.userData)
   }
 
   expand() {

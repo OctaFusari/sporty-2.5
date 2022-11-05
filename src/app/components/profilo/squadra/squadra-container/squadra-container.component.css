@@ -1,13 +1,18 @@
-.container__squadra__iniziale {
-    display: grid;
-    margin: 8vw 8vw 8vw 8vw;
-    grid-template-columns: 2fr 2fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". .";
+.input__creasquadra{
+    margin: 2vw 0vw 2vw 0vw;
 }
 
-.container__squadra__iniziale__inside__3 {
-    margin-top: 4vw;
+.container__squadra__iniziale{
+    margin: 4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    ". .";
+}
+
+.container__squadra__iniziale__inside__3{
+    margin-top: 6vw;
 }
 
 .container__squadra__iniziale__inside__4 {
@@ -102,6 +107,13 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: ". .";
+}
+
+.federazioni__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". . . . .";
 }
 
 .container__counter {

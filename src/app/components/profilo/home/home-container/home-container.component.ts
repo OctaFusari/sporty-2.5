@@ -41,11 +41,11 @@ export class HomeContainerComponent implements OnInit {
   }
 
   changeProfile() {
-    this.changeProfilevent.emit(0);
-    localStorage.removeItem('Sportyprofileid');
     this.userData = "";
     this.profileData = "";
    this.squadra = ""
+    this.changeProfilevent.emit(0);
+    localStorage.removeItem('Sportyprofileid');
    this.pu.controlloIniziale()
   }
 

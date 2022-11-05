@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ref, onValue, getDatabase, update, set } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
+import { squadra } from 'src/app/objects/squadra';
 
 @Component({
   selector: 'app-squadra-container',
@@ -15,7 +16,7 @@ export class SquadraContainerComponent implements OnInit {
   sezioneIscrizione:number = 0;
   message:number = 0;
   centrovar:any = 0;
-  stagionicounter:any [] = []
+  stagionicounter:any [] = [];
   atletaBase:atleta = {
     atletaid: "",
     nome: "",
@@ -84,7 +85,7 @@ export class SquadraContainerComponent implements OnInit {
           this.squadraScelta = snapshot.val()
       })
 
-        const postData = {
+        const postData:atleta = {
           atletaid:this.userData.atletaid,
           nome:this.userData.nome,
           cognome:this.userData.cognome,
@@ -122,8 +123,51 @@ export class SquadraContainerComponent implements OnInit {
     }, 2000)
   }
 
-  creazioneSquadra(){
-    
+  creazioneSquadra(nomesquadra:string, codicesquadra:string, emailsquadra:string, sedesquadra:string, passwordteam:string){
+    this.arraySquadre = [];
+    let arraySquadre:any[] = []
+    const db = getDatabase();
+    let randomid = "sporty" + (Math.floor(Math.random() * 1000) + 1);
+    const starCountRef2 = ref(db, 'squadre/');
+    if((nomesquadra != "") && (passwordteam != "")){
+      onValue(starCountRef2, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            arraySquadre.push(childSnapshot.val());
+        })
+        for(let i=0; i<arraySquadre.length; i++){
+          if(arraySquadre[i].idsquadra !=  randomid){
+            randomid = randomid
+          }else if(arraySquadre[i].idsquadra == randomid){
+            randomid = "sporty" + (Math.floor(Math.random() * 1000) + 1);
+            i = 0
+          }
+        }
+      })
+      set(ref(db, 'squadre/' + randomid), 
+      {
+        idsquadra:randomid,
+        codicesquadra:codicesquadra,
+        creator:this.userData.atletaid,
+        federazione:"",
+        gestori:"",
+        emailsquadra:emailsquadra,
+        nomesquadra:nomesquadra,
+        passwordteam:passwordteam,
+        sedesquadra:sedesquadra,
+        stagioni:"",
+        copertina:"",
+      });
+      this.message = 6
+    }else if((nomesquadra == "") && (passwordteam == "")){
+      this.message = 3
+    }else if(passwordteam == ""){
+      this.message = 4
+    }else if(nomesquadra == ""){
+      this.message = 5
+    }
+    setInterval(() => {
+      this.message = 0;
+    },2000)
   }
 
 }
