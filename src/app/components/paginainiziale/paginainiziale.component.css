@@ -9,7 +9,7 @@
 }
 
 .toolbar {
-    background-color: var(--container-trasparent);
+    background-color: transparent;
     padding: 1vh 4vh 1vh 4vh;
     position: fixed;
     top: 0;

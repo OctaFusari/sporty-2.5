@@ -1,17 +1,16 @@
-.input__creasquadra{
+.input__creasquadra {
     margin: 2vw 0vw 2vw 0vw;
 }
 
-.container__squadra__iniziale{
+.container__squadra__iniziale {
     margin: 4vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: 
-    ". .";
+    grid-template-areas: ". .";
 }
 
-.container__squadra__iniziale__inside__3{
+.container__squadra__iniziale__inside__3 {
     margin-top: 6vw;
 }
 
@@ -109,7 +108,7 @@
     grid-template-areas: ". .";
 }
 
-.federazioni__container{
+.federazioni__container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -129,4 +128,19 @@
 
 .container__counter__inside {
     overflow-y: scroll;
+}
+
+.squadra__attiva {
+    bottom: 0;
+    height: 72px;
+    right: 0;
+    position: fixed;
+    z-index: 300;
+    border-radius: 3rem;
+    margin: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-white) !important;
 }

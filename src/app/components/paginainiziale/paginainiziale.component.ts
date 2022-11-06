@@ -21,10 +21,10 @@ export class PaginainizialeComponent implements OnInit {
       document.documentElement.style.setProperty("--container","#f3f3f3")
       document.documentElement.style.setProperty("--card","#e4e4e4")
       document.documentElement.style.setProperty("--card-little","#d6d6d6")
-      document.documentElement.style.setProperty("--container-trasparent","#a7a7a781")
+      document.documentElement.style.setProperty("--container-trasparent","#a9a9a981")
       document.documentElement.style.setProperty("--card-trasparent","#8a8a8a88")
       document.documentElement.style.setProperty("--sfondo","url(./assets/blob-scene-haikei1.svg)")
-      document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra1.svg)")
+      document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra2.svg)")
     }else{
       document.documentElement.style.setProperty("--background","#141414")
       document.documentElement.style.setProperty("--background-text","#121212")
@@ -36,7 +36,7 @@ export class PaginainizialeComponent implements OnInit {
       document.documentElement.style.setProperty("--container-trasparent","#1818189d")
       document.documentElement.style.setProperty("--card-trasparent","#20202085")
       document.documentElement.style.setProperty("--sfondo","url(./assets/blob-scene-haikei.svg)")
-      document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra2.svg)")
+      document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra1.svg)")
     }
   }
 

@@ -62,7 +62,23 @@ export class StagioniComponent implements OnInit {
 
   aggiungicorso(){
     /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
-    this.stagioneData.corsi.push(["nuovo corso","descrizione","prezzo"])
+    if(this.stagioneData == ""){
+      let corsi:any[]= []
+      corsi.push(["nuovo corso","descrizione","prezzo"])
+      this.stagioneData = {
+        codestagione: "",
+        corsi:corsi,
+        creator:"",
+        datafine:"",
+        datainizio:"",
+        iscrittistagione:"",
+        nomestagione:"",
+        documenti:""
+      }
+    }
+    else{
+      this.stagioneData.corsi.push(["nuovo corso","descrizione","prezzo"])
+    }
   }
 
   modificacorso(corso:any, val1:any, val2:any, val3:any){

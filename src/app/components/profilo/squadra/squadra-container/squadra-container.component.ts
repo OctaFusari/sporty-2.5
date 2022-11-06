@@ -43,6 +43,10 @@ export class SquadraContainerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(){
+    this.verifica_squadra_iniziale()
+  }
+
+  verifica_squadra_iniziale(){
     if(this.userData.gestore != ""){
       const db = getDatabase();
       const starCountRef = ref(db, 'squadre/'+this.userData.gestore);

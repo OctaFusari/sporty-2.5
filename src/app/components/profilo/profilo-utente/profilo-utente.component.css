@@ -10,6 +10,7 @@
     grid-template-rows: auto;
     grid-template-columns: 2.5cm 1fr;
     grid-template-areas: ". .";
+    color: #b8ddff94;
 }
 
 .container__profilo__inside {
