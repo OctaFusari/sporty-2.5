@@ -48,7 +48,7 @@
 
 .container__info__squadra_superiore__inside__container {
     background-color: var(--container-trasparent);
-    width: min-content;
+    width: fit-content;
     height: fit-content;
     border-radius: 2rem;
     padding: 1vw;

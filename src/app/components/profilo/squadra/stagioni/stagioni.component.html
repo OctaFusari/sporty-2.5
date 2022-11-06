@@ -2,7 +2,7 @@
     <div class="card" style="
     align-items: center;
     justify-content: center;
-    display: flex;" (click)="this.stagioneData = '';this.stagioniSection = 2;">
+    display: flex;" (click)="aggiungi__stagione()">
         <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
             <path d="M21.65 38.85v-12.5H9.15v-4.7h12.5V9.15h4.7v12.5h12.5v4.7h-12.5v12.5Z" />
         </svg>
@@ -54,63 +54,6 @@
                 <p>Documenti che atleta deve leggere o accettare</p>
             </div>
             <div class="container__stagione__section__inside cssi__docs" id="cssi">
-                <div>
-                    <div class="littlecard" (click)="this.popup = 1; blockBodyScroll()">
-                        <span>Documento attività</span>
-                    </div>
-                    <div class="popup" *ngIf="this.popup == 1">
-                        <div class="popup__inside">
-                            <textarea class="input__style textareapopup">
-                                    {{this.stagioneData.documentoattivita}}
-                                </textarea>
-                            <div style="display: flex;">
-                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
-                                <button class="button__red button">Elimina</button>
-                            </div>
-                        </div>
-                        <div (click)="this.popup = -1; blockBodyScroll()" class="popup__esci">
-
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="littlecard" (click)="this.popup = 2; blockBodyScroll()">
-                        <span>Documento dati</span>
-                    </div>
-                    <div class="popup" *ngIf="this.popup == 2">
-                        <div class="popup__inside">
-                            <textarea class="input__style textareapopup">
-                                    {{this.stagioneData.documentodati}}
-                                </textarea>
-                            <div style="display: flex;">
-                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
-                                <button class="button__red button">Elimina</button>
-                            </div>
-                        </div>
-                        <div (click)="this.popup = -1; blockBodyScroll()" class="popup__esci">
-
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="littlecard" (click)="this.popup = 3; blockBodyScroll()">
-                        <span>Documento immagini</span>
-                    </div>
-                    <div class="popup" *ngIf="this.popup == 3">
-                        <div class="popup__inside">
-                            <textarea class="input__style textareapopup">
-                                {{this.stagioneData.documentoimmagini}}
-                            </textarea>
-                            <div style="display: flex;">
-                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
-                                <button class="button__red button">Elimina</button>
-                            </div>
-                        </div>
-                        <div (click)="this.popup = -1; blockBodyScroll()" class="popup__esci">
-
-                        </div>
-                    </div>
-                </div>
                 <div *ngFor="let documento of this.stagioneData.documenti; let i=index">
                     <div class="littlecard" (click)="this.popupdocs = i; blockBodyScroll()">
                         <span>{{documento.titolo}}</span>
@@ -139,9 +82,10 @@
         <div class="container__stagione__section__two card">
             <div class="container__stagione__section__inside__superiore">
                 <h2>Immagini</h2>
-                <p>In questa sezione si definiranno le immagini richieste per l'iscrizione alla squadra</p>
+                <p>In questa sezione si creano le cartelle dove gli iscritti caricheranno le immagini richieste</p>
                 <div>
-                    <input placeholder="nome cartella immagini" #imgfolder class="input__style">
+                    <input placeholder="Cartella immagini" #imgfolder class="input__style">
+                    <button>Aggiungi</button>
                 </div>
             </div>
             <div class="container__stagione__section__inside">
@@ -187,123 +131,9 @@
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px">
-                <a>scorri in basso</a>
-            </div>
-        </div>
-    </div>
-    <div>
-        <button class="button button__blue">Salva e chiudi</button>
-    </div>
-</div>
-<div *ngIf="this.stagioniSection == 2">
-    <div>
-        <svg (click)="this.stagioniSection = 0" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
-    </div>
-    <div class="stagione__inside__up card">
-        <div>
-            <h1>Nome stagione</h1>
-            <input class="input__style" type="text" placeholder="Nome della stagione">
-        </div>
-        <div>
-            <h2>Data inizio</h2>
-            <input class="input__style" type="date" placeholder="Data inizio stagione">
-        </div>
-        <div>
-            <h2>Data fine</h2>
-            <input class="input__style" type="date" placeholder="Data Fine">
-        </div>
-    </div>
-    <div class="container__stagione">
-        <div class="container__stagione__section__one card">
-            <div class="container__stagione__section__inside__superiore">
-                <div class="corsi__up">
-                    <div class="corsi__up__section__uno">
-                        <h2>Documenti</h2>
-                    </div>
-                    <div class="corsi__up__section__two">
-                        <button class="button button__blue">Aggiungi</button>
-                    </div>
-                </div>
-                <p>Documenti che atleta deve leggere o accettare</p>
-            </div>
-            <div class="container__stagione__section__inside cssi__docs" id="cssi">
-                <div *ngFor="let documento of this.stagioneData.documenti; let i=index">
-                    <div class="littlecard" (click)="this.popupdocs = i; blockBodyScroll()">
-                        <span>{{documento.titolo}}</span>
-                    </div>
-                    <div class="popup" *ngIf="this.popupdocs == i">
-                        <div class="popup__inside">
-                            <input class="input__style" value="{{documento.titolo}}">
-                            <textarea class="input__style textareapopup">
-                                    {{documento.descrizione}}
-                                </textarea>
-                            <div style="display: flex;">
-                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
-                                <button class="button__red button">Elimina</button>
-                            </div>
-                        </div>
-                        <div (click)="this.popupdocs = -1; blockBodyScroll()" class="popup__esci">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center;margin-top:16px">
-                <a *ngIf="this.stagioneData.documenti > 2">scorri in basso</a>
-            </div>
-        </div>
-        <div class="container__stagione__section__two card">
-            <div class="container__stagione__section__inside__superiore">
-                <h2>Immagini</h2>
-                <p>In questa sezione si definiranno le immagini richieste per l'iscrizione alla squadra</p>
-                <div>
-                    <input placeholder="nome cartella immagini" #imgfolder class="input__style">
-                </div>
-            </div>
-            <div class="container__stagione__section__inside">
-                <div class="container__stagione__section__inside cssi__docs">
-                    <div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container__stagione__section__three card">
-            <div class="container__stagione__section__inside__superiore">
-                <div class="corsi__up">
-                    <div class="corsi__up__section__uno">
-                        <h2>Corsi</h2>
-                    </div>
-                    <div class="corsi__up__section__two">
-                        <button class="button button__blue" (click)="aggiungicorso()">Aggiungi</button>
-                    </div>
-                </div>
-                <p>Qui vengono inseriti tutti i corsi che la squadra offre</p>
-            </div>
-
-            <div class="container__stagione__section__inside">
-                <div style="cursor: pointer;" class="littlecard" *ngFor="let corso of this.stagioneData.corsi; let i=index">
-                    <div *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
-                        <span>{{corso[0]}}</span>
-                    </div>
-                    <div *ngIf="this.opencorso == i">
-                        <div>
-                            <input placeholder="{{corso[0]}}" value="{{corso[0]}}" #corsotitolo class="input__style">
-                        </div>
-                        <div>
-                            <textarea #corsodescrizione class="input__style">{{corso[1]}}</textarea>
-                        </div>
-                        <div>
-                            <input placeholder="{{corso[2]}}" value="{{corso[2]}}" #corsoprezzo class="input__style">
-                        </div>
-                        <div style="display: flex;">
-                            <button class="button__blue button" (click)="modificacorso(i, corsotitolo.value, corsodescrizione.value, corsoprezzo.value)">Salva</button>
-                            <button class="button__red button" (click)="eliminaCorso(i)">Elimina</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center;margin-top:16px">
-                <a>scorri in basso</a>
+                <a class="approved">{{this.message}}</a><br>
+                <a class="error">{{this.messagErrore}}</a><br>
+                <a *ngIf="this.stagioneData.corsi.length > 5">scorri in basso</a>
             </div>
         </div>
     </div>
