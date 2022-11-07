@@ -31,7 +31,7 @@ export class ProfiloUtenteComponent implements OnInit {
       document.documentElement.style.setProperty("--container","#f3f3f3")
       document.documentElement.style.setProperty("--card","#e4e4e4")
       document.documentElement.style.setProperty("--card-little","#d6d6d6")
-      document.documentElement.style.setProperty("--container-trasparent","#a9a9a981")
+      document.documentElement.style.setProperty("--container-trasparent","#f3f3f3ad")
       document.documentElement.style.setProperty("--card-trasparent","#8a8a8a88")
       document.documentElement.style.setProperty("--sfondo","#ffffff")
       document.documentElement.style.setProperty("--sfondo-squadra","url(./assets/bg-squadra2.svg)")

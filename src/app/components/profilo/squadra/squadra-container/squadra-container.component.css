@@ -41,14 +41,14 @@
     background-position: 50% 0;
     background-position: center;
     display: grid;
-    grid-template-columns: 0.5fr 3fr 0.5fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "container__info__squadra_superiore__inside . bacheca";
 }
 
 .container__info__squadra_superiore__inside__container {
     background-color: var(--container-trasparent);
-    width: min-content;
+    width: fit-content;
     height: fit-content;
     border-radius: 2rem;
     padding: 1vw;
