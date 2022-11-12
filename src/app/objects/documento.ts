@@ -1,5 +1,6 @@
 export interface documento{
     titolo:string;
     descrizione:string;
-    approvazioni:any
+    approvazioni:any;
+    filter:any
 }

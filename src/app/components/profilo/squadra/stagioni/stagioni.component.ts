@@ -18,6 +18,7 @@ export class StagioniComponent implements OnInit {
   stagioniSection:number = 0
   message= ""
   messagErrore= ""
+  messagesector= 0
   stagioneData:any = "";
   popup:number = -1;
   opencorso:number = -1;
@@ -57,6 +58,7 @@ export class StagioniComponent implements OnInit {
   }
 
   eliminaCorso(corso:any){
+    this.messagesector = 1
     this.stagioneData.corsi.splice(corso,1)
     this.message = "Corso eliminato"
     setTimeout(() => {
@@ -66,6 +68,7 @@ export class StagioniComponent implements OnInit {
   }
 
   aggiungicorso(){
+    this.messagesector = 1
     /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
     if(this.stagioneData.corsi.length < 10){
       this.stagioneData.corsi.push(["nuovo corso","descrizione","prezzo"])
@@ -80,6 +83,7 @@ export class StagioniComponent implements OnInit {
   }
 
   modificacorso(corso:any, val1:any, val2:any, val3:any){
+    this.messagesector = 1
     for(let i=0; i<this.stagioneData.corsi.length; i++){
       if(corso == i){
         this.stagioneData.corsi[corso][0] = val1;
@@ -96,8 +100,9 @@ export class StagioniComponent implements OnInit {
   }
 
   elimina__documento(documento:any){
+    this.messagesector = 2
     this.stagioneData.documenti.splice(documento,1)
-    this.message = "Corso eliminato"
+    this.message = "Documento eliminato"
     setTimeout(() => {
       this.message = "";
       this.messagErrore = "";
@@ -105,12 +110,19 @@ export class StagioniComponent implements OnInit {
   }
 
   aggiungi__documento(){
+    this.messagesector = 2
     /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
     if(this.stagioneData.documenti.length < 10){
-      this.stagioneData.documenti.push(["nuovo corso","descrizione","prezzo"])
+      this.stagioneData.documenti.push(
+        {
+          titolo:"Nuovo documento",
+          descrizione:"",
+          approvazioni:[],
+          filter:[]
+        })
       this.message = "Documento aggiunto"
     }else{
-      this.messagErrore = "Hai raggiunto il numero massimo di corsi"
+      this.messagErrore = "Hai raggiunto il numero massimo di Documenti"
     }
     setTimeout(() => {
       this.message = "";
@@ -119,18 +131,21 @@ export class StagioniComponent implements OnInit {
   }
 
   modifica__documento(documento:any, val1:any, val2:any){
+    this.messagesector = 2
     for(let i=0; i<this.stagioneData.documenti.length; i++){
       if(documento == i){
-        this.stagioneData.corsi[documento][0] = val1;
-        this.stagioneData.corsi[documento][1] = val2;
+        this.stagioneData.documenti[documento]["titolo"] = val1;
+        this.stagioneData.documenti[documento]["descrizione"] = val2;
       }
     }
-    this.opencorso = -1
     this.message = "Documento modificato"
     setTimeout(() => {
       this.message = "";
       this.messagErrore = "";
     }, 1000);
+    this.popupdocs = -1
+    this.popup = -1
+    this.blockBodyScroll()
   }
 
   aggiungi__stagione(){

@@ -1,5 +1,6 @@
 export interface galleria_folder{
     titolo:string;
     descrizione:string;
-    immagini:any
+    immagini:any;
+    corso:any
 }

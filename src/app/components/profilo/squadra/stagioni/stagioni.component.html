@@ -48,25 +48,25 @@
                         <h2>Documenti</h2>
                     </div>
                     <div class="corsi__up__section__two">
-                        <button class="button button__blue">Aggiungi</button>
+                        <button class="button button__blue" (click)="aggiungi__documento()">Aggiungi</button>
                     </div>
                 </div>
                 <p>Documenti che atleta deve leggere o accettare</p>
             </div>
             <div class="container__stagione__section__inside cssi__docs" id="cssi">
                 <div *ngFor="let documento of this.stagioneData.documenti; let i=index">
-                    <div class="littlecard" (click)="this.popupdocs = i; blockBodyScroll()">
+                    <div class="littlecard" style="text-align: center;" (click)="this.popupdocs = i; blockBodyScroll()">
                         <span>{{documento.titolo}}</span>
                     </div>
                     <div class="popup" *ngIf="this.popupdocs == i">
-                        <div class="popup__inside">
-                            <input class="input__style" value="{{documento.titolo}}">
-                            <textarea class="input__style textareapopup">
-                                    {{documento.descrizione}}
-                                </textarea>
+                        <div class="popup__inside container">
+                            <h2>Titolo</h2>
+                            <input class="input__style" #titolo value="{{documento.titolo}}">
+                            <h2>Descrizione</h2>
+                            <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="this.popup = -1; blockBodyScroll()">Salva</button>
-                                <button class="button__red button">Elimina</button>
+                                <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value)">Salva</button>
+                                <button class="button__red button" (click)="elimina__documento(i)">Elimina</button>
                             </div>
                         </div>
                         <div (click)="this.popupdocs = -1; blockBodyScroll()" class="popup__esci">
@@ -76,6 +76,7 @@
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px">
+                <a *ngIf="this.stagioneData.corsi.length > 5">scorri in basso</a>
                 <a *ngIf="this.stagioneData.documenti > 2">scorri in basso</a>
             </div>
         </div>
@@ -131,13 +132,15 @@
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px">
-                <a class="approved">{{this.message}}</a><br>
-                <a class="error">{{this.messagErrore}}</a><br>
                 <a *ngIf="this.stagioneData.corsi.length > 5">scorri in basso</a>
             </div>
         </div>
     </div>
     <div>
         <button class="button button__blue">Salva e chiudi</button>
+    </div>
+    <div class="message__container" *ngIf="this.message != '' || this.messagErrore != ''">
+        <a class="approved">{{this.message}}</a>
+        <a class="error">{{this.messagErrore}}</a>
     </div>
 </div>
