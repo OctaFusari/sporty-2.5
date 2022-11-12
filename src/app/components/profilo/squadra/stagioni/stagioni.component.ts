@@ -107,6 +107,8 @@ export class StagioniComponent implements OnInit {
       this.message = "";
       this.messagErrore = "";
     }, 1000);
+    this.popup = -1
+    this.popupdocs = -1
   }
 
   aggiungi__documento(){
@@ -145,7 +147,6 @@ export class StagioniComponent implements OnInit {
     }, 1000);
     this.popupdocs = -1
     this.popup = -1
-    this.blockBodyScroll()
   }
 
   aggiungi__stagione(){

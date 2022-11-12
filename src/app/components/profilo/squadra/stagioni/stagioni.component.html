@@ -65,8 +65,8 @@
                             <h2>Descrizione</h2>
                             <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value)">Salva</button>
-                                <button class="button__red button" (click)="elimina__documento(i)">Elimina</button>
+                                <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value); this.blockBodyScroll()">Salva</button>
+                                <button class="button__red button" (click)="elimina__documento(i); this.blockBodyScroll()">Elimina</button>
                             </div>
                         </div>
                         <div (click)="this.popupdocs = -1; blockBodyScroll()" class="popup__esci">
@@ -82,12 +82,16 @@
         </div>
         <div class="container__stagione__section__two card">
             <div class="container__stagione__section__inside__superiore">
-                <h2>Immagini</h2>
-                <p>In questa sezione si creano le cartelle dove gli iscritti caricheranno le immagini richieste</p>
-                <div>
-                    <input placeholder="Cartella immagini" #imgfolder class="input__style">
-                    <button>Aggiungi</button>
+                <div class="corsi__up">
+                    <div class="corsi__up__section__uno">
+                        <h2>Immagini</h2>
+                    </div>
+                    <div class="corsi__up__section__two">
+                        <button class="button button__blue" >Aggiungi</button>
+                    </div>
                 </div>
+                <p>In questa sezione si creano le cartelle dove gli iscritti caricheranno le immagini richieste</p>
+
             </div>
             <div class="container__stagione__section__inside">
                 <div class="container__stagione__section__inside cssi__docs">

@@ -139,6 +139,11 @@ svg:hover {
     width: 90%;
 }
 
+.input__style__light{
+    background-color: var(--card-little) !important;
+    border: 1px solid var(--card-little) !important;
+}
+
 .input__style:focus {
     background-color: var(--card);
     border: 1px solid var(--card);
@@ -226,7 +231,7 @@ button {
 }
 
 .button {
-    margin: 0.2vw;
+    margin: 0.8vh 0.8vh 0.8vh 0.8vh;
     border-radius: 15px;
     font-size: 1rem;
     padding: 0.4rem 0.8rem 0.4rem 0.8rem;
