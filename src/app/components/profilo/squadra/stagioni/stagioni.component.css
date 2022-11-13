@@ -8,12 +8,8 @@
 .container__stagione {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 180px 180px 180px 180px;
-    grid-template-areas: 
-    "container__stagione__section__zero container__stagione__section__one"
-    "container__stagione__section__three container__stagione__section__one" 
-    "container__stagione__section__three container__stagione__section__two"
-    "container__stagione__section__three container__stagione__section__two";
+    grid-template-rows: 150px 50px 220px 220px;
+    grid-template-areas: "container__stagione__section__zero container__stagione__section__one" "container__stagione__section__three container__stagione__section__one" "container__stagione__section__three container__stagione__section__two" "container__stagione__section__three container__stagione__section__two";
 }
 
 .container__stagione__section__zero {
@@ -36,7 +32,7 @@
     grid-area: container__stagione__section__two;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 0.5fr 3fr 0.2fr;
     grid-template-areas: "."".";
 }
 
@@ -53,10 +49,8 @@
 }
 
 .cssi__docs {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: ". . .";
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .corsi__up {
@@ -86,4 +80,23 @@
     width: 100%;
     margin-left: -1cm;
     text-align: center;
+}
+
+.mod__cartella {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "mod__cartella__sez__one mod__cartella__sez__three" "mod__cartella__sez__two od__cartella__sez__three";
+}
+
+.mod__cartella__sez__one {
+    grid-area: mod__cartella__sez__one;
+}
+
+.mod__cartella__sez__two {
+    grid-area: mod__cartella__sez__two;
+}
+
+.mod__cartella__sez__three {
+    grid-area: mod__cartella__sez__three;
 }

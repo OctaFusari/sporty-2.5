@@ -8,4 +8,5 @@ export interface stagione_obj{
     iscrittistagione: any;
     nomestagione:any;
     documenti:any; 
+    galleria:any; 
 }

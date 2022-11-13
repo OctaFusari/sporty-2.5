@@ -8,7 +8,7 @@
         </svg>
 
     </div>
-    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni" (click)="this.stagioneData = stagione;this.stagioniSection = 1;">
+    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni; let i=index" (click)="this.stagioneData = stagione;this.stagioniSection = 1;">
         <h2>{{stagione.nomestagione}}</h2>
         <div>
             <div>
@@ -24,20 +24,20 @@
 </div>
 <div *ngIf="this.stagioniSection == 1">
     <div>
-        <svg (click)="this.stagioniSection = 0" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
+        <svg (click)="this.stagioniSection = 0; this.stagione()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
     </div>
     <div class="container__stagione">
         <div class="container__stagione__section__zero card">
             <div>
-                <h1>Nome stagione</h1>
+                <h2>Nome stagione</h2>
                 <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
             </div>
             <div>
-                <h3 style="margin-bottom: 0;">Inizio</h3>
+                <h2 style="margin-bottom: 0;">Inizio</h2>
                 <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
             </div>
             <div>
-                <h3 style="margin-bottom: 0;">Fine</h3>
+                <h2 style="margin-bottom: 0;">Fine</h2>
                 <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
             </div>
         </div>
@@ -51,26 +51,27 @@
                         <button class="button button__blue" (click)="aggiungi__documento()">Aggiungi</button>
                     </div>
                 </div>
-                <p>Documenti che atleta deve leggere o accettare</p>
             </div>
             <div class="container__stagione__section__inside cssi__docs" id="cssi">
                 <div *ngFor="let documento of this.stagioneData.documenti; let i=index">
-                    <div class="littlecard" style="text-align: center;" (click)="this.popupdocs = i; blockBodyScroll()">
-                        <span>{{documento.titolo}}</span>
-                    </div>
-                    <div class="popup" *ngIf="this.popupdocs == i">
-                        <div class="popup__inside container">
-                            <h2>Titolo</h2>
-                            <input class="input__style" #titolo value="{{documento.titolo}}">
-                            <h2>Descrizione</h2>
-                            <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
-                            <div style="display: flex;">
-                                <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value); this.blockBodyScroll()">Salva</button>
-                                <button class="button__red button" (click)="elimina__documento(i); this.blockBodyScroll()">Elimina</button>
-                            </div>
+                    <div *ngIf="i != 0">
+                        <div class="littlecard" style="text-align: center;" (click)="this.popupdocs = i; blockBodyScroll()">
+                            <span>{{documento.titolo}}</span>
                         </div>
-                        <div (click)="this.popupdocs = -1; blockBodyScroll()" class="popup__esci">
+                        <div class="popup" *ngIf="this.popupdocs == i">
+                            <div class="popup__inside container">
+                                <h2>Titolo</h2>
+                                <input class="input__style" #titolo value="{{documento.titolo}}">
+                                <h2>Descrizione</h2>
+                                <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
+                                <div style="display: flex;">
+                                    <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value); this.blockBodyScroll()">Salva</button>
+                                    <button class="button__red button" (click)="elimina__documento(i); this.blockBodyScroll()">Elimina</button>
+                                </div>
+                            </div>
+                            <div (click)="this.popupdocs = -1; blockBodyScroll()" class="popup__esci">
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,17 +88,42 @@
                         <h2>Immagini</h2>
                     </div>
                     <div class="corsi__up__section__two">
-                        <button class="button button__blue" >Aggiungi</button>
+                        <button class="button button__blue" (click)="aggiungi__galleria()">Aggiungi</button>
                     </div>
                 </div>
-                <p>In questa sezione si creano le cartelle dove gli iscritti caricheranno le immagini richieste</p>
-
             </div>
             <div class="container__stagione__section__inside">
-                <div class="container__stagione__section__inside cssi__docs">
-                    <div>
+                <div *ngFor="let cartella of this.stagioneData.galleria; let i=index">
+                    <div class="littlecard" *ngIf="i != 0">
+                        <div style="cursor: pointer;" *ngIf="this.opencartella !=i" (click)="this.opencartella = i">
+                            <span>{{cartella.titolo}}</span>
+                        </div>
+                        <div *ngIf="this.opencartella == i">
+                            <div class="mod__cartella">
+                                <div class="mod__cartella__sez__one">
+                                    <span>Titolo</span>
+                                    <input class="input__style" value="{{cartella.titolo}}" placeholder="Titolo cartella">
+                                </div>
+                                <div class="mod__cartella__sez__two">
+                                    <span>Descrizione</span>
+                                    <textarea class="input__style" value="{{cartella.descrizione}}" placeholder="Descrizione cartella">
+
+                                    </textarea>
+                                </div>
+                                <div class="mod__cartella__sez__three">
+                                    <input class="input__style" type="file">
+                                </div>
+                            </div>
+                            <div style="display: flex;">
+                                <button class="button__blue button" (click)="this.opencartella = -1">Salva</button>
+                                <button class="button__red button" (click)="this.opencartella = -1">Elimina</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div style="text-align: center;margin-top:16px">
+                <a *ngIf="this.stagioneData.galleria.length > 5">scorri in basso</a>
             </div>
         </div>
         <div class="container__stagione__section__three card">
@@ -110,27 +136,28 @@
                         <button class="button button__blue" (click)="aggiungicorso()">Aggiungi</button>
                     </div>
                 </div>
-                <p>Qui vengono inseriti tutti i corsi che la squadra offre</p>
             </div>
 
             <div class="container__stagione__section__inside">
-                <div style="cursor: pointer;" class="littlecard" *ngFor="let corso of this.stagioneData.corsi; let i=index">
-                    <div *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
-                        <span>{{corso[0]}}</span>
-                    </div>
-                    <div *ngIf="this.opencorso == i">
-                        <div>
-                            <input placeholder="{{corso[0]}}" value="{{corso[0]}}" #corsotitolo class="input__style">
+                <div *ngFor="let corso of this.stagioneData.corsi; let i=index">
+                    <div class="littlecard" *ngIf="i != 0">
+                        <div style="cursor: pointer;" *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
+                            <span>{{corso[0]}}</span>
                         </div>
-                        <div>
-                            <textarea #corsodescrizione class="input__style">{{corso[1]}}</textarea>
-                        </div>
-                        <div>
-                            <input placeholder="{{corso[2]}}" value="{{corso[2]}}" #corsoprezzo class="input__style">
-                        </div>
-                        <div style="display: flex;">
-                            <button class="button__blue button" (click)="modificacorso(i, corsotitolo.value, corsodescrizione.value, corsoprezzo.value)">Salva</button>
-                            <button class="button__red button" (click)="eliminaCorso(i)">Elimina</button>
+                        <div *ngIf="this.opencorso == i">
+                            <div>
+                                <input placeholder="{{corso[0]}}" value="{{corso[0]}}" #corsotitolo class="input__style">
+                            </div>
+                            <div>
+                                <textarea #corsodescrizione class="input__style">{{corso[1]}}</textarea>
+                            </div>
+                            <div>
+                                <input placeholder="{{corso[2]}}" value="{{corso[2]}}" #corsoprezzo class="input__style">
+                            </div>
+                            <div style="display: flex;">
+                                <button class="button__blue button" (click)="modificacorso(i, corsotitolo.value, corsodescrizione.value, corsoprezzo.value)">Salva</button>
+                                <button class="button__red button" (click)="eliminaCorso(i)">Elimina</button>
+                            </div>
                         </div>
                     </div>
                 </div>

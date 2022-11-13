@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { getDatabase, onValue, ref, set } from 'firebase/database';
+import { getDatabase, onValue, ref, set, update } from 'firebase/database';
 import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
 import { stagione_obj } from 'src/app/objects/stagione';
 
@@ -23,6 +23,7 @@ export class StagioniComponent implements OnInit {
   popup:number = -1;
   opencorso:number = -1;
   popupdocs:number = -1;
+  opencartella:number = -1;
 
   blockBodyScroll(){
     let body = Array.from(
@@ -57,15 +58,77 @@ export class StagioniComponent implements OnInit {
       console.log(snapshot.val())
     })
   }
+  aggiungi__stagione(){
+    let corsi: any[] = [""]
+    let documenti: any[] = [""]
+    let galleria: any[] = [""]
+    let arraystagioni:any [] = []
+    let randomid = "stagione" + (Math.floor(Math.random() * 1000) + 1);
+    const db = getDatabase();
+    const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + '/stagioni/');
+    
+    onValue(starCountRef2, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        arraystagioni.push(childSnapshot.val());
+      })
+      for(let i=0; i<arraystagioni.length; i++){
+        if(arraystagioni[i].idsquadra != randomid){
+          randomid = randomid
+        }else if(arraystagioni[i].idsquadra == randomid){
+          randomid = "stagione" + (Math.floor(Math.random() * 1000) + 1);
+          i = 0
+        }
+      }
+      set(ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+ randomid), {
+        id:randomid,
+        codestagione:"",
+        corsi:corsi,
+        creator:"",
+        datafine:"",
+        datainizio:"",
+        iscrittistagione: "",
+        nomestagione:"Nuova stagione",
+        documenti:documenti,
+        galleria:galleria
+      });
+    })
+
+    this.stagioniSection = 1;
+    this.stagione()
+  }
 
   eliminaCorso(corso:any){
     this.messagesector = 1
     this.stagioneData.corsi.splice(corso,1)
-    this.message = "Corso eliminato"
+    this.update_stagione_principale()
+    this.message = "stagione eliminata"
     setTimeout(() => {
       this.message = "";
       this.messagErrore = "";
     }, 1000);
+  }
+
+  update_stagione_principale(){
+    const db = getDatabase();
+    let stagione:stagione_obj
+    stagione = {
+      id:this.stagioneData.id,
+      codestagione:this.stagioneData.codestagione,
+      corsi:this.stagioneData.corsi,
+      creator:this.stagioneData.creator,
+      datafine:this.stagioneData.datafine,
+      datainizio:this.stagioneData.datainizio,
+      iscrittistagione:this.stagioneData.iscrittistagione,
+      nomestagione:this.stagioneData.nomestagione,
+      documenti:this.stagioneData.documenti,
+      galleria:this.stagioneData.galleria
+    }
+
+    const updates:any = {};
+
+    updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+ this.stagioneData.id] = stagione;
+      
+    update(ref(db), updates);
   }
 
   aggiungicorso(){
@@ -74,6 +137,7 @@ export class StagioniComponent implements OnInit {
     if(this.stagioneData.corsi.length < 10){
       this.stagioneData.corsi.push(["nuovo corso","descrizione","prezzo"])
       this.message = "Corso aggiunto"
+      this.update_stagione_principale()
     }else{
       this.messagErrore = "Hai raggiunto il numero massimo di corsi"
     }
@@ -92,6 +156,7 @@ export class StagioniComponent implements OnInit {
         this.stagioneData.corsi[corso][2] = val3;
       }
     }
+    this.update_stagione_principale()
     this.opencorso = -1
     this.message = "Corso modificato"
     setTimeout(() => {
@@ -103,6 +168,7 @@ export class StagioniComponent implements OnInit {
   elimina__documento(documento:any){
     this.messagesector = 2
     this.stagioneData.documenti.splice(documento,1)
+    this.update_stagione_principale()
     this.message = "Documento eliminato"
     setTimeout(() => {
       this.message = "";
@@ -123,6 +189,7 @@ export class StagioniComponent implements OnInit {
           approvazioni:[],
           filter:[]
         })
+        this.update_stagione_principale()
       this.message = "Documento aggiunto"
     }else{
       this.messagErrore = "Hai raggiunto il numero massimo di Documenti"
@@ -141,6 +208,7 @@ export class StagioniComponent implements OnInit {
         this.stagioneData.documenti[documento]["descrizione"] = val2;
       }
     }
+    this.update_stagione_principale()
     this.message = "Documento modificato"
     setTimeout(() => {
       this.message = "";
@@ -150,51 +218,58 @@ export class StagioniComponent implements OnInit {
     this.popup = -1
   }
 
-  aggiungi__stagione(){
-    let corsi: any[] = []
-    let documenti: any[] = []
-    this.stagioneData = {
-      id:"",
-      codestagione:"",
-      corsi:corsi,
-      creator:"",
-      datafine:"",
-      datainizio:"",
-      iscrittistagione: "",
-      nomestagione:"Nuova stagione",
-      documenti:documenti
-    }
-
-    const db = getDatabase();
-    let arraystagioni:any [] = []
-    let randomid = "stagione" + (Math.floor(Math.random() * 1000) + 1);
-    const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + '/stagioni/');
-      onValue(starCountRef2, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          arraystagioni.push(childSnapshot.val());
-        })
-        for(let i=0; i<arraystagioni.length; i++){
-          if(arraystagioni[i].idsquadra !=  randomid){
-            randomid = randomid
-          }else if(arraystagioni[i].idsquadra == randomid){
-            randomid = "stagione" + (Math.floor(Math.random() * 1000) + 1);
-            i = 0
-          }
-        }
-        set(ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+ randomid), {
-          id:randomid,
-          codestagione:"",
-          corsi:corsi,
-          creator:"",
-          datafine:"",
-          datainizio:"",
-          iscrittistagione: "",
-          nomestagione:"Nuova stagione",
-          documenti:documenti
-        });
-      })
-
-    this.stagioniSection = 1;
-    this.stagione()
+  
+  elimina__galleria(cartella:any){
+    this.messagesector = 2
+    this.stagioneData.galleria.splice(cartella,1)
+    this.update_stagione_principale()
+    this.message = "cartella eliminata"
+    setTimeout(() => {
+      this.message = "";
+      this.messagErrore = "";
+    }, 1000);
+    this.popup = -1
+    this.popupdocs = -1
   }
+
+  aggiungi__galleria(){
+    this.messagesector = 2
+    /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
+    if(this.stagioneData.galleria.length < 10){
+      this.stagioneData.galleria.push(
+        {
+          titolo:"Nuova cartella immagini",
+          descrizione:"",
+          approvazioni:[""],
+          filter:[""]
+        })
+        /* this.update_stagione_principale() */
+      this.message = "Nuova cartella aggiunta"
+    }else{
+      this.messagErrore = "Hai raggiunto il numero massimo di cartelle"
+    }
+    setTimeout(() => {
+      this.message = "";
+      this.messagErrore = "";
+    }, 1000);
+  }
+
+  modifica__galleria(documento:any, val1:any, val2:any){
+    this.messagesector = 2
+    for(let i=0; i<this.stagioneData.documenti.length; i++){
+      if(documento == i){
+        this.stagioneData.documenti[documento]["titolo"] = val1;
+        this.stagioneData.documenti[documento]["descrizione"] = val2;
+      }
+    }
+    this.update_stagione_principale()
+    this.message = "Documento modificato"
+    setTimeout(() => {
+      this.message = "";
+      this.messagErrore = "";
+    }, 1000);
+    this.popupdocs = -1
+    this.popup = -1
+  }
+
 }
