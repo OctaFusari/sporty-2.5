@@ -8,8 +8,20 @@
 .container__stagione {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 300px 300px;
-    grid-template-areas: "container__stagione__section__one container__stagione__section__three" "container__stagione__section__two container__stagione__section__three";
+    grid-template-rows: 180px 180px 180px 180px;
+    grid-template-areas: 
+    "container__stagione__section__zero container__stagione__section__one"
+    "container__stagione__section__three container__stagione__section__one" 
+    "container__stagione__section__three container__stagione__section__two"
+    "container__stagione__section__three container__stagione__section__two";
+}
+
+.container__stagione__section__zero {
+    grid-area: container__stagione__section__zero;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". . .";
 }
 
 .container__stagione__section__one {
@@ -60,13 +72,6 @@
 
 .corsi__up__section__two {
     grid-area: corsi__up__section__two;
-}
-
-.stagione__inside__up {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". . .";
 }
 
 .textareapopup {

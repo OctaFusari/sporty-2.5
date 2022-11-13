@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref, set } from 'firebase/database';
 import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
-import { documento } from 'src/app/objects/documento';
+import { stagione_obj } from 'src/app/objects/stagione';
 
 @Component({
   selector: 'app-stagioni',
@@ -13,7 +13,7 @@ export class StagioniComponent implements OnInit {
 
   constructor(public sc:SquadraContainerComponent) { }
 
-  stagioni:any [] = [""]
+  stagioni:any [] = []
   iscrittiStagionevar:any [] = []
   stagioniSection:number = 0
   message= ""
@@ -49,11 +49,12 @@ export class StagioniComponent implements OnInit {
   stagione(){
     this.stagioni.length = 0;
     const db = getDatabase();
-    const starCountRef = ref(db, 'squadre/'+this.squadraScelta.codicesquadra+"/stagioni");
+    const starCountRef = ref(db, 'squadre/'+this.squadraScelta.idsquadra+"/stagioni");
     onValue(starCountRef, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         this.stagioni.push(childSnapshot.val())
       })
+      console.log(snapshot.val())
     })
   }
 
@@ -153,6 +154,7 @@ export class StagioniComponent implements OnInit {
     let corsi: any[] = []
     let documenti: any[] = []
     this.stagioneData = {
+      id:"",
       codestagione:"",
       corsi:corsi,
       creator:"",
@@ -162,6 +164,37 @@ export class StagioniComponent implements OnInit {
       nomestagione:"Nuova stagione",
       documenti:documenti
     }
+
+    const db = getDatabase();
+    let arraystagioni:any [] = []
+    let randomid = "stagione" + (Math.floor(Math.random() * 1000) + 1);
+    const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + '/stagioni/');
+      onValue(starCountRef2, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          arraystagioni.push(childSnapshot.val());
+        })
+        for(let i=0; i<arraystagioni.length; i++){
+          if(arraystagioni[i].idsquadra !=  randomid){
+            randomid = randomid
+          }else if(arraystagioni[i].idsquadra == randomid){
+            randomid = "stagione" + (Math.floor(Math.random() * 1000) + 1);
+            i = 0
+          }
+        }
+        set(ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+ randomid), {
+          id:randomid,
+          codestagione:"",
+          corsi:corsi,
+          creator:"",
+          datafine:"",
+          datainizio:"",
+          iscrittistagione: "",
+          nomestagione:"Nuova stagione",
+          documenti:documenti
+        });
+      })
+
     this.stagioniSection = 1;
+    this.stagione()
   }
 }

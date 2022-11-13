@@ -26,21 +26,21 @@
     <div>
         <svg (click)="this.stagioniSection = 0" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
     </div>
-    <div class="stagione__inside__up card">
-        <div>
-            <h1>Nome stagione</h1>
-            <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
-        </div>
-        <div>
-            <h2>Data inizio</h2>
-            <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
-        </div>
-        <div>
-            <h2>Data fine</h2>
-            <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
-        </div>
-    </div>
     <div class="container__stagione">
+        <div class="container__stagione__section__zero card">
+            <div>
+                <h1>Nome stagione</h1>
+                <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
+            </div>
+            <div>
+                <h3 style="margin-bottom: 0;">Inizio</h3>
+                <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
+            </div>
+            <div>
+                <h3 style="margin-bottom: 0;">Fine</h3>
+                <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
+            </div>
+        </div>
         <div class="container__stagione__section__one card">
             <div class="container__stagione__section__inside__superiore">
                 <div class="corsi__up">

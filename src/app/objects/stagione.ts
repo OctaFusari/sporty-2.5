@@ -1,4 +1,5 @@
-export interface stagione{
+export interface stagione_obj{
+    id:any;
     codestagione: string;
     corsi:any;
     creator:string;
