@@ -7,37 +7,27 @@
 
 .container__stagione {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 150px 50px 220px 220px;
-    grid-template-areas: "container__stagione__section__zero container__stagione__section__one" "container__stagione__section__three container__stagione__section__one" "container__stagione__section__three container__stagione__section__two" "container__stagione__section__three container__stagione__section__two";
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 50px 500px;
+    grid-template-areas: 
+    "container__stagione__section__zero container__stagione__section__menu"
+    "container__stagione__section__zero container__stagione__section__one";
+}
+
+.container__stagione__section__menu{
+    grid-area: container__stagione__section__menu;
 }
 
 .container__stagione__section__zero {
     grid-area: container__stagione__section__zero;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". . .";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: ".""."".";
 }
 
 .container__stagione__section__one {
     grid-area: container__stagione__section__one;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.5fr 3fr 0.2fr;
-    grid-template-areas: ".""."".";
-}
-
-.container__stagione__section__two {
-    grid-area: container__stagione__section__two;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.5fr 3fr 0.2fr;
-    grid-template-areas: "."".";
-}
-
-.container__stagione__section__three {
-    grid-area: container__stagione__section__three;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0.5fr 3fr 0.2fr;
@@ -86,7 +76,9 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: auto;
-    grid-template-areas: "mod__cartella__sez__one mod__cartella__sez__three" "mod__cartella__sez__two od__cartella__sez__three";
+    grid-template-areas: 
+    "mod__cartella__sez__one mod__cartella__sez__three" 
+    "mod__cartella__sez__two od__cartella__sez__three";
 }
 
 .mod__cartella__sez__one {
@@ -100,3 +92,18 @@
 .mod__cartella__sez__three {
     grid-area: mod__cartella__sez__three;
 }
+
+.file__carica__container label{
+
+}
+/* 
+.file__carica__container input{
+    display: none;
+} */
+
+.file__carica__container img {
+    width:100%;
+    margin-bottom:30px;
+  }
+  
+  

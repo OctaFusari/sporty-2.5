@@ -27,6 +27,11 @@
         <svg (click)="this.stagioniSection = 0; this.stagione()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
     </div>
     <div class="container__stagione">
+        <div  class="container__stagione__section__menu">
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 2}" (click)="stagionesezione = 2">Corsi</button>
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 3}" (click)="stagionesezione = 3">Documenti</button>
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 1}" (click)="stagionesezione = 1">Immagini</button>
+        </div>
         <div class="container__stagione__section__zero card">
             <div>
                 <h2>Nome stagione</h2>
@@ -41,7 +46,7 @@
                 <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
             </div>
         </div>
-        <div class="container__stagione__section__one card">
+        <div class="container__stagione__section__one card" *ngIf="stagionesezione == 3">
             <div class="container__stagione__section__inside__superiore">
                 <div class="corsi__up">
                     <div class="corsi__up__section__uno">
@@ -81,7 +86,7 @@
                 <a *ngIf="this.stagioneData.documenti > 2">scorri in basso</a>
             </div>
         </div>
-        <div class="container__stagione__section__two card">
+        <div class="container__stagione__section__one card" *ngIf="stagionesezione == 1">
             <div class="container__stagione__section__inside__superiore">
                 <div class="corsi__up">
                     <div class="corsi__up__section__uno">
@@ -110,9 +115,16 @@
 
                                     </textarea>
                                 </div>
-                                <div class="mod__cartella__sez__three">
-                                    <input class="input__style" type="file">
-                                </div>
+                                <div class="mod__cartella__sez__three" class="preview">
+                                    <div class="file__carica__container">
+                                        <label for="upload" class="file__carica__container" tabindex="0">
+                                            <a>Aggiungi immagine</a>
+                                            <input type="file" multiple id="upload" (change)="preview0(file.files)"
+                                                #file accept='image/*' hidden />
+                                            <img alt="" [src]="imgURL">
+                                        </label>
+                                    </div>
+                                 </div>
                             </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="this.opencartella = -1">Salva</button>
@@ -126,7 +138,7 @@
                 <a *ngIf="this.stagioneData.galleria.length > 5">scorri in basso</a>
             </div>
         </div>
-        <div class="container__stagione__section__three card">
+        <div class="container__stagione__section__one card" *ngIf="stagionesezione == 2">
             <div class="container__stagione__section__inside__superiore">
                 <div class="corsi__up">
                     <div class="corsi__up__section__uno">

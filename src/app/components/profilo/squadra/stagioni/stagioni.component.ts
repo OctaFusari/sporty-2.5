@@ -24,6 +24,7 @@ export class StagioniComponent implements OnInit {
   opencorso:number = -1;
   popupdocs:number = -1;
   opencartella:number = -1;
+  stagionesezione:number = 2;
 
   blockBodyScroll(){
     let body = Array.from(
@@ -272,4 +273,22 @@ export class StagioniComponent implements OnInit {
     this.popup = -1
   }
 
+  public imagePath: any = "";
+  imgURL: any = "";
+
+  preview0(files: any) {
+    if (files.length === 0)
+      return;
+
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
+
+    console.log(this.imagePath)
+    console.log(this.imgURL)
+
+  }
 }
