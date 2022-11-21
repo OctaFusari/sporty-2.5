@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { getDatabase, onValue, ref, set, update } from 'firebase/database';
+import { getDatabase, onValue, ref, remove, set, update } from 'firebase/database';
 import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
 import { stagione_obj } from 'src/app/objects/stagione';
 
@@ -25,6 +25,7 @@ export class StagioniComponent implements OnInit {
   popupdocs:number = -1;
   opencartella:number = -1;
   stagionesezione:number = 2;
+  eliminapopup:number = 0;
 
   blockBodyScroll(){
     let body = Array.from(
@@ -92,6 +93,12 @@ export class StagioniComponent implements OnInit {
         documenti:documenti,
         galleria:galleria
       });
+      const starCountRef3 = ref(db, 'squadre/'+this.squadraScelta.idsquadra+"/stagioni/"+randomid);
+      onValue(starCountRef3, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          this.stagioneData.push(childSnapshot.val())
+        })
+      })
     })
 
     this.stagioniSection = 1;
@@ -287,8 +294,15 @@ export class StagioniComponent implements OnInit {
       this.imgURL = reader.result;
     }
 
-    console.log(this.imagePath)
-    console.log(this.imgURL)
+  }
 
+  eliminaStagione(){
+    const db = getDatabase();
+    const starCountprimary = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+ this.stagioneData.id);
+    remove(starCountprimary);
+    this.sc.stagione();
+    this.stagione();
+    this.eliminapopup = 0
+    this.stagioniSection = 0;
   }
 }
