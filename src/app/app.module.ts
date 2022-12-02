@@ -27,6 +27,7 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { IscrizioneComponent } from './components/profilo/squadra/iscrizione/iscrizione.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     StagioniComponent,
     HomeContainerComponent,
     SquadraContainerComponent,
-    AllenatoreContainerComponent
+    AllenatoreContainerComponent,
+    IscrizioneComponent
   ],  
   imports: [
     BrowserModule,

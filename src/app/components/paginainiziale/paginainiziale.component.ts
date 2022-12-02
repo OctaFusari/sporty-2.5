@@ -102,6 +102,7 @@ export class PaginainizialeComponent implements OnInit {
         const starCountRef = ref(db, 'utenti/' + user.uid);
         onValue(starCountRef, (snapshot) => {
           this.userData = snapshot.val();
+          console.log(this.userData)
         });
       })
       .catch((error) => {

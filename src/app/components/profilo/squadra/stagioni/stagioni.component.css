@@ -63,14 +63,14 @@
     width: 100%;
     margin-left: -1cm;
     text-align: center;
-}
+}/* 
 
 .mod__cartella {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: "mod__cartella__sez__one mod__cartella__sez__three" "mod__cartella__sez__two od__cartella__sez__three";
-}
+} */
 
 .mod__cartella__sez__one {
     grid-area: mod__cartella__sez__one;

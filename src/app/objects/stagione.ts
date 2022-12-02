@@ -9,4 +9,6 @@ export interface stagione_obj{
     nomestagione:any;
     documenti:any; 
     galleria:any; 
+    creazione:any; 
+    attiva:boolean
 }

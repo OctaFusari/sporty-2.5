@@ -12,6 +12,25 @@
         </div>
         <div class="sezione__destra">
             <div class="container">
+                <h2>Iscrizione</h2>
+                <div *ngIf="this.userData.squadra != ''">
+                    <div>
+                        <a>Iscritto a {{this.squadra.nomesquadra}}</a>
+                    </div>
+                </div>
+                <div *ngIf="this.userData.squadra == ''">
+                    <button (click)="this.pu.section = 3" class="button button__blue">Iscriviti</button>
+                </div>
+            </div>
+            <div class="container" *ngIf="this.userData.gestore != ''">
+                <h2>Gestore</h2>
+                <div>
+                    <div>
+                        <a>Gestore di</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
                 <h2>Bacheca</h2>
                 <div *ngIf="this.userData.messaggi != ''">
                     <div>

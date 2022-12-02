@@ -27,7 +27,7 @@
         <svg (click)="this.stagioniSection = 0; this.stagione()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
     </div>
     <div class="container__stagione">
-        <div class="container__stagione__section__menu">
+        <div  class="container__stagione__section__menu">
             <button class="button" [ngClass]="{'button__blue': stagionesezione === 2}" (click)="stagionesezione = 2">Corsi</button>
             <button class="button" [ngClass]="{'button__blue': stagionesezione === 3}" (click)="stagionesezione = 3">Documenti</button>
             <button class="button" [ngClass]="{'button__blue': stagionesezione === 1}" (click)="stagionesezione = 1">Immagini</button>
@@ -57,21 +57,21 @@
                     </div>
                 </div>
             </div>
-            <div class="container__stagione__section__inside" id="cssi">
+            <div class="container__stagione__section__inside cssi__docs" id="cssi">
                 <div *ngFor="let documento of this.stagioneData.documenti; let i=index">
                     <div *ngIf="i != 0">
-                        <div *ngIf="this.popupdocs == -1" class="littlecard" style="text-align: center;" (click)="this.popupdocs = i">
+                        <div class="littlecard" style="text-align: center;" (click)="this.popupdocs = i; blockBodyScroll()">
                             <span>{{documento.titolo}}</span>
                         </div>
                         <div class="littlecard" *ngIf="this.popupdocs == i">
-                            <h2>Titolo</h2>
-                            <input class="input__style" #titolo value="{{documento.titolo}}">
-                            <h2>Descrizione</h2>
-                            <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
-                            <div style="display: flex;">
-                                <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value)">Salva</button>
-                                <button class="button__red button" (click)="elimina__documento(i)">Elimina</button>
-                            </div>
+                                <h2>Titolo</h2>
+                                <input class="input__style" #titolo value="{{documento.titolo}}">
+                                <h2>Descrizione</h2>
+                                <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
+                                <div style="display: flex;">
+                                    <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value)">Salva</button>
+                                    <button class="button__red button" (click)="popupelimination[0]=2;popupelimination[1]=i">Elimina</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -101,29 +101,33 @@
                         <div *ngIf="this.opencartella == i">
                             <div class="mod__cartella">
                                 <div class="mod__cartella__sez__one">
-                                    <h2>Titolo</h2>
-                                    <input class="input__style" value="{{cartella.titolo}}" placeholder="Titolo cartella">
-                                </div>
+                                    <div>
+                                        <span>Titolo</span>
+                                    </div>
+                                    <div>
+                                        <input class="input__style" value="{{cartella.titolo}}" placeholder="Titolo cartella">
+                                
+                                    </div>
+                                   </div>
                                 <div class="mod__cartella__sez__two">
-                                    <h2>Descrizione</h2>
+                                    <span>Descrizione</span>
                                     <textarea class="input__style" value="{{cartella.descrizione}}" placeholder="Descrizione cartella">
 
                                     </textarea>
                                 </div>
-                                <div class="mod__cartella__sez__three" class="preview">
+<!--                                 <div class="mod__cartella__sez__three" class="preview">
                                     <div class="file__carica__container">
                                         <label for="upload" class="file__carica__container" tabindex="0">
                                             <a>Aggiungi immagine</a>
                                             <input type="file" multiple id="upload" (change)="preview0(file.files)"
                                                 #file accept='image/*' hidden />
-                                            <img alt="" [src]="imgURL">
                                         </label>
                                     </div>
-                                </div>
+                                 </div> -->
                             </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="this.opencartella = -1">Salva</button>
-                                <button class="button__red button" (click)="this.opencartella = -1">Elimina</button>
+                                <button class="button__red button"  (click)="popupelimination[0]=3;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>
                     </div>
@@ -163,7 +167,7 @@
                             </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="modificacorso(i, corsotitolo.value, corsodescrizione.value, corsoprezzo.value)">Salva</button>
-                                <button class="button__red button" (click)="eliminaCorso(i)">Elimina</button>
+                                <button class="button__red button" (click)="popupelimination[0]=1;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>
                     </div>
@@ -175,23 +179,23 @@
         </div>
     </div>
     <div>
-        <button class="button button__blue">Salva e chiudi</button>
-        <button class="button__red button" (click)="this.eliminapopup = 1">Elimina stagione</button>
-        <div class="popup" *ngIf="this.eliminapopup == 1">
-            <div class="popup__inside card card__popup__little">
-                <h2 style="margin-bottom: 1vw">Sei sicuro di eliminare la stagione?</h2>
-                <div style="margin-top: 1vw">
-                    <button class="button__red button" (click)="eliminaStagione()">Si</button>
-                    <button class="button__blue button" (click)="this.eliminapopup = 0">No</button>
-                </div>
-            </div>
-            <div class="popup__esci" (click)="this.eliminapopup = 0">
-
-            </div>
-        </div>
+        <button class="button button__blue" style="width: 200px;">Salva modifiche</button>
+        <button class="button button__red" style="width: 200px;">Elimina stagione</button>
     </div>
     <div class="message__container" *ngIf="this.message != '' || this.messagErrore != ''">
         <a class="approved">{{this.message}}</a>
         <a class="error">{{this.messagErrore}}</a>
+    </div>
+</div>
+<div class="popup" *ngIf="this.popupelimination[0] == 1 || this.popupelimination[0] == 2 || this.popupelimination[0] == 3">
+    <div class="popup__inside container">
+        <h2>Sei sicuro </h2>
+        <div style="display: flex;">
+            <button class="button__blue button" (click)="eliminationFunction(this.popupelimination[0], this.popupelimination[1]); blockBodyScroll()">Si</button>
+            <button class="button__red button" (click)="blockBodyScroll()">No</button>
+        </div>
+    </div>
+    <div (click)="this.popupdocs = -1; blockBodyScroll()" class="popup__esci">
+
     </div>
 </div>

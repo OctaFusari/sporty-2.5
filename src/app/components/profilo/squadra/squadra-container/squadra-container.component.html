@@ -8,8 +8,10 @@
         </div>
         <div class="container__squadra__iniziale__inside__2">
             <div class="input__button">
-                <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue (keyup.enter)="cercaSquadra(squadravalue.value)">
-                <button style="margin: 0.8vh 0 0.8vh 0;" class="button button__blue" (click)="cercaSquadra(squadravalue.value)">Cerca</button>
+                <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue
+                    (keyup.enter)="cercaSquadra(squadravalue.value)">
+                <button style="margin: 0.8vh 0 0.8vh 0;" class="button button__blue"
+                    (click)="cercaSquadra(squadravalue.value)">Cerca</button>
             </div>
         </div>
         <div class="container__squadra__iniziale__inside__3">
@@ -17,7 +19,8 @@
         </div>
     </div>
     <div class="container__squadra__iniziale__inside__4">
-        <div class="card card__big" *ngFor="let squadra of this.arraySquadre" (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
+        <div class="card card__big" *ngFor="let squadra of this.arraySquadre"
+            (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
             <h2>{{squadra.nomesquadra}}</h2>
             <div>
                 <a>{{squadra.codicesquadra}}</a>
@@ -28,48 +31,55 @@
 <div *ngIf="this.sezioneSquadra == 1">
     <div>
         <div class="container__creazione__squadra container">
-            <div>
-                <h1 class="big__h1">Creazione Squadra</h1><br>
-                <a style="color: var(--sporty-blue);">Compila tutti i campi per la creazione della squadra</a>
-            </div>
-            <div class="input__creasquadra">
-                <div>
-                    <h2>Nome squadra</h2>
-                    <!-- <p>Nome del team sportivo che verrà visualizzato nella pagina del team</p> -->
-                    <input class="input__style" #nomesquadra placeholder="nomesquadra" type="text">
+            <div class="container__creazione__squadra__inside">
+                <div class="desc__creasquadra">
+                    <h1 class="big__h1">Creazione</h1>
+                    <h1 class="big__h1">Squadra</h1><br>
+                    <a style="color: var(--sporty-blue);">Compila tutti i campi per la creazione della squadra</a>
                 </div>
-                <div class="input__container">
+                <div class="input__creasquadra">
                     <div>
-                        <h3>Codice</h3>
-                        <!--  <p>Codice identificativo della squadra nella propria federazione sportiva</p> -->
-                        <input class="input__style" #codicesquadra placeholder="codicesquadra" type="text">
+                        <h2>Nome squadra</h2>
+                        <!-- <p>Nome del team sportivo che verrà visualizzato nella pagina del team</p> -->
+                        <input class="input__style" #nomesquadra placeholder="nome squadra" type="text">
                     </div>
-                    <div>
-                        <h3>Email</h3>
-                        <!-- <p>Email di contatto per interagire e parlare con i gestori del team</p> -->
-                        <input class="input__style" #emailsquadra placeholder="emailsquadra" type="text">
-                    </div>
-                    <div>
-                        <h3>Sede</h3>
-                        <!--  <p>Il luogo dove il team è situato</p> -->
-                        <input class="input__style" #sedesquadra placeholder="sedesquadra" type="text">
-                    </div>
-                    <div>
-                        <h3>Password</h3>
-                        <!-- <p>Password che permette di accedere all'area gestori del team</p> -->
-                        <input class="input__style" #passwordteam placeholder="passwordteam" type="password">
+                    <div class="input__container">
+                        <div>
+                            <h3>Codice</h3>
+                            <!--  <p>Codice identificativo della squadra nella propria federazione sportiva</p> -->
+                            <input class="input__style" #codicesquadra placeholder="codice squadra" type="text">
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <!-- <p>Email di contatto per interagire e parlare con i gestori del team</p> -->
+                            <input class="input__style" #emailsquadra placeholder="email squadra" type="text">
+                        </div>
+                        <div>
+                            <h3>Sede</h3>
+                            <!--  <p>Il luogo dove il team è situato</p> -->
+                            <input class="input__style" #sedesquadra placeholder="sede squadra" type="text">
+                        </div>
+                        <div>
+                            <h3>Password</h3>
+                            <!-- <p>Password che permette di accedere all'area gestori del team</p> -->
+                            <input class="input__style" #passwordteam placeholder="password team" type="password">
+                        </div>
                     </div>
                 </div>
             </div>
             <div>
-                <button class="button button__blue" (click)="creazioneSquadra(nomesquadra.value, codicesquadra.value, emailsquadra.value, sedesquadra.value, passwordteam.value)">Crea squadra</button>
-                <button class="button button__red" (click)="this.sezioneSquadra = 0">Annulla</button>
-            </div>
-            <div style="height: 1cm;">
-                <a *ngIf="this.message == 4" class="error">Devi inserire una password consona</a>
-                <a *ngIf="this.message == 5" class="error">Nome della squadra assente</a>
-                <a *ngIf="this.message == 3" class="error">Password e nome squadra assente</a>
-                <a *ngIf="this.message == 6" class="approved">Squadra creata!</a>
+                <div class="button__container">
+                    <button class="button button__blue"
+                        (click)="creazioneSquadra(nomesquadra.value, codicesquadra.value, emailsquadra.value, sedesquadra.value, passwordteam.value)">Crea
+                        squadra</button>
+                    <button class="button button__red" (click)="this.sezioneSquadra = 0">Annulla</button>
+                </div>
+                <div style="height: 1cm;">
+                    <a *ngIf="this.message == 4" class="error">Devi inserire una password consona</a>
+                    <a *ngIf="this.message == 5" class="error">Nome della squadra assente</a>
+                    <a *ngIf="this.message == 3" class="error">Password e nome squadra assente</a>
+                    <a *ngIf="this.message == 6" class="approved">Squadra creata!</a>
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +92,8 @@
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
             </div>
             <div class="input__button">
-                <input class="input__style" type="password" placeholder="password" #pass (keyup.enter)="accediSquadra(pass.value)">
+                <input class="input__style" type="password" placeholder="password" #pass
+                    (keyup.enter)="accediSquadra(pass.value)">
                 <button class="button button__blue" (click)="accediSquadra(pass.value)">Accedi</button>
             </div>
             <div style="height: 2vw;">
@@ -110,7 +121,8 @@
     <div class="container container__info__squadra">
         <div>
             <div class="card__accedi__gestori">
-                <h3>Accedi all'area gestori</h3><button class="button__blue button" (click)="this.sezioneSquadra = 6">Accedi</button>
+                <h3>Accedi all'area gestori</h3><button class="button__blue button"
+                    (click)="this.sezioneSquadra = 6">Accedi</button>
             </div>
             <div class="card__accedi__gestori">
                 <div>
@@ -144,76 +156,7 @@
     </div>
 </div>
 <div class="container__profili__inside" *ngIf="this.sezioneSquadra == 3">
-    <div class="container__profili__inside__1">
-        <h1 class="big__h1">Iscrizione a</h1>
-        <h1 class="big__h1">{{this.squadraScelta.nomesquadra}}</h1>
-        <p>Per poterti iscrivere a {{this.squadraScelta.nomesquadra}} devi inserire tutti i tuoi dati corretti, caricare i file richiesti e accettare i documenti della squadra</p>
-        <div>
-            <h3>{{atletaBase.nome}}</h3>
-            <h3>{{atletaBase.cognome}}</h3>
-            <h3>{{atletaBase.email}}</h3>
-            <h3>{{atletaBase.datadinascita}}</h3>
-            <h3>{{atletaBase.luogodinascita}}</h3>
-            <h3>{{atletaBase.codicefiscale}}</h3>
-            <h3>{{atletaBase.residenza}}</h3>
-            <h3>{{atletaBase.telefono}}</h3>
-        </div>
-    </div>
-    <div class="container__profili__inside__2">
-        <div class="input__container" style="display: none;" *ngIf="sezioneIscrizione == 0">
-            <input #nome value="{{atletaBase.nome}}" class="input__style" type="text" placeholder="Nome">
-            <input #cognome value="{{atletaBase.cognome}}" class="input__style" type="text" placeholder="Cognome">
-            <input #email value="{{atletaBase.email}}" class="input__style" type="text" placeholder="Email">
-            <input #datadinascita value="{{atletaBase.datadinascita}}" class="input__style" type="date" placeholder="Data di nascita">
-            <input #luogodinascita value="{{atletaBase.luogodinascita}}" class="input__style" type="text" placeholder="Luogo di nascita">
-            <input #codicefiscale value="{{atletaBase.codicefiscale}}" class="input__style" type="text" placeholder="Codice fiscale">
-            <input #residenza value="{{atletaBase.residenza}}" class="input__style" type="text" placeholder="Residenza">
-            <input #telefono value="{{atletaBase.telefono}}" class="input__style" type="text" placeholder="Telefono">
-        </div>
-        <div class="corsi__container" *ngIf="sezioneIscrizione == 0">
-            <div>
-
-            </div>
-        </div>
-        <div class="immagini__container" *ngIf="sezioneIscrizione == 1">
-
-        </div>
-        <div class="documenti__container" *ngIf="sezioneIscrizione == 2">
-
-        </div>
-    </div>
-    <div class="container__profili__inside__3">
-        <div style="display: none;" *ngIf="sezioneIscrizione == 0">
-            <button class="button button__blue" (click)="this.sezioneIscrizione = 1">Vai avanti</button>
-            <div style="display: none;">
-                <a class="error">Non tutti i campi sono stati compilati</a>
-            </div>
-        </div>
-        <div *ngIf="sezioneIscrizione == 0">
-            <button class="button button__blue" (click)="this.sezioneSquadra = 2">Torna indietro</button>
-            <button class="button button__blue" (click)="this.sezioneIscrizione = 2; stagione()">Vai avanti</button>
-            <div style="display: none;">
-                <a class="error">Non hai scelto un corso</a>
-            </div>
-        </div>
-        <div *ngIf="sezioneIscrizione == 1">
-            <button class="button button__blue" (click)="this.sezioneIscrizione = 1">Torna indietro</button>
-            <button class="button button__blue" (click)="this.sezioneIscrizione = 3">Vai avanti</button>
-            <div style="display: none;">
-                <a class="error">L'immagine non va bene</a>
-                <a class="error">Caricamento incompleto</a>
-            </div>
-        </div>
-        <div *ngIf="sezioneIscrizione == 2">
-            <button class="button button__blue" (click)="this.sezioneIscrizione = 2">Torna indietro</button>
-            <button class="button button__blue" (click)="this.sezioneSquadra = 5; this.sezioneIscrizione = 0">Salva e
-                chiudi</button>
-            <div style="display: none;">
-                <a class="error">Devi accettare i documenti</a>
-                <a class="approved">Atleta iscritto con successo</a>
-            </div>
-        </div>
-    </div>
+    <app-iscrizione></app-iscrizione>
 </div>
 <div *ngIf="this.sezioneSquadra == 4">
     <div class="container container__info__squadra_superiore">
@@ -226,9 +169,12 @@
                     </div>
                 </div>
                 <div style="display: flex; margin-top:2vw">
-                    <button (click)="this.centrovar = 0" class="button" [ngClass]="{'open': centrovar === 0, 'notopen' :  centrovar != 0 }">Stagioni</button>
-                    <button (click)="this.centrovar = 1" class="button" [ngClass]="{'open': centrovar === 1, 'notopen' :  centrovar != 1 }">Atleti</button>
-                    <button (click)="this.centrovar = 2" class="button" [ngClass]="{'open': centrovar === 2, 'notopen' :  centrovar != 2 }">Impostazioni</button>
+                    <button (click)="this.centrovar = 0" class="button"
+                        [ngClass]="{'open': centrovar === 0, 'notopen' :  centrovar != 0 }">Stagioni</button>
+                    <button (click)="this.centrovar = 1" class="button"
+                        [ngClass]="{'open': centrovar === 1, 'notopen' :  centrovar != 1 }">Atleti</button>
+                    <button (click)="this.centrovar = 2" class="button"
+                        [ngClass]="{'open': centrovar === 2, 'notopen' :  centrovar != 2 }">Impostazioni</button>
                 </div>
             </div>
         </div>
@@ -258,6 +204,7 @@
 <div *ngIf="this.sezioneSquadra == 7">
 
 </div>
-<button (click)="this.verifica_squadra_iniziale()" class="squadra__attiva button button__blue" *ngIf="this.userData.gestore !='' && this.sezioneSquadra != 4">
+<button (click)="this.verifica_squadra_iniziale()" class="squadra__attiva button button__blue"
+    *ngIf="this.userData.gestore !='' && this.sezioneSquadra != 4">
     Torna alla tua squadra
 </button>
