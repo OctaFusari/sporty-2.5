@@ -8,10 +8,8 @@
         </div>
         <div class="container__squadra__iniziale__inside__2">
             <div class="input__button">
-                <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue
-                    (keyup.enter)="cercaSquadra(squadravalue.value)">
-                <button style="margin: 0.8vh 0 0.8vh 0;" class="button button__blue"
-                    (click)="cercaSquadra(squadravalue.value)">Cerca</button>
+                <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue (keyup.enter)="cercaSquadra(squadravalue.value)">
+                <button style="margin: 0.8vh 0 0.8vh 0;" class="button button__blue" (click)="cercaSquadra(squadravalue.value)">Cerca</button>
             </div>
         </div>
         <div class="container__squadra__iniziale__inside__3">
@@ -19,8 +17,7 @@
         </div>
     </div>
     <div class="container__squadra__iniziale__inside__4">
-        <div class="card card__big" *ngFor="let squadra of this.arraySquadre"
-            (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
+        <div class="card card__big" *ngFor="let squadra of this.arraySquadre" (click)="this.squadraScelta = squadra; this.sezioneSquadra = 2">
             <h2>{{squadra.nomesquadra}}</h2>
             <div>
                 <a>{{squadra.codicesquadra}}</a>
@@ -69,8 +66,7 @@
             </div>
             <div>
                 <div class="button__container">
-                    <button class="button button__blue"
-                        (click)="creazioneSquadra(nomesquadra.value, codicesquadra.value, emailsquadra.value, sedesquadra.value, passwordteam.value)">Crea
+                    <button class="button button__blue" (click)="creazioneSquadra(nomesquadra.value, codicesquadra.value, emailsquadra.value, sedesquadra.value, passwordteam.value)">Crea
                         squadra</button>
                     <button class="button button__red" (click)="this.sezioneSquadra = 0">Annulla</button>
                 </div>
@@ -92,8 +88,7 @@
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
             </div>
             <div class="input__button">
-                <input class="input__style" type="password" placeholder="password" #pass
-                    (keyup.enter)="accediSquadra(pass.value)">
+                <input class="input__style" type="password" placeholder="password" #pass (keyup.enter)="accediSquadra(pass.value)">
                 <button class="button button__blue" (click)="accediSquadra(pass.value)">Accedi</button>
             </div>
             <div style="height: 2vw;">
@@ -121,8 +116,7 @@
     <div class="container container__info__squadra">
         <div>
             <div class="card__accedi__gestori">
-                <h3>Accedi all'area gestori</h3><button class="button__blue button"
-                    (click)="this.sezioneSquadra = 6">Accedi</button>
+                <h3>Accedi all'area gestori</h3><button class="button__blue button" (click)="this.sezioneSquadra = 6">Accedi</button>
             </div>
             <div class="card__accedi__gestori">
                 <div>
@@ -156,7 +150,7 @@
     </div>
 </div>
 <div class="container__profili__inside" *ngIf="this.sezioneSquadra == 3">
-    <app-iscrizione></app-iscrizione>
+    <app-iscrizione [userData]="userData" [squadData]="squadraScelta"></app-iscrizione>
 </div>
 <div *ngIf="this.sezioneSquadra == 4">
     <div class="container container__info__squadra_superiore">
@@ -169,12 +163,9 @@
                     </div>
                 </div>
                 <div style="display: flex; margin-top:2vw">
-                    <button (click)="this.centrovar = 0" class="button"
-                        [ngClass]="{'open': centrovar === 0, 'notopen' :  centrovar != 0 }">Stagioni</button>
-                    <button (click)="this.centrovar = 1" class="button"
-                        [ngClass]="{'open': centrovar === 1, 'notopen' :  centrovar != 1 }">Atleti</button>
-                    <button (click)="this.centrovar = 2" class="button"
-                        [ngClass]="{'open': centrovar === 2, 'notopen' :  centrovar != 2 }">Impostazioni</button>
+                    <button (click)="this.centrovar = 0" class="button" [ngClass]="{'open': centrovar === 0, 'notopen' :  centrovar != 0 }">Stagioni</button>
+                    <button (click)="this.centrovar = 1" class="button" [ngClass]="{'open': centrovar === 1, 'notopen' :  centrovar != 1 }">Atleti</button>
+                    <button (click)="this.centrovar = 2" class="button" [ngClass]="{'open': centrovar === 2, 'notopen' :  centrovar != 2 }">Impostazioni</button>
                 </div>
             </div>
         </div>
@@ -204,7 +195,6 @@
 <div *ngIf="this.sezioneSquadra == 7">
 
 </div>
-<button (click)="this.verifica_squadra_iniziale()" class="squadra__attiva button button__blue"
-    *ngIf="this.userData.gestore !='' && this.sezioneSquadra != 4">
+<button (click)="this.verifica_squadra_iniziale()" class="squadra__attiva button button__blue" *ngIf="this.userData.gestore !='' && this.sezioneSquadra != 4">
     Torna alla tua squadra
 </button>

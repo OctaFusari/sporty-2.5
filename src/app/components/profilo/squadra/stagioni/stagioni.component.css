@@ -36,11 +36,6 @@
     overflow-y: scroll;
 }
 
-.cssi__docs {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .corsi__up {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -63,7 +58,10 @@
     width: 100%;
     margin-left: -1cm;
     text-align: center;
-}/* 
+}
+
+
+/* 
 
 .mod__cartella {
     display: grid;

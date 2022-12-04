@@ -3,7 +3,6 @@ import { Output, EventEmitter } from '@angular/core';
 import { getDatabase, onValue, ref, update } from 'firebase/database';
 import { ProfiloUtenteComponent } from '../../profilo-utente/profilo-utente.component';
 import { atleta } from 'src/app/objects/atleta';
-
 @Component({
   selector: 'app-home-container',
   templateUrl: './home-container.component.html',
@@ -14,13 +13,18 @@ export class HomeContainerComponent implements OnInit {
   constructor(public pu: ProfiloUtenteComponent) { }
 
   @Output() changeProfilevent = new EventEmitter<any>();
+
   @Output() scegliSquadra = new EventEmitter<any>();
-  userData:any = "";
+  
   @Input() profileData:any = "";
+
+  userData:any = "";
   squadra:any = "";
   squadraGestore:any = "";
+  sezione:number = 0;
 
   ngOnInit(): void {
+    
     const db = getDatabase();
       const starCountRef = ref(db, 'utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("Sportyprofileid"));
       onValue(starCountRef, (snapshot) => {

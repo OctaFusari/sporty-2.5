@@ -1,0 +1,70 @@
+.container__iscrizione__inside {
+    padding-bottom: 2vw;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: 600px;
+    grid-template-areas: ". .";
+}
+
+.container__profili__inside__1 {
+    margin-right: 5vw;
+}
+
+.container__profili__inside__2 {}
+
+.container {
+    padding: 2vw;
+}
+
+.button__container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.sez__blue {
+    color: var(--sporty-blue) !important;
+}
+
+.section__menu {
+    margin: 2vw 0vw 0vw 0vw;
+}
+
+.section__menu div {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+svg {
+    opacity: 0;
+    margin-left: 10px;
+}
+
+.svg__approve {
+    fill: var(--approved) !important;
+    opacity: 1;
+}
+
+.svg__approve:hover {
+    fill: var(--approved) !important;
+    opacity: 1;
+}
+
+.stagione__scelta {
+    border: 2px solid var(--sporty-blue);
+}
+
+.container__stagioni {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". . .";
+}
+
+.container__scroll {
+    overflow-y: scroll;
+    height: 600px;
+}

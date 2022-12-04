@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ref, onValue, getDatabase, update, set, push, onChildAdded } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
 import { squadra } from 'src/app/objects/squadra';
@@ -10,6 +10,8 @@ import { squadra } from 'src/app/objects/squadra';
 })
 export class SquadraContainerComponent implements OnInit {
   @Input() userData: any = "";
+  @Input() sezioneIscrizioneOutside:any = 0;
+  
   sezioneSquadra: number = 0;
   arraySquadre: any[] = [];
   squadraScelta: any = "";
@@ -17,6 +19,7 @@ export class SquadraContainerComponent implements OnInit {
   message: number = 0;
   centrovar: any = 0;
   stagionicounter: any[] = [];
+
   atletaBase: atleta = {
     atletaid: "",
     nome: "",
@@ -44,6 +47,9 @@ export class SquadraContainerComponent implements OnInit {
 
   ngOnInit() {
     this.verifica_squadra_iniziale()
+    if(this.sezioneIscrizioneOutside == 3){
+      this.sezioneIscrizione = 3
+    }
   }
 
   verifica_squadra_iniziale() {
@@ -121,8 +127,7 @@ export class SquadraContainerComponent implements OnInit {
     } else if (pass != this.squadraScelta.passwordteam) {
       this.message = 2
     }
-    console.log(this.message)
-    setInterval(() => {
+    setTimeout(() => {
       this.message = 0;
     }, 2000)
   }

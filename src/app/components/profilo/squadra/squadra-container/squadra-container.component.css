@@ -5,7 +5,7 @@
 .container__squadra__iniziale {
     margin: 4vw;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: ". .";
 }
@@ -15,13 +15,15 @@
 }
 
 .container__squadra__iniziale__inside__4 {
+    border-top: 2px solid var(--sporty-blue);
     grid-template-rows: auto;
     align-items: center;
     justify-content: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-    grid-template-areas: ". .";
+    grid-template-areas: ". . .";
+    border-radius: 2rem;
 }
 
 .container__info__squadra {
@@ -75,7 +77,7 @@
 
 .container__profili__inside {
     display: grid;
-    margin: 4vw 8vw 8vw 8vw;
+    margin: 2vw 6vw 6vw 6vw;
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr;
     grid-template-areas: "container__profili__inside__1 container__profili__inside__2""container__profili__inside__3 container__profili__inside__3";
@@ -99,13 +101,6 @@
     margin-top: 3vw;
     text-align: center;
     grid-area: container__profili__inside__3;
-}
-
-.input__container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: ". .";
 }
 
 .federazioni__container {
@@ -145,11 +140,11 @@
     color: var(--text-white) !important;
 }
 
-.container__creazione__squadra{
+.container__creazione__squadra {
     margin: 4vw;
 }
 
-.container__creazione__squadra__inside{
+.container__creazione__squadra__inside {
     margin: 2vw;
     display: grid;
     grid-template-columns: min-content auto;
@@ -157,11 +152,11 @@
     grid-template-areas: ". .";
 }
 
-.desc__creasquadra{
+.desc__creasquadra {
     margin-right: 5vw;
 }
 
-.button__container{
+.button__container {
     display: flex;
     align-items: center;
     text-align: center;

@@ -27,7 +27,7 @@
         <svg (click)="this.stagioniSection = 0; this.stagione()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
     </div>
     <div class="container__stagione">
-        <div  class="container__stagione__section__menu">
+        <div class="container__stagione__section__menu">
             <button class="button" [ngClass]="{'button__blue': stagionesezione === 2}" (click)="stagionesezione = 2">Corsi</button>
             <button class="button" [ngClass]="{'button__blue': stagionesezione === 3}" (click)="stagionesezione = 3">Documenti</button>
             <button class="button" [ngClass]="{'button__blue': stagionesezione === 1}" (click)="stagionesezione = 1">Immagini</button>
@@ -35,15 +35,15 @@
         <div class="container__stagione__section__zero card">
             <div>
                 <h2>Nome stagione</h2>
-                <input class="input__style" type="text" placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
+                <input class="input__style" type="text" #nomemod placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
             </div>
             <div>
                 <h2 style="margin-bottom: 0;">Inizio</h2>
-                <input class="input__style" type="date" placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
+                <input class="input__style" type="date" #iniziomod placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
             </div>
             <div>
                 <h2 style="margin-bottom: 0;">Fine</h2>
-                <input class="input__style" type="date" placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
+                <input class="input__style" type="date" #finemod placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
             </div>
         </div>
         <div class="container__stagione__section__one card" *ngIf="stagionesezione == 3">
@@ -57,28 +57,27 @@
                     </div>
                 </div>
             </div>
-            <div class="container__stagione__section__inside cssi__docs" id="cssi">
+            <div class="container__stagione__section__inside">
                 <div *ngFor="let documento of this.stagioneData.documenti; let i=index">
-                    <div *ngIf="i != 0">
-                        <div class="littlecard" style="text-align: center;" (click)="this.popupdocs = i; blockBodyScroll()">
+                    <div class="littlecard" *ngIf="i != 0">
+                        <div style="cursor: pointer;" *ngIf="this.popupdocs != i" (click)="this.popupdocs = i; blockBodyScroll()">
                             <span>{{documento.titolo}}</span>
                         </div>
-                        <div class="littlecard" *ngIf="this.popupdocs == i">
-                                <h2>Titolo</h2>
-                                <input class="input__style" #titolo value="{{documento.titolo}}">
-                                <h2>Descrizione</h2>
-                                <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
-                                <div style="display: flex;">
-                                    <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value)">Salva</button>
-                                    <button class="button__red button" (click)="popupelimination[0]=2;popupelimination[1]=i">Elimina</button>
-                                </div>
+                        <div *ngIf="this.popupdocs == i">
+                            <h2>Titolo</h2>
+                            <input class="input__style" #titolo value="{{documento.titolo}}">
+                            <h2>Descrizione</h2>
+                            <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
+                            <div style="display: flex;">
+                                <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value)">Salva</button>
+                                <button class="button__red button" (click)="popupelimination[0]=2;popupelimination[1]=i">Elimina</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px">
-                <a *ngIf="this.stagioneData.corsi.length > 5">scorri in basso</a>
-                <a *ngIf="this.stagioneData.documenti > 2">scorri in basso</a>
+                <a *ngIf="this.stagioneData.documenti.length > 5">scorri in basso</a>
             </div>
         </div>
         <div class="container__stagione__section__one card" *ngIf="stagionesezione == 1">
@@ -99,35 +98,14 @@
                             <span>{{cartella.titolo}}</span>
                         </div>
                         <div *ngIf="this.opencartella == i">
-                            <div class="mod__cartella">
-                                <div class="mod__cartella__sez__one">
-                                    <div>
-                                        <span>Titolo</span>
-                                    </div>
-                                    <div>
-                                        <input class="input__style" value="{{cartella.titolo}}" placeholder="Titolo cartella">
-                                
-                                    </div>
-                                   </div>
-                                <div class="mod__cartella__sez__two">
-                                    <span>Descrizione</span>
-                                    <textarea class="input__style" value="{{cartella.descrizione}}" placeholder="Descrizione cartella">
+                            <h2>Titolo</h2>
+                            <input class="input__style" #titolo value="{{cartella.titolo}}">
+                            <h2>Descrizione</h2>
+                            <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{cartella.descrizione}}</textarea>
 
-                                    </textarea>
-                                </div>
-<!--                                 <div class="mod__cartella__sez__three" class="preview">
-                                    <div class="file__carica__container">
-                                        <label for="upload" class="file__carica__container" tabindex="0">
-                                            <a>Aggiungi immagine</a>
-                                            <input type="file" multiple id="upload" (change)="preview0(file.files)"
-                                                #file accept='image/*' hidden />
-                                        </label>
-                                    </div>
-                                 </div> -->
-                            </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="this.opencartella = -1">Salva</button>
-                                <button class="button__red button"  (click)="popupelimination[0]=3;popupelimination[1]=i">Elimina</button>
+                                <button class="button__red button" (click)="popupelimination[0]=3;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>
                     </div>
@@ -179,8 +157,8 @@
         </div>
     </div>
     <div>
-        <button class="button button__blue" style="width: 200px;">Salva modifiche</button>
-        <button class="button button__red" style="width: 200px;">Elimina stagione</button>
+        <button class="button button__blue" (click)="updateData(nomemod.value, iniziomod.value, finemod.value)" style="width: 200px;">Salva modifiche</button>
+        <button class="button button__red" (click)="eliminaStagione()" style="width: 200px;">Elimina stagione</button>
     </div>
     <div class="message__container" *ngIf="this.message != '' || this.messagErrore != ''">
         <a class="approved">{{this.message}}</a>

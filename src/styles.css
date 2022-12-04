@@ -139,7 +139,7 @@ svg:hover {
     width: 90%;
 }
 
-.input__style__light{
+.input__style__light {
     background-color: var(--card-little) !important;
     border: 1px solid var(--card-little) !important;
 }
@@ -250,6 +250,10 @@ button {
     margin: 1vw;
 }
 
+.container__scroll {
+    overflow-y: scroll;
+}
+
 .card {
     background: var(--card);
     border-radius: 2rem;
@@ -277,6 +281,7 @@ button {
     border-radius: 2rem;
     padding: 0.8vw;
     margin: 0.8vw;
+    border: 2px solid var(--card-little);
 }
 
 .cardcenterd {
@@ -383,6 +388,13 @@ button {
 .logo__centrale {
     font-size: 6rem;
     font-weight: 900;
+}
+
+.input__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: ". .";
 }
 
 @media only screen and (max-width: 450px) {

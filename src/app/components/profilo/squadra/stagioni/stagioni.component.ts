@@ -119,35 +119,51 @@ export class StagioniComponent implements OnInit {
     }, 1000);
   }
 
+  updateData(nomemod:any, iniziomod:any, finemod:any){
+    this.stagioneData.nomestagione = nomemod;
+    this.stagioneData.datafine = finemod;
+    this.stagioneData.datainizio = iniziomod;
+    this.update_stagione_principale() 
+    
+  }
+
   update_stagione_principale() {
-    const db = getDatabase();
-    let stagione: stagione_obj
-    stagione = {
-      id: this.stagioneData.id,
-      codestagione: this.stagioneData.codestagione,
-      corsi: this.stagioneData.corsi,
-      creator: this.stagioneData.creator,
-      datafine: this.stagioneData.datafine,
-      datainizio: this.stagioneData.datainizio,
-      iscrittistagione: this.stagioneData.iscrittistagione,
-      nomestagione: this.stagioneData.nomestagione,
-      documenti: this.stagioneData.documenti,
-      galleria: this.stagioneData.galleria,
-      creazione: this.stagioneData.creazione,
-      attiva: this.stagioneData.attiva
+    if(this.stagioneData.nomestagione != ""){
+      const db = getDatabase();
+      let stagione: stagione_obj
+      stagione = {
+        id: this.stagioneData.id,
+        codestagione: this.stagioneData.codestagione,
+        corsi: this.stagioneData.corsi,
+        creator: this.stagioneData.creator,
+        datafine: this.stagioneData.datafine,
+        datainizio: this.stagioneData.datainizio,
+        iscrittistagione: this.stagioneData.iscrittistagione,
+        nomestagione: this.stagioneData.nomestagione,
+        documenti: this.stagioneData.documenti,
+        galleria: this.stagioneData.galleria,
+        creazione: this.stagioneData.creazione,
+        attiva: this.stagioneData.attiva
+      }
+      const updates: any = {};
+  
+      updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id] = stagione;
+  
+      update(ref(db), updates);
+      
+    }else{
+      this.messagErrore = "Assegna un nome alla stagione"
+      setTimeout(() => {
+        this.message = "";
+        this.messagErrore = "";
+      }, 1000);
     }
-
-    const updates: any = {};
-
-    updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id] = stagione;
-
-    update(ref(db), updates);
   }
 
   aggiungicorso() {
     this.messagesector = 1
     /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
-    if (this.stagioneData.corsi.length < 10) {
+    if (this.stagioneData.corsi.length < 20) {
       this.stagioneData.corsi.push(["nuovo corso", "descrizione", "prezzo"])
       this.message = "Corso aggiunto"
       this.update_stagione_principale()
