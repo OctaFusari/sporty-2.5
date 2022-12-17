@@ -1,6 +1,6 @@
-<div class="container">
+<div>
     <div class="container__iscrizione__inside">
-        <div class="container__profili__inside__1">
+        <div class="container__profili__inside__1 container">
             <h1 class="big__h1">Iscrizione a</h1>
             <h1 class="big__h1">{{this.squadraDataLocale.nomesquadra}}</h1>
             <a>Per poterti iscrivere a {{this.squadraDataLocale.nomesquadra}} devi inserire tutti i tuoi dati corretti, caricare i file richiesti e accettare i documenti della squadra</a>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="container__profili__inside__2">
+        <div class="container__profili__inside__2 container">
             <div *ngIf="this.sezione_iscrizione == 0">
                 <h2>Scegli la stagione</h2>
                 <div class="container__stagioni">
@@ -76,7 +76,7 @@
             </div>
             <div class="container__scroll" *ngIf="this.sezione_iscrizione == 2">
                 <div *ngFor="let corso of this.stagioneScelta.corsi; let i = index">
-                    <div class="littlecard" *ngIf="i != 0" (click)="this.sceltaStagione = i">
+                    <div class="littlecard" [ngClass]="{'stagione__scelta': this.sceltaCorso == i}" (click)="this.corsoScelto = corso; this.sceltaCorso = i" *ngIf="i != 0">
                         <div>
                             <h3>Titolo</h3>
                             <a>{{corso[0]}}</a></div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div *ngIf="this.sezione_iscrizione == 3">
-
+                <div></div>
             </div>
             <div *ngIf="this.sezione_iscrizione == 4">
 
@@ -99,7 +99,7 @@
     </div>
     <div>
         <div class="button__container">
-            <button class="button button__blue" *ngIf="this.sezione_iscrizione != 0" (click)="changeSection('indietro ')">Indietro</button>
+            <button class="button button__blue" *ngIf="this.sezione_iscrizione != 0" (click)="changeSection('indietro')">Indietro</button>
             <button class="button button__blue" (click)="changeSection('avanti')">Avanti</button>
         </div>
     </div>

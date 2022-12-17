@@ -18,7 +18,9 @@ export class IscrizioneComponent implements OnInit {
   galleria:any[] = [];
   stagioneScelta:any = "";
   messageError:string = "";
-  sceltaStagione:number = -1
+  sceltaStagione:number = -1;
+  sceltaCorso:number = -1;
+  corsoScelto:any = "";
 
 
   constructor() { }
