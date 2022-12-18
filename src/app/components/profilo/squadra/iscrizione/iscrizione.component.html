@@ -90,7 +90,18 @@
                 </div>
             </div>
             <div *ngIf="this.sezione_iscrizione == 3">
-                <div></div>
+                <div *ngIf="this.stagioneScelta.galleria.length > 2">
+                    <div *ngFor="let cartella of this.stagioneScelta.galleria; let i = index">
+                        <div class="littlecard" *ngIf="i != 0">
+                            <h3>Titolo</h3><a>{{cartella.titolo}}</a>
+                            <h3>Descrizione</h3><a>{{cartella.descrizione}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="this.stagioneScelta.galleria.length == 2">
+                    <h3>Titolo</h3> <a>{{this.stagioneScelta.galleria[1].titolo}}</a>
+                    <h3>Descrizione</h3><a>{{this.stagioneScelta.galleria[1].descrizione}}</a>
+                </div>
             </div>
             <div *ngIf="this.sezione_iscrizione == 4">
 

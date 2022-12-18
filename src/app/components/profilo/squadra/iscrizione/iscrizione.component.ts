@@ -76,4 +76,20 @@ export class IscrizioneComponent implements OnInit {
     }
   }
 
+  public imagePath: any = "";
+  imgURL: any = "";
+
+  preview(files: any) {
+    if (files.length === 0)
+      return;
+
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
+
+  }
+
 }

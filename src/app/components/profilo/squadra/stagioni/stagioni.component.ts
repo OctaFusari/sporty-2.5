@@ -164,7 +164,14 @@ export class StagioniComponent implements OnInit {
     this.messagesector = 1
     /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
     if (this.stagioneData.corsi.length < 20) {
-      this.stagioneData.corsi.push(["nuovo corso", "descrizione", "prezzo"])
+      this.stagioneData.corsi.push(
+          {
+          titolo: "Nuovo corso",
+          descrizione: "",
+          prezzo: "",
+          atleti: [""]
+        }
+      )
       this.message = "Corso aggiunto"
       this.update_stagione_principale()
     } else {
@@ -215,8 +222,8 @@ export class StagioniComponent implements OnInit {
         {
           titolo: "Nuovo documento",
           descrizione: "",
-          approvazioni: [],
-          filter: []
+          filter: [""],
+          atleti: [""]
         })
       this.update_stagione_principale()
       this.message = "Documento aggiunto"
@@ -269,8 +276,8 @@ export class StagioniComponent implements OnInit {
         {
           titolo: "Nuova cartella immagini",
           descrizione: "",
-          approvazioni: [""],
-          filter: [""]
+          filter: [""],
+          atleti: [""]
         })
       /* this.update_stagione_principale() */
       this.update_stagione_principale()
@@ -284,12 +291,12 @@ export class StagioniComponent implements OnInit {
     }, 1000);
   }
 
-  modifica__galleria(documento: any, val1: any, val2: any) {
+  modifica__galleria(immagine: any, val1: any, val2: any) {
     this.messagesector = 2
-    for (let i = 0; i < this.stagioneData.documenti.length; i++) {
-      if (documento == i) {
-        this.stagioneData.documenti[documento]["titolo"] = val1;
-        this.stagioneData.documenti[documento]["descrizione"] = val2;
+    for (let i = 0; i < this.stagioneData.galleria.length; i++) {
+      if (immagine == i) {
+        this.stagioneData.galleria[immagine]["titolo"] = val1;
+        this.stagioneData.galleria[immagine]["descrizione"] = val2;
       }
     }
     this.update_stagione_principale()
