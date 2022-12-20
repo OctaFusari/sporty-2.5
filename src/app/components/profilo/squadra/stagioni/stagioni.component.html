@@ -131,17 +131,17 @@
                 <div *ngFor="let corso of this.stagioneData.corsi; let i=index">
                     <div class="littlecard" *ngIf="i != 0">
                         <div style="cursor: pointer;" *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
-                            <span>{{corso[0]}}</span>
+                            <span>{{corso.titolo}}</span>
                         </div>
                         <div *ngIf="this.opencorso == i">
                             <div>
-                                <input placeholder="{{corso[0]}}" value="{{corso[0]}}" #corsotitolo class="input__style">
+                                <input placeholder="{{corso.titolo}}" value="{{corso.titolo}}" #corsotitolo class="input__style">
                             </div>
                             <div>
-                                <textarea #corsodescrizione class="input__style">{{corso[1]}}</textarea>
+                                <textarea #corsodescrizione class="input__style">{{corso.descrizione}}</textarea>
                             </div>
                             <div>
-                                <input placeholder="{{corso[2]}}" value="{{corso[2]}}" #corsoprezzo class="input__style">
+                                <input placeholder="{{corso.prezzo}}" value="{{corso.prezzo}}" #corsoprezzo class="input__style">
                             </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="modificacorso(i, corsotitolo.value, corsodescrizione.value, corsoprezzo.value)">Salva</button>

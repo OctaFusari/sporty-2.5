@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref, update } from 'firebase/database';
+import { atleta } from 'src/app/objects/atleta';
 
 @Component({
   selector: 'app-iscrizione',
@@ -90,6 +91,59 @@ export class IscrizioneComponent implements OnInit {
       this.imgURL = reader.result;
     }
 
+  }
+
+  message:number = 0;
+  updateAtleta(nome:any, cognome:any, email:any, datadinascita:any, luogodinascita:any, codicefiscale:any, residenza:any, telefono:any){
+    let atleta:atleta
+
+    const db = getDatabase();
+    try{
+      if(nome != "" && cognome != ""){
+        atleta = {
+          atletaid:this.userData.atletaid,
+          nome:nome,
+          cognome:cognome,
+          email:email,
+          datadinascita:datadinascita,
+          luogodinascita:luogodinascita,
+          codicefiscale:codicefiscale,
+          residenza:residenza,
+          telefono:telefono,
+          immagini:this.userData.immagini,
+          conferma:this.userData.conferma,
+          stagione:this.userData.stagione,
+          squadra:this.userData.squadra,
+          datascadenza: this.userData.datascadenza,
+          corso:this.userData.corso,
+          documenti:this.userData.documenti,
+          messaggi:this.userData.messaggi,
+          allenamenti:this.userData.allenamenti,
+          tema:this.userData.tema,
+          gestore:this.userData.gestore
+        };
+      
+        const updates:any = {};
+        updates['utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("Sportyprofileid")] = atleta;
+      
+        update(ref(db), updates);
+  
+        this.message = 1
+        setInterval(() => {
+          this.message = 0;
+        },2000)
+      }else{
+        this.message = 2
+        setInterval(() => {
+          this.message = 0;
+        },2000)
+      }
+    }catch{
+      this.message = 3
+      setInterval(() => {
+        this.message = 0;
+      },2000)
+    }
   }
 
 }
