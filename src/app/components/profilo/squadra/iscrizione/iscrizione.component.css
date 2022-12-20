@@ -9,14 +9,6 @@
     padding: 2vw;
 }
 
-.button__container {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    align-content: center;
-    justify-content: center;
-}
-
 .sez__blue {
     color: var(--sporty-blue) !important;
 }
@@ -60,4 +52,26 @@ svg {
 .container__scroll {
     overflow-y: scroll;
     height: 600px;
+}
+
+
+.button__container{
+    width: 80%;
+    margin-right: 4cm;
+    bottom: 0;
+    height: 30px;
+    position: fixed;
+    z-index: 300;
+    border-radius: 3rem;
+    margin: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-white) !important;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
 }
