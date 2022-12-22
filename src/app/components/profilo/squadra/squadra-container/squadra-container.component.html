@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="bacheca">
-            <button (click)="this.sezioneSquadra = 3" class="circle__button button__blue">
+            <button (click)="changeSectionevent(this.squadraScelta)" class="circle__button button__blue">
                 Iscriviti
             </button>
         </div>
@@ -148,9 +148,6 @@
             <a>Non è stato aggiunto niente</a>
         </div>
     </div>
-</div>
-<div class="container__profili__inside" *ngIf="this.sezioneSquadra == 3">
-    <app-iscrizione [userData]="userData" [squadData]="squadraScelta"></app-iscrizione>
 </div>
 <div *ngIf="this.sezioneSquadra == 4">
     <div class="container container__info__squadra_superiore">

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { getDatabase, ref, onValue, set } from "firebase/database";
 import { AppComponent } from 'src/app/app.component';
+import { SquadraContainerComponent } from '../squadra/squadra-container/squadra-container.component';
 
 @Component({
   selector: 'app-profilo-utente',
@@ -17,9 +18,16 @@ export class ProfiloUtenteComponent implements OnInit {
   userDataindex:any = "";
   idsporty:any = localStorage.getItem('sportyId')
   profileData:any = "wellavariniziale";
+  squadraData:any = ""
 
   changeProfile(changeProfilevent: any) {
     this.preselection = changeProfilevent;
+  }
+
+  changeSection(section:any){
+    console.log(section)
+    this.squadraData = section
+    this.section = 5
   }
 
   ngOnInit(){

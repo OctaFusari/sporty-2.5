@@ -67,7 +67,7 @@
                 <div id="sidenav" class="sidenav is-collapsed">
                     <header class="sidenav__header header">
                         <svg (click)="toggle()" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M8.083 22.833q-1.166 0-1.979-.833-.812-.833-.812-2t.833-2q.833-.833 2-.833t2 .833q.833.833.833 2t-.833 2q-.833.833-2.042.833Zm11.917 0q-1.167 0-2-.833t-.833-2q0-1.167.833-2t2-.833q1.167 0 2 .833t.833 2q0 1.167-.833 2t-2 .833Zm11.875 0q-1.167 0-2-.833t-.833-2q0-1.167.833-2t2.042-.833q1.166 0 1.979.833.812.833.812 2t-.833 2q-.833.833-2 .833Z"/></svg>
-<!--                         <button class="sidenav__button" aria-label="Expand" (click)="toggle()">
+                        <!--                         <button class="sidenav__button" aria-label="Expand" (click)="toggle()">
                                 <span class="sidenav__button-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="m8 18-8-8 8-8 1.417 1.417L2.833 10l6.584 6.583Z"/></svg>
                                 </span>
@@ -220,7 +220,8 @@
         <app-home-container (scegliSquadra)="this.section = $event" (changeProfilevent)="changeProfile($event)" [profileData]="profileData" *ngIf="this.section == 0"></app-home-container>
         <app-diario [userData]="userData" *ngIf="this.section == 1"></app-diario>
         <app-allenatore-container [userData]="userData" *ngIf="this.section == 2"></app-allenatore-container>
-        <app-squadra-container [userData]="userData" *ngIf="this.section == 3"></app-squadra-container>
+        <app-squadra-container [userData]="userData" (sectionEmitter)="changeSection($event)" *ngIf="this.section == 3"></app-squadra-container>
         <app-impostazioni [userData]="userData" *ngIf="this.section == 4"></app-impostazioni>
+        <app-iscrizione *ngIf="this.section == 5" [userData]="userData" [squadData]="squadraData"></app-iscrizione>
     </div>
 </div>

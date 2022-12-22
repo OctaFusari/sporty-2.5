@@ -54,17 +54,12 @@ svg {
     height: 600px;
 }
 
-
-.button__container{
-    width: 80%;
+.button__container {
     margin-right: 4cm;
     bottom: 0;
     height: 30px;
-    position: fixed;
-    z-index: 300;
     border-radius: 3rem;
     margin: 2vw;
-    display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;

@@ -28,10 +28,10 @@
             </div>
         </div>
         <div class="container__profili__inside__2 container">
-            <div  id="sezione_iscrizione_0">
+            <div *ngIf="this.sezione_iscrizione == 0">
                 <h2>Scegli la stagione</h2>
                 <div class="container__stagioni">
-                    <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index"  [ngClass]="{'stagione__scelta': (this.sceltaStagione == i || stagione.iscrittistagione[this.idprofilo] != '')}" (click)="this.stagioneScelta = stagione; this.sceltaStagione = i">
+                    <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'stagione__scelta': this.sceltaStagione == i || stagione.iscrittistagione[this.idprofilo] != undefined}" (click)="this.stagioneScelta = stagione; this.sceltaStagione = i">
                         <h3>{{stagione.nomestagione}}</h3>
                         <div>
                             <div>
@@ -45,8 +45,14 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <div class="button__container">
+                        <button class="button button__blue" (click)="changeSection('indietro')">Indietro</button>
+                        <button class="button button__blue" (click)="changeSection('avanti'); stagione_set_new_atleta()">{{button_string}}</button>
+                    </div>
+                </div>
             </div>
-            <div id="sezione_iscrizione_1">
+            <div *ngIf="this.sezione_iscrizione == 1">
                 <div class="input__container">
                     <div>
                         <h3>Nome</h3>
@@ -73,10 +79,16 @@
                         <h3>Telefono</h3>
                         <input #telefono value="{{this.userData.telefono}}" class="input__style" type="text" placeholder="Telefono"></div>
                 </div>
+                <div>
+                    <div class="button__container">
+                        <button class="button button__blue" (click)="changeSection('indietro')">Indietro</button>
+                        <button class="button button__blue" (click)="changeSection('avanti'); updateAtleta(nome.value, cognome.value, email.value, datadinascita.value, luogodinascita.value, codicefiscale.value, residenza.value, telefono.value)">Avanti</button>
+                    </div>
+                </div>
             </div>
-            <div class="container__scroll" id="sezione_iscrizione_2">
+            <div *ngIf="this.sezione_iscrizione == 2" class="container__scroll">
                 <div *ngFor="let corso of this.stagioneScelta.corsi; let i = index">
-                    <div class="littlecard" [ngClass]="{'stagione__scelta': this.sceltaCorso == i}" (click)="this.corsoScelto = corso; this.sceltaCorso = i" *ngIf="i != 0">
+                    <div class="littlecard" [ngClass]="{'stagione__scelta': this.sceltaCorso == i || corso.atleti[this.idprofilo] != undefined}" (click)="this.corsoScelto = corso; this.sceltaCorso = i" *ngIf="i != 0">
                         <div>
                             <h3>Titolo</h3>
                             <a>{{corso[0]}}</a></div>
@@ -85,11 +97,17 @@
                             <a>{{corso[1]}}</a></div>
                         <div>
                             <h3>Prezzo</h3>
-                            <a>{{corso[2]}}</a></div>
+                            <a>{{corso[2]}}</a>{{corso.atleti[this.idprofilo]}}</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="button__container">
+                        <button class="button button__blue" (click)="changeSection('indietro')">Indietro</button>
+                        <button class="button button__blue" (click)="changeSection('avanti')">{{button_string}}</button>
                     </div>
                 </div>
             </div>
-            <div  id="sezione_iscrizione_3">
+            <div *ngIf="this.sezione_iscrizione == 3">
                 <div *ngIf="this.stagioneScelta.galleria != undefined">
                     <div *ngIf="this.stagioneScelta.galleria.length > 2">
                         <div *ngFor="let cartella of this.stagioneScelta.galleria; let i = index">
@@ -104,20 +122,23 @@
                         <h3>Descrizione</h3><a>{{this.stagioneScelta.galleria[1].descrizione}}</a>
                     </div>
                 </div>
+                <div>
+                    <div class="button__container">
+                        <button class="button button__blue" (click)="changeSection('indietro')">Indietro</button>
+                        <button class="button button__blue" (click)="changeSection('avanti')">{{button_string}}</button>
+                    </div>
+                </div>
             </div>
-            <div id="sezione_iscrizione_4">
-
+            <div *ngIf="this.sezione_iscrizione == 4">
+                <div>
+                    <div class="button__container">
+                        <button class="button button__blue" (click)="changeSection('indietro')">Indietro</button>
+                        <button class="button button__blue" (click)="changeSection('avanti')">{{button_string}}</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div>
-        <div class="button__container">
-            <button class="button button__blue" *ngIf="this.sezione_iscrizione != 0" (click)="changeSection('indietro')">Indietro</button>
-            <button class="button button__blue" *ngIf="this.sezione_iscrizione != 1" (click)="changeSection('avanti')">{{button_string}}</button>
-            <button class="button button__blue" *ngIf="this.sezione_iscrizione == 1" (click)="changeSection('avanti'); updateAtletaTemporaneo(nome.value, cognome.value, email.value, datadinascita.value, luogodinascita.value, codicefiscale.value, residenza.value, telefono.value)">Avanti</button>
-        </div>
+        <a class="error">{{this.messageError}}</a>
     </div>
-</div>
-<div>
-    <a class="error">{{this.messageError}}</a>
-</div>

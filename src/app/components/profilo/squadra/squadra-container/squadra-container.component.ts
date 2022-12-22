@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ref, onValue, getDatabase, update, set, push, onChildAdded } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
-import { squadra } from 'src/app/objects/squadra';
+import { ProfiloUtenteComponent } from '../../profilo-utente/profilo-utente.component';
 
 @Component({
   selector: 'app-squadra-container',
@@ -9,6 +9,14 @@ import { squadra } from 'src/app/objects/squadra';
   styleUrls: ['./squadra-container.component.css']
 })
 export class SquadraContainerComponent implements OnInit {
+
+  constructor(public pu: ProfiloUtenteComponent) { }
+
+  @Output() sectionEmitter = new EventEmitter<any>();
+  changeSectionevent(value: any) {
+    this.sectionEmitter.emit(value);
+  }
+
   @Input() userData: any = "";
   @Input() sezioneIscrizioneOutside:any = 0;
   
@@ -43,8 +51,6 @@ export class SquadraContainerComponent implements OnInit {
     gestore: ""
   }
 
-  constructor() { }
-
   ngOnInit() {
     this.verifica_squadra_iniziale()
     if(this.sezioneIscrizioneOutside == 3){
@@ -53,13 +59,15 @@ export class SquadraContainerComponent implements OnInit {
   }
 
   verifica_squadra_iniziale() {
-    if (this.userData.gestore != "") {
-      const db = getDatabase();
-      const starCountRef = ref(db, 'squadre/' + this.userData.gestore);
-      onValue(starCountRef, (snapshot) => {
-        this.squadraScelta = snapshot.val()
-        this.sezioneSquadra = 4
-      })
+    if(this.sezioneIscrizione != 3){
+      if (this.userData.gestore != "") {
+        const db = getDatabase();
+        const starCountRef = ref(db, 'squadre/' + this.userData.gestore);
+        onValue(starCountRef, (snapshot) => {
+          this.squadraScelta = snapshot.val()
+          this.sezioneSquadra = 4
+        })
+      }
     }
   }
 
@@ -194,10 +202,6 @@ export class SquadraContainerComponent implements OnInit {
   }
 }
 
-
-function addCommentElement(postElement: any, key: string | null, text: any, author: any) {
-  throw new Error('Function not implemented.');
-}
 /* 
 
     let arraySquadre: any[] = []
