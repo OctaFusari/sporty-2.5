@@ -222,6 +222,5 @@
         <app-allenatore-container [userData]="userData" *ngIf="this.section == 2"></app-allenatore-container>
         <app-squadra-container [userData]="userData" (sectionEmitter)="changeSection($event)" *ngIf="this.section == 3"></app-squadra-container>
         <app-impostazioni [userData]="userData" *ngIf="this.section == 4"></app-impostazioni>
-        <app-iscrizione *ngIf="this.section == 5" [userData]="userData" [squadData]="squadraData"></app-iscrizione>
     </div>
 </div>

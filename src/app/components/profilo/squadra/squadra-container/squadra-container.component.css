@@ -162,3 +162,51 @@
     align-content: center;
     justify-content: center;
 }
+
+.slide__container {
+    position: absolute;
+    animation: slide__container__function 1s ease-in-out;
+}
+
+@keyframes slide__container__function {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.slide__container {
+    padding: 4rem;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--container);
+}
+
+#iscrizione__popup .section__menu {
+    margin-top: 2rem
+}
+
+#iscrizione__popup .section__menu div {
+    display: flex;
+    margin: 3rem 0 3rem 0;
+}
+
+#iscrizione__popup .section__menu h3 {
+    margin: 0 0 0 0.5rem !important;
+}
+
+.iscrizione__container {
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    grid-template-rows: min-content;
+    grid-template-areas: ". .";
+}
+
+.stagione__scelta {
+    border: 2px solid var(--sporty-blue);
+}

@@ -12,21 +12,17 @@ export class SquadraContainerComponent implements OnInit {
 
   constructor(public pu: ProfiloUtenteComponent) { }
 
-  @Output() sectionEmitter = new EventEmitter<any>();
-  changeSectionevent(value: any) {
-    this.sectionEmitter.emit(value);
-  }
-
   @Input() userData: any = "";
-  @Input() sezioneIscrizioneOutside:any = 0;
   
+  sezione_iscrizione:number = 0;
+  prova:any[] = [1,0,0,0,0]
   sezioneSquadra: number = 0;
   arraySquadre: any[] = [];
   squadraScelta: any = "";
-  sezioneIscrizione: number = 0;
   message: number = 0;
   centrovar: any = 0;
   stagionicounter: any[] = [];
+  stagioneScelta:any
 
   atletaBase: atleta = {
     atletaid: "",
@@ -53,13 +49,9 @@ export class SquadraContainerComponent implements OnInit {
 
   ngOnInit() {
     this.verifica_squadra_iniziale()
-    if(this.sezioneIscrizioneOutside == 3){
-      this.sezioneIscrizione = 3
-    }
   }
 
   verifica_squadra_iniziale() {
-    if(this.sezioneIscrizione != 3){
       if (this.userData.gestore != "") {
         const db = getDatabase();
         const starCountRef = ref(db, 'squadre/' + this.userData.gestore);
@@ -68,7 +60,6 @@ export class SquadraContainerComponent implements OnInit {
           this.sezioneSquadra = 4
         })
       }
-    }
   }
 
   cercaSquadra(squadravalue: any) {
@@ -87,10 +78,10 @@ export class SquadraContainerComponent implements OnInit {
   stagione() {
     this.stagionicounter.length = 0;
     const db = getDatabase();
-    const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.codicesquadra + "/stagioni");
+    const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni");
     onValue(starCountRef2, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
-        this.stagionicounter.push(childSnapshot.val)
+        this.stagionicounter.push(childSnapshot.val())
       })
     })
   }

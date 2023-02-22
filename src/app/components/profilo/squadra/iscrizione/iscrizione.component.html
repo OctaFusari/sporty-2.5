@@ -28,64 +28,7 @@
             </div>
         </div>
         <div class="container__profili__inside__2 container">
-            <div *ngIf="this.sezione_iscrizione == 0">
-                <h2>Scegli la stagione</h2>
-                <div class="container__stagioni">
-                    <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'stagione__scelta': this.sceltaStagione == i || stagione.iscrittistagione[this.idprofilo] != undefined}" (click)="this.stagioneScelta = stagione; this.sceltaStagione = i">
-                        <h3>{{stagione.nomestagione}}</h3>
-                        <div>
-                            <div>
-                                <span>Data inizio</span><br>
-                                <a>{{stagione.datainizio}}</a>
-                            </div>
-                            <div>
-                                <span>Data fine</span><br>
-                                <a>{{stagione.datafine}}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="button__container">
-                        <button class="button button__blue" (click)="changeSection('indietro')">Indietro</button>
-                        <button class="button button__blue" (click)="changeSection('avanti'); stagione_set_new_atleta()">{{button_string}}</button>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="this.sezione_iscrizione == 1">
-                <div class="input__container">
-                    <div>
-                        <h3>Nome</h3>
-                        <input #nome value="{{this.userData.nome}}" class="input__style" type="text" placeholder="Nome"></div>
-                    <div>
-                        <h3>Cognome</h3>
-                        <input #cognome value="{{this.userData.cognome}}" class="input__style" type="text" placeholder="Cognome"></div>
-                    <div>
-                        <h3>Email</h3>
-                        <input #email value="{{this.userData.email}}" class="input__style" type="text" placeholder="Email"></div>
-                    <div>
-                        <h3>Data di nascità</h3>
-                        <input #datadinascita value="{{this.userData.datadinascita}}" class="input__style" type="date" placeholder="Data di nascita"></div>
-                    <div>
-                        <h3>Luogo di nascità</h3>
-                        <input #luogodinascita value="{{this.userData.luogodinascita}}" class="input__style" type="text" placeholder="Luogo di nascita"></div>
-                    <div>
-                        <h3>Codice fiscale</h3>
-                        <input #codicefiscale value="{{this.userData.codicefiscale}}" class="input__style" type="text" placeholder="Codice fiscale"></div>
-                    <div>
-                        <h3>Residenza</h3>
-                        <input #residenza value="{{this.userData.residenza}}" class="input__style" type="text" placeholder="Residenza"></div>
-                    <div>
-                        <h3>Telefono</h3>
-                        <input #telefono value="{{this.userData.telefono}}" class="input__style" type="text" placeholder="Telefono"></div>
-                </div>
-                <div>
-                    <div class="button__container">
-                        <button class="button button__blue" (click)="changeSection('indietro')">Indietro</button>
-                        <button class="button button__blue" (click)="changeSection('avanti'); updateAtleta(nome.value, cognome.value, email.value, datadinascita.value, luogodinascita.value, codicefiscale.value, residenza.value, telefono.value)">Avanti</button>
-                    </div>
-                </div>
-            </div>
+
             <div *ngIf="this.sezione_iscrizione == 2" class="container__scroll">
                 <div *ngFor="let corso of this.stagioneScelta.corsi; let i = index">
                     <div class="littlecard" [ngClass]="{'stagione__scelta': this.sceltaCorso == i || corso.atleti[this.idprofilo] != undefined}" (click)="this.corsoScelto = corso; this.sceltaCorso = i" *ngIf="i != 0">

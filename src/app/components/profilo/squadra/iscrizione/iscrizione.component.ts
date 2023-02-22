@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { getDatabase, onValue, ref, set, update } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
-import { StagioniComponent } from '../stagioni/stagioni.component';
 
 @Component({
   selector: 'app-iscrizione',
