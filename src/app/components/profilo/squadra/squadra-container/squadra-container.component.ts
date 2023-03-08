@@ -86,6 +86,15 @@ export class SquadraContainerComponent implements OnInit {
     })
   }
 
+  stagioneTakeData(stagioneid:any){
+    console.log(stagioneid)
+    const db = getDatabase();
+    const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+stagioneid);
+    onValue(starCountRef2, (snapshot) => {
+        this.stagioneScelta = snapshot.val()
+    })
+  }
+
   accediSquadra(pass: any) {
     if (pass == this.squadraScelta.passwordteam) {
       const db = getDatabase();

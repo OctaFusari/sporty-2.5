@@ -180,7 +180,7 @@
                                 <div *ngIf="this.prova[0] == 1">
                                     <h2>Scegli la stagione</h2>
                                     <div class="container__stagioni">
-                                        <div class="littlecard" *ngFor="let stagione of this.stagionicounter; let i = index" [ngClass]="{'stagione__scelta': this.stagioneScelta == stagione.id}" (click)="this.stagioneScelta = stagione.id">
+                                        <div class="littlecard" *ngFor="let stagione of this.stagionicounter; let i = index" [ngClass]="{'stagione__scelta': this.stagioneScelta.id == stagione.id}" (click)="this.stagioneTakeData(stagione.id)">
                                             <h3>{{stagione.nomestagione}}</h3>
                                             <div>
                                                 <div>
@@ -196,7 +196,6 @@
                                     </div>
                                     <div>
                                         <div class="button__container">
-                                            <button class="button button__blue" (click)="this.prova[1] = 0;this.prova[0] = 1">Indietro</button>
                                             <button class="button button__blue" (click)="this.prova[1] = 1;this.prova[0] = 0">Avanti</button>
                                         </div>
                                     </div>
@@ -230,7 +229,7 @@
                                     </div>
                                     <div>
                                         <div class="button__container">
-                                            <button class="button button__blue" (click)="this.prova[2] = 0;this.prova[1] = 1">Indietro</button>
+                                            <button class="button button__blue" (click)="this.prova[1] = 0;this.prova[0] = 1">Indietro</button>
                                             <button class="button button__blue" (click)="this.prova[2] = 1;this.prova[1] = 0">Avanti</button>
                                         </div>
                                     </div>
@@ -253,7 +252,7 @@
                                         </div>
                                         <div>
                                             <div class="button__container">
-                                                <button class="button button__blue" (click)="this.prova[3] = 0;this.prova[2] = 1">Indietro</button>
+                                                <button class="button button__blue" (click)="this.prova[2] = 0;this.prova[1] = 1">Indietro</button>
                                                 <button class="button button__blue" (click)="this.prova[3] = 1;this.prova[2] = 0">Avanti</button>
                                             </div>
                                         </div>
@@ -261,11 +260,13 @@
                                 </div>
                                 <div *ngIf="this.prova[3] == 1">
                                     <div>
+                                        <div>
 
+                                        </div>
                                     </div>
                                     <div>
                                         <div class="button__container">
-                                            <button class="button button__blue" (click)="this.prova[4] = 0;this.prova[3] = 1">Indietro</button>
+                                            <button class="button button__blue" (click)="this.prova[3] = 0;this.prova[2] = 1">Indietro</button>
                                             <button class="button button__blue" (click)="this.prova[4] = 1;this.prova[3] = 0">Avanti</button>
                                         </div>
                                     </div>
