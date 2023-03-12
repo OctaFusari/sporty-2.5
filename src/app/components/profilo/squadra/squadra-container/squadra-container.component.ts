@@ -21,7 +21,7 @@ export class SquadraContainerComponent implements OnInit {
   squadraScelta: any = "";
   message: number = 0;
   centrovar: any = 0;
-  stagionicounter: any[] = [];
+  stagioni_squadra_selezionata: any[] = [];
   stagioneScelta:any
 
   atletaBase: atleta = {
@@ -76,12 +76,13 @@ export class SquadraContainerComponent implements OnInit {
   }
 
   stagione() {
-    this.stagionicounter.length = 0;
+    this.stagioni_squadra_selezionata.length = 0;
     const db = getDatabase();
     const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni");
     onValue(starCountRef2, (snapshot) => {
+      console.log(snapshot.val())
       snapshot.forEach((childSnapshot) => {
-        this.stagionicounter.push(childSnapshot.val())
+        this.stagioni_squadra_selezionata.push(childSnapshot.val())
       })
     })
   }

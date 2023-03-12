@@ -180,7 +180,7 @@
                                 <div *ngIf="this.prova[0] == 1">
                                     <h2>Scegli la stagione</h2>
                                     <div class="container__stagioni">
-                                        <div class="littlecard" *ngFor="let stagione of this.stagionicounter; let i = index" [ngClass]="{'stagione__scelta': this.stagioneScelta.id == stagione.id}" (click)="this.stagioneTakeData(stagione.id)">
+                                        <div class="littlecard" *ngFor="let stagione of this.stagioni_squadra_selezionata; let i = index" (click)="this.stagioneTakeData(stagione.id)" [ngClass]="{'selected': stagione.id == userData.atletaid}">
                                             <h3>{{stagione.nomestagione}}</h3>
                                             <div>
                                                 <div>
@@ -259,7 +259,7 @@
                                     </div>
                                 </div>
                                 <div *ngIf="this.prova[3] == 1">
-                                    <div>
+                                    <div *ngFor="let corso of this.stagioneScelta.documenti; let i = index">
                                         <div>
 
                                         </div>
@@ -272,13 +272,13 @@
                                     </div>
                                 </div>
                                 <div *ngIf="this.prova[4] == 1">
-                                    <div>
-                                        <div></div>
+                                    <div *ngFor="let corso of this.stagioneScelta.galleria; let i = index">
+
                                     </div>
                                     <div>
                                         <div class="button__container">
                                             <button class="button button__blue" (click)="this.prova[4] = 0;this.prova[3] = 1">Indietro</button>
-                                            <button class="button button__blue">Avanti</button>
+                                            <button class="button button__blue">Salva</button>
                                         </div>
                                     </div>
                                 </div>
@@ -324,6 +324,7 @@
     </div>
     <div>
         <div class="container">
+            <app-stagioni *ngIf="this.centrovar == 0" [squadraScelta]="squadraScelta"></app-stagioni>
             <app-utenti *ngIf="this.centrovar == 1"></app-utenti>
             <app-allenamenti *ngIf="this.centrovar == 2"></app-allenamenti>
         </div>

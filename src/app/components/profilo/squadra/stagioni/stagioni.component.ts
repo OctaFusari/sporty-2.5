@@ -28,6 +28,12 @@ export class StagioniComponent implements OnInit {
   eliminapopup: number = 0;
   popupelimination: any[] = [-1, -1];
 
+  ngOnInit() {
+    this.sc.stagione()
+    this.stagione()
+    console.log(this.squadraScelta)
+  }
+
   eliminationFunction(valore: any, valorechild: any) {
     console.log(valorechild)
     if (valore == 1) {
@@ -56,11 +62,6 @@ export class StagioniComponent implements OnInit {
       });
       cssi!.style.overflowY = 'hidden';
     }
-  }
-
-  ngOnInit() {
-    this.sc.stagione()
-    this.stagione()
   }
 
   stagione() {
@@ -187,9 +188,9 @@ export class StagioniComponent implements OnInit {
     this.messagesector = 1
     for (let i = 0; i < this.stagioneData.corsi.length; i++) {
       if (corso == i) {
-        this.stagioneData.corsi[corso][0] = val1;
-        this.stagioneData.corsi[corso][1] = val2;
-        this.stagioneData.corsi[corso][2] = val3;
+        this.stagioneData.corsi[corso]["titolo"] = val1;
+        this.stagioneData.corsi[corso]["descrizione"] = val2;
+        this.stagioneData.corsi[corso]["prezzo"] = val3;
       }
     }
     this.update_stagione_principale()
