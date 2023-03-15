@@ -180,7 +180,7 @@
                                 <div *ngIf="this.prova[0] == 1">
                                     <h2>Scegli la stagione</h2>
                                     <div class="container__stagioni">
-                                        <div class="littlecard" *ngFor="let stagione of this.stagioni_squadra_selezionata; let i = index" (click)="this.stagioneTakeData(stagione.id)" [ngClass]="{'selected': stagione.id == userData.atletaid}">
+                                        <div class="littlecard" *ngFor="let stagione of this.stagioni_squadra_selezionata; let i = index" [ngClass]="{'selected': stagione.id == userData.atletaid}" (click)="stagioneid = stagione.id">
                                             <h3>{{stagione.nomestagione}}</h3>
                                             <div>
                                                 <div>
@@ -196,7 +196,7 @@
                                     </div>
                                     <div>
                                         <div class="button__container">
-                                            <button class="button button__blue" (click)="this.prova[1] = 1;this.prova[0] = 0">Avanti</button>
+                                            <button class="button button__blue" (click)="this.prova[1] = 1;this.prova[0] = 0; this.stagioneTakeData(stagioneid)">Avanti</button>
                                         </div>
                                     </div>
                                 </div>

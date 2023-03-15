@@ -21,7 +21,9 @@ export class SquadraContainerComponent implements OnInit {
   squadraScelta: any = "";
   message: number = 0;
   centrovar: any = 0;
+  stagioneid:any
   stagioni_squadra_selezionata: any[] = [];
+  corsi_squadra_selezionata:any;
   stagioneScelta:any
 
   atletaBase: atleta = {
@@ -88,12 +90,21 @@ export class SquadraContainerComponent implements OnInit {
   }
 
   stagioneTakeData(stagioneid:any){
-    console.log(stagioneid)
     const db = getDatabase();
+    const creazione = new Date();
+    set(ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+stagioneid+"/iscrittistagione/"+this.userData.atletaid), {
+      id: this.userData.atletaid,
+      iscrizione: creazione.toLocaleDateString()
+    })
     const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+stagioneid);
     onValue(starCountRef2, (snapshot) => {
         this.stagioneScelta = snapshot.val()
+        this.corsi_squadra_selezionata = this.stagioneScelta.corsi
     })
+  }
+
+  corsiSetIscritti(){
+    
   }
 
   accediSquadra(pass: any) {
@@ -202,18 +213,3 @@ export class SquadraContainerComponent implements OnInit {
     this.verifica_squadra_iniziale()
   }
 }
-
-/* 
-
-    let arraySquadre: any[] = []
-    let randomid = "sporty" + (Math.floor(Math.random() * 3) + 1);
-    for (let i = 0; i < arraySquadre.length; i++) {
-      if (arraySquadre[i].idsquadra != randomid) {
-        randomid = randomid
-      } else if (arraySquadre[i].idsquadra == randomid) {
-        randomid = "sporty" + (Math.floor(Math.random() * 3) + 1);
-        i = 0
-      }
-    }
-
-*/
