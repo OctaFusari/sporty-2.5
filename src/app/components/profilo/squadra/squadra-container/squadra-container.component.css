@@ -164,8 +164,22 @@
 }
 
 .slide__container {
-    position: absolute;
+    position: fixed;
     animation: slide__container__function 1s ease-in-out;
+    overflow-y: hidden !important;
+    padding: 4rem;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--container);
+}
+
+.container__scroll__iscrizione {
+    margin: 2vw 0vw 2vw 0vw;
+    height: 600px;
+    overflow-y: scroll;
 }
 
 @keyframes slide__container__function {
@@ -175,16 +189,6 @@
     100% {
         transform: translateX(0%);
     }
-}
-
-.slide__container {
-    padding: 4rem;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--container);
 }
 
 #iscrizione__popup .section__menu {

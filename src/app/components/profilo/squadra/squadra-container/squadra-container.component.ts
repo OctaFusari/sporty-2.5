@@ -82,7 +82,6 @@ export class SquadraContainerComponent implements OnInit {
     const db = getDatabase();
     const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni");
     onValue(starCountRef2, (snapshot) => {
-      console.log(snapshot.val())
       snapshot.forEach((childSnapshot) => {
         this.stagioni_squadra_selezionata.push(childSnapshot.val())
       })

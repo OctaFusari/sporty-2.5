@@ -31,11 +31,9 @@ export class StagioniComponent implements OnInit {
   ngOnInit() {
     this.sc.stagione()
     this.stagione()
-    console.log(this.squadraScelta)
   }
 
   eliminationFunction(valore: any, valorechild: any) {
-    console.log(valorechild)
     if (valore == 1) {
       this.eliminaCorso(valorechild)
     } else if (valore == 2) {
@@ -98,12 +96,6 @@ export class StagioniComponent implements OnInit {
       creazione: creazione.toLocaleDateString(),
       attiva: true
     });
-    const starCountRef3 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + newPostRef.key);
-    onValue(starCountRef3, (snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        this.stagioneData.push(childSnapshot.val())
-      })
-    })
 
     this.stagioniSection = 1;
     this.stagione()

@@ -147,9 +147,9 @@
             <div id="iscrizione__popup" class="slide__container" *ngIf="this.centrovar == 3">
                 <div>
                     <div>
-                        <button class="button" (click)="this.centrovar = 0">Chiudi</button>
                         <div class="iscrizione__container">
                             <div class="container">
+                                <button class="button" (click)="this.centrovar = 0">Chiudi</button>
                                 <h1 class="big__h1">Iscrizione a</h1>
                                 <h1 class="big__h1">{{this.squadraScelta.nomesquadra}}</h1>
                                 <!-- <a>Per poterti iscrivere a {{this.squadraScelta.nomesquadra}} devi inserire tutti i tuoi dati corretti, caricare i file richiesti e accettare i documenti della squadra</a> -->
@@ -179,7 +179,7 @@
                             <div>
                                 <div *ngIf="this.prova[0] == 1">
                                     <h2>Scegli la stagione</h2>
-                                    <div class="container__stagioni">
+                                    <div class="container__stagioni container__scroll__iscrizione">
                                         <div class="littlecard" *ngFor="let stagione of this.stagioni_squadra_selezionata; let i = index" [ngClass]="{'selected': stagione.id == userData.atletaid}" (click)="stagioneid = stagione.id">
                                             <h3>{{stagione.nomestagione}}</h3>
                                             <div>
@@ -235,7 +235,7 @@
                                     </div>
                                 </div>
                                 <div *ngIf="this.prova[2] == 1">
-                                    <div class="container__scroll">
+                                    <div class="container__scroll__iscrizione">
                                         <div *ngFor="let corso of this.stagioneScelta.corsi; let i = index">
                                             <div class="littlecard">
                                                 <div>
@@ -250,19 +250,22 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div class="button__container">
-                                                <button class="button button__blue" (click)="this.prova[2] = 0;this.prova[1] = 1">Indietro</button>
-                                                <button class="button button__blue" (click)="this.prova[3] = 1;this.prova[2] = 0">Avanti</button>
-                                            </div>
+                                    </div>
+                                    <div>
+                                        <div class="button__container">
+                                            <button class="button button__blue" (click)="this.prova[2] = 0;this.prova[1] = 1">Indietro</button>
+                                            <button class="button button__blue" (click)="this.prova[3] = 1;this.prova[2] = 0">Avanti</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div *ngIf="this.prova[3] == 1">
-                                    <div *ngFor="let corso of this.stagioneScelta.documenti; let i = index">
-                                        <div>
+                                    <div class="container__scroll__iscrizione">
+                                        <div *ngFor="let corso of this.stagioneScelta.documenti; let i = index">
+                                            <div>
 
+                                            </div>
                                         </div>
+
                                     </div>
                                     <div>
                                         <div class="button__container">
@@ -272,7 +275,10 @@
                                     </div>
                                 </div>
                                 <div *ngIf="this.prova[4] == 1">
-                                    <div *ngFor="let corso of this.stagioneScelta.galleria; let i = index">
+                                    <div class="container__scroll__iscrizione">
+                                        <div *ngFor="let corso of this.stagioneScelta.galleria; let i = index">
+
+                                        </div>
 
                                     </div>
                                     <div>

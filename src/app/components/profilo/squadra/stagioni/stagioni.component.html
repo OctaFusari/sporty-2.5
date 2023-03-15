@@ -151,8 +151,8 @@
                     </div>
                 </div>
             </div>
-            <div style="text-align: center;margin-top:16px">
-                <a *ngIf="this.stagioneData.corsi.length > 5">scorri in basso</a>
+            <div style="text-align: center;margin-top:16px" *ngIf="this.stagioneData != ''">
+                <a *ngIf=" this.stagioneData.corsi.length> 5">scorri in basso</a>
             </div>
         </div>
     </div>
