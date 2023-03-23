@@ -10,13 +10,36 @@ import { atleta } from 'src/app/objects/atleta';
 export class IscrizioneComponent implements OnInit {
   @Input() squadData: any = "";
   @Input() userData: any = "";
+
   prova:any[] = [1,0,0,0,0];
+
   sezione_iscrizione:any;
-  
+
+  squadra:any;
+  stagioni:any;
+  corsi:any;
+  documenti:any;
+  galleria:any;
 
   constructor() { }
 
   ngOnInit(){
+    
+  }
+
+  takeSquadra(){
+
+  }
+
+  takeStagioni(){
+    
+  }
+
+  takeCorsi(){
+    
+  }
+
+  takeGalleria(){
     
   }
 

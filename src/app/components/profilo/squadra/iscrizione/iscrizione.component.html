@@ -34,7 +34,7 @@
                     <div *ngIf="this.prova[0] == 1">
                         <h2>Scegli la stagione</h2>
                         <div class="container__stagioni container__scroll__iscrizione">
-                            <div class="littlecard" *ngFor="let stagione of this.squadData.stagioni; let i = index" [ngClass]="{'selected': stagione.id == userData.atletaid}">
+                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'selected': stagione.id == userData.atletaid}">
                                 <h3>{{stagione.nomestagione}}</h3>
                                 <div>
                                     <div>
@@ -90,7 +90,7 @@
                     </div>
                     <div *ngIf="this.prova[2] == 1">
                         <div class="container__scroll__iscrizione">
-                            <div *ngFor="let corso of this.stagioneScelta.corsi; let i = index">
+                            <div *ngFor="let corso of this.corsi; let i = index">
                                 <div class="littlecard">
                                     <div>
                                         <h3>Titolo</h3>
@@ -114,7 +114,7 @@
                     </div>
                     <div *ngIf="this.prova[3] == 1">
                         <div class="container__scroll__iscrizione">
-                            <div *ngFor="let corso of this.stagioneScelta.documenti; let i = index">
+                            <div *ngFor="let corso of this.documenti; let i = index">
                                 <div>
 
                                 </div>
@@ -130,7 +130,7 @@
                     </div>
                     <div *ngIf="this.prova[4] == 1">
                         <div class="container__scroll__iscrizione">
-                            <div *ngFor="let corso of this.stagioneScelta.galleria; let i = index">
+                            <div *ngFor="let corso of this.galleria; let i = index">
 
                             </div>
 
