@@ -13,7 +13,7 @@ export class SquadraContainerComponent implements OnInit {
   constructor(public pu: ProfiloUtenteComponent) { }
 
   @Input() userData: any = "";
-  
+  db = getDatabase();
   sezione_iscrizione:number = 0;
   prova:any[] = [1,0,0,0,0]
   sezioneSquadra: number = 0;
@@ -21,10 +21,9 @@ export class SquadraContainerComponent implements OnInit {
   squadraScelta: any = "";
   message: number = 0;
   centrovar: any = 0;
-  stagioneid:any
+  stagioneid:any;
   stagioni_squadra_selezionata: any[] = [];
-  corsi_squadra_selezionata:any;
-  stagioneScelta:any
+  stagioneScelta:any;
 
   atletaBase: atleta = {
     atletaid: "",
@@ -50,13 +49,12 @@ export class SquadraContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.verifica_squadra_iniziale()
   }
 
   verifica_squadra_iniziale() {
       if (this.userData.gestore != "") {
-        const db = getDatabase();
-        const starCountRef = ref(db, 'squadre/' + this.userData.gestore);
+      
+        const starCountRef = ref(this.db, 'squadre/' + this.userData.gestore);
         onValue(starCountRef, (snapshot) => {
           this.squadraScelta = snapshot.val()
           this.sezioneSquadra = 4
@@ -66,8 +64,8 @@ export class SquadraContainerComponent implements OnInit {
 
   cercaSquadra(squadravalue: any) {
     this.arraySquadre = [];
-    const db = getDatabase();
-    const starCountRef2 = ref(db, 'squadre/');
+  
+    const starCountRef2 = ref(this.db, 'squadre/');
     onValue(starCountRef2, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         if (((childSnapshot.val().nomesquadra.includes(squadravalue)) || (childSnapshot.val().codicesquadra.includes(squadravalue)))) {
@@ -79,8 +77,8 @@ export class SquadraContainerComponent implements OnInit {
 
   stagione() {
     this.stagioni_squadra_selezionata.length = 0;
-    const db = getDatabase();
-    const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni");
+  
+    const starCountRef2 = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni");
     onValue(starCountRef2, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         this.stagioni_squadra_selezionata.push(childSnapshot.val())
@@ -88,28 +86,10 @@ export class SquadraContainerComponent implements OnInit {
     })
   }
 
-  stagioneTakeData(stagioneid:any){
-    const db = getDatabase();
-    const creazione = new Date();
-    set(ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+stagioneid+"/iscrittistagione/"+this.userData.atletaid), {
-      id: this.userData.atletaid,
-      iscrizione: creazione.toLocaleDateString()
-    })
-    const starCountRef2 = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+stagioneid);
-    onValue(starCountRef2, (snapshot) => {
-        this.stagioneScelta = snapshot.val()
-        this.corsi_squadra_selezionata = this.stagioneScelta.corsi
-    })
-  }
-
-  corsiSetIscritti(){
-    
-  }
-
   accediSquadra(pass: any) {
     if (pass == this.squadraScelta.passwordteam) {
-      const db = getDatabase();
-      const starCountRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra);
+     
+      const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra);
       onValue(starCountRef, (snapshot) => {
         this.squadraScelta = snapshot.val()
       })
@@ -138,7 +118,7 @@ export class SquadraContainerComponent implements OnInit {
       }
       const updates: any = {};
       updates['utenti/' + localStorage.getItem("sportyId") + "/atleti/" + this.userData.atletaid] = postData;
-      update(ref(db), updates);
+      update(ref(this.db), updates);
 
 
       this.message = 1
@@ -153,10 +133,10 @@ export class SquadraContainerComponent implements OnInit {
 
   creazioneSquadra(nomesquadra: string, codicesquadra: string, emailsquadra: string, sedesquadra: string, passwordteam: string) {
     this.arraySquadre = [];
-    const db = getDatabase();
+  
 
     if ((nomesquadra != "") && (passwordteam != "")) {
-      const postListRef = ref(db, 'squadre');
+      const postListRef = ref(this.db, 'squadre');
       const newPostRef = push(postListRef);
       set(newPostRef, {
         idsquadra: newPostRef.key,
@@ -198,7 +178,7 @@ export class SquadraContainerComponent implements OnInit {
       const updates: any = {};
       updates['utenti/' + localStorage.getItem("sportyId") + "/atleti/" + localStorage.getItem("Sportyprofileid")] = atleta;
 
-      update(ref(db), updates);
+      update(ref(this.db), updates);
     } else if ((nomesquadra == "") && (passwordteam == "")) {
       this.message = 3
     } else if (passwordteam == "") {
