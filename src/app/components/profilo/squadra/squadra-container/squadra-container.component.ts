@@ -14,6 +14,7 @@ export class SquadraContainerComponent implements OnInit {
 
   @Input() userData: any = "";
   db = getDatabase();
+  
   sezione_iscrizione:number = 0;
   prova:any[] = [1,0,0,0,0]
   sezioneSquadra: number = 0;

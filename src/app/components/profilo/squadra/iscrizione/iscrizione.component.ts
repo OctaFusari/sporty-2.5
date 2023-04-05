@@ -11,28 +11,47 @@ export class IscrizioneComponent implements OnInit {
   @Input() squadData: any = "";
   @Input() userData: any = "";
 
-  prova:any[] = [1,0,0,0,0];
+  completamento:any[] = [0,0,0,0,0];
+  sezione_completamento = 0;
 
   sezione_iscrizione:any;
+  db = getDatabase();
 
   squadra:any;
-  stagioni:any;
-  corsi:any;
-  documenti:any;
-  galleria:any;
+  stagioni:any = [];
+  stagioneScelta:any;
+  corsi:any = [];
+  documenti:any = [];
+  galleria:any = [];
 
   constructor() { }
 
   ngOnInit(){
-    
+
+    const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni");
+    onValue(starCountRef1, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        this.stagioni.push(childSnapshot.val())
+      })
+    })
+
   }
 
   takeSquadra(){
 
   }
 
-  takeStagioni(){
-    
+  takeStagione(ids:any){
+
+    console.log(ids)
+
+    const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + ids);
+    onValue(starCountRef1, (snapshot) => {
+      this.stagioneScelta = snapshot.val()
+    })
+
+    console.log(this.stagioneScelta)
+
   }
 
   takeCorsi(){
