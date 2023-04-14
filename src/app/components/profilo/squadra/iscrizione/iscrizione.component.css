@@ -24,8 +24,8 @@
 }
 
 svg {
-    opacity: 0;
-    margin-left: 10px;
+    opacity: 1;
+    margin: 0 1vw 0 0;
 }
 
 .svg__approve {
