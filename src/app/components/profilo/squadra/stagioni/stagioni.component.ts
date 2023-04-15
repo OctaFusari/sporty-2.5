@@ -155,18 +155,22 @@ export class StagioniComponent implements OnInit {
 
   aggiungicorso() {
     this.messagesector = 1
-    /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
+    
+    const db = getDatabase();
+
+    const creazione = new Date();
+    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id);
+    const newPostRef = push(postListRef);
+    set(newPostRef, {
+      id: newPostRef.key,
+      titolo: "Nuovo corso",
+      descrizione:"",
+      creato: creazione
+    })
+    this.stagione()
+
     if (this.stagioneData.corsi.length < 20) {
-      this.stagioneData.corsi.push(
-          {
-          titolo: "Nuovo corso",
-          descrizione: "",
-          prezzo: "",
-          atleti: [""]
-        }
-      )
       this.message = "Corso aggiunto"
-      this.update_stagione_principale()
     } else {
       this.messagErrore = "Hai raggiunto il numero massimo di corsi"
     }
