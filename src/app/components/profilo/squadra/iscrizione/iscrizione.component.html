@@ -1,7 +1,7 @@
 <div id="iscrizione__popup" class="slide__container">
     <div>
         <div>
-            <button class="button">Chiudi</button>
+            <button (click)="this.sc.centrovar= 2" class="button">Chiudi</button>
             <div class="iscrizione__container">
                 <div class="container">
                     <h1 class="big__h1">Iscrizione a</h1>
@@ -34,7 +34,7 @@
                     <div *ngIf="this.sezione_completamento == 0">
                         <h2>Scegli la stagione</h2>
                         <div class="container__stagioni container__scroll__iscrizione">
-                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'selected': stagione.id == userData.atletaid}" (click)="takeStagione(stagione.id)">
+                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'selected': stagione.id == stagione__scelta}" (click)="takeStagione(stagione.id); stagione__scelta = stagione.id">
                                 <h3>{{stagione.nomestagione}}</h3>
                                 <div>
                                     <div>
@@ -91,7 +91,7 @@
                     <div *ngIf="this.sezione_completamento == 2">
                         <div class="container__scroll__iscrizione">
                             <div *ngFor="let corso of this.stagioneScelta.corsi; let i = index">
-                                <div class="littlecard">
+                                <div (click)="corsi__scelti.append(corso)" class="littlecard">
                                     <div>
                                         <h3>Titolo</h3>
                                         <a>{{corso[0]}}</a></div>

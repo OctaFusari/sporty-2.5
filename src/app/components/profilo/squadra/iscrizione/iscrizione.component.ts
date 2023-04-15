@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { getDatabase, onValue, ref, set, update } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
+import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
 
 @Component({
   selector: 'app-iscrizione',
@@ -24,7 +25,11 @@ export class IscrizioneComponent implements OnInit {
   documenti:any = [];
   galleria:any = [];
 
-  constructor() { }
+  stagione__scelta:any;
+  corsi__scelti:any = [];
+  documenti__scelti:any = [];
+
+  constructor(public sc: SquadraContainerComponent) { }
 
   ngOnInit(){
 
@@ -43,14 +48,10 @@ export class IscrizioneComponent implements OnInit {
 
   takeStagione(ids:any){
 
-    console.log(ids)
-
     const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + ids);
     onValue(starCountRef1, (snapshot) => {
       this.stagioneScelta = snapshot.val()
     })
-
-    console.log(this.stagioneScelta)
 
   }
 
@@ -60,6 +61,10 @@ export class IscrizioneComponent implements OnInit {
 
   takeGalleria(){
     
+  }
+
+  pushTheModify(){
+
   }
 
 }
