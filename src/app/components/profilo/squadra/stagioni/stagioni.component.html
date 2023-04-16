@@ -8,7 +8,7 @@
         </svg>
 
     </div>
-    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni; let i=index" (click)="this.stagioneData = stagione;this.stagioniSection = 1;">
+    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni; let i=index" (click)="this.stagioneData = stagione;this.stagioniSection = 1; stagioneTakeData()">
         <h2>{{stagione.nomestagione}}</h2>
         <div>
             <div>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="container__stagione__section__inside">
-                <div *ngFor="let documento of this.stagioneData.documenti; let i=index">
+                <div *ngFor="let documento of this.stagioneData_documenti; let i=index">
                     <div class="littlecard" *ngIf="i != 0">
                         <div style="cursor: pointer;" *ngIf="this.popupdocs != i" (click)="this.popupdocs = i; blockBodyScroll()">
                             <span>{{documento.titolo}}</span>
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px">
-                <a *ngIf="this.stagioneData.documenti.length > 5">scorri in basso</a>
+                <a *ngIf="this.stagioneData_documenti.length > 5">scorri in basso</a>
             </div>
         </div>
         <div class="container__stagione__section__one card" *ngIf="stagionesezione == 1">
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <div class="container__stagione__section__inside">
-                <div *ngFor="let cartella of this.stagioneData.galleria; let i=index">
+                <div *ngFor="let cartella of this.stagioneData_galleria; let i=index">
                     <div class="littlecard" *ngIf="i != 0">
                         <div style="cursor: pointer;" *ngIf="this.opencartella !=i" (click)="this.opencartella = i">
                             <span>{{cartella.titolo}}</span>
@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px">
-                <a *ngIf="this.stagioneData.galleria.length > 5">scorri in basso</a>
+                <a *ngIf="this.stagioneData_galleria.length > 5">scorri in basso</a>
             </div>
         </div>
         <div class="container__stagione__section__one card" *ngIf="stagionesezione == 2">
@@ -128,7 +128,7 @@
             </div>
 
             <div class="container__stagione__section__inside">
-                <div *ngFor="let corso of this.stagioneData.corsi; let i=index">
+                <div *ngFor="let corso of this.stagioneData_corsi; let i=index">
                     <div class="littlecard" *ngIf="i != 0">
                         <div style="cursor: pointer;" *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
                             <span>{{corso.titolo}}</span>
@@ -152,7 +152,7 @@
                 </div>
             </div>
             <div style="text-align: center;margin-top:16px" *ngIf="this.stagioneData != ''">
-                <a *ngIf=" this.stagioneData.corsi.length> 5">scorri in basso</a>
+                <a *ngIf=" this.stagioneData_corsi.length> 5">scorri in basso</a>
             </div>
         </div>
     </div>

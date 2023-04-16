@@ -20,6 +20,11 @@ export class StagioniComponent implements OnInit {
   messagErrore = ""
   messagesector = 0
   stagioneData: any = "";
+  stagioneData_corsi: any[] = []
+  stagioneData_documenti: any[] = []
+  stagioneData_galleria: any[] = []
+
+
   popup: number = -1;
   opencorso: number = -1;
   popupdocs: number = -1;
@@ -71,6 +76,23 @@ export class StagioniComponent implements OnInit {
         this.stagioni.push(childSnapshot.val())
       })
     })
+
+  }
+
+  stagioneTakeData(){
+    const db = getDatabase();
+
+    let sezioni = ["corsi","documenti","galleria"]
+    let sezioni__array = [this.stagioneData_corsi,this.stagioneData_documenti,this.stagioneData_galleria]
+    
+    for (let i=0;i <= sezioni.length; i++){
+      const starCountRef_corsi = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/"+sezioni[i]);
+      onValue(starCountRef_corsi, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          sezioni__array[i].push(childSnapshot.val())
+        })
+      })
+    }
   }
 
   aggiungi__stagione() {
@@ -159,7 +181,7 @@ export class StagioniComponent implements OnInit {
     const db = getDatabase();
 
     const creazione = new Date();
-    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id);
+    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/corsi/");
     const newPostRef = push(postListRef);
     set(newPostRef, {
       id: newPostRef.key,
