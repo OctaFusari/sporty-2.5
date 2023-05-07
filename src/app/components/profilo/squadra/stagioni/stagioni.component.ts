@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { getDatabase, onValue, push, ref, remove, set, update } from 'firebase/database';
 import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
 import { stagione_obj } from 'src/app/objects/stagione';
+import { corso } from 'src/app/objects/corso';
+import { documento } from 'src/app/objects/documento';
 
 @Component({
   selector: 'app-stagioni',
@@ -27,7 +29,7 @@ export class StagioniComponent implements OnInit {
 
   popup: number = -1;
   opencorso: number = -1;
-  popupdocs: number = -1;
+  opendoc: number = -1;
   opencartella: number = -1;
   stagionesezione: number = 2;
   eliminapopup: number = 0;
@@ -39,14 +41,14 @@ export class StagioniComponent implements OnInit {
   }
 
   eliminationFunction(valore: any, valorechild: any) {
-    if (valore == 1) {
+/*     if (valore == 1) {
       this.eliminaCorso(valorechild)
     } else if (valore == 2) {
       this.elimina__documento(valorechild)
     } else if (valore == 3) {
       this.elimina__galleria(valorechild)
     }
-    this.popupelimination = [-1, -1];
+    this.popupelimination = [-1, -1]; */
   }
 
   blockBodyScroll() {
@@ -54,7 +56,7 @@ export class StagioniComponent implements OnInit {
       document.getElementsByTagName("body"),
     );
     let cssi = document.getElementById("cssi");
-    if ((this.popup == -1) && (this.popupdocs == -1)) {
+    if ((this.popup == -1) && (this.opendoc == -1)) {
       body.forEach(body => {
         body.style.overflowY = 'scroll';
       });
@@ -79,20 +81,27 @@ export class StagioniComponent implements OnInit {
 
   }
 
-  stagioneTakeData(){
+  stagioneTakeData(stagione:any){
     const db = getDatabase();
+    this.stagioneData_corsi = [""]
+    this.stagioneData_documenti = [""]
+    this.stagioneData_galleria = [""]
 
     let sezioni = ["corsi","documenti","galleria"]
     let sezioni__array = [this.stagioneData_corsi,this.stagioneData_documenti,this.stagioneData_galleria]
     
     for (let i=0;i <= sezioni.length; i++){
-      const starCountRef_corsi = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/"+sezioni[i]);
+      const starCountRef_corsi = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + stagione.id+"/"+sezioni[i]);
       onValue(starCountRef_corsi, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
           sezioni__array[i].push(childSnapshot.val())
         })
       })
     }
+    this.stagioneData = stagione;
+
+    console.log(this.stagioneData_corsi)
+    console.log(stagione.id)
   }
 
   aggiungi__stagione() {
@@ -123,15 +132,31 @@ export class StagioniComponent implements OnInit {
     this.stagione()
   }
 
-  eliminaCorso(corso: any) {
-    this.messagesector = 1
-    this.stagioneData.corsi.splice(corso, 1)
-    this.update_stagione_principale()
-    this.message = "stagione eliminata"
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
+  public imagePath: any = "";
+  imgURL: any = "";
+
+  preview0(files: any) {
+    if (files.length === 0)
+      return;
+
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
+
+  }
+
+  eliminaStagione() {
+    const db = getDatabase();
+    const starCountprimary = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id);
+    remove(starCountprimary);
+    this.sc.stagione();
+    this.stagione();
+    this.eliminapopup = 0
+    this.stagioniSection = 0;
+    this.stagioneData = "";
   }
 
   updateData(nomemod:any, iniziomod:any, finemod:any){
@@ -139,7 +164,6 @@ export class StagioniComponent implements OnInit {
     this.stagioneData.datafine = finemod;
     this.stagioneData.datainizio = iniziomod;
     this.update_stagione_principale() 
-    
   }
 
   update_stagione_principale() {
@@ -175,7 +199,7 @@ export class StagioniComponent implements OnInit {
     }
   }
 
-  aggiungicorso() {
+  aggiungiCorso() {
     this.messagesector = 1
     
     const db = getDatabase();
@@ -187,10 +211,14 @@ export class StagioniComponent implements OnInit {
       id: newPostRef.key,
       titolo: "Nuovo corso",
       descrizione:"",
-      creato: creazione
+      prezzo:"",
+      creato: new Date()
     })
     this.stagione()
+    this.stagioneTakeData(this.stagioneData)
 
+    console.log(this.stagioni)
+/* 
     if (this.stagioneData.corsi.length < 20) {
       this.message = "Corso aggiunto"
     } else {
@@ -199,55 +227,31 @@ export class StagioniComponent implements OnInit {
     setTimeout(() => {
       this.message = "";
       this.messagErrore = "";
-    }, 1000);
+    }, 1000); */
   }
-
-  modificacorso(corso: any, val1: any, val2: any, val3: any) {
+  
+  aggiungiDocumento() {
     this.messagesector = 1
-    for (let i = 0; i < this.stagioneData.corsi.length; i++) {
-      if (corso == i) {
-        this.stagioneData.corsi[corso]["titolo"] = val1;
-        this.stagioneData.corsi[corso]["descrizione"] = val2;
-        this.stagioneData.corsi[corso]["prezzo"] = val3;
-      }
-    }
-    this.update_stagione_principale()
-    this.opencorso = -1
-    this.message = "Corso modificato"
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
-  }
+    
+    const db = getDatabase();
 
-  elimina__documento(documento: any) {
-    this.messagesector = 2
-    this.stagioneData.documenti.splice(documento, 1)
-    this.update_stagione_principale()
-    this.message = "Documento eliminato"
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
-    this.popup = -1
-    this.popupdocs = -1
-  }
+    const creazione = new Date();
+    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/");
+    const newPostRef = push(postListRef);
+    set(newPostRef, {
+      id: newPostRef.key,
+      titolo:"Nuovo documento",
+      descrizione:"",
+      approvazioni:"",
+      filter:"",
+      creazione: creazione
+    })
+    this.stagione()
 
-  aggiungi__documento() {
-    this.messagesector = 2
-    /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
-    if (this.stagioneData.documenti.length < 10) {
-      this.stagioneData.documenti.push(
-        {
-          titolo: "Nuovo documento",
-          descrizione: "",
-          filter: [""],
-          atleti: [""]
-        })
-      this.update_stagione_principale()
+    if (this.stagioneData.documento.length < 20) {
       this.message = "Documento aggiunto"
     } else {
-      this.messagErrore = "Hai raggiunto il numero massimo di Documenti"
+      this.messagErrore = "Hai raggiunto il numero massimo di documenti"
     }
     setTimeout(() => {
       this.message = "";
@@ -255,102 +259,111 @@ export class StagioniComponent implements OnInit {
     }, 1000);
   }
 
-  modifica__documento(documento: any, val1: any, val2: any) {
-    this.messagesector = 2
-    for (let i = 0; i < this.stagioneData.documenti.length; i++) {
-      if (documento == i) {
-        this.stagioneData.documenti[documento]["titolo"] = val1;
-        this.stagioneData.documenti[documento]["descrizione"] = val2;
-      }
-    }
-    this.update_stagione_principale()
-    this.message = "Documento modificato"
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
-    this.popupdocs = -1
-    this.popup = -1
-  }
-
-
-  elimina__galleria(cartella: any) {
-    this.messagesector = 2
-    this.stagioneData.galleria.splice(cartella, 1)
-    this.update_stagione_principale()
-    this.message = "cartella eliminata"
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
-    this.popup = -1
-    this.popupdocs = -1
-  }
-
-  aggiungi__galleria() {
-    this.messagesector = 2
-    /* this.stagioneData.corsi.push({titolo:"",descriione:"",prezzo:""}) */
-    if (this.stagioneData.galleria.length < 10) {
-      this.stagioneData.galleria.push(
-        {
-          titolo: "Nuova cartella immagini",
-          descrizione: "",
-          filter: [""],
-          atleti: [""]
-        })
-      /* this.update_stagione_principale() */
-      this.update_stagione_principale()
-      this.message = "Nuova cartella aggiunta"
-    } else {
-      this.messagErrore = "Hai raggiunto il numero massimo di cartelle"
-    }
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
-  }
-
-  modifica__galleria(immagine: any, val1: any, val2: any) {
-    this.messagesector = 2
-    for (let i = 0; i < this.stagioneData.galleria.length; i++) {
-      if (immagine == i) {
-        this.stagioneData.galleria[immagine]["titolo"] = val1;
-        this.stagioneData.galleria[immagine]["descrizione"] = val2;
-      }
-    }
-    this.update_stagione_principale()
-    this.message = "Documento modificato"
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
-    this.popupdocs = -1
-    this.popup = -1
-  }
-
-  public imagePath: any = "";
-  imgURL: any = "";
-
-  preview0(files: any) {
-    if (files.length === 0)
-      return;
-
-    var reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      this.imgURL = reader.result;
-    }
-
-  }
-
-  eliminaStagione() {
+  aggiungiCartella() {
+    this.messagesector = 1
+    
     const db = getDatabase();
-    const starCountprimary = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id);
-    remove(starCountprimary);
-    this.sc.stagione();
-    this.stagione();
-    this.eliminapopup = 0
-    this.stagioniSection = 0;
+
+    const creazione = new Date();
+    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/galleria/");
+    const newPostRef = push(postListRef);
+    set(newPostRef, {
+      id: newPostRef.key,
+      titolo:"Nuovo documento",
+      descrizione:"",
+      immagini:"",
+      filter:"",
+      creazione: creazione
+    })
+    this.stagione()
+
+    if (this.stagioneData.cartella.length < 20) {
+      this.message = "Cartella aggiunta"
+    } else {
+      this.messagErrore = "Hai raggiunto il numero massimo di cartella"
+    }
+    setTimeout(() => {
+      this.message = "";
+      this.messagErrore = "";
+    }, 1000);
   }
+
+  modificaCorso(id:any, titolo:any, descrizione:any, prezzo:any, creazione:any){
+    if(titolo != ""){
+      const db = getDatabase();
+      let corso: corso
+      corso = {
+        id: id,
+        titolo: titolo,
+        descrizione:descrizione,
+        prezzo: prezzo,
+        creazione: creazione
+      }
+      const updates: any = {};
+  
+      updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/corsi/"+id] = corso;
+  
+      update(ref(db), updates);
+      
+    }else{
+      this.messagErrore = "Assegna un titolo al corso"
+      setTimeout(() => {
+        this.message = "";
+        this.messagErrore = "";
+      }, 1000);
+    }
+    this.update_stagione_principale()
+  }
+
+  modificaDocumento(id:any, titolo:any, descrizione:any, approvazioni:any, filter:any, creazione:any){
+    if(titolo != ""){
+      const db = getDatabase();
+      let documento: documento
+      documento = {
+        id: id,
+        titolo: titolo,
+        descrizione:descrizione,
+        approvazioni:approvazioni,
+        filter: filter,
+        creazione: creazione
+      }
+      const updates: any = {};
+  
+      updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/"+id] = documento;
+  
+      update(ref(db), updates);
+      
+    }else{
+      this.messagErrore = "Assegna un titolo al documento"
+      setTimeout(() => {
+        this.message = "";
+        this.messagErrore = "";
+      }, 1000);
+    }
+    this.update_stagione_principale()
+  }
+
+  eliminaCorso(corso: any) {
+    this.messagesector = 1
+    this.stagioneData.corsi.splice(corso, 1)
+    this.update_stagione_principale()
+    this.message = "stagione eliminata"
+    setTimeout(() => {
+      this.message = "";
+      this.messagErrore = "";
+    }, 1000);
+  }
+
+
+
 }
+
+/* 
+
+      this.eliminaCorso(valorechild)
+    } else if (valore == 2) {
+      this.elimina__documento(valorechild)
+    } else if (valore == 3) {
+      this.elimina__galleria(valorechild)
+
+*/

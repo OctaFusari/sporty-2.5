@@ -8,7 +8,7 @@
         </svg>
 
     </div>
-    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni; let i=index" (click)="this.stagioneData = stagione;this.stagioniSection = 1; stagioneTakeData()">
+    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni; let i=index" (click)="this.stagioniSection = 1; stagioneTakeData(stagione)">
         <h2>{{stagione.nomestagione}}</h2>
         <div>
             <div>
@@ -53,23 +53,23 @@
                         <h2>Documenti</h2>
                     </div>
                     <div class="corsi__up__section__two">
-                        <button class="button button__blue" (click)="aggiungi__documento()">Aggiungi</button>
+                        <button class="button button__blue" (click)="aggiungiDocumento()">Aggiungi</button>
                     </div>
                 </div>
             </div>
             <div class="container__stagione__section__inside">
                 <div *ngFor="let documento of this.stagioneData_documenti; let i=index">
                     <div class="littlecard" *ngIf="i != 0">
-                        <div style="cursor: pointer;" *ngIf="this.popupdocs != i" (click)="this.popupdocs = i; blockBodyScroll()">
+                        <div style="cursor: pointer;" *ngIf="this.opendoc != i" (click)="this.opendoc = i">
                             <span>{{documento.titolo}}</span>
                         </div>
-                        <div *ngIf="this.popupdocs == i">
+                        <div *ngIf="this.opendoc == i">
                             <h2>Titolo</h2>
                             <input class="input__style" #titolo value="{{documento.titolo}}">
                             <h2>Descrizione</h2>
                             <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modifica__documento(i, titolo.value, descrizione.value)">Salva</button>
+                                <button class="button__blue button" (click)="modificaDocumento(documento.id, titolo.value, descrizione.value, documento.approvazioni, '',documento.creazione )">Salva</button>
                                 <button class="button__red button" (click)="popupelimination[0]=2;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                         <h2>Immagini</h2>
                     </div>
                     <div class="corsi__up__section__two">
-                        <button class="button button__blue" (click)="aggiungi__galleria()">Aggiungi</button>
+                        <button class="button button__blue" (click)="aggiungiCartella()">Aggiungi</button>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                         <h2>Corsi</h2>
                     </div>
                     <div class="corsi__up__section__two">
-                        <button class="button button__blue" (click)="aggiungicorso()">Aggiungi</button>
+                        <button class="button button__blue" (click)="aggiungiCorso()">Aggiungi</button>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                                 <input placeholder="{{corso.prezzo}}" value="{{corso.prezzo}}" #corsoprezzo class="input__style">
                             </div>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificacorso(i, corsotitolo.value, corsodescrizione.value, corsoprezzo.value)">Salva</button>
+                                <button class="button__blue button" (click)="modificaCorso(corso.id, corsotitolo.value, corsodescrizione.value, corsoprezzo.value, corso.creazione)">Salva</button>
                                 <button class="button__red button" (click)="popupelimination[0]=1;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>
@@ -165,15 +165,15 @@
         <a class="error">{{this.messagErrore}}</a>
     </div>
 </div>
-<div class="popup" *ngIf="this.popupelimination[0] == 1 || this.popupelimination[0] == 2 || this.popupelimination[0] == 3">
+<div class="popup" id="cssi" *ngIf="this.popupelimination[0] == 1 || this.popupelimination[0] == 2 || this.popupelimination[0] == 3">
     <div class="popup__inside container">
         <h2>Sei sicuro </h2>
         <div style="display: flex;">
             <button class="button__blue button" (click)="eliminationFunction(this.popupelimination[0], this.popupelimination[1]); blockBodyScroll()">Si</button>
-            <button class="button__red button" (click)="blockBodyScroll()">No</button>
+            <button class="button__red button" (click)="blockBodyScroll(); this.popupelimination[0] = 0">No</button>
         </div>
     </div>
-    <div (click)="this.popupdocs = -1; blockBodyScroll()" class="popup__esci">
+    <div (click)="blockBodyScroll(); this.popupelimination[0] = 0" class="popup__esci">
 
     </div>
 </div>
