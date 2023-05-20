@@ -15,17 +15,15 @@ export class StagioniComponent implements OnInit {
 
   constructor(public sc: SquadraContainerComponent) { }
 
-  stagioni: any[] = []
-  iscrittiStagionevar: any[] = []
-  stagioniSection: number = 0
-  message = ""
-  messagErrore = ""
-  messagesector = 0
+  stagioni: any[] = [];
+  stagioniSection: number = 0;
+  message = "";
+  messagErrore = "";
+  messagesector = 0;
   stagioneData: any = "";
-  stagioneData_corsi: any[] = []
-  stagioneData_documenti: any[] = []
-  stagioneData_galleria: any[] = []
-
+  stagioneData_corsi: any[] = [];
+  stagioneData_documenti: any[] = [];
+  stagioneData_galleria: any[] = [];
 
   popup: number = -1;
   opencorso: number = -1;
@@ -34,6 +32,13 @@ export class StagioniComponent implements OnInit {
   stagionesezione: number = 2;
   eliminapopup: number = 0;
   popupelimination: any[] = [-1, -1];
+
+  closeOpen(){
+    this.popup = -1;
+    this.opencorso = -1;
+    this.opendoc = -1;
+    this.opencartella = -1;
+  }
 
   ngOnInit() {
     this.sc.stagione()
@@ -99,15 +104,9 @@ export class StagioniComponent implements OnInit {
       })
     }
     this.stagioneData = stagione;
-
-    console.log(this.stagioneData_corsi)
-    console.log(stagione.id)
   }
 
   aggiungi__stagione() {
-    let corsi: any[] = [""]
-    let documenti: any[] = [""]
-    let galleria: any[] = [""]
     const db = getDatabase();
 
     const creazione = new Date();
@@ -116,19 +115,18 @@ export class StagioniComponent implements OnInit {
     set(newPostRef, {
       id: newPostRef.key,
       codestagione: "",
-      corsi: corsi,
+      corsi: "",
       creator: "",
       datafine: "",
       datainizio: "",
       iscrittistagione: "",
       nomestagione: "Nuova stagione",
-      documenti: documenti,
-      galleria: galleria,
+      documenti: "",
+      galleria: "",
       creazione: creazione.toLocaleDateString(),
       attiva: true
     });
 
-    this.stagioniSection = 1;
     this.stagione()
   }
 
@@ -154,6 +152,9 @@ export class StagioniComponent implements OnInit {
     remove(starCountprimary);
     this.sc.stagione();
     this.stagione();
+    this.stagioneData_corsi = [];
+    this.stagioneData_documenti = [];
+    this.stagioneData_galleria = [];
     this.eliminapopup = 0
     this.stagioniSection = 0;
     this.stagioneData = "";
@@ -216,26 +217,11 @@ export class StagioniComponent implements OnInit {
     })
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
-
-    console.log(this.stagioni)
-/* 
-    if (this.stagioneData.corsi.length < 20) {
-      this.message = "Corso aggiunto"
-    } else {
-      this.messagErrore = "Hai raggiunto il numero massimo di corsi"
-    }
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000); */
   }
   
   aggiungiDocumento() {
     this.messagesector = 1
-    
     const db = getDatabase();
-
-    const creazione = new Date();
     const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/");
     const newPostRef = push(postListRef);
     set(newPostRef, {
@@ -244,19 +230,11 @@ export class StagioniComponent implements OnInit {
       descrizione:"",
       approvazioni:"",
       filter:"",
-      creazione: creazione
+      creazione: new Date()
     })
     this.stagione()
+    this.stagioneTakeData(this.stagioneData)
 
-    if (this.stagioneData.documento.length < 20) {
-      this.message = "Documento aggiunto"
-    } else {
-      this.messagErrore = "Hai raggiunto il numero massimo di documenti"
-    }
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
   }
 
   aggiungiCartella() {
@@ -276,27 +254,18 @@ export class StagioniComponent implements OnInit {
       creazione: creazione
     })
     this.stagione()
-
-    if (this.stagioneData.cartella.length < 20) {
-      this.message = "Cartella aggiunta"
-    } else {
-      this.messagErrore = "Hai raggiunto il numero massimo di cartella"
-    }
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
+    this.stagioneTakeData(this.stagioneData)
   }
 
   modificaCorso(id:any, titolo:any, descrizione:any, prezzo:any, creazione:any){
-    if(titolo != ""){
+     if(titolo != ""){
       const db = getDatabase();
       let corso: corso
       corso = {
         id: id,
-        titolo: titolo,
-        descrizione:descrizione,
-        prezzo: prezzo,
+        titolo: titolo.value,
+        descrizione:descrizione.value,
+        prezzo: prezzo.value,
         creazione: creazione
       }
       const updates: any = {};
@@ -304,6 +273,12 @@ export class StagioniComponent implements OnInit {
       updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/corsi/"+id] = corso;
   
       update(ref(db), updates);
+
+      this.message = "Corso modificato"
+      setTimeout(() => {
+        this.message = "";
+        this.messagErrore = "";
+      }, 1000);
       
     }else{
       this.messagErrore = "Assegna un titolo al corso"
@@ -312,17 +287,20 @@ export class StagioniComponent implements OnInit {
         this.messagErrore = "";
       }, 1000);
     }
-    this.update_stagione_principale()
+    this.stagione()
+    this.stagioneTakeData(this.stagioneData)
   }
 
   modificaDocumento(id:any, titolo:any, descrizione:any, approvazioni:any, filter:any, creazione:any){
+    
+    console.log(creazione)
     if(titolo != ""){
       const db = getDatabase();
       let documento: documento
       documento = {
         id: id,
-        titolo: titolo,
-        descrizione:descrizione,
+        titolo: titolo.value,
+        descrizione:descrizione.value,
         approvazioni:approvazioni,
         filter: filter,
         creazione: creazione
@@ -333,6 +311,11 @@ export class StagioniComponent implements OnInit {
   
       update(ref(db), updates);
       
+      this.message = "Documento modificato"
+      setTimeout(() => {
+        this.message = "";
+        this.messagErrore = "";
+      }, 1000);
     }else{
       this.messagErrore = "Assegna un titolo al documento"
       setTimeout(() => {
@@ -355,7 +338,6 @@ export class StagioniComponent implements OnInit {
   }
 
 
-
 }
 
 /* 
@@ -365,5 +347,9 @@ export class StagioniComponent implements OnInit {
       this.elimina__documento(valorechild)
     } else if (valore == 3) {
       this.elimina__galleria(valorechild)
+
+
+
+      
 
 */

@@ -24,13 +24,13 @@
 </div>
 <div *ngIf="this.stagioniSection == 1">
     <div>
-        <svg (click)="this.stagioniSection = 0; this.stagione()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
+        <svg (click)="this.stagioniSection = 0; this.stagione(); closeOpen()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
     </div>
     <div class="container__stagione">
         <div class="container__stagione__section__menu">
-            <button class="button" [ngClass]="{'button__blue': stagionesezione === 2}" (click)="stagionesezione = 2">Corsi</button>
-            <button class="button" [ngClass]="{'button__blue': stagionesezione === 3}" (click)="stagionesezione = 3">Documenti</button>
-            <button class="button" [ngClass]="{'button__blue': stagionesezione === 1}" (click)="stagionesezione = 1">Immagini</button>
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 2}" (click)="stagionesezione = 2; closeOpen()">Corsi</button>
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 3}" (click)="stagionesezione = 3; closeOpen()">Documenti</button>
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 1}" (click)="stagionesezione = 1; closeOpen()">Immagini</button>
         </div>
         <div class="container__stagione__section__zero card">
             <div>
@@ -65,11 +65,11 @@
                         </div>
                         <div *ngIf="this.opendoc == i">
                             <h2>Titolo</h2>
-                            <input class="input__style" #titolo value="{{documento.titolo}}">
+                            <input class="input__style" #titolodocumento value="{{documento.titolo}}">
                             <h2>Descrizione</h2>
-                            <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
+                            <textarea class="input__style textareapopup" #descrizionedocumento placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificaDocumento(documento.id, titolo.value, descrizione.value, documento.approvazioni, '',documento.creazione )">Salva</button>
+                                <button class="button__blue button" (click)="modificaDocumento(documento.id, titolodocumento, descrizionedocumento,'','', documento.creazione)">Salva</button>
                                 <button class="button__red button" (click)="popupelimination[0]=2;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>
@@ -99,12 +99,12 @@
                         </div>
                         <div *ngIf="this.opencartella == i">
                             <h2>Titolo</h2>
-                            <input class="input__style" #titolo value="{{cartella.titolo}}">
+                            <input class="input__style" #titolocartella value="{{cartella.titolo}}">
                             <h2>Descrizione</h2>
-                            <textarea class="input__style textareapopup" #descrizione placeholder="Aggiungi del contenuto">{{cartella.descrizione}}</textarea>
+                            <textarea class="input__style textareapopup" #descrizionecartella placeholder="Aggiungi del contenuto">{{cartella.descrizione}}</textarea>
 
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="this.opencartella = -1">Salva</button>
+                                <button class="button__blue button">Salva</button>
                                 <button class="button__red button" (click)="popupelimination[0]=3;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>
@@ -138,13 +138,13 @@
                                 <input placeholder="{{corso.titolo}}" value="{{corso.titolo}}" #corsotitolo class="input__style">
                             </div>
                             <div>
-                                <textarea #corsodescrizione class="input__style">{{corso.descrizione}}</textarea>
+                                <textarea value="{{corso.descrizione}}" #corsodescrizione class="input__style">{{corso.descrizione}}</textarea>
                             </div>
                             <div>
                                 <input placeholder="{{corso.prezzo}}" value="{{corso.prezzo}}" #corsoprezzo class="input__style">
                             </div>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificaCorso(corso.id, corsotitolo.value, corsodescrizione.value, corsoprezzo.value, corso.creazione)">Salva</button>
+                                <button class="button__blue button" (click)="modificaCorso(corso.id, corsotitolo, corsodescrizione, corsoprezzo, corso.creazione)">Salva</button>
                                 <button class="button__red button" (click)="popupelimination[0]=1;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>
