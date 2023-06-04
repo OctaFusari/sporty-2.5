@@ -4,6 +4,7 @@ import { SquadraContainerComponent } from '../squadra-container/squadra-containe
 import { stagione_obj } from 'src/app/objects/stagione';
 import { corso } from 'src/app/objects/corso';
 import { documento } from 'src/app/objects/documento';
+import { galleria_folder } from 'src/app/objects/galleria_folder';
 
 @Component({
   selector: 'app-stagioni',
@@ -213,14 +214,15 @@ export class StagioniComponent implements OnInit {
       titolo: "Nuovo corso",
       descrizione:"",
       prezzo:"",
-      creato: new Date()
+      creazione: creazione.toLocaleDateString()
     })
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
   }
   
   aggiungiDocumento() {
-    this.messagesector = 1
+    this.messagesector = 1;
+    const creazione = new Date();
     const db = getDatabase();
     const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/");
     const newPostRef = push(postListRef);
@@ -230,7 +232,7 @@ export class StagioniComponent implements OnInit {
       descrizione:"",
       approvazioni:"",
       filter:"",
-      creazione: new Date()
+      creazione: creazione.toLocaleDateString()
     })
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
@@ -239,10 +241,8 @@ export class StagioniComponent implements OnInit {
 
   aggiungiCartella() {
     this.messagesector = 1
-    
-    const db = getDatabase();
-
     const creazione = new Date();
+    const db = getDatabase();
     const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/galleria/");
     const newPostRef = push(postListRef);
     set(newPostRef, {
@@ -251,7 +251,7 @@ export class StagioniComponent implements OnInit {
       descrizione:"",
       immagini:"",
       filter:"",
-      creazione: creazione
+      creazione: creazione.toLocaleDateString()
     })
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
@@ -325,6 +325,40 @@ export class StagioniComponent implements OnInit {
     }
     this.update_stagione_principale()
   }
+
+  modificaCartella(id:any, titolo:any, descrizione:any, immagini:any, creazione:any){
+    
+    if(titolo != ""){
+      const db = getDatabase();
+      let cartella: galleria_folder
+      cartella = {
+        id: id,
+        titolo: titolo.value,
+        descrizione:descrizione.value,
+        immagini: immagini.value,
+        creazione: creazione
+      }
+      const updates: any = {};
+  
+      updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/"+id] = cartella;
+  
+      update(ref(db), updates);
+      
+      this.message = "Cartella modificato"
+      setTimeout(() => {
+        this.message = "";
+        this.messagErrore = "";
+      }, 1000);
+    }else{
+      this.messagErrore = "Assegna un titolo alla cartella"
+      setTimeout(() => {
+        this.message = "";
+        this.messagErrore = "";
+      }, 1000);
+    }
+    this.update_stagione_principale()
+  }
+
 
   eliminaCorso(corso: any) {
     this.messagesector = 1
