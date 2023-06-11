@@ -63,11 +63,17 @@
                         <div style="cursor: pointer;" *ngIf="this.opendoc != i" (click)="this.opendoc = i">
                             <span>{{documento.titolo}}</span>
                         </div>
-                        <div *ngIf="this.opendoc == i">
-                            <h2>Titolo</h2>
-                            <input class="input__style" #titolodocumento value="{{documento.titolo}}">
-                            <h2>Descrizione</h2>
-                            <textarea class="input__style textareapopup" #descrizionedocumento placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
+                        <div class="stagione__littlecard__inside" *ngIf="this.opendoc == i">
+                            <div>
+                                <h2>Titolo</h2>
+                                <input class="input__style" #titolodocumento value="{{documento.titolo}}">
+                                <h2>Descrizione</h2>
+                                <textarea class="input__style textareapopup" #descrizionedocumento placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
+                            </div>
+                            <div class="card">
+                                <H3>Approvazioni</H3>
+                                <h2></h2>
+                            </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="modificaDocumento(documento.id, titolodocumento, descrizionedocumento,'','', documento.creazione)">Salva</button>
                                 <button class="button__red button" (click)="popupelimination[0]=2;popupelimination[1]=i">Elimina</button>
@@ -97,12 +103,18 @@
                         <div style="cursor: pointer;" *ngIf="this.opencartella !=i" (click)="this.opencartella = i">
                             <span>{{cartella.titolo}}</span>
                         </div>
-                        <div *ngIf="this.opencartella == i">
-                            <h2>Titolo</h2>
-                            <input class="input__style" #titolocartella value="{{cartella.titolo}}">
-                            <h2>Descrizione</h2>
-                            <textarea class="input__style textareapopup" #descrizionecartella placeholder="Aggiungi del contenuto">{{cartella.descrizione}}</textarea>
+                        <div class="stagione__littlecard__inside" *ngIf="this.opencartella == i">
+                            <div>
+                                <h2>Titolo</h2>
+                                <input class="input__style" #titolocartella value="{{cartella.titolo}}">
+                                <h2>Descrizione</h2>
+                                <textarea class="input__style textareapopup" #descrizionecartella placeholder="Aggiungi del contenuto">{{cartella.descrizione}}</textarea>
 
+                            </div>
+                            <div class="card">
+                                <H3>Immagini caricate</H3>
+                                <h2></h2>
+                            </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="modificaCartella(cartella.id,titolocartella,descrizionecartella,cartella.immagini, cartella.creazione)">Salva</button>
                                 <button class="button__red button" (click)="popupelimination[0]=3;popupelimination[1]=i">Elimina</button>
@@ -133,15 +145,18 @@
                         <div style="cursor: pointer;" *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
                             <span>{{corso.titolo}}</span>
                         </div>
-                        <div *ngIf="this.opencorso == i">
+                        <div class="stagione__littlecard__inside" *ngIf="this.opencorso == i">
                             <div>
                                 <input placeholder="{{corso.titolo}}" value="{{corso.titolo}}" #corsotitolo class="input__style">
-                            </div>
-                            <div>
+
                                 <textarea value="{{corso.descrizione}}" #corsodescrizione class="input__style">{{corso.descrizione}}</textarea>
-                            </div>
-                            <div>
+
                                 <input placeholder="{{corso.prezzo}}" value="{{corso.prezzo}}" #corsoprezzo class="input__style">
+
+                            </div>
+                            <div class="card">
+                                <H3>Iscrizioni</H3>
+                                <h2></h2>
                             </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="modificaCorso(corso.id, corsotitolo, corsodescrizione, corsoprezzo, corso.creazione)">Salva</button>

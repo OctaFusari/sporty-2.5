@@ -82,8 +82,6 @@
     grid-area: mod__cartella__sez__three;
 }
 
-.file__carica__container label {}
-
 
 /* 
 .file__carica__container input{
@@ -93,4 +91,11 @@
 .file__carica__container img {
     width: 100%;
     margin-bottom: 30px;
+}
+
+.stagione__littlecard__inside {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1.5cm;
+    grid-template-areas: ". ." ". .";
 }
