@@ -104,7 +104,7 @@
                             <textarea class="input__style textareapopup" #descrizionecartella placeholder="Aggiungi del contenuto">{{cartella.descrizione}}</textarea>
 
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificaCartella(cartella.id,titolocartella,descrizionecartella,cartella.immagini, cartella.creazione)">Salva</button>
+                                <button class="button__blue button" (click)="modificaCartella(cartella.id,titolocartella,descrizionecartella,cartella)">Salva</button>
                                 <button class="button__red button" (click)="popupelimination[0]=3;popupelimination[1]=i">Elimina</button>
                             </div>
                         </div>

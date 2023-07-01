@@ -111,7 +111,7 @@
             <button (click)="this.centrovar = 3;" class="circle__button button__blue">
                 Iscriviti
             </button>
-            <app-iscrizione [squadData]="this.squadraScelta" class="slide__container" *ngIf="this.centrovar == 3"></app-iscrizione>
+            <app-iscrizione [squadData]="this.squadraScelta" [userData]="this.userData" class="slide__container" *ngIf="this.centrovar == 3"></app-iscrizione>
         </div>
     </div>
     <div class="container container__info__squadra">

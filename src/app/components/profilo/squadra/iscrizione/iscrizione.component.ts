@@ -25,13 +25,14 @@ export class IscrizioneComponent implements OnInit {
   documenti:any = [];
   galleria:any = [];
 
-  stagione__scelta:any;
+  stagione__scelta:any = "";
   corsi__scelti:any = [];
   documenti__scelti:any = [];
 
   constructor(public sc: SquadraContainerComponent) { }
 
   ngOnInit(){
+    console.log(this.userData);
 
     const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni");
     onValue(starCountRef1, (snapshot) => {
@@ -51,12 +52,18 @@ export class IscrizioneComponent implements OnInit {
     const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + ids);
     onValue(starCountRef1, (snapshot) => {
       this.stagioneScelta = snapshot.val()
-    })
 
+    })
   }
 
-  takeCorsi(){
-    
+  takeCorsi(ids:any){
+    const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + ids +"/corsi/");
+    onValue(starCountRef1, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+      this.corsi__scelti.push(childSnapshot.val());
+      })
+    })
+
   }
 
   takeGalleria(){

@@ -323,11 +323,11 @@ export class StagioniComponent implements OnInit {
         this.messagErrore = "";
       }, 1000);
     }
-    this.update_stagione_principale()
+    this.stagione()
+    this.stagioneTakeData(this.stagioneData)
   }
 
-  modificaCartella(id:any, titolo:any, descrizione:any, immagini:any, creazione:any){
-    
+  modificaCartella(id:any, titolo:any, descrizione:any, cartella__reach:any){
     if(titolo != ""){
       const db = getDatabase();
       let cartella: galleria_folder
@@ -335,12 +335,12 @@ export class StagioniComponent implements OnInit {
         id: id,
         titolo: titolo.value,
         descrizione:descrizione.value,
-        immagini: immagini.value,
-        creazione: creazione
+        immagini: cartella__reach.immagini,
+        creazione: cartella__reach.creazione
       }
       const updates: any = {};
   
-      updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/"+id] = cartella;
+      updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/galleria/"+id] = cartella;
   
       update(ref(db), updates);
       
@@ -356,7 +356,8 @@ export class StagioniComponent implements OnInit {
         this.messagErrore = "";
       }, 1000);
     }
-    this.update_stagione_principale()
+    this.stagione()
+    this.stagioneTakeData(this.stagioneData)
   }
 
 

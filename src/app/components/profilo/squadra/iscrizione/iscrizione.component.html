@@ -31,10 +31,10 @@
                     </div>
                 </div>
                 <div>
-                    <div *ngIf="this.sezione_completamento == 0">
+                    <div *ngIf="this.sezione_completamento == 0" style="overflow-y: scroll;">
                         <h2>Scegli la stagione</h2>
                         <div class="container__stagioni container__scroll__iscrizione">
-                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'selected': stagione.id == stagione__scelta}" (click)="takeStagione(stagione.id); stagione__scelta = stagione.id">
+                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'stagione__scelta': stagione.id == stagione__scelta}" (click)="takeStagione(stagione.id);takeCorsi(stagione.id); stagione__scelta = stagione.id">
                                 <h3>{{stagione.nomestagione}}</h3>
                                 <div>
                                     <div>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 1">
+                    <div *ngIf="this.sezione_completamento == 1" style="overflow-y: scroll;">
                         <div class="input__container">
                             <div>
                                 <h3>Nome</h3>
@@ -89,18 +89,18 @@
                         </div>
                     </div>
                     <div *ngIf="this.sezione_completamento == 2">
-                        <div class="container__scroll__iscrizione">
-                            <div *ngFor="let corso of this.stagioneScelta.corsi; let i = index">
-                                <div (click)="corsi__scelti.append(corso)" class="littlecard">
+                        <div class="container__scroll__iscrizione" style="overflow-y: scroll;">
+                            <div *ngFor="let corso of this.corsi__scelti; let i = index">
+                                <div class="littlecard">
                                     <div>
                                         <h3>Titolo</h3>
-                                        <a>{{corso[0]}}</a></div>
+                                        <a>{{corso.titolo}}</a></div>
                                     <div>
                                         <h3>Descrizione</h3>
-                                        <a>{{corso[1]}}</a></div>
+                                        <a>{{corso.descrizione}}</a></div>
                                     <div>
                                         <h3>Prezzo</h3>
-                                        <a>{{corso[2]}}</a>
+                                        <a>{{corso.prezzo}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 3">
+                    <div *ngIf="this.sezione_completamento == 3" style="overflow-y: scroll;">
                         <div class="container__scroll__iscrizione">
                             <div *ngFor="let documento of this.stagioneScelta.documenti; let i = index">
                                 <div class="littlecard">
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 4">
+                    <div *ngIf="this.sezione_completamento == 4" style="overflow-y: scroll;">
                         <div class="container__scroll__iscrizione">
                             <div *ngFor="let cartella of this.stagioneScelta.galleria; let i = index">
                                 <div class="littlecard">
