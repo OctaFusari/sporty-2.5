@@ -20,20 +20,20 @@ export class IscrizioneComponent implements OnInit {
 
   squadra:any;
   stagioni:any = [];
-  stagioneScelta:any;
-  corsi:any = [];
-  documenti:any = [];
-  galleria:any = [];
+  stagione__data:any;
 
   stagione__scelta:any = "";
+  corso__scelta:any = "";
+  galleria__scelta:any = "";
+  galleria__scelta__data:any = [];
+
   corsi__scelti:any = [];
   documenti__scelti:any = [];
+  galleria__scelti:any = [];
 
   constructor(public sc: SquadraContainerComponent) { }
 
   ngOnInit(){
-    console.log(this.userData);
-
     const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni");
     onValue(starCountRef1, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
@@ -42,21 +42,16 @@ export class IscrizioneComponent implements OnInit {
     })
 
   }
-
-  takeSquadra(){
-
-  }
-
   takeStagione(ids:any){
 
     const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + ids);
     onValue(starCountRef1, (snapshot) => {
-      this.stagioneScelta = snapshot.val()
+      this.stagione__data = snapshot.val()
 
     })
   }
-
-  takeCorsi(ids:any){
+  
+  takeStagione__data__inside(ids:any){
     const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + ids +"/corsi/");
     onValue(starCountRef1, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
@@ -64,14 +59,29 @@ export class IscrizioneComponent implements OnInit {
       })
     })
 
-  }
-
-  takeGalleria(){
+    const starCountRef2 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + ids +"/documenti/");
+    onValue(starCountRef2, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+      this.documenti__scelti.push(childSnapshot.val());
+      })
+    })
     
+    const starCountRef3 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + ids +"/galleria/");
+    onValue(starCountRef3, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+      this.galleria__scelti.push(childSnapshot.val());
+      })
+    })
   }
 
-  pushTheModify(){
+  take__galleria__data(idi:any){
 
+    const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni/" + this.stagione__scelta +"/galleria/"+idi+"/immagini/");
+    onValue(starCountRef1, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+      this.galleria__scelta__data.push(childSnapshot.val());
+      })
+    })
   }
 
 }

@@ -31,10 +31,10 @@
                     </div>
                 </div>
                 <div>
-                    <div *ngIf="this.sezione_completamento == 0" style="overflow-y: scroll;">
+                    <div *ngIf="this.sezione_completamento == 0">
                         <h2>Scegli la stagione</h2>
                         <div class="container__stagioni container__scroll__iscrizione">
-                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'stagione__scelta': stagione.id == stagione__scelta}" (click)="takeStagione(stagione.id);takeCorsi(stagione.id); stagione__scelta = stagione.id">
+                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{'stagione__scelta': stagione.id == stagione__scelta}" (click)="takeStagione(stagione.id);takeStagione__data__inside(stagione.id); stagione__scelta = stagione.id">
                                 <h3>{{stagione.nomestagione}}</h3>
                                 <div>
                                     <div>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 1" style="overflow-y: scroll;">
+                    <div *ngIf="this.sezione_completamento == 1">
                         <div class="input__container">
                             <div>
                                 <h3>Nome</h3>
@@ -89,8 +89,8 @@
                         </div>
                     </div>
                     <div *ngIf="this.sezione_completamento == 2">
-                        <div class="container__scroll__iscrizione" style="overflow-y: scroll;">
-                            <div *ngFor="let corso of this.corsi__scelti; let i = index">
+                        <div class="container__scroll__iscrizione">
+                            <div *ngFor="let corso of this.corsi__scelti; let i = index" [ngClass]="{'stagione__scelta': corso.id == corso__scelta}" (click)="this.corso__scelta = corso.id">
                                 <div class="littlecard">
                                     <div>
                                         <h3>Titolo</h3>
@@ -112,19 +112,33 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 3" style="overflow-y: scroll;">
+                    <div *ngIf="this.sezione_completamento == 3">
                         <div class="container__scroll__iscrizione">
-                            <div *ngFor="let documento of this.stagioneScelta.documenti; let i = index">
+                            <div *ngFor="let documento of this.documenti__scelti; let i = index">
                                 <div class="littlecard">
                                     <div>
                                         <h3>Titolo</h3>
-                                        <a>{{documento[0]}}</a></div>
+                                        <a>{{documento.titolo}}</a>
+                                    </div>
                                     <div>
-                                        <h3>Descrizione</h3>
-                                        <a>{{documento[1]}}</a></div>
-                                    <div>
-                                        <h3>Prezzo</h3>
-                                        <a>{{documento[2]}}</a>
+                                        <h2>{{documento.titolo}}</h2>
+                                        <div>
+                                            <p>
+                                                {{documento.descrizione}}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <a>Approva</a>
+                                            <div class="grid">
+
+                                                <label class="checkbox path">
+                                                    <input type="checkbox">
+                                                    <svg viewBox="0 0 21 21">
+                                                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                                    </svg>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -137,27 +151,25 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 4" style="overflow-y: scroll;">
+                    <div *ngIf="this.sezione_completamento == 4">
                         <div class="container__scroll__iscrizione">
-                            <div *ngFor="let cartella of this.stagioneScelta.galleria; let i = index">
+                            <div *ngFor="let cartella of this.galleria__scelti; let i = index" (click)="take__galleria__data(cartella.id)">
                                 <div class="littlecard">
                                     <div>
                                         <h3>Titolo</h3>
                                         <a>{{cartella[0]}}</a></div>
                                     <div>
-                                        <h3>Descrizione</h3>
-                                        <a>{{cartella[1]}}</a></div>
-                                    <div>
-                                        <h3>Prezzo</h3>
-                                        <a>{{cartella[2]}}</a>
+                                        <div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="button__container">
-                                <button class="button button__blue" (click)="this.sezione_completamento = 3">Indietro</button>
-                                <button class="button button__blue">Salva</button>
+                            <div>
+                                <div class="button__container">
+                                    <button class="button button__blue" (click)="this.sezione_completamento = 3">Indietro</button>
+                                    <button class="button button__blue">Salva</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -165,4 +177,3 @@
             </div>
         </div>
     </div>
-</div>
