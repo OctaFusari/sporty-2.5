@@ -90,8 +90,8 @@
                     </div>
                     <div *ngIf="this.sezione_completamento == 2">
                         <div class="container__scroll__iscrizione">
-                            <div *ngFor="let corso of this.corsi__scelti; let i = index" [ngClass]="{'stagione__scelta': corso.id == corso__scelta}" (click)="this.corso__scelta = corso.id">
-                                <div class="littlecard">
+                            <div *ngFor="let corso of this.corsi__scelti; let i = index" (click)="this.corso__scelta = corso.id">
+                                <div class="littlecard" [ngClass]="{'stagione__scelta': corso.id == corso__scelta}">
                                     <div>
                                         <h3>Titolo</h3>
                                         <a>{{corso.titolo}}</a></div>
@@ -116,25 +116,27 @@
                         <div class="container__scroll__iscrizione">
                             <div *ngFor="let documento of this.documenti__scelti; let i = index">
                                 <div class="littlecard">
-                                    <div>
+                                    <div (click)="open__doc(documento.id)">
                                         <h3>Titolo</h3>
                                         <a>{{documento.titolo}}</a>
                                     </div>
-                                    <div>
+                                    <div class="open__doc" id="open__doc__{{documento.id}}" style="display: none;">
                                         <h2>{{documento.titolo}}</h2>
                                         <div>
                                             <p>
                                                 {{documento.descrizione}}
                                             </p>
                                         </div>
-                                        <div>
-                                            <a>Approva</a>
-                                            <div class="grid">
-
-                                                <label class="checkbox path">
-                                                    <input type="checkbox">
-                                                    <svg viewBox="0 0 21 21">
-                                                        <path d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"></path>
+                                        <div class="doc__approvazione">
+                                            <div>
+                                                <a>Approva</a>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="{{documento.id}}" style="display: none;">
+                                                <label for="{{documento.id}}" (click)="addCl(documento.id)" class="check">
+                                                    <svg width="18px" height="18px" viewBox="0 0 18 18">
+                                                        <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                                                        <polyline points="1 9 7 14 15 4"></polyline>
                                                     </svg>
                                                 </label>
                                             </div>

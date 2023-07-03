@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,Renderer2, ElementRef, Input, OnInit } from '@angular/core';
 import { getDatabase, onValue, ref, set, update } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
 import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
@@ -31,7 +31,57 @@ export class IscrizioneComponent implements OnInit {
   documenti__scelti:any = [];
   galleria__scelti:any = [];
 
-  constructor(public sc: SquadraContainerComponent) { }
+  constructor(private renderer: Renderer2,public sc: SquadraContainerComponent) { }
+
+  part:boolean = false;
+  open__doc(id:any){
+    /* open__doc__{{documento.id}} */
+    this.part = !this.part;
+    let styleText = ""
+    if(this.part == true ){
+      styleText =     
+      `
+      #open__doc__${id}{
+        display: block !important; 
+      }
+      `
+    }
+    else{
+      styleText =     
+      `
+      #open__doc__${id}{
+        display: none !important; 
+      }
+      `
+    }
+    const style = this.renderer.createElement('style');
+    style.innerHTML = styleText;
+    this.renderer.appendChild(document.head, style);
+  }
+
+  addCl(id:any){
+      let styleText =     
+      `
+      #${id}:checked+.check svg {
+        stroke: var(--sporty-blue);
+      }
+    
+      #${id}:checked+.check svg path {
+          stroke-dashoffset: 60;
+          transition: all 0.3s linear;
+      }
+    
+      #${id}:checked+.check svg polyline {
+          stroke-dashoffset: 42;
+          transition: all 0.2s linear;
+          transition-delay: 0.15s;
+      }
+      `
+      const style = this.renderer.createElement('style');
+      style.innerHTML = styleText;
+      this.renderer.appendChild(document.head, style);
+    
+  }
 
   ngOnInit(){
     const starCountRef1 = ref(this.db, 'squadre/' + this.squadData.idsquadra + "/stagioni");
