@@ -1,137 +1,162 @@
 .container__iscrizione__inside {
-    display: grid;
-    grid-template-columns: 1.5fr 3fr;
-    grid-template-rows: min-content;
-    grid-template-areas: ". .";
+  display: grid;
+  grid-template-columns: 1.5fr 3fr;
+  grid-template-rows: min-content;
+  grid-template-areas: ". .";
 }
 
 .container {
-    padding: 2vw;
+  padding: 2vw;
 }
 
 .sez__blue {
-    color: var(--sporty-blue) !important;
+  color: var(--sporty-blue) !important;
 }
 
 .section__menu {
-    margin: 1vw 0vw 0vw 0vw;
+  margin: 1vw 0vw 0vw 0vw;
 }
 
 .section__menu div {
-    display: flex;
-    align-items: center;
-    align-content: center;
+  display: flex;
+  align-items: center;
+  align-content: center;
 }
 
 svg {
-    opacity: 1;
-    margin: 0 1vw 0 0;
+  opacity: 1;
+  margin: 0 1vw 0 0;
 }
 
 .svg__approve {
-    fill: var(--approved) !important;
-    opacity: 1;
+  fill: var(--approved) !important;
+  opacity: 1;
 }
 
 .svg__approve:hover {
-    fill: var(--approved) !important;
-    opacity: 1;
+  fill: var(--approved) !important;
+  opacity: 1;
 }
 
 .stagione__scelta {
-    border: 2px solid var(--sporty-blue);
+  border: 2px solid var(--sporty-blue);
 }
 
 .container__stagioni {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". . .";
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: ". . .";
 }
 
 .container__scroll {
-    overflow-y: scroll;
-    height: 600px;
+  overflow-y: scroll;
+  height: 600px;
 }
 
 .button__container {
-    margin-right: 4cm;
-    bottom: 0;
-    height: 30px;
-    border-radius: 3rem;
-    margin: 2vw;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--text-white) !important;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    align-content: center;
-    justify-content: center;
+  margin-right: 4cm;
+  bottom: 0;
+  height: 30px;
+  border-radius: 3rem;
+  margin: 2vw;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-white) !important;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
 }
 
 .iscrizione__container {
-    display: grid;
-    grid-template-columns: 500px auto;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". .";
+  display: grid;
+  grid-template-columns: 500px auto;
+  grid-template-rows: 1fr;
+  grid-template-areas: ". .";
+}
+
+.littlecard {
+  height: fit-content;
 }
 
 .container__scroll__iscrizione {
-    height: 600px;
-    overflow-y: scroll;
+  height: 600px;
+  overflow-y: scroll;
 }
 
 .check {
-    cursor: pointer;
-    position: relative;
-    margin: auto;
-    width: 18px;
-    height: 18px;
-    -webkit-tap-highlight-color: transparent;
-    transform: translate3d(0, 0, 0);
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
 }
 
 .check:before {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(34, 50, 84, 0.03);
-    opacity: 0;
-    transition: opacity 0.2s ease;
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 50, 84, 0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .check svg {
-    position: relative;
-    z-index: 1;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke: #ffffff;
-    stroke-width: 1.5;
-    transform: translate3d(0, 0, 0);
-    transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
 }
 
 .check svg path {
-    stroke-dasharray: 60;
-    stroke-dashoffset: 0;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
 }
 
 .check svg polyline {
-    stroke-dasharray: 22;
-    stroke-dashoffset: 66;
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
 }
 
 .check:hover:before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .check:hover svg {
-    stroke: var(--sporty-blue);
+  stroke: var(--sporty-blue);
+}
+
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-preview {
+  margin-top: 20px;
+}
+
+.image-preview img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+@media only screen and (max-width: 1600px) {
+  .container__scroll__iscrizione {
+    height: 450px;
+  }
 }
