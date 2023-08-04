@@ -75,8 +75,20 @@
                                 <h2></h2>
                             </div>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificaDocumento(documento.id, titolodocumento, descrizionedocumento,'','', documento.creazione)">Salva</button>
-                                <button class="button__red button" (click)="popupelimination[0]=2;popupelimination[1]=i">Elimina</button>
+                                <button class="button__blue button" (click)="modificaDocumento(documento.id, titolodocumento, descrizionedocumento,'','', documento.creazione, documento.iscritti)">Salva</button>
+                                <button class="button__red button" (click)="this.popupelimination = 1">Elimina</button>
+                                <div class="popup" id="cssi" *ngIf="this.popupelimination == 1 ">
+                                    <div class="popup__inside container">
+                                        <h2>Sei sicuro ?</h2>
+                                        <div style="display: flex;">
+                                            <button class="button__blue button" (click)="this.eliminationFunction(2, documento.id); blockBodyScroll()">Si</button>
+                                            <button class="button__red button" (click)="blockBodyScroll()">No</button>
+                                        </div>
+                                    </div>
+                                    <div (click)="blockBodyScroll(); this.popupelimination = 0" class="popup__esci">
+                                
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,7 +129,19 @@
                             </div>
                             <div style="display: flex;">
                                 <button class="button__blue button" (click)="modificaCartella(cartella.id,titolocartella,descrizionecartella,cartella)">Salva</button>
-                                <button class="button__red button" (click)="popupelimination[0]=3;popupelimination[1]=i">Elimina</button>
+                                <button class="button__red button" (click)="this.popupelimination=1">Elimina</button>
+                                <div class="popup" id="cssi" *ngIf="this.popupelimination == 1 ">
+                                    <div class="popup__inside container">
+                                        <h2>Sei sicuro?</h2>
+                                        <div style="display: flex;">
+                                            <button class="button__blue button" (click)="this.eliminationFunction(3, cartella.id); blockBodyScroll()">Si</button>
+                                            <button class="button__red button" (click)="blockBodyScroll();this.popupelimination = 0">No</button>
+                                        </div>
+                                    </div>
+                                    <div (click)="blockBodyScroll(); this.popupelimination = 0" class="popup__esci">
+                                
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,11 +180,22 @@
                             </div>
                             <div class="card">
                                 <H3>Iscrizioni</H3>
-                                <h2></h2>
                             </div>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificaCorso(corso.id, corsotitolo, corsodescrizione, corsoprezzo, corso.creazione)">Salva</button>
-                                <button class="button__red button" (click)="popupelimination[0]=1;popupelimination[1]=i">Elimina</button>
+                                <button class="button__blue button" (click)="modificaCorso(corso.id, corsotitolo, corsodescrizione, corsoprezzo, corso.creazione, corso.iscritti)">Salva</button>
+                                <button class="button__red button" (click)="this.popupelimination=1">Elimina</button>
+                                <div class="popup" id="cssi" *ngIf="this.popupelimination == 1 ">
+                                    <div class="popup__inside container">
+                                        <h2>Sei sicuro </h2>
+                                        <div style="display: flex;">
+                                            <button class="button__blue button" (click)="blockBodyScroll(); this.eliminationFunction(1, corso.id)">Si</button>
+                                            <button class="button__red button" (click)="blockBodyScroll(); this.popupelimination = 0 ">No</button>
+                                        </div>
+                                    </div>
+                                    <div (click)="blockBodyScroll(); this.popupelimination = 0" class="popup__esci">
+                                
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -178,17 +213,5 @@
     <div class="message__container" *ngIf="this.message != '' || this.messagErrore != ''">
         <a class="approved">{{this.message}}</a>
         <a class="error">{{this.messagErrore}}</a>
-    </div>
-</div>
-<div class="popup" id="cssi" *ngIf="this.popupelimination[0] == 1 || this.popupelimination[0] == 2 || this.popupelimination[0] == 3">
-    <div class="popup__inside container">
-        <h2>Sei sicuro </h2>
-        <div style="display: flex;">
-            <button class="button__blue button" (click)="eliminationFunction(this.popupelimination[0], this.popupelimination[1]); blockBodyScroll()">Si</button>
-            <button class="button__red button" (click)="blockBodyScroll(); this.popupelimination[0] = 0">No</button>
-        </div>
-    </div>
-    <div (click)="blockBodyScroll(); this.popupelimination[0] = 0" class="popup__esci">
-
     </div>
 </div>

@@ -184,7 +184,7 @@
     <div>
         <div class="container">
             <app-stagioni *ngIf="this.centrovar == 0" [squadraScelta]="squadraScelta"></app-stagioni>
-            <app-utenti *ngIf="this.centrovar == 1"></app-utenti>
+            <app-utenti [squadData]="this.squadraScelta" [userData]="this.userData"  *ngIf="this.centrovar == 1"></app-utenti>
             <app-allenamenti *ngIf="this.centrovar == 2"></app-allenamenti>
         </div>
     </div>

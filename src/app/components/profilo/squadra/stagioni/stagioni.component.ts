@@ -15,7 +15,7 @@ export class StagioniComponent implements OnInit {
   @Input() squadraScelta: any = "";
 
   constructor(public sc: SquadraContainerComponent) { }
-
+  db = getDatabase();
   stagioni: any[] = [];
   stagioniSection: number = 0;
   message = "";
@@ -32,7 +32,7 @@ export class StagioniComponent implements OnInit {
   opencartella: number = -1;
   stagionesezione: number = 2;
   eliminapopup: number = 0;
-  popupelimination: any[] = [-1, -1];
+  popupelimination: any = 0;
 
   closeOpen(){
     this.popup = -1;
@@ -46,15 +46,33 @@ export class StagioniComponent implements OnInit {
     this.stagione()
   }
 
-  eliminationFunction(valore: any, valorechild: any) {
-/*     if (valore == 1) {
-      this.eliminaCorso(valorechild)
+  eliminationFunction(valore: any, id: any) {
+    this.popupelimination=0
+    if (valore == 1) {
+      const starCountprimary = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/corsi/"+id);
+      remove(starCountprimary);
     } else if (valore == 2) {
-      this.elimina__documento(valorechild)
+      const starCountprimary = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/"+id);
+      remove(starCountprimary);
     } else if (valore == 3) {
-      this.elimina__galleria(valorechild)
+      const starCountprimary = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/galleria/"+id);
+      remove(starCountprimary);
     }
-    this.popupelimination = [-1, -1]; */
+
+    this.stagione()
+    this.stagioneTakeData(this.stagioneData)
+
+    const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+this.stagioneData.id);
+    onValue(starCountRef, (snapshot) => {
+        this.stagioneData = snapshot.val();
+      
+    })
+
+    this.message = "eliminato con successo"
+    setTimeout(() => {
+      this.message = "";
+      this.messagErrore = "";
+    }, 1000);
   }
 
   blockBodyScroll() {
@@ -77,8 +95,7 @@ export class StagioniComponent implements OnInit {
 
   stagione() {
     this.stagioni.length = 0;
-    const db = getDatabase();
-    const starCountRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni");
+    const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni");
     onValue(starCountRef, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         this.stagioni.push(childSnapshot.val())
@@ -88,7 +105,6 @@ export class StagioniComponent implements OnInit {
   }
 
   stagioneTakeData(stagione:any){
-    const db = getDatabase();
     this.stagioneData_corsi = [""]
     this.stagioneData_documenti = [""]
     this.stagioneData_galleria = [""]
@@ -97,7 +113,7 @@ export class StagioniComponent implements OnInit {
     let sezioni__array = [this.stagioneData_corsi,this.stagioneData_documenti,this.stagioneData_galleria]
     
     for (let i=0;i <= sezioni.length; i++){
-      const starCountRef_corsi = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + stagione.id+"/"+sezioni[i]);
+      const starCountRef_corsi = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + stagione.id+"/"+sezioni[i]);
       onValue(starCountRef_corsi, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
           sezioni__array[i].push(childSnapshot.val())
@@ -105,13 +121,14 @@ export class StagioniComponent implements OnInit {
       })
     }
     this.stagioneData = stagione;
+    
   }
 
   aggiungi__stagione() {
     const db = getDatabase();
 
     const creazione = new Date();
-    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/");
+    const postListRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/");
     const newPostRef = push(postListRef);
     set(newPostRef, {
       id: newPostRef.key,
@@ -129,6 +146,11 @@ export class StagioniComponent implements OnInit {
     });
 
     this.stagione()
+
+    const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+this.stagioneData.id);
+    onValue(starCountRef, (snapshot) => {
+        this.stagioneData = snapshot.val();
+    })
   }
 
   public imagePath: any = "";
@@ -148,8 +170,7 @@ export class StagioniComponent implements OnInit {
   }
 
   eliminaStagione() {
-    const db = getDatabase();
-    const starCountprimary = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id);
+    const starCountprimary = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id);
     remove(starCountprimary);
     this.sc.stagione();
     this.stagione();
@@ -169,8 +190,10 @@ export class StagioniComponent implements OnInit {
   }
 
   update_stagione_principale() {
+    this.stagione()
+    this.stagioneTakeData(this.stagioneData);
+
     if(this.stagioneData.nomestagione != ""){
-      const db = getDatabase();
       let stagione: stagione_obj
       stagione = {
         id: this.stagioneData.id,
@@ -190,7 +213,7 @@ export class StagioniComponent implements OnInit {
   
       updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id] = stagione;
   
-      update(ref(db), updates);
+      update(ref(this.db), updates);
       
     }else{
       this.messagErrore = "Assegna un nome alla stagione"
@@ -203,11 +226,9 @@ export class StagioniComponent implements OnInit {
 
   aggiungiCorso() {
     this.messagesector = 1
-    
-    const db = getDatabase();
 
     const creazione = new Date();
-    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/corsi/");
+    const postListRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/corsi/");
     const newPostRef = push(postListRef);
     set(newPostRef, {
       id: newPostRef.key,
@@ -216,15 +237,22 @@ export class StagioniComponent implements OnInit {
       prezzo:"",
       creazione: creazione.toLocaleDateString()
     })
-    this.stagione()
-    this.stagioneTakeData(this.stagioneData)
+
+      this.stagione()
+      this.stagioneTakeData(this.stagioneData)
+
+      const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+this.stagioneData.id);
+      onValue(starCountRef, (snapshot) => {
+          this.stagioneData = snapshot.val();
+        
+      })
+
   }
   
   aggiungiDocumento() {
     this.messagesector = 1;
     const creazione = new Date();
-    const db = getDatabase();
-    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/");
+    const postListRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/");
     const newPostRef = push(postListRef);
     set(newPostRef, {
       id: newPostRef.key,
@@ -237,13 +265,17 @@ export class StagioniComponent implements OnInit {
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
 
+    const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+this.stagioneData.id);
+    onValue(starCountRef, (snapshot) => {
+        this.stagioneData = snapshot.val();
+      
+    })
   }
 
   aggiungiCartella() {
     this.messagesector = 1
     const creazione = new Date();
-    const db = getDatabase();
-    const postListRef = ref(db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/galleria/");
+    const postListRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/galleria/");
     const newPostRef = push(postListRef);
     set(newPostRef, {
       id: newPostRef.key,
@@ -255,11 +287,16 @@ export class StagioniComponent implements OnInit {
     })
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
+    
+    const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+this.stagioneData.id);
+    onValue(starCountRef, (snapshot) => {
+        this.stagioneData = snapshot.val();
+    })
   }
 
-  modificaCorso(id:any, titolo:any, descrizione:any, prezzo:any, creazione:any){
-     if(titolo != ""){
-      const db = getDatabase();
+  modificaCorso(id:any, titolo:any, descrizione:any, prezzo:any, creazione:any, iscritti:any){
+    console.log(iscritti) 
+    if(titolo != ""){
       let corso: corso
       corso = {
         id: id,
@@ -272,7 +309,7 @@ export class StagioniComponent implements OnInit {
   
       updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/corsi/"+id] = corso;
   
-      update(ref(db), updates);
+      update(ref(this.db), updates);
 
       this.message = "Corso modificato"
       setTimeout(() => {
@@ -289,13 +326,16 @@ export class StagioniComponent implements OnInit {
     }
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
+    
+    const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+this.stagioneData.id);
+    onValue(starCountRef, (snapshot) => {
+        this.stagioneData = snapshot.val();
+      
+    })
   }
 
-  modificaDocumento(id:any, titolo:any, descrizione:any, approvazioni:any, filter:any, creazione:any){
-    
-    console.log(creazione)
+  modificaDocumento(id:any, titolo:any, descrizione:any, approvazioni:any, filter:any, creazione:any, iscritti:any){
     if(titolo != ""){
-      const db = getDatabase();
       let documento: documento
       documento = {
         id: id,
@@ -309,7 +349,7 @@ export class StagioniComponent implements OnInit {
   
       updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/documenti/"+id] = documento;
   
-      update(ref(db), updates);
+      update(ref(this.db), updates);
       
       this.message = "Documento modificato"
       setTimeout(() => {
@@ -325,11 +365,17 @@ export class StagioniComponent implements OnInit {
     }
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
+
+    
+    const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+this.stagioneData.id);
+    onValue(starCountRef, (snapshot) => {
+        this.stagioneData = snapshot.val();
+      
+    })
   }
 
   modificaCartella(id:any, titolo:any, descrizione:any, cartella__reach:any){
     if(titolo != ""){
-      const db = getDatabase();
       let cartella: galleria_folder
       cartella = {
         id: id,
@@ -342,7 +388,7 @@ export class StagioniComponent implements OnInit {
   
       updates['squadre/' + this.squadraScelta.idsquadra + "/stagioni/" + this.stagioneData.id+"/galleria/"+id] = cartella;
   
-      update(ref(db), updates);
+      update(ref(this.db), updates);
       
       this.message = "Cartella modificato"
       setTimeout(() => {
@@ -358,33 +404,13 @@ export class StagioniComponent implements OnInit {
     }
     this.stagione()
     this.stagioneTakeData(this.stagioneData)
-  }
-
-
-  eliminaCorso(corso: any) {
-    this.messagesector = 1
-    this.stagioneData.corsi.splice(corso, 1)
-    this.update_stagione_principale()
-    this.message = "stagione eliminata"
-    setTimeout(() => {
-      this.message = "";
-      this.messagErrore = "";
-    }, 1000);
-  }
-
-
-}
-
-/* 
-
-      this.eliminaCorso(valorechild)
-    } else if (valore == 2) {
-      this.elimina__documento(valorechild)
-    } else if (valore == 3) {
-      this.elimina__galleria(valorechild)
-
-
-
+    
+    const starCountRef = ref(this.db, 'squadre/' + this.squadraScelta.idsquadra + "/stagioni/"+this.stagioneData.id);
+    onValue(starCountRef, (snapshot) => {
+        this.stagioneData = snapshot.val();
       
+    })
 
-*/
+
+  }
+}
