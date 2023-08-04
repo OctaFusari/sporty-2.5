@@ -72,15 +72,6 @@ export class IscrizioneComponent implements OnInit {
   selectedFile: File | null = null;
   imageUrl: string | null = null;
 
-  oiFun(id:any){
-    this.open_img = id;
-    if(this.open_img != id){
-      this.selectedFile  = null;
-      this.imageUrl  = null;
-      this.uis.imageUrl = null
-    }
-  }
-
   onFileSelected(event: Event): void {
     const inputElement: any = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
@@ -108,28 +99,7 @@ export class IscrizioneComponent implements OnInit {
     }
   }
 
-  part: boolean = false;
-  open__doc(id: any) {
-    /* open__doc__{{documento.id}} */
-    this.part = !this.part;
-    let styleText = '';
-    if (this.part == true) {
-      styleText = `
-      #open__doc__${id}{
-        display: block !important; 
-      }
-      `;
-    } else {
-      styleText = `
-      #open__doc__${id}{
-        display: none !important; 
-      }
-      `;
-    }
-    const style = this.renderer.createElement('style');
-    style.innerHTML = styleText;
-    this.renderer.appendChild(document.head, style);
-  }
+  part: any;
 
   approve__doc:any = 2;
 
@@ -241,8 +211,6 @@ export class IscrizioneComponent implements OnInit {
       });
     });
 
-    console.log(this.galleria__scelti)
-
     const starCountRef4 = ref(
       this.db,
       'squadre/' + this.squadData.idsquadra + '/stagioni/' + ids + '/iscrittistagione/'
@@ -254,9 +222,20 @@ export class IscrizioneComponent implements OnInit {
       });
     });
 
+    for(let i = 0; i<this.documenti__scelti.length; i++){
+      if(this.documenti__scelti[i].approvazioni){
+        if(this.userData.atletaid in this.documenti__scelti[i].approvazioni){
+          this.addCl(this.documenti__scelti[i].id)
+        }
+      }
+    }
+
+    console.log(this.documenti__approvati);
+
   }
 
   take__galleria__data(idi: any) {
+
     const starCountRef1 = ref(
       this.db,
       'squadre/' +
@@ -265,15 +244,26 @@ export class IscrizioneComponent implements OnInit {
       this.stagione__scelta +
       '/galleria/' +
       idi +
-      '/immagini/'
+      '/immagini/' + this.userData.atletaid
     );
     onValue(starCountRef1, (snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        this.galleria__scelta__data.push(childSnapshot.val());
+        this.galleria__scelta__data = snapshot.val();
       });
-    });
+      if(this.galleria__scelta__data ){
+        if(this.galleria__scelta__data.url ){
+          this.imageUrl = this.galleria__scelta__data.url;
+        }
+      }else{
+        this.imageUrl = "";
+      }
+    
+      this.open_img = idi;
+      if(this.open_img != idi){
+        this.selectedFile  = null;
+        this.imageUrl  = null;
+        this.uis.imageUrl = null
+      }
 
-    console.log(this.galleria__scelta__data)
   }
 
   saveIscrizione() {
@@ -306,6 +296,9 @@ export class IscrizioneComponent implements OnInit {
         id: this.userData.atletaid,
         nome:this.userData.nome,
         cognome:this.userData.cognome,
+        email:this.userData.email,
+        telefono:this.userData.telefono,
+        codicefiscale:this.userData.codicefiscale,
         corso: this.corso__scelta
       }
     );
@@ -318,7 +311,7 @@ export class IscrizioneComponent implements OnInit {
           this.squadData.idsquadra +
           '/stagioni/' +
           this.stagione__scelta +
-          '/documenti/' + this.documenti__approvati + "/approvazioni/" + 
+          '/documenti/' + this.documenti__approvati[i] + "/approvazioni/" + 
           this.userData.atletaid
         ),
         {

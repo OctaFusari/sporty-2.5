@@ -2,17 +2,97 @@
     <h1>Lista atleti</h1>
     <div style="display: flex;">
         <h2>Stagione: </h2>
-        <div >
+        <div>
             <select>
                 <option *ngFor="let stagione of this.stagioni" (click)="takeStagioneData(stagione.id)">{{stagione.nomestagione}}</option>
             </select>
         </div>
     </div>
     <div>
-        <div *ngFor="let utenti of this.iscritti" >
-            <div class="littlecard">
+        <div *ngFor="let utenti of this.iscritti" class="grid-container">
+            <div class="card">
                 <h3>{{utenti.nome}} {{utenti.cognome}}</h3>
-                <button class="button">Vedi di più</button>
+                <button *ngIf="this.openAt != utenti.id" class="button button__blue" (click)="takeUtenteData(utenti.id)">Vedi di più</button>
+                <button *ngIf="this.openAt == utenti.id" class="button button__blue" (click)="this.openAt = ''">Chiudi</button>
+                <div *ngIf="this.openAt == utenti.id" class="grid__Atleta">
+                    <div class="littlecard">
+                        <h1>Dati iscritto</h1>
+                        <div>
+                            <h3>Nome</h3>
+                            <a>{{utenti.nome}}</a>
+                            <h3>Cognome</h3>
+                            <a>{{utenti.cognome}}</a>
+                            <h3>Email</h3>
+                            <a>{{utenti.email}}</a>
+                        </div>
+                        <div>
+                            <h3>Telefono</h3>
+                            <a>{{utenti.telefono}}</a>
+                            <h3>Codice fiscale</h3>
+                            <a>{{utenti.codicefiscale}}</a>
+                        </div>
+                    </div>
+                    <div class="littlecard">
+                        <h2>Corso scelto</h2>
+                        <div *ngFor="let corso of this.corsi">
+                            <div class="littlecard" *ngIf="this.corso_per == corso.id">
+                                <div>
+                                    <h3>Titolo</h3>
+                                    <a>{{ corso.titolo }}</a>
+                                </div>
+                                <div>
+                                    <h3>Descrizione</h3>
+                                    <a>{{ corso.descrizione }}</a>
+                                </div>
+                                <div>
+                                    <h3>Prezzo</h3>
+                                    <a>{{ corso.prezzo }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="littlecard">
+                        <h2>Documenti approvati</h2>
+                        <div *ngFor="let documento of this.documenti">
+                            <div class="littlecard">
+                                <div>
+                                    <button (click)="openpupupdoc = documento[0]" class="button">{{ documento[1] }}</button>
+                                    <div class="popup" *ngIf="openpupupdoc == documento[0]">
+                                        <div class="popupInside">
+                                            <button class="button button__blue" (click)="openpupupdoc = 0">Chiudi</button>
+                                            <div>
+                                                <h3>{{ documento[1] }}</h3>
+                                                <p>{{ documento[2] }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="littlecard">
+                        <h2>Immagini caricate</h2>
+                        <div *ngFor="let cartella of this.galleria">
+                            <div class="littlecard">
+                                <div>
+                                    <button (click)="openpopupgalleria = cartella[0]" class="button">{{ cartella[1] }}</button>
+                                    <div class="popup" *ngIf="openpopupgalleria == cartella[0]">
+                                        <div class="popupInside">
+                                            <button class="button button__blue" (click)="openpopupgalleria = 0">Chiudi</button>
+                                            <div>
+                                                <h3>{{ cartella[1] }}</h3>
+
+                                                <div class="image-container">
+                                                    <img [src]="cartella[0]">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

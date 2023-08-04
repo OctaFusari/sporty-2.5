@@ -135,6 +135,7 @@ export class SquadraContainerComponent implements OnInit {
   creazioneSquadra(nomesquadra: string, codicesquadra: string, emailsquadra: string, sedesquadra: string, passwordteam: string) {
     this.arraySquadre = [];
   
+    console.log(this.userData.atletaid);
 
     if ((nomesquadra != "") && (passwordteam != "")) {
       const postListRef = ref(this.db, 'squadre');
@@ -142,7 +143,7 @@ export class SquadraContainerComponent implements OnInit {
       set(newPostRef, {
         idsquadra: newPostRef.key,
         codicesquadra: codicesquadra,
-        creator: this.userData.atletaid,
+        creator: this.userData.atletaid, 
         federazione: "",
         gestori: "",
         emailsquadra: emailsquadra,
