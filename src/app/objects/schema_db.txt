@@ -1,0 +1,108 @@
+{
+  "squadre": {
+    "-NIK1K_WXY91hdFr5T4t": {
+      "codicesquadra": "TN72",
+      "copertina": "",
+      "creator": "YDHg3Kx6iQbESwGgjj3gLLl4ah13",
+      "emailsquadra": "gsbpass",
+      "federazione": "",
+      "gestori": "",
+      "idsquadra": "-NIK1K_WXY91hdFr5T4t",
+      "nomesquadra": "Gruppo Sciatori Brentonico",
+      "passwordteam": "gsbpass",
+      "sedesquadra": "Brentonico",
+      "stagioni": {
+        "-NattyMm_sjqjz-5gQRu": {
+          "attiva": true,
+          "codestagione": "",
+          "corsi": {
+            "-Natu0yHYmPs-1wevSeW": {
+              "creazione": "3/8/2023",
+              "descrizione": "",
+              "id": "-Natu0yHYmPs-1wevSeW",
+              "prezzo": "",
+              "titolo": "Nuovo corso"
+            }
+          },
+          "creator": "",
+          "creazione": "3/8/2023",
+          "datafine": "",
+          "datainizio": "",
+          "documenti": {
+            "-Natu1zryy_wJXUKMWDl": {
+              "creazione": "3/8/2023",
+              "descrizione": "",
+              "filter": "",
+              "id": "-Natu1zryy_wJXUKMWDl",
+              "titolo": "Nuovo documento"
+            }
+          },
+          "galleria": {
+            "-Natu2jQX1l19e9O-id_": {
+              "creazione": "3/8/2023",
+              "descrizione": "",
+              "filter": "",
+              "id": "-Natu2jQX1l19e9O-id_",
+              "immagini": {
+                "YDHg3Kx6iQbESwGgjj3gLLl4ah13": {
+                  "url": "https://firebasestorage.googleapis.com/v0/b/sporty-construction.appspot.com/o/-NIK1K_WXY91hdFr5T4t%2F-NattyMm_sjqjz-5gQRu%2F-Natu2jQX1l19e9O-id_%2FYDHg3Kx6iQbESwGgjj3gLLl4ah13?alt=media&token=0360a279-ec79-4e7c-a5ad-a03460f7bdc8"
+                }
+              },
+              "titolo": "Nuovo documento"
+            }
+          },
+          "id": "-NattyMm_sjqjz-5gQRu",
+          "iscrittistagione": {
+            "YDHg3Kx6iQbESwGgjj3gLLl4ah13": {
+              "codicefiscale": "",
+              "cognome": "Fusari",
+              "corso": "-Natu0yHYmPs-1wevSeW",
+              "email": "fusarioctavian@gmail.com",
+              "id": "YDHg3Kx6iQbESwGgjj3gLLl4ah13",
+              "nome": "Octavian",
+              "telefono": "3273133722"
+            }
+          },
+          "nomestagione": "Nuovastagione 2023"
+        }
+      }
+    }
+  },
+  "utenti": {
+    "YDHg3Kx6iQbESwGgjj3gLLl4ah13": {
+      "atleti": {
+        "YDHg3Kx6iQbESwGgjj3gLLl4ah13": {
+          "allenamenti": "",
+          "atletaid": "YDHg3Kx6iQbESwGgjj3gLLl4ah13",
+          "codicefiscale": "",
+          "cognome": "Fusari",
+          "conferma": "",
+          "corso": "",
+          "datadinascita": "2002-05-08",
+          "datascadenza": "",
+          "documenti": "",
+          "email": "fusarioctavian@gmail.com",
+          "gestore": "-NIK1K_WXY91hdFr5T4t",
+          "immagini": "",
+          "luogodinascita": "",
+          "messaggi": "",
+          "nome": "Octavian",
+          "residenza": "",
+          "squadra": "-NIK1K_WXY91hdFr5T4t",
+          "stagione": "-NJizf-EdKTQnx9k7Fun",
+          "telefono": "3273133722",
+          "tema": ""
+        }
+      },
+      "codicefiscale": "",
+      "cognome": "Fusari",
+      "datadinascita": "",
+      "email": "fusarioctavian@gmail.com",
+      "idutente": "YDHg3Kx6iQbESwGgjj3gLLl4ah13",
+      "luogodinascita": "",
+      "nome": "Octavian",
+      "residenza": "",
+      "telefono": ""
+    }
+  }
+}

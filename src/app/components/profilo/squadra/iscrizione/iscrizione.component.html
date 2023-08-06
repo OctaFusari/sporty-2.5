@@ -179,7 +179,12 @@
                                             </p>
                                         </div>
                                         <div class="doc__approvazione" style="display: flex;">
-                                            <a>Approvo</a><button id="{{documento.id}}" class="button" style="height: 0.5cm; width: 0.5cm; border-radius: 1rem; border: 1px solid var(--text) !important;" (click)="addCl(documento.id)"></button>
+                                            <a (click)="addCl(documento.id)">Approvo</a>
+                                            <div>
+                                                <svg id="{{documento.id}}" (click)="addCl(documento.id)" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                                                    <path d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h14q.825 0 1.413.587Q21 4.175 21 5v14q0 .825-.587 1.413Q19.825 21 19 21Zm0-2h14V5H5v14Z" />
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

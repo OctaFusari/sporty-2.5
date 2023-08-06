@@ -6,9 +6,16 @@
           "sporty-687fa"
         ]
       }
+    },
+    "sporty-construction": {
+      "hosting": {
+        "sporty": [
+          "sporty-construction"
+        ]
+      }
     }
   },
   "projects": {
-    "default": "sporty-687fa"
+    "default": "sporty-construction"
   }
 }

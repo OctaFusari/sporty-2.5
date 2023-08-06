@@ -1,0 +1,104 @@
+teams Collection:
+
+{
+  "_id": ObjectId,
+  "name": "Team A",
+  "gestori": "Coach John",
+"codice": "TN72",
+"copertina": "",
+"creator": "YDHg3Kx6iQbESwGgjj3gLLl4ah13",
+"email": "gsbpass",
+"federazione": "",
+"gestori": "",
+"password": "gsbpass",
+"sedesquadra": "Brentonico",
+}
+
+players Collection:
+
+{
+  "_id": ObjectId,
+  "first_name": "John",
+  "last_name": "Doe",
+  "date_of_birth": "1990-01-01",
+  "nationality": "Countryland",
+  "position": "Forward",
+  "team_id": ObjectId // Reference to the teams Collection
+}
+
+contracts Collection:
+
+{
+  "_id": ObjectId,
+  "player_id": ObjectId, // Reference to the players Collection
+  "start_date": "2023-01-01",
+  "end_date": "2023-12-31",
+  "salary": 50000,
+  "status": "active" // Status can be "active", "expired", "terminated"
+}
+
+matches Collection:
+
+{
+  "_id": ObjectId,
+  "date": "2023-08-10",
+  "time": "15:00",
+  "location": "Stadium A",
+  "home_team_id": ObjectId, // Reference to the teams Collection
+  "away_team_id": ObjectId // Reference to the teams Collection
+}
+
+player_match_stats Collection:
+
+{
+  "_id": ObjectId,
+  "match_id": ObjectId, // Reference to the matches Collection
+  "player_id": ObjectId, // Reference to the players Collection
+  "goals_scored": 2,
+  "assists": 1,
+  "yellow_cards": 0,
+  "red_cards": 0,
+  "substitutions": 0,
+  "minutes_played": 90
+}
+
+leagues Collection:
+{
+  "_id": ObjectId,
+  "league_name": "Premier League",
+  "country": "Countryland",
+  "start_date": "2023-01-01",
+  "end_date": "2023-12-31"
+}
+
+league_standings Collection:
+{
+  "_id": ObjectId,
+  "league_id": ObjectId, // Reference to the leagues Collection
+  "team_id": ObjectId, // Reference to the teams Collection
+  "matches_played": 10,
+  "matches_won": 5,
+  "matches_drawn": 3,
+  "matches_lost": 2,
+  "goals_for": 15,
+  "goals_against": 10,
+  "points": 18
+}
+
+users Collection:
+{
+  "_id": ObjectId,
+  "username": "user123",
+  "email": "user@example.com",
+  "password_hash": "hashed_password",
+  "role": "player" // Can be "admin", "coach", "player", etc.
+}
+
+contract_renewals Collection:
+{
+  "_id": ObjectId,
+  "contract_id": ObjectId, // Reference to the contracts Collection
+  "renewal_date": "2023-11-01",
+  "renewed": true,
+  "remarks": "Contract renewed for another year"
+}

@@ -104,56 +104,22 @@ export class IscrizioneComponent implements OnInit {
   approve__doc:any = 2;
 
   addCl(id: any) {
-
-    let styleText = `
-        #${id}{
-          border: 1px solid var(--text) !important;
-          background-color: var(--sporty-blue) !important;
-          color: var(--text-white) !important;
-        }
-        `;
-      
+    console.log(id)
+    let htmlText = '';
+    const htmlContainer = document.getElementById(id);
     const index = this.documenti__approvati.indexOf(id);
     if (index !== -1) {
       this.documenti__approvati.splice(index, 1);
-      styleText = `
-        #${id}{
-          border: 1px solid var(--text) !important;
-          background-color: var(--card) !important;
-          color: var(--text) !important;
-        }
-        `;
+      htmlText = '<path d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h14q.825 0 1.413.587Q21 4.175 21 5v14q0 .825-.587 1.413Q19.825 21 19 21Zm0-2h14V5H5v14Z" />'
     } else {
       this.documenti__approvati.push(id);
-      styleText = `
-        #${id}{
-          border: 1px solid var(--text) !important;
-          background-color: var(--sporty-blue) !important;
-          color: var(--text-white) !important;
-        }
-        `;
+      htmlText = '<path d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z" />'
     }
 
-    const style = this.renderer.createElement('style');
-    style.innerHTML = styleText;
-    this.renderer.appendChild(document.head, style);
 
-    /* 
-          #${id}:checked+.check svg {
-        stroke: var(--sporty-blue);
-      }
-    
-      #${id}:checked+.check svg path {
-          stroke-dashoffset: 60;
-          transition: all 0.3s linear;
-      }
-    
-      #${id}:checked+.check svg polyline {
-          stroke-dashoffset: 42;
-          transition: all 0.2s linear;
-          transition-delay: 0.15s;
-      }
-    */
+    if (htmlContainer) {
+      htmlContainer.innerHTML = htmlText;
+    }
   }
   takeStagione(ids: any) {
     const starCountRef1 = ref(
