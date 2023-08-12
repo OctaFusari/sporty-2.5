@@ -8,7 +8,8 @@
         </svg>
 
     </div>
-    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni; let i=index" (click)="this.stagioniSection = 1; stagioneTakeData(stagione)">
+    <div class="card" style="cursor: pointer;" *ngFor="let stagione of this.stagioni; let i=index"
+        (click)="this.stagioniSection = 1; stagioneTakeData(stagione)">
         <h2>{{stagione.nomestagione}}</h2>
         <div>
             <div>
@@ -24,26 +25,35 @@
 </div>
 <div *ngIf="this.stagioniSection == 1">
     <div>
-        <svg (click)="this.stagioniSection = 0; this.stagione(); closeOpen()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"/></svg>
+        <svg (click)="this.stagioniSection = 0; this.stagione(); closeOpen()" xmlns="http://www.w3.org/2000/svg"
+            height="24" width="24">
+            <path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z" />
+        </svg>
     </div>
     <div class="container__stagione">
         <div class="container__stagione__section__menu">
-            <button class="button" [ngClass]="{'button__blue': stagionesezione === 2}" (click)="stagionesezione = 2; closeOpen()">Corsi</button>
-            <button class="button" [ngClass]="{'button__blue': stagionesezione === 3}" (click)="stagionesezione = 3; closeOpen()">Documenti</button>
-            <button class="button" [ngClass]="{'button__blue': stagionesezione === 1}" (click)="stagionesezione = 1; closeOpen()">Immagini</button>
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 2}"
+                (click)="stagionesezione = 2; closeOpen()">Corsi</button>
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 3}"
+                (click)="stagionesezione = 3; closeOpen()">Documenti</button>
+            <button class="button" [ngClass]="{'button__blue': stagionesezione === 1}"
+                (click)="stagionesezione = 1; closeOpen()">Immagini</button>
         </div>
         <div class="container__stagione__section__zero card">
             <div>
                 <h2>Nome stagione</h2>
-                <input class="input__style" type="text" #nomemod placeholder="{{this.stagioneData.nomestagione}}" value="{{this.stagioneData.nomestagione}}">
+                <input class="input__style" type="text" #nomemod placeholder="{{this.stagioneData.nomestagione}}"
+                    value="{{this.stagioneData.nomestagione}}">
             </div>
             <div>
                 <h2 style="margin-bottom: 0;">Inizio</h2>
-                <input class="input__style" type="date" #iniziomod placeholder="{{this.stagioneData.datainizio}}" value="{{this.stagioneData.datainizio}}">
+                <input class="input__style" type="date" #iniziomod placeholder="{{this.stagioneData.datainizio}}"
+                    value="{{this.stagioneData.datainizio}}">
             </div>
             <div>
                 <h2 style="margin-bottom: 0;">Fine</h2>
-                <input class="input__style" type="date" #finemod placeholder="{{this.stagioneData.datafine}}" value="{{this.stagioneData.datafine}}">
+                <input class="input__style" type="date" #finemod placeholder="{{this.stagioneData.datafine}}"
+                    value="{{this.stagioneData.datafine}}">
             </div>
         </div>
         <div class="container__stagione__section__one card" *ngIf="stagionesezione == 3">
@@ -63,25 +73,24 @@
                         <div style="cursor: pointer;" *ngIf="this.opendoc != i" (click)="this.opendoc = i">
                             <span>{{documento.titolo}}</span>
                         </div>
-                        <div class="stagione__littlecard__inside" *ngIf="this.opendoc == i">
+                        <div *ngIf="this.opendoc == i">
                             <div>
                                 <h2>Titolo</h2>
                                 <input class="input__style" #titolodocumento value="{{documento.titolo}}">
                                 <h2>Descrizione</h2>
-                                <textarea class="input__style textareapopup" #descrizionedocumento placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
-                            </div>
-                            <div class="card">
-                                <H3>Approvazioni</H3>
-                                <h2></h2>
+                                <textarea class="input__style textareapopup" #descrizionedocumento
+                                    placeholder="Aggiungi del contenuto">{{documento.descrizione}}</textarea>
                             </div>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificaDocumento(documento.id, titolodocumento, descrizionedocumento,'','', documento.creazione, documento.iscritti)">Salva</button>
+                                <button class="button__blue button"
+                                    (click)="modificaDocumento(documento.id, titolodocumento, descrizionedocumento,'','', documento.creazione, documento.iscritti)">Salva</button>
                                 <button class="button__red button" (click)="this.popupelimination = 1">Elimina</button>
                                 <div class="popup" id="cssi" *ngIf="this.popupelimination == 1 ">
                                     <div class="popup__inside container">
                                         <h2>Sei sicuro ?</h2>
                                         <div style="display: flex;">
-                                            <button class="button__blue button" (click)="this.eliminationFunction(2, documento.id); blockBodyScroll()">Si</button>
+                                            <button class="button__blue button"
+                                                (click)="this.eliminationFunction(2, documento.id); blockBodyScroll()">Si</button>
                                             <button class="button__red button" (click)="blockBodyScroll()">No</button>
                                         </div>
                                     </div>
@@ -115,27 +124,27 @@
                         <div style="cursor: pointer;" *ngIf="this.opencartella !=i" (click)="this.opencartella = i">
                             <span>{{cartella.titolo}}</span>
                         </div>
-                        <div class="stagione__littlecard__inside" *ngIf="this.opencartella == i">
+                        <div *ngIf="this.opencartella == i">
                             <div>
                                 <h2>Titolo</h2>
                                 <input class="input__style" #titolocartella value="{{cartella.titolo}}">
                                 <h2>Descrizione</h2>
-                                <textarea class="input__style textareapopup" #descrizionecartella placeholder="Aggiungi del contenuto">{{cartella.descrizione}}</textarea>
+                                <textarea class="input__style textareapopup" #descrizionecartella
+                                    placeholder="Aggiungi del contenuto">{{cartella.descrizione}}</textarea>
 
                             </div>
-                            <div class="card">
-                                <H3>Immagini caricate</H3>
-                                <h2></h2>
-                            </div>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificaCartella(cartella.id,titolocartella,descrizionecartella,cartella)">Salva</button>
+                                <button class="button__blue button"
+                                    (click)="modificaCartella(cartella.id,titolocartella,descrizionecartella,cartella)">Salva</button>
                                 <button class="button__red button" (click)="this.popupelimination=1">Elimina</button>
                                 <div class="popup" id="cssi" *ngIf="this.popupelimination == 1 ">
                                     <div class="popup__inside container">
                                         <h2>Sei sicuro?</h2>
                                         <div style="display: flex;">
-                                            <button class="button__blue button" (click)="this.eliminationFunction(3, cartella.id); blockBodyScroll()">Si</button>
-                                            <button class="button__red button" (click)="blockBodyScroll();this.popupelimination = 0">No</button>
+                                            <button class="button__blue button"
+                                                (click)="this.eliminationFunction(3, cartella.id); blockBodyScroll()">Si</button>
+                                            <button class="button__red button"
+                                                (click)="blockBodyScroll();this.popupelimination = 0">No</button>
                                         </div>
                                     </div>
                                     <div (click)="blockBodyScroll(); this.popupelimination = 0" class="popup__esci">
@@ -169,27 +178,41 @@
                         <div style="cursor: pointer;" *ngIf="this.opencorso !=i" (click)="this.opencorso = i">
                             <span>{{corso.titolo}}</span>
                         </div>
-                        <div class="stagione__littlecard__inside" *ngIf="this.opencorso == i">
+                        <div *ngIf="this.opencorso == i">
                             <div>
-                                <input placeholder="{{corso.titolo}}" value="{{corso.titolo}}" #corsotitolo class="input__style">
-
-                                <textarea value="{{corso.descrizione}}" #corsodescrizione class="input__style">{{corso.descrizione}}</textarea>
-
-                                <input placeholder="{{corso.prezzo}}" value="{{corso.prezzo}}" #corsoprezzo class="input__style">
-
-                            </div>
-                            <div class="card">
-                                <H3>Iscrizioni</H3>
+                                <div>
+                                    <h3>Titolo</h3>
+                                    <input placeholder="{{corso.titolo}}" value="{{corso.titolo}}" #corsotitolo
+                                        class="input__style">
+                                </div>
+                                <div>
+                                    <h3>Descrizione</h3>
+                                    <textarea value="{{corso.descrizione}}" #corsodescrizione
+                                        class="input__style">{{corso.descrizione}}</textarea>
+                                </div>
+                                <div>
+                                    <h3>Età</h3>
+                                    <input placeholder="{{corso.eta}}" value="{{corso.eta}}" #corsoeta
+                                        class="input__style">
+                                </div>
+                                <div>
+                                    <h3>Prezzo</h3>
+                                    <input placeholder="{{corso.prezzo}}" value="{{corso.prezzo}}" #corsoprezzo
+                                        class="input__style">
+                                </div>
                             </div>
                             <div style="display: flex;">
-                                <button class="button__blue button" (click)="modificaCorso(corso.id, corsotitolo, corsodescrizione, corsoprezzo, corso.creazione, corso.iscritti)">Salva</button>
+                                <button class="button__blue button"
+                                    (click)="modificaCorso(corso.id, corsotitolo, corsodescrizione, corsoprezzo, corso.creazione, corso.iscritti, corsoeta)">Salva</button>
                                 <button class="button__red button" (click)="this.popupelimination=1">Elimina</button>
                                 <div class="popup" id="cssi" *ngIf="this.popupelimination == 1 ">
                                     <div class="popup__inside container">
                                         <h2>Sei sicuro </h2>
                                         <div style="display: flex;">
-                                            <button class="button__blue button" (click)="blockBodyScroll(); this.eliminationFunction(1, corso.id)">Si</button>
-                                            <button class="button__red button" (click)="blockBodyScroll(); this.popupelimination = 0 ">No</button>
+                                            <button class="button__blue button"
+                                                (click)="blockBodyScroll(); this.eliminationFunction(1, corso.id)">Si</button>
+                                            <button class="button__red button"
+                                                (click)="blockBodyScroll(); this.popupelimination = 0 ">No</button>
                                         </div>
                                     </div>
                                     <div (click)="blockBodyScroll(); this.popupelimination = 0" class="popup__esci">
@@ -207,7 +230,8 @@
         </div>
     </div>
     <div>
-        <button class="button button__blue" (click)="updateData(nomemod.value, iniziomod.value, finemod.value)" style="width: 200px;">Salva modifiche</button>
+        <button class="button button__blue" (click)="updateData(nomemod.value, iniziomod.value, finemod.value)"
+            style="width: 200px;">Salva modifiche</button>
         <button class="button button__red" (click)="eliminaStagione()" style="width: 200px;">Elimina stagione</button>
     </div>
     <div class="message__container" *ngIf="this.message != '' || this.messagErrore != ''">

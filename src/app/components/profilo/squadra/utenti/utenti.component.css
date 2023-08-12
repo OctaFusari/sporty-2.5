@@ -68,6 +68,10 @@
     overflow-y: scroll;
 }
 
+.card:hover{
+    border: 2px solid var(--sporty-blue);
+}
+
 
 /* Media Query for smaller screens */
 

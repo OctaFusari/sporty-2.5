@@ -9,11 +9,10 @@
         <div class="container__squadra__iniziale__inside__2">
             <div class="input__button">
                 <input class="input__style" placeholder="Nome squadra, codice ecc..." #squadravalue (keyup.enter)="cercaSquadra(squadravalue.value)">
-                <button style="margin: 0.8vh 0 0.8vh 0;" class="button button__blue" (click)="cercaSquadra(squadravalue.value)">Cerca</button>
             </div>
         </div>
         <div class="container__squadra__iniziale__inside__3">
-            <button class="circle__button button__blue" (click)="sezioneSquadra = 1">Crea squadra</button>
+            <button class="circle__button button__blue" (click)="cercaSquadra(squadravalue.value)">Cerca</button>
         </div>
     </div>
     <div class="container__squadra__iniziale__inside__4">
@@ -88,7 +87,7 @@
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
             </div>
             <div class="input__button">
-                <input class="input__style" type="password" placeholder="password" #pass (keyup.enter)="accediSquadra(pass.value)">
+                <input class="input__style" type="password" placeholder="Inserisci password" #pass (keyup.enter)="accediSquadra(pass.value)">
                 <button class="button button__blue" (click)="accediSquadra(pass.value)">Accedi</button>
             </div>
             <div style="height: 2vw;">
@@ -166,6 +165,7 @@
                 <div style="display: flex; margin-top:2vw">
                     <button (click)="this.centrovar = 0" class="button" [ngClass]="{'open': centrovar === 0, 'notopen' :  centrovar != 0 }">Stagioni</button>
                     <button (click)="this.centrovar = 1" class="button" [ngClass]="{'open': centrovar === 1, 'notopen' :  centrovar != 1 }">Atleti</button>
+                    <button (click)="this.centrovar = 2" class="button" [ngClass]="{'open': centrovar === 2, 'notopen' :  centrovar != 2 }">Impostazioni</button>
                 </div>
             </div>
         </div>
@@ -184,7 +184,42 @@
         <div class="container">
             <app-stagioni *ngIf="this.centrovar == 0" [squadraScelta]="squadraScelta"></app-stagioni>
             <app-utenti [squadData]="this.squadraScelta" [userData]="this.userData" *ngIf="this.centrovar == 1"></app-utenti>
-            <app-allenamenti *ngIf="this.centrovar == 2"></app-allenamenti>
+            <div *ngIf="this.centrovar == 2">
+                <div>
+                    <h1>Impostazioni squadra</h1>
+                    <div>
+                        <div class="input__creasquadra">
+                            <div>
+                                <h2>Nome squadra</h2>
+                                <!-- <p>Nome del team sportivo che verrà visualizzato nella pagina del team</p> -->
+                                <input class="input__style" #nomesquadramod placeholder="nome squadra" type="text">
+                            </div>
+                            <div class="input__container">
+                                <div>
+                                    <h3>Codice</h3>
+                                    <!--  <p>Codice identificativo della squadra nella propria federazione sportiva</p> -->
+                                    <input class="input__style" #codicesquadramod placeholder="codice squadra" type="text">
+                                </div>
+                                <div>
+                                    <h3>Email</h3>
+                                    <!-- <p>Email di contatto per interagire e parlare con i gestori del team</p> -->
+                                    <input class="input__style" #emailsquadramod placeholder="email squadra" type="text">
+                                </div>
+                                <div>
+                                    <h3>Sede</h3>
+                                    <!--  <p>Il luogo dove il team è situato</p> -->
+                                    <input class="input__style" #sedesquadramod placeholder="sede squadra" type="text">
+                                </div>
+                                <div>
+                                    <h3>Password</h3>
+                                    <!-- <p>Password che permette di accedere all'area gestori del team</p> -->
+                                    <input class="input__style" #passwordteammod placeholder="password team" type="password">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -198,3 +233,25 @@
 <button (click)="this.verifica_squadra_iniziale()" class="squadra__attiva button button__blue" *ngIf="this.userData.gestore !='' && this.sezioneSquadra != 4">
     Torna alla tua squadra
 </button>
+<button style="margin-right: 8cm;" *ngIf="this.sezioneSquadra == 0" (click)="sezioneSquadra = 1" class="squadra__attiva button button__blue">
+    Crea squadra
+</button>
+
+<div>
+    <button class="button button__blue" (click)="modificaSquadra(nomesquadramod.value,codicesquadramod.value, emailsquadramod.value, sedesquadramod.value, passwordteammod.value)">Salva modifiche</button>
+    <button class="button button__red" (click)="this.popupelsquad = 1">Elimina squadra</button>
+    <div class="popup" *ngIf="this.popupelsquad = 1">
+        <div class="container popup__inside">
+            <div>
+                <h2>Sicuro che vuoi eliminare la squadra?</h2>
+            </div>
+            <div class="input__button">
+                <button class="button button__red" (click)="eliminaSquadra()">Si</button>
+                <button class="button button__blue" (click)="this.popupelsquad = 0">No</button>
+            </div>
+        </div>
+        <div class="popup__esci" (click)="this.popupelsquad = 0">
+
+        </div>
+    </div>
+</div>

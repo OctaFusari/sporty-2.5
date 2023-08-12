@@ -235,6 +235,7 @@ export class StagioniComponent implements OnInit {
       titolo: "Nuovo corso",
       descrizione:"",
       prezzo:"",
+      eta: "",
       creazione: creazione.toLocaleDateString()
     })
 
@@ -279,7 +280,7 @@ export class StagioniComponent implements OnInit {
     const newPostRef = push(postListRef);
     set(newPostRef, {
       id: newPostRef.key,
-      titolo:"Nuovo documento",
+      titolo:"Nuova cartella immagini",
       descrizione:"",
       immagini:"",
       filter:"",
@@ -294,7 +295,7 @@ export class StagioniComponent implements OnInit {
     })
   }
 
-  modificaCorso(id:any, titolo:any, descrizione:any, prezzo:any, creazione:any, iscritti:any){
+  modificaCorso(id:any, titolo:any, descrizione:any, prezzo:any, creazione:any, iscritti:any,eta:any){
     console.log(iscritti) 
     if(titolo != ""){
       let corso: corso
@@ -303,7 +304,8 @@ export class StagioniComponent implements OnInit {
         titolo: titolo.value,
         descrizione:descrizione.value,
         prezzo: prezzo.value,
-        creazione: creazione
+        creazione: creazione,
+        eta: eta
       }
       const updates: any = {};
   

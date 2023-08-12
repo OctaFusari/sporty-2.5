@@ -131,6 +131,10 @@ svg:hover {
     fill: var(--sporty-blue-trasparent);
 }
 
+select{
+    color: var(--text) !important;
+}
+
 .input__style {
     margin: 0.8vh 0 0.8vh 0;
     padding: 0.5rem;
@@ -183,6 +187,7 @@ button {
 .button__blue {
     background-color: var(--sporty-blue) !important;
     color: var(--text-white) !important;
+    border: 1px solid var(--sporty-blue);
 }
 
 .button__blue:hover {
@@ -259,6 +264,7 @@ button {
 .card {
     background: var(--card);
     border-radius: 2rem;
+    border: 2px solid var(--card);
     padding: 1vw;
     margin: 0.8vw;
 }

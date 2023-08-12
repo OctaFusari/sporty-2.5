@@ -78,7 +78,7 @@
                             <li class="nav__item is-active">
                                 <button aria-label="logout" title="logout" (click)="logout()" class="nav__button">
                                         <span class="nav__icon">
-                                            <svg class="mi0" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h7v2H5v14h7v2Zm11-4-1.375-1.45 2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5Z"/></svg>
+                                            <svg   (mouseenter)="toggle()" (mouseleave)="toggle()" class="mi0" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h7v2H5v14h7v2Zm11-4-1.375-1.45 2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5Z"/></svg>
                                         </span>
                                         <span class="nav__label">logout</span>
                                     </button>
@@ -86,7 +86,7 @@
                             <li class="nav__item">
                                 <button aria-label="Home" title="Home" (click)="changesection(0); collapse()" class="nav__button">
                                         <span class="nav__icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 21V9l8-6 8 6v12h-6v-7h-4v7Z"/></svg>
+                                            <svg (mouseenter)="toggle()" (mouseleave)="toggle()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M4 21V9l8-6 8 6v12h-6v-7h-4v7Z"/></svg>
                                         </span>	
                                         <span class="nav__label">Home</span>
                                     </button>
@@ -94,7 +94,7 @@
                             <li class="nav__item">
                                 <button aria-label="Diario" title="Diario" (click)="changesection(1); collapse()" class="nav__button">
                                         <span class="nav__icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 21v-2.125l5.3-5.3 2.125 2.125-5.3 5.3Zm-9-5v-2h7v2Zm17.125-1L18 12.875l.725-.725q.275-.275.7-.275.425 0 .7.275l.725.725q.275.275.275.7 0 .425-.275.7ZM3 12v-2h11v2Zm0-4V6h11v2Z"/></svg>
+                                            <svg (mouseenter)="toggle()" (mouseleave)="toggle()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 21v-2.125l5.3-5.3 2.125 2.125-5.3 5.3Zm-9-5v-2h7v2Zm17.125-1L18 12.875l.725-.725q.275-.275.7-.275.425 0 .7.275l.725.725q.275.275.275.7 0 .425-.275.7ZM3 12v-2h11v2Zm0-4V6h11v2Z"/></svg>
                                         </span>
                                         <span class="nav__label">Diario</span>
                                     </button>
@@ -102,7 +102,7 @@
                             <li class="nav__item" *ngIf="this.userData.accountType != 0">
                                 <button aria-label="Allenamenti" title="Allenamenti" (click)="changesection(2); collapse()" class="nav__button">
                                         <span class="nav__icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M0 18v-1.575q0-1.1 1.1-1.763Q2.2 14 4 14q.325 0 .613.025.287.025.562.075-.35.5-.513 1.075Q4.5 15.75 4.5 16.4V18Zm6 0v-1.6q0-1.625 1.663-2.638Q9.325 12.75 12 12.75q2.7 0 4.35 1.012Q18 14.775 18 16.4V18Zm13.5 0v-1.6q0-.65-.175-1.225-.175-.575-.5-1.075.275-.05.563-.075Q19.675 14 20 14q1.8 0 2.9.662 1.1.663 1.1 1.763V18ZM4 13q-.825 0-1.412-.588Q2 11.825 2 11t.588-1.413Q3.175 9 4 9t1.412.587Q6 10.175 6 11q0 .825-.588 1.412Q4.825 13 4 13Zm16 0q-.825 0-1.413-.588Q18 11.825 18 11t.587-1.413Q19.175 9 20 9q.825 0 1.413.587Q22 10.175 22 11q0 .825-.587 1.412Q20.825 13 20 13Zm-8-1q-1.25 0-2.125-.875T9 9q0-1.25.875-2.125T12 6q1.25 0 2.125.875T15 9q0 1.25-.875 2.125T12 12Z"/></svg>
+                                            <svg (mouseenter)="toggle()" (mouseleave)="toggle()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M0 18v-1.575q0-1.1 1.1-1.763Q2.2 14 4 14q.325 0 .613.025.287.025.562.075-.35.5-.513 1.075Q4.5 15.75 4.5 16.4V18Zm6 0v-1.6q0-1.625 1.663-2.638Q9.325 12.75 12 12.75q2.7 0 4.35 1.012Q18 14.775 18 16.4V18Zm13.5 0v-1.6q0-.65-.175-1.225-.175-.575-.5-1.075.275-.05.563-.075Q19.675 14 20 14q1.8 0 2.9.662 1.1.663 1.1 1.763V18ZM4 13q-.825 0-1.412-.588Q2 11.825 2 11t.588-1.413Q3.175 9 4 9t1.412.587Q6 10.175 6 11q0 .825-.588 1.412Q4.825 13 4 13Zm16 0q-.825 0-1.413-.588Q18 11.825 18 11t.587-1.413Q19.175 9 20 9q.825 0 1.413.587Q22 10.175 22 11q0 .825-.587 1.412Q20.825 13 20 13Zm-8-1q-1.25 0-2.125-.875T9 9q0-1.25.875-2.125T12 6q1.25 0 2.125.875T15 9q0 1.25-.875 2.125T12 12Z"/></svg>
                                         </span>
                                         <span class="nav__label">Allenamenti</span>
                                     </button>
@@ -110,7 +110,7 @@
                             <li class="nav__item" *ngIf="this.userData.accountType != 0">
                                 <button aria-label="Squadra" title="Squadra" (click)="changesection(3); collapse()" class="nav__button">
                                         <span class="nav__icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 9V3h8v6ZM3 13V3h8v10Zm10 8V11h8v10ZM3 21v-6h8v6Z"/></svg>
+                                            <svg (mouseenter)="toggle()" (mouseleave)="toggle()" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M13 9V3h8v6ZM3 13V3h8v10Zm10 8V11h8v10ZM3 21v-6h8v6Z"/></svg>
                                         </span>	
                                         <span class="nav__label">Squadra</span>
                                     </button>
@@ -121,7 +121,7 @@
                             <li class="nav__item mi1">
                                 <button aria-label="Impostazioni" title="Impostazioni" (click)="changesection(4)" class="nav__button">
                                         <span class="nav__icon">
-                                            <svg class="mi1" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.25 22-.4-3.2q-.325-.125-.612-.3-.288-.175-.563-.375L4.7 19.375l-2.75-4.75 2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75 2.975 1.25q.275-.2.575-.375.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3.287.175.562.375l2.975-1.25 2.75 4.75-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95-2.75 4.75-2.95-1.25q-.275.2-.575.375-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z"/></svg>
+                                            <svg (mouseenter)="toggle()" (mouseleave)="toggle()" class="mi1" xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m9.25 22-.4-3.2q-.325-.125-.612-.3-.288-.175-.563-.375L4.7 19.375l-2.75-4.75 2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75 2.975 1.25q.275-.2.575-.375.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3.287.175.562.375l2.975-1.25 2.75 4.75-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95-2.75 4.75-2.95-1.25q-.275.2-.575.375-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z"/></svg>
                                         </span>
                                         <span class="nav__label">Impostazioni</span>
                                     </button>

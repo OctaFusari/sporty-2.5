@@ -4,4 +4,5 @@ export interface corso{
     descrizione:string;
     prezzo:string;
     creazione:string;
+    eta:any;
 }

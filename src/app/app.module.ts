@@ -28,6 +28,7 @@ import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { IscrizioneComponent } from './components/profilo/squadra/iscrizione/iscrizione.component';
+import { ImpostazioniSquadraComponent } from './components/profilo/squadra/impostazioni-squadra/impostazioni-squadra.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { IscrizioneComponent } from './components/profilo/squadra/iscrizione/isc
     HomeContainerComponent,
     SquadraContainerComponent,
     AllenatoreContainerComponent,
-    IscrizioneComponent
+    IscrizioneComponent,
+    ImpostazioniSquadraComponent
   ],  
   imports: [
     BrowserModule,

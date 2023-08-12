@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ref, onValue, getDatabase, update, set, push, onChildAdded } from 'firebase/database';
 import { atleta } from 'src/app/objects/atleta';
 import { ProfiloUtenteComponent } from '../../profilo-utente/profilo-utente.component';
+import { squadra } from 'src/app/objects/squadra';
 
 @Component({
   selector: 'app-squadra-container',
@@ -50,6 +51,14 @@ export class SquadraContainerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.arraySquadre = [];
+  
+    const starCountRef2 = ref(this.db, 'squadre/');
+    onValue(starCountRef2, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        this.arraySquadre.push(childSnapshot.val());
+      })
+    })
   }
 
   verifica_squadra_iniziale() {
@@ -134,8 +143,6 @@ export class SquadraContainerComponent implements OnInit {
 
   creazioneSquadra(nomesquadra: string, codicesquadra: string, emailsquadra: string, sedesquadra: string, passwordteam: string) {
     this.arraySquadre = [];
-  
-    console.log(this.userData.atletaid);
 
     if ((nomesquadra != "") && (passwordteam != "")) {
       const postListRef = ref(this.db, 'squadre');
@@ -193,4 +200,39 @@ export class SquadraContainerComponent implements OnInit {
     }, 2000)
     this.verifica_squadra_iniziale()
   }
+
+  modificaSquadra(nome:any,codice:any, email:any, password:any){
+
+    let squadra: squadra
+    squadra = {
+      idsquadra: this.squadraScelta.idsquadra,
+      codicesquadra: codice,
+      creator: this.userData.atletaid, 
+      federazione: this.squadraScelta.federazione,
+      gestori: this.squadraScelta.gestori,
+      emailsquadra: email,
+      nomesquadra: nome,
+      passwordteam: password,
+      sedesquadra: this.squadraScelta.copertina,
+      stagioni: this.squadraScelta.stagioni,
+      copertina: this.squadraScelta.copertina
+    };
+    const updates: any = {};
+    updates['squadre/' + this.squadraScelta.idsquadra] = squadra;
+
+    update(ref(this.db), updates);
+
+    this.verifica_squadra_iniziale()
+
+  }
+
+  popupelsquad:number = 0;
+
+  eliminaSquadra(){
+
+
+    this.verifica_squadra_iniziale()
+
+  }
+
 }

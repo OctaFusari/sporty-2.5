@@ -61,6 +61,10 @@
     grid-area: container__info__squadra_superiore__inside;
 }
 
+.card:hover{
+    border: 2px solid var(--sporty-blue);
+}
+
 .card__accedi__gestori {
     background: var(--card);
     border-radius: 2rem;

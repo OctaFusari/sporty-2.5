@@ -1,35 +1,50 @@
 <div>
-    <h1>Lista atleti</h1>
-    <div style="display: flex;">
-        <h2>Stagione: </h2>
-        <div>
-            <select>
-                <option *ngFor="let stagione of this.stagioni" (click)="takeStagioneData(stagione.id)">{{stagione.nomestagione}}</option>
-            </select>
+    <div>
+        <div *ngIf="this.sezione__utenti == 0">
+            <h1>Scegli stagione</h1>  
+            <div style="display: flex;"> 
+            <div class="card card__big" *ngFor="let stagione of this.stagioni" (click)="takeStagioneData(stagione.id)">
+                <h2>{{stagione.nomestagione}}</h2>
+                <a  *ngIf="this.stagione.iscrittistagione.length == 0">
+                    Non ci sono iscritti
+                </a>
+            </div>
+                
+        </div> 
+        </div>
+        <div *ngIf="this.sezione__utenti == 2" style="display: flex;">
+            <h1>Lista atleti</h1>
+            <button class="button button__blue" (click)="this.iscritti = []; this.sezione__utenti = 0">Esci</button>
         </div>
     </div>
-    <div>
-        <div *ngFor="let utenti of this.iscritti" class="grid-container">
+    <div  *ngIf="this.sezione__utenti == 2">
+<div class="grid-container">
+        <div *ngFor="let utenti of this.iscritti" class="card">
+        <h3>{{utenti.nome}} {{utenti.cognome}}</h3>
+        <button class="button button__blue" (click)="takeUtenteData(utenti.id)">Vedi di più</button>
+        </div>
+    </div>
+    </div>
+    <div *ngIf="this.sezione__utenti == 1">
             <div class="card">
-                <h3>{{utenti.nome}} {{utenti.cognome}}</h3>
-                <button *ngIf="this.openAt != utenti.id" class="button button__blue" (click)="takeUtenteData(utenti.id)">Vedi di più</button>
-                <button *ngIf="this.openAt == utenti.id" class="button button__blue" (click)="this.openAt = ''">Chiudi</button>
-                <div *ngIf="this.openAt == utenti.id" class="grid__Atleta">
+                <h3>{{utente.nome}} {{utente.cognome}}</h3>
+                <button class="button button__blue" (click)="this.sezione__utenti = 2">Chiudi</button>
+                <div  class="grid__Atleta">
                     <div class="littlecard">
                         <h1>Dati iscritto</h1>
                         <div>
                             <h3>Nome</h3>
-                            <a>{{utenti.nome}}</a>
+                            <a>{{utente.nome}}</a>
                             <h3>Cognome</h3>
-                            <a>{{utenti.cognome}}</a>
+                            <a>{{utente.cognome}}</a>
                             <h3>Email</h3>
-                            <a>{{utenti.email}}</a>
+                            <a>{{utente.email}}</a>
                         </div>
                         <div>
                             <h3>Telefono</h3>
-                            <a>{{utenti.telefono}}</a>
+                            <a>{{utente.telefono}}</a>
                             <h3>Codice fiscale</h3>
-                            <a>{{utenti.codicefiscale}}</a>
+                            <a>{{utente.codicefiscale}}</a>
                         </div>
                     </div>
                     <div class="littlecard">
@@ -92,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                
             </div>
         </div>
     </div>

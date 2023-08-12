@@ -22,7 +22,8 @@ export class UtentiComponent implements OnInit {
   stagione:any;
   iscritti:any[] =[];
   corsi:any[] =[];
-  newestElement:any
+  newestElement:any;
+  sezione__utenti: number = 0;
 
   constructor() { }
 
@@ -48,6 +49,7 @@ export class UtentiComponent implements OnInit {
   }
 
   takeStagioneData(id:any){
+    this.iscritti = [];
     const starCountRef1 = ref(
       this.db,
       'squadre/' + this.squadData.idsquadra + "/stagioni/"+id+"/iscrittistagione/"
@@ -69,16 +71,16 @@ export class UtentiComponent implements OnInit {
     });
 
     this.stagione = id;
-
+    this.sezione__utenti = 2
   }
 
-  utente:any[] = [];
+  utente:any = "";
   documenti:any[] = [];
   galleria:any[] = [];
   corso_per:string = "";
   openAt:any;
   takeUtenteData(id:any){
-    this.utente = [];
+    this.utente = "";
     this.documenti = [];
     this.galleria = [];
     this.corso_per = "";
@@ -88,6 +90,7 @@ export class UtentiComponent implements OnInit {
       'squadre/' + this.squadData.idsquadra + '/stagioni/' + this.stagione + '/iscrittistagione/'+id
     );
     onValue(starCountRef4, (snapshot) => {
+      this.utente = snapshot.val()
       this.corso_per = snapshot.val().corso;
     });
 
@@ -129,6 +132,7 @@ export class UtentiComponent implements OnInit {
     });
 
     console.log(prova)
+    this.sezione__utenti = 1;
 
   }
 

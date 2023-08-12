@@ -207,8 +207,7 @@
                             <div *ngFor="let cartella of this.galleria__scelti; let i = index" (click)="take__galleria__data(cartella.id)">
                                 <div class="littlecard" style="display: flex">
                                     <div>
-                                        <h3>Titolo</h3>
-                                        <h4>{{ cartella.titolo }}</h4>
+                                        <h3>{{ cartella.titolo }}</h3>
                                         <h4>Creato il {{ cartella.creazione }}</h4>
                                         <h4>{{ this.uis.uploadstatus }}</h4>
                                     </div>

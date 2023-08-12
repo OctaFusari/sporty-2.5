@@ -139,8 +139,8 @@ export class ProfiloUtenteComponent implements OnInit {
   }
   
   toggle() {
-    let element = document.getElementById('sidenav')as HTMLElement;
-    element.classList.toggle('is-collapsed');
+      let element = document.getElementById('sidenav')as HTMLElement;
+      element.classList.toggle('is-collapsed');
   }
 
   section:number = 0;
