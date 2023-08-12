@@ -1,105 +1,108 @@
 <div>
     <div>
         <div *ngIf="this.sezione__utenti == 0">
-            <h1>Scegli stagione</h1>  
-            <div style="display: flex;"> 
-            <div class="card card__big" *ngFor="let stagione of this.stagioni" (click)="takeStagioneData(stagione.id)">
-                <h2>{{stagione.nomestagione}}</h2>
-                <a  *ngIf="this.stagione.iscrittistagione.length == 0">
+            <h1>Scegli stagione</h1>
+            <div style="display: flex;">
+                <div class="card card__big" *ngFor="let stagione of this.stagioni" (click)="takeStagioneData(stagione.id)">
+                    <h2>{{stagione.nomestagione}}</h2>
+                    <a *ngIf="this.stagione.iscrittistagione.length == 0">
                     Non ci sono iscritti
                 </a>
+                </div>
+
             </div>
-                
-        </div> 
         </div>
         <div *ngIf="this.sezione__utenti == 2" style="display: flex;">
             <h1>Lista atleti</h1>
-            <button class="button button__blue" (click)="this.iscritti = []; this.sezione__utenti = 0">Esci</button>
+            <div>
+                <button class="button button__blue" (click)="this.iscritti = []; this.sezione__utenti = 0">Esci</button>
+                <button class="button button__blue" (click)="exportToExcel(this.iscritti)">Scarica Excel</button>
+
+            </div>
         </div>
     </div>
-    <div  *ngIf="this.sezione__utenti == 2">
-<div class="grid-container">
-        <div *ngFor="let utenti of this.iscritti" class="card">
-        <h3>{{utenti.nome}} {{utenti.cognome}}</h3>
-        <button class="button button__blue" (click)="takeUtenteData(utenti.id)">Vedi di più</button>
+    <div *ngIf="this.sezione__utenti == 2">
+        <div class="grid-container">
+            <div *ngFor="let utenti of this.iscritti" class="card">
+                <h3>{{utenti.nome}} {{utenti.cognome}}</h3>
+                <button class="button button__blue" (click)="takeUtenteData(utenti.id)">Vedi di più</button>
+            </div>
         </div>
-    </div>
     </div>
     <div *ngIf="this.sezione__utenti == 1">
-            <div class="card">
-                <h3>{{utente.nome}} {{utente.cognome}}</h3>
-                <button class="button button__blue" (click)="this.sezione__utenti = 2">Chiudi</button>
-                <div  class="grid__Atleta">
-                    <div class="littlecard">
-                        <h1>Dati iscritto</h1>
-                        <div>
-                            <h3>Nome</h3>
-                            <a>{{utente.nome}}</a>
-                            <h3>Cognome</h3>
-                            <a>{{utente.cognome}}</a>
-                            <h3>Email</h3>
-                            <a>{{utente.email}}</a>
-                        </div>
-                        <div>
-                            <h3>Telefono</h3>
-                            <a>{{utente.telefono}}</a>
-                            <h3>Codice fiscale</h3>
-                            <a>{{utente.codicefiscale}}</a>
-                        </div>
+        <div class="card">
+            <h3>{{utente.nome}} {{utente.cognome}}</h3>
+            <button class="button button__blue" (click)="this.sezione__utenti = 2">Chiudi</button>
+            <div class="grid__Atleta">
+                <div class="littlecard">
+                    <h1>Dati iscritto</h1>
+                    <div>
+                        <h3>Nome</h3>
+                        <a>{{utente.nome}}</a>
+                        <h3>Cognome</h3>
+                        <a>{{utente.cognome}}</a>
+                        <h3>Email</h3>
+                        <a>{{utente.email}}</a>
                     </div>
-                    <div class="littlecard">
-                        <h2>Corso scelto</h2>
-                        <div *ngFor="let corso of this.corsi">
-                            <div class="littlecard" *ngIf="this.corso_per == corso.id">
-                                <div>
-                                    <h3>Titolo</h3>
-                                    <a>{{ corso.titolo }}</a>
-                                </div>
-                                <div>
-                                    <h3>Descrizione</h3>
-                                    <a>{{ corso.descrizione }}</a>
-                                </div>
-                                <div>
-                                    <h3>Prezzo</h3>
-                                    <a>{{ corso.prezzo }}</a>
-                                </div>
+                    <div>
+                        <h3>Telefono</h3>
+                        <a>{{utente.telefono}}</a>
+                        <h3>Codice fiscale</h3>
+                        <a>{{utente.codicefiscale}}</a>
+                    </div>
+                </div>
+                <div class="littlecard">
+                    <h2>Corso scelto</h2>
+                    <div *ngFor="let corso of this.corsi">
+                        <div class="littlecard" *ngIf="this.corso_per == corso.id">
+                            <div>
+                                <h3>Titolo</h3>
+                                <a>{{ corso.titolo }}</a>
+                            </div>
+                            <div>
+                                <h3>Descrizione</h3>
+                                <a>{{ corso.descrizione }}</a>
+                            </div>
+                            <div>
+                                <h3>Prezzo</h3>
+                                <a>{{ corso.prezzo }}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="littlecard">
-                        <h2>Documenti approvati</h2>
-                        <div *ngFor="let documento of this.documenti">
-                            <div class="littlecard">
-                                <div>
-                                    <button (click)="openpupupdoc = documento[0]" class="button">{{ documento[1] }}</button>
-                                    <div class="popup" *ngIf="openpupupdoc == documento[0]">
-                                        <div class="popupInside">
-                                            <button class="button button__blue" (click)="openpupupdoc = 0">Chiudi</button>
-                                            <div>
-                                                <h3>{{ documento[1] }}</h3>
-                                                <p>{{ documento[2] }}</p>
-                                            </div>
+                </div>
+                <div class="littlecard">
+                    <h2>Documenti approvati</h2>
+                    <div *ngFor="let documento of this.documenti">
+                        <div class="littlecard">
+                            <div>
+                                <button (click)="openpupupdoc = documento[0]" class="button">{{ documento[1] }}</button>
+                                <div class="popup" *ngIf="openpupupdoc == documento[0]">
+                                    <div class="popupInside">
+                                        <button class="button button__blue" (click)="openpupupdoc = 0">Chiudi</button>
+                                        <div>
+                                            <h3>{{ documento[1] }}</h3>
+                                            <p>{{ documento[2] }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="littlecard">
-                        <h2>Immagini caricate</h2>
-                        <div *ngFor="let cartella of this.galleria">
-                            <div class="littlecard">
-                                <div>
-                                    <button (click)="openpopupgalleria = cartella[0]" class="button">{{ cartella[1] }}</button>
-                                    <div class="popup" *ngIf="openpopupgalleria == cartella[0]">
-                                        <div class="popupInside">
-                                            <button class="button button__blue" (click)="openpopupgalleria = 0">Chiudi</button>
-                                            <div>
-                                                <h3>{{ cartella[1] }}</h3>
+                </div>
+                <div class="littlecard">
+                    <h2>Immagini caricate</h2>
+                    <div *ngFor="let cartella of this.galleria">
+                        <div class="littlecard">
+                            <div>
+                                <button (click)="openpopupgalleria = cartella[0]" class="button">{{ cartella[1] }}</button>
+                                <div class="popup" *ngIf="openpopupgalleria == cartella[0]">
+                                    <div class="popupInside">
+                                        <button class="button button__blue" (click)="openpopupgalleria = 0">Chiudi</button>
+                                        <div>
+                                            <h3>{{ cartella[1] }}</h3>
 
-                                                <div class="image-container">
-                                                    <img [src]="cartella[0]">
-                                                </div>
+                                            <div class="image-container">
+                                                <img [src]="cartella[0]">
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +110,8 @@
                             </div>
                         </div>
                     </div>
-                
+                </div>
+
             </div>
         </div>
     </div>

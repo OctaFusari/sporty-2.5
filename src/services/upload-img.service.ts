@@ -27,8 +27,8 @@ export class UploadImgService {
      uploadTask.on('state_changed',
       (snapshot) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        this.uploadstatus = 'Caricamento al ' + progress;
+        const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        this.uploadstatus = 'Percentuale caricamento ' + progress;
       }, 
       (error) => {
         // A full list of error codes is available at

@@ -209,7 +209,9 @@
                                     <div>
                                         <h3>{{ cartella.titolo }}</h3>
                                         <h4>Creato il {{ cartella.creazione }}</h4>
-                                        <h4>{{ this.uis.uploadstatus }}</h4>
+                                        <div>
+                                            <a>PDF non supportato</a>
+                                        </div>
                                     </div>
                                     <div *ngIf="open_img != cartella.id">
                                         <button class="button button__blue" (click)="take__galleria__data(cartella.id)">
@@ -238,12 +240,11 @@
                         </div>
                         <div>
                             <div class="button__container">
-                                <button class="button button__blue" (click)="this.sezione_completamento = 3">
-                    Indietro
-                  </button>
-                                <button class="button button__blue" (click)="this.sc.centrovar = 2">
-                    Esci e salva
-                  </button>
+                                <button class="button button__blue" (click)="this.sezione_completamento = 3">Indietro</button>
+                                <button class="button button__blue" (click)="this.sc.centrovar = 2">Esci e salva</button>
+                            </div>
+                            <div style="text-align: center;">
+                                <a class="approved">{{ this.uis.uploadstatus }}</a>
                             </div>
                         </div>
                     </div>

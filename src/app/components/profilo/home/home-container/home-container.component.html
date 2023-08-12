@@ -6,8 +6,18 @@
     </div>
     <div class="centro">
         <div class="sezione__sinistra">
-            <div class="container">
-                <app-attivita></app-attivita>
+            <div class="container" style="min-height: 300px;">
+                <div *ngIf="this.userData.squadra != ''">
+                    <div>
+                        <h2 style="color: var(--sporty-blue);">Ciao {{this.userData.nome}} </h2>
+                        <h3>Per controllare la tua iscrizione vai sulla sezione squadre</h3>
+                    </div>
+                    <div *ngIf="this.userData.squadra == ''">
+                        <h2 style="color: var(--sporty-blue);">Ciao {{this.userData.nome}} </h2>
+                        <h3>sembra che tu non sia iscritto a nessun team, clicca qui per iscriverti</h3>
+                        <button (click)="this.pu.section = 3" class="button button__blue">Iscriviti</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="sezione__destra">
@@ -20,14 +30,6 @@
                 </div>
                 <div *ngIf="this.userData.squadra == ''">
                     <button (click)="this.pu.section = 3" class="button button__blue">Iscriviti</button>
-                </div>
-            </div>
-            <div class="container" *ngIf="this.userData.gestore != ''">
-                <h2>Gestore</h2>
-                <div>
-                    <div>
-                        <a>Gestore di</a>
-                    </div>
                 </div>
             </div>
             <div class="container">
@@ -82,4 +84,3 @@
             </div>
         </div>
     </div>
-</div>

@@ -78,10 +78,6 @@ svg {
 .container__scroll__iscrizione {
     height: 600px;
     overflow-y: scroll;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: ". .";
 }
 
 .check {

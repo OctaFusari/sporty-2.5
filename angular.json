@@ -108,8 +108,8 @@
             "prerender": false,
             "ssr": false,
             "browserTarget": "sporty:build:production",
-            "firebaseProject": "sporty-construction",
-            "firebaseHostingSite": "sporty-construction"
+            "firebaseProject": "sporty-687fa",
+            "firebaseHostingSite": "sporty-687fa"
           }
         }
       }

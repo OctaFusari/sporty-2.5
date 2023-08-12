@@ -51,14 +51,16 @@ export class SquadraContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.arraySquadre = [];
-  
-    const starCountRef2 = ref(this.db, 'squadre/');
-    onValue(starCountRef2, (snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        this.arraySquadre.push(childSnapshot.val());
+    if(this.centrovar != 3){
+      this.arraySquadre = [];
+    
+      const starCountRef2 = ref(this.db, 'squadre/');
+      onValue(starCountRef2, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          this.arraySquadre.push(childSnapshot.val());
+        })
       })
-    })
+    }
   }
 
   verifica_squadra_iniziale() {
@@ -201,7 +203,7 @@ export class SquadraContainerComponent implements OnInit {
     this.verifica_squadra_iniziale()
   }
 
-  modificaSquadra(nome:any,codice:any, email:any, password:any){
+  modificaSquadra(nome:any,codice:any, email:any,sede:any, password:any){
 
     let squadra: squadra
     squadra = {
@@ -213,7 +215,7 @@ export class SquadraContainerComponent implements OnInit {
       emailsquadra: email,
       nomesquadra: nome,
       passwordteam: password,
-      sedesquadra: this.squadraScelta.copertina,
+      sedesquadra: sede,
       stagioni: this.squadraScelta.stagioni,
       copertina: this.squadraScelta.copertina
     };

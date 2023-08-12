@@ -216,6 +216,24 @@
                                     <input class="input__style" #passwordteammod placeholder="password team" type="password">
                                 </div>
                             </div>
+                            <div>
+                                <button class="button button__blue" (click)="modificaSquadra(nomesquadramod.value,codicesquadramod.value, emailsquadramod.value, sedesquadramod.value, passwordteammod.value)">Salva modifiche</button>
+                                <button class="button button__red" (click)="this.popupelsquad = 1">Elimina squadra</button>
+                                <div class="popup" *ngIf="this.popupelsquad == 1">
+                                    <div class="container popup__inside">
+                                        <div>
+                                            <h2>Sicuro che vuoi eliminare la squadra?</h2>
+                                        </div>
+                                        <div class="input__button">
+                                            <button class="button button__red" (click)="eliminaSquadra()">Si</button>
+                                            <button class="button button__blue" (click)="this.popupelsquad = 0">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="popup__esci" (click)="this.popupelsquad = 0">
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -236,22 +254,3 @@
 <button style="margin-right: 8cm;" *ngIf="this.sezioneSquadra == 0" (click)="sezioneSquadra = 1" class="squadra__attiva button button__blue">
     Crea squadra
 </button>
-
-<div>
-    <button class="button button__blue" (click)="modificaSquadra(nomesquadramod.value,codicesquadramod.value, emailsquadramod.value, sedesquadramod.value, passwordteammod.value)">Salva modifiche</button>
-    <button class="button button__red" (click)="this.popupelsquad = 1">Elimina squadra</button>
-    <div class="popup" *ngIf="this.popupelsquad = 1">
-        <div class="container popup__inside">
-            <div>
-                <h2>Sicuro che vuoi eliminare la squadra?</h2>
-            </div>
-            <div class="input__button">
-                <button class="button button__red" (click)="eliminaSquadra()">Si</button>
-                <button class="button button__blue" (click)="this.popupelsquad = 0">No</button>
-            </div>
-        </div>
-        <div class="popup__esci" (click)="this.popupelsquad = 0">
-
-        </div>
-    </div>
-</div>

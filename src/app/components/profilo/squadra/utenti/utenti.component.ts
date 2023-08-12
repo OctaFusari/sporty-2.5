@@ -8,6 +8,9 @@ import {
   update,
 } from 'firebase/database';
 
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+
 @Component({
   selector: 'app-utenti',
   templateUrl: './utenti.component.html',
@@ -136,6 +139,23 @@ export class UtentiComponent implements OnInit {
 
   }
 
+  exportToExcel(data:any): void {
+    for(let i = 0; i<data.length; i++){
+      
+      const starCountRef4 = ref(
+        this.db,
+        'squadre/' + this.squadData.idsquadra + '/stagioni/' + this.stagione + '/corsi/'+data[i].corso
+      );
+      onValue(starCountRef4, (snapshot) => {
+        data[i].corso = snapshot.val().titolo
+      });
+    }
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const excelBlob: Blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    saveAs(excelBlob, 'data.xlsx');
+  }
   openpopupgalleria:number = 0;
   openpupupdoc:number = 0;
 
