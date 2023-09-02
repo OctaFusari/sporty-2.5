@@ -1,8 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject, FirebaseStorage } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { UpdateImgIscrittoService } from './update-img-iscritto.service';
-import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import heic2any from "heic2any";
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,10 +12,16 @@ export class UploadImgService {
 
   imageUrl: string | null = null;
   uploadstatus:any;
-  uploadFile(file: File, squadra:any, id:any, cartella:any, stagione:any){
+
+
+  async uploadFile(file: File, squadra:any, id:any, cartella:any, stagione:any){
+
+    const arrayBuffer = await file.arrayBuffer();
+    const jpegBlob = await heic2any({ blob: new Blob([arrayBuffer]), toType: 'image/jpeg' });
+    
+    
     const storage = getStorage();
 
-    // Create the file metadata
     /** @type {any} */
     const metadata = {
       contentType: 'image/jpeg'

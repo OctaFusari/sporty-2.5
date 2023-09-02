@@ -4,6 +4,7 @@ import {
   onValue,
   push,
   ref,
+  remove,
   set,
   update,
 } from 'firebase/database';
@@ -99,12 +100,9 @@ export class IscrizioneComponent implements OnInit {
     }
   }
 
-  part: any;
-
-  approve__doc:any = 2;
+  part: any = 0;
 
   addCl(id: any) {
-    console.log(id)
     let htmlText = '';
     const htmlContainer = document.getElementById(id);
     const index = this.documenti__approvati.indexOf(id);
@@ -116,10 +114,10 @@ export class IscrizioneComponent implements OnInit {
       htmlText = '<path d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z" />'
     }
 
-
     if (htmlContainer) {
       htmlContainer.innerHTML = htmlText;
     }
+    
   }
   takeStagione(ids: any) {
     const starCountRef1 = ref(
@@ -129,15 +127,6 @@ export class IscrizioneComponent implements OnInit {
     onValue(starCountRef1, (snapshot) => {
       this.stagione__data = snapshot.val();
     });
-
-/*     onValue(starCountRef1, (snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        this.stagioni.push(childSnapshot.val());
-        if(this.userData.atletaid in childSnapshot.val().iscrittistagione){
-          this.stagione__scelta = childSnapshot.val().id;
-        }
-      });
-    }); */
     
   }
 
@@ -146,6 +135,15 @@ export class IscrizioneComponent implements OnInit {
     this.corsi__scelti = [];
     this.documenti__scelti = [];
     this.galleria__scelti = [];
+
+    const starCountRef4 = ref(
+      this.db,
+      'squadre/' + this.squadData.idsquadra + '/stagioni/' + ids + '/iscrittistagione/' + this.userData.atletaid
+    );
+    onValue(starCountRef4, (snapshot) => {
+      this.corso__scelta = snapshot.val().corso;
+    });
+
 
     const starCountRef1 = ref(
       this.db,
@@ -177,26 +175,22 @@ export class IscrizioneComponent implements OnInit {
       });
     });
 
-    const starCountRef4 = ref(
-      this.db,
-      'squadre/' + this.squadData.idsquadra + '/stagioni/' + ids + '/iscrittistagione/'
-    );
-    onValue(starCountRef4, (snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-      this.corso__scelta = childSnapshot.val().corso;
-        
-      });
-    });
 
     for(let i = 0; i<this.documenti__scelti.length; i++){
       if(this.documenti__scelti[i].approvazioni){
         if(this.userData.atletaid in this.documenti__scelti[i].approvazioni){
-          this.addCl(this.documenti__scelti[i].id)
+          this.documenti__approvati.push(this.documenti__scelti[i].id)
+          console.log("entrato")
+          let htmlText = '';
+          const htmlContainer = document.getElementById(this.documenti__scelti[i].id);
+          htmlText = '<path d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z" />'
+          
+          if (htmlContainer) {
+            htmlContainer.innerHTML = htmlText;
+          }
         }
       }
     }
-
-    console.log(this.documenti__approvati);
 
   }
 
@@ -269,21 +263,40 @@ export class IscrizioneComponent implements OnInit {
       }
     );
 
-    for(let i = 0; i<this.documenti__approvati.length; i++){
-      set(
-        ref(
-          this.db,
-          'squadre/' +
-          this.squadData.idsquadra +
-          '/stagioni/' +
-          this.stagione__scelta +
-          '/documenti/' + this.documenti__approvati[i] + "/approvazioni/" + 
-          this.userData.atletaid
-        ),
-        {
-          id: this.userData.atletaid
-        }
-      );
+
+
+    for(let i = 0; i<this.documenti__scelti.length; i++){
+      if(this.documenti__approvati.includes(this.documenti__scelti[i].id)){
+        set(
+          ref(
+            this.db,
+            'squadre/' +
+            this.squadData.idsquadra +
+            '/stagioni/' +
+            this.stagione__scelta +
+            '/documenti/' + this.documenti__scelti[i].id + "/approvazioni/" + 
+            this.userData.atletaid
+          ),
+          {
+            id: this.userData.atletaid
+          }
+        );
+      }else{
+        const starCountprimary = ref(this.db, 'squadre/' +this.squadData.idsquadra +'/stagioni/' +this.stagione__scelta +'/documenti/' + this.documenti__scelti[i].id + "/approvazioni/" + this.userData.atletaid);
+        remove(starCountprimary);
+      }
     }
+
+    set(
+      ref(
+        this.db,
+        'utenti/'+ localStorage.getItem("sportyId")+ "/atleti/"+ localStorage.getItem("Sportyprofileid") + "/squadre/" + this.squadData.idsquadra
+      ),
+      {
+        id: this.squadData.idsquadra,
+        nome: this.squadData.nomesquadra
+      }
+    );
+
   }
 }

@@ -78,10 +78,12 @@
                                 <button (click)="openpupupdoc = documento[0]" class="button">{{ documento[1] }}</button>
                                 <div class="popup" *ngIf="openpupupdoc == documento[0]">
                                     <div class="popupInside">
-                                        <button class="button button__blue" (click)="openpupupdoc = 0">Chiudi</button>
                                         <div>
-                                            <h3>{{ documento[1] }}</h3>
-                                            <p>{{ documento[2] }}</p>
+                                            <button class="button button__blue" (click)="openpupupdoc = 0">Chiudi</button>
+                                            <div>
+                                                <h3>{{ documento[1] }}</h3>
+                                                <p>{{ documento[2] }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

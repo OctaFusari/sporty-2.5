@@ -19,7 +19,7 @@ export class HomeContainerComponent implements OnInit {
   @Input() profileData:any = "";
 
   userData:any = "";
-  squadra:any = "";
+  squadre:any[]= [];
   squadraGestore:any = "";
   sezione:number = 0;
 
@@ -32,17 +32,19 @@ export class HomeContainerComponent implements OnInit {
 
       } );
       try{
-        const starCountRef1 = ref(db, 'squadre/' + this.userData.squadra);
+        const starCountRef1 = ref(db, 'utenti/'+ localStorage.getItem("sportyId")+ "/atleti/"+ localStorage.getItem("Sportyprofileid") + "/squadre/");
         onValue(starCountRef1, (snapshot) => {
-          this.squadra = snapshot.val();
+          snapshot.forEach((childSnapshot) => {
+            this.squadre.push(childSnapshot.val());
+          });
         });
         const starCountRef2 = ref(db, 'squadre/' + this.userData.gestore);
         onValue(starCountRef2, (snapshot) => {
           this.squadraGestore = snapshot.val();
-          if(this.squadraGestore == null || this.squadra == null){
+          if(this.squadraGestore == null || this.squadre == null){
             if(this.squadraGestore == null){
               this.userData.gestore = ""
-            }else if(this.squadra == null){
+            }else if(this.squadre == null){
               this.userData.squadra = ""
             }
             let atleta:atleta
@@ -78,7 +80,7 @@ export class HomeContainerComponent implements OnInit {
           }
         });
       }catch{
-        this.squadra = ''
+        this.squadre = []
         this.squadraGestore = ''
       }
 
@@ -91,7 +93,7 @@ export class HomeContainerComponent implements OnInit {
   changeProfile() {
     this.userData = "";
     this.profileData = "";
-   this.squadra = ""
+   this.squadre = []
     this.changeProfilevent.emit(0);
     localStorage.removeItem('Sportyprofileid');
    this.pu.controlloIniziale()

@@ -58,6 +58,7 @@
 }
 
 .popupInside {
+    height: 300px;
     padding: 1rem 2rem;
     text-rendering: optimizeLegibility;
     text-align: left;

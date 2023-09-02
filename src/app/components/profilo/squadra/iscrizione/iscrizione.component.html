@@ -168,7 +168,7 @@
                         <div class="container__scroll__iscrizione">
                             <div *ngFor="let documento of this.documenti__scelti; let i = index">
                                 <div class="littlecard">
-                                    <div (click)="part = documento.id">
+                                    <div (click)="this.part = documento.id">
                                         <h3>{{ documento.titolo }}</h3>
                                         <button class="button button__blue">Apri documento</button>
                                     </div>
@@ -182,7 +182,8 @@
                                             <a (click)="addCl(documento.id)">Approvo</a>
                                             <div>
                                                 <svg id="{{documento.id}}" (click)="addCl(documento.id)" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                                                    <path d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h14q.825 0 1.413.587Q21 4.175 21 5v14q0 .825-.587 1.413Q19.825 21 19 21Zm0-2h14V5H5v14Z" />
+                                                    <path *ngIf="this.documenti__approvati.indexOf(documento.id) == -1" d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h14q.825 0 1.413.587Q21 4.175 21 5v14q0 .825-.587 1.413Q19.825 21 19 21Zm0-2h14V5H5v14Z" />
+                                                    <path *ngIf="this.documenti__approvati.indexOf(documento.id) !== -1" d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -241,7 +242,7 @@
                         <div>
                             <div class="button__container">
                                 <button class="button button__blue" (click)="this.sezione_completamento = 3">Indietro</button>
-                                <button class="button button__blue" (click)="this.sc.centrovar = 2">Esci e salva</button>
+                                <button class="button button__blue" (click)="this.sc.centrovar = 2">Salva e esci</button>
                             </div>
                             <div style="text-align: center;">
                                 <a class="approved">{{ this.uis.uploadstatus }}</a>

@@ -1,7 +1,7 @@
 <div>
     <div class="sezione__top">
         <div style="display: flex;align-items: center">
-            <h1 class="big__h1" (click)="changeProfile()" *ngIf="this.userData != undefined">{{this.userData.nome}} {{this.userData.cognome}}</h1><a style="margin-left: 1vw; cursor:pointer" (click)="changeProfile()">cambia</a>
+            <h1 class="big__h1" (click)="changeProfile()" *ngIf="this.userData != undefined">{{this.userData.nome}} {{this.userData.cognome}}</h1><a style="margin-left: 1vw; cursor:pointer" (click)="changeProfile()">cambia atleta</a>
         </div>
     </div>
     <div class="centro">
@@ -23,12 +23,14 @@
         <div class="sezione__destra">
             <div class="container">
                 <h2>Iscrizione</h2>
-                <div *ngIf="this.userData.squadra != ''">
-                    <div>
-                        <a>Iscritto a {{this.squadra.nomesquadra}}</a>
+                <div *ngIf="this.squadre.length > 0">
+                    <div *ngFor="let squadra of this.squadre">
+                        <a>Iscritto a {{squadra.nome}}</a>
+                        <!-- DA MODIFICARE (click)="" -->
+                        <button class="button button__blue">Modifica la tua iscrizione</button>
                     </div>
                 </div>
-                <div *ngIf="this.userData.squadra == ''">
+                <div *ngIf="this.squadre.length == 0">
                     <button (click)="this.pu.section = 3" class="button button__blue">Iscriviti</button>
                 </div>
             </div>
