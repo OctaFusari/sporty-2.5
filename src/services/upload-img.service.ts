@@ -1,8 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { UpdateImgIscrittoService } from './update-img-iscritto.service';
-import heic2any from "heic2any";
 
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,6 @@ export class UploadImgService {
 
   async uploadFile(file: File, squadra:any, id:any, cartella:any, stagione:any){
 
-    const arrayBuffer = await file.arrayBuffer();
-    const jpegBlob = await heic2any({ blob: new Blob([arrayBuffer]), toType: 'image/jpeg' });
-    
-    
     const storage = getStorage();
 
     /** @type {any} */
