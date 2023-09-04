@@ -101,7 +101,7 @@
     </div>
     <div class="container container__info__squadra_superiore">
         <div class="container__info__squadra_superiore__inside">
-            <button class="button" (click)="this.sezioneSquadra = 0">Chiudi</button>
+            <button class="button" (click)="this.sezioneSquadra = 0;cercaSquadra('')">Chiudi</button>
             <div class="container__info__squadra_superiore__inside__container">
                 <h1>{{this.squadraScelta.nomesquadra}}</h1>
             </div>
@@ -110,7 +110,6 @@
             <button (click)="this.centrovar = 3;" class="circle__button button__blue">
                 Iscriviti
             </button>
-            <app-iscrizione [squadData]="this.squadraScelta" [userData]="this.userData" class="slide__container" *ngIf="this.centrovar == 3"></app-iscrizione>
         </div>
     </div>
     <div class="container container__info__squadra">
@@ -144,7 +143,6 @@
             </div>
         </div>
         <div class="card__accedi__gestori">
-
             <div>
                 <h2>Bacheca</h2>
                 <a>Non è stato aggiunto niente</a>
@@ -155,7 +153,7 @@
 <div *ngIf="this.sezioneSquadra == 4">
     <div class="container container__info__squadra_superiore">
         <div class="container__info__squadra_superiore__inside">
-            <button class="button" (click)="this.sezioneSquadra = 0">Chiudi</button>
+            <button class="button" (click)="this.sezioneSquadra = 0;cercaSquadra('')">Chiudi</button>
             <div class="container__info__squadra_superiore__inside__container">
                 <div>
                     <div>
@@ -241,6 +239,7 @@
         </div>
     </div>
 </div>
+<app-iscrizione [squadData]="this.squadraScelta" [userData]="this.userData" class="slide__container" *ngIf="this.centrovar == 3"></app-iscrizione>
 <div *ngIf="this.sezioneSquadra == 5">
 
 </div>

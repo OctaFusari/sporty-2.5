@@ -9,12 +9,12 @@
                     <!-- <a>Per poterti iscrivere a {{this.squadraScelta.nomesquadra}} devi inserire tutti i tuoi dati corretti, caricare i file richiesti e accettare i documenti della squadra</a> -->
                     <div class="section__menu">
                         <div>
-                            <svg [ngClass]="{ 'svg__approve ': this.completamento[0] == 1 }" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                            <svg [ngClass]="{ 'svg__approve ': this.completamento[0] == 1}" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                   <path
                     d="m10.525 17.1 7.425-7.425-2.075-2.1-5.35 5.35-2.55-2.55-2.075 2.1ZM12 22.85q-2.275 0-4.25-.85t-3.438-2.312Q2.85 18.225 2 16.25q-.85-1.975-.85-4.25T2 7.75q.85-1.975 2.312-3.438Q5.775 2.85 7.75 2q1.975-.85 4.25-.85t4.25.85q1.975.85 3.438 2.312Q21.15 5.775 22 7.75q.85 1.975.85 4.25T22 16.25q-.85 1.975-2.312 3.438Q18.225 21.15 16.25 22q-1.975.85-4.25.85Z" />
                 </svg>
                             <h3 (click)="this.sezione_completamento = 0" [ngClass]="{ 'sez__blue ': this.sezione_completamento === 0 }">
-                                Stagione
+                                Dati iscrizione
                             </h3>
                         </div>
                         <div>
@@ -23,33 +23,33 @@
                     d="m10.525 17.1 7.425-7.425-2.075-2.1-5.35 5.35-2.55-2.55-2.075 2.1ZM12 22.85q-2.275 0-4.25-.85t-3.438-2.312Q2.85 18.225 2 16.25q-.85-1.975-.85-4.25T2 7.75q.85-1.975 2.312-3.438Q5.775 2.85 7.75 2q1.975-.85 4.25-.85t4.25.85q1.975.85 3.438 2.312Q21.15 5.775 22 7.75q.85 1.975.85 4.25T22 16.25q-.85 1.975-2.312 3.438Q18.225 21.15 16.25 22q-1.975.85-4.25.85Z" />
                 </svg>
                             <h3 (click)="this.sezione_completamento = 1" [ngClass]="{ 'sez__blue ': this.sezione_completamento === 1 }">
-                                Dati iscrizione
+                                Stagione
                             </h3>
                         </div>
-                        <div>
+                        <div *ngIf="this.stagione__scelta != 0 && this.stagione__scelta != '' && this.stagione__scelta">
                             <svg [ngClass]="{ 'svg__approve ': this.completamento[2] == 1 }" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                   <path
                     d="m10.525 17.1 7.425-7.425-2.075-2.1-5.35 5.35-2.55-2.55-2.075 2.1ZM12 22.85q-2.275 0-4.25-.85t-3.438-2.312Q2.85 18.225 2 16.25q-.85-1.975-.85-4.25T2 7.75q.85-1.975 2.312-3.438Q5.775 2.85 7.75 2q1.975-.85 4.25-.85t4.25.85q1.975.85 3.438 2.312Q21.15 5.775 22 7.75q.85 1.975.85 4.25T22 16.25q-.85 1.975-2.312 3.438Q18.225 21.15 16.25 22q-1.975.85-4.25.85Z" />
                 </svg>
-                            <h3 (click)="this.sezione_completamento = 2" [ngClass]="{ 'sez__blue ': this.sezione_completamento === 2 }">
+                            <h3 (click)="controlStagione(2)" [ngClass]="{ 'sez__blue ': this.sezione_completamento === 2 }">
                                 Scelta corso
                             </h3>
                         </div>
-                        <div>
+                        <div *ngIf="this.stagione__scelta != 0 && this.stagione__scelta != '' && this.stagione__scelta">
                             <svg [ngClass]="{ 'svg__approve ': this.completamento[3] == 1 }" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                   <path
                     d="m10.525 17.1 7.425-7.425-2.075-2.1-5.35 5.35-2.55-2.55-2.075 2.1ZM12 22.85q-2.275 0-4.25-.85t-3.438-2.312Q2.85 18.225 2 16.25q-.85-1.975-.85-4.25T2 7.75q.85-1.975 2.312-3.438Q5.775 2.85 7.75 2q1.975-.85 4.25-.85t4.25.85q1.975.85 3.438 2.312Q21.15 5.775 22 7.75q.85 1.975.85 4.25T22 16.25q-.85 1.975-2.312 3.438Q18.225 21.15 16.25 22q-1.975.85-4.25.85Z" />
                 </svg>
-                            <h3 (click)="this.sezione_completamento = 3" [ngClass]="{ 'sez__blue ': this.sezione_completamento === 3 }">
+                            <h3 (click)="controlStagione(3)" [ngClass]="{ 'sez__blue ': this.sezione_completamento === 3 }">
                                 Documenti
                             </h3>
                         </div>
-                        <div>
+                        <div *ngIf="this.stagione__scelta != 0 && this.stagione__scelta != '' && this.stagione__scelta">
                             <svg [ngClass]="{ 'svg__approve ': this.completamento[4] == 1 }" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
                   <path
                     d="m10.525 17.1 7.425-7.425-2.075-2.1-5.35 5.35-2.55-2.55-2.075 2.1ZM12 22.85q-2.275 0-4.25-.85t-3.438-2.312Q2.85 18.225 2 16.25q-.85-1.975-.85-4.25T2 7.75q.85-1.975 2.312-3.438Q5.775 2.85 7.75 2q1.975-.85 4.25-.85t4.25.85q1.975.85 3.438 2.312Q21.15 5.775 22 7.75q.85 1.975.85 4.25T22 16.25q-.85 1.975-2.312 3.438Q18.225 21.15 16.25 22q-1.975.85-4.25.85Z" />
                 </svg>
-                            <h3 (click)="this.sezione_completamento = 4" [ngClass]="{ 'sez__blue ': this.sezione_completamento === 4 }">
+                            <h3 (click)="controlStagione(4)" [ngClass]="{ 'sez__blue ': this.sezione_completamento === 4 }">
                                 Immagini
                             </h3>
                         </div>
@@ -57,33 +57,6 @@
                 </div>
                 <div>
                     <div *ngIf="this.sezione_completamento == 0">
-                        <h2>Scegli la stagione</h2>
-                        <div class="container__scroll__iscrizione">
-                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{ stagione__scelta: stagione.id == stagione__scelta}" (click)="takeStagione(stagione.id); takeStagione__data__inside(stagione.id); stagione__scelta = stagione.id">
-                                <h3>{{ stagione.nomestagione }}</h3>
-                                <div>
-                                    <div>
-                                        <span>Data inizio</span><br />
-                                        <a>{{ stagione.datainizio }}</a>
-                                    </div>
-                                    <div>
-                                        <span>Data fine</span><br />
-                                        <a>{{ stagione.datafine }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="button__container">
-                                <button class="button button__blue" (click)="
-                      this.completamento[0] = 1; this.sezione_completamento = 1
-                    ">
-                    Avanti
-                  </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngIf="this.sezione_completamento == 1">
                         <div class="input__container">
                             <div>
                                 <h3>Nome</h3>
@@ -120,18 +93,45 @@
                         </div>
                         <div>
                             <div class="button__container">
-                                <button class="button button__blue" (click)="this.sezione_completamento = 0">
-                    Indietro
-                  </button>
                                 <button class="button button__blue" (click)="
-                      this.completamento[1] = 1; this.sezione_completamento = 2
+                      this.completamento[0] = 1; this.sezione_completamento = 1
                     ">
                     Avanti
                   </button>
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 2">
+                    <div *ngIf="this.sezione_completamento == 1">
+                        <h2>Scegli la stagione</h2>
+                        <div class="container__scroll__iscrizione">
+                            <div class="littlecard" *ngFor="let stagione of this.stagioni; let i = index" [ngClass]="{ stagione__scelta: stagione.id == stagione__scelta}" (click)="takeStagione(stagione.id); takeStagione__data__inside(stagione.id); stagione__scelta = stagione.id">
+                                <h3>{{ stagione.nomestagione }}</h3>
+                                <div>
+                                    <div>
+                                        <span>Data inizio</span><br />
+                                        <a>{{ stagione.datainizio }}</a>
+                                    </div>
+                                    <div>
+                                        <span>Data fine</span><br />
+                                        <a>{{ stagione.datafine }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="button__container">
+                                <button class="button button__blue" (click)="this.sezione_completamento = 0">
+                    Indietro
+                  </button>
+                                <button class="button button__blue" (click)="
+                                controlStagione(2)
+                    ">
+                    Avanti
+                  </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="this.sezione_completamento == 2 && this.stagione__scelta != 0 && this.stagione__scelta != '' && this.stagione__scelta">
                         <div class="container__scroll__iscrizione">
                             <div *ngFor="let corso of this.corsi__scelti; let i = index" (click)="this.corso__scelta = corso.id">
                                 <div class="littlecard" [ngClass]="{ stagione__scelta: corso.id == corso__scelta }">
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 3;">
+                    <div *ngIf="this.sezione_completamento == 3 && this.stagione__scelta != 0 && this.stagione__scelta != '' && this.stagione__scelta">
                         <div class="container__scroll__iscrizione">
                             <div *ngFor="let documento of this.documenti__scelti; let i = index">
                                 <div class="littlecard">
@@ -203,7 +203,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.sezione_completamento == 4">
+                    <div *ngIf="this.sezione_completamento == 4 && this.stagione__scelta != 0 && this.stagione__scelta != '' && this.stagione__scelta">
                         <div class="container__scroll__iscrizione">
                             <div *ngFor="let cartella of this.galleria__scelti; let i = index" (click)="take__galleria__data(cartella.id)">
                                 <div class="littlecard" style="display: flex">
@@ -248,6 +248,9 @@
                                 <a class="approved">{{ this.uis.uploadstatus }}</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="message" style="text-align: center;">
+                        <a class="error" *ngIf="this.errorMes == 1">Stagione non selezionata</a>
                     </div>
                 </div>
             </div>

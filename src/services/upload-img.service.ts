@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { UpdateImgIscrittoService } from './update-img-iscritto.service';
 
-import { ImageCroppedEvent } from 'ngx-image-cropper';
+import heic2any from "heic2any";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class UploadImgService {
 
   imageUrl: string | null = null;
   uploadstatus:any;
-
+  jpgFile:any;
 
   async uploadFile(file: File, squadra:any, id:any, cartella:any, stagione:any){
 
@@ -20,12 +20,25 @@ export class UploadImgService {
 
     /** @type {any} */
     const metadata = {
-      contentType: 'image/jpeg'
+      contentType: 'image/*'
     };
+    this.jpgFile = file;
+
+/* 
+    let control = file.name;
+    if(control.includes(".heic")){
+      const blob:any = await heic2any({
+        blob: file,
+        toType: 'image/*',
+      });
     
+      console.log(file.name)
+      this.jpgFile = new File([blob], `${file.name.replace('.heic', '.jpg')}`, { type: 'image/jpeg' });
+    } */
+
     // Upload file and metadata to the object 'images/mountains.jpg'
     const storageRef = ref(storage, squadra+`/`+stagione+`/`+cartella+`/`+id);
-    const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+    const uploadTask = uploadBytesResumable(storageRef, this.jpgFile, metadata);
 
      uploadTask.on('state_changed',
       (snapshot) => {

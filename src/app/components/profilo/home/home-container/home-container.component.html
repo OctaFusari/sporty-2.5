@@ -7,33 +7,43 @@
     <div class="centro">
         <div class="sezione__sinistra">
             <div class="container" style="min-height: 300px;">
-                <div *ngIf="this.userData.squadra != ''">
-                    <div>
-                        <h2 style="color: var(--sporty-blue);">Ciao {{this.userData.nome}} </h2>
-                        <h3>Per controllare la tua iscrizione vai sulla sezione squadre</h3>
+                <div>
+                    <div *ngIf="this.squadre.length > 0">
+                        <div *ngFor="let squadra of this.squadre">
+                            <h2>Iscrizioni</h2>
+                            <div class="littlecard contIniz">
+                                <div>
+                                    <h1>{{squadra.nome}}</h1>
+                                </div>
+                                <div>
+                                    <button (click)="this.pu.section = 3; this.pu.centrovar = 3; this.pu.squadraScelta = squadra" class="circle__button__big button__blue">Controlla la tua iscrizione</button>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div *ngIf="this.userData.squadra == ''">
+                    <div *ngIf="this.squadre.length == 0">
                         <h2 style="color: var(--sporty-blue);">Ciao {{this.userData.nome}} </h2>
                         <h3>sembra che tu non sia iscritto a nessun team, clicca qui per iscriverti</h3>
-                        <button (click)="this.pu.section = 3" class="button button__blue">Iscriviti</button>
+                        <button (click)="this.pu.section = 3" class="circle__button button__blue">Iscriviti</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="sezione__destra">
-            <div class="container">
+            <!--             <div class="container">
                 <h2>Iscrizione</h2>
                 <div *ngIf="this.squadre.length > 0">
                     <div *ngFor="let squadra of this.squadre">
                         <a>Iscritto a {{squadra.nome}}</a>
-                        <!-- DA MODIFICARE (click)="" -->
                         <button class="button button__blue">Modifica la tua iscrizione</button>
                     </div>
                 </div>
                 <div *ngIf="this.squadre.length == 0">
+                    <a>Non sei iscritto a nessuna squadra</a>
                     <button (click)="this.pu.section = 3" class="button button__blue">Iscriviti</button>
                 </div>
-            </div>
+            </div> -->
             <div class="container">
                 <h2>Bacheca</h2>
                 <div *ngIf="this.userData.messaggi != ''">

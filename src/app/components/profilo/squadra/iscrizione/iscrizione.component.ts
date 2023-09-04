@@ -10,6 +10,7 @@ import {
 } from 'firebase/database';
 import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
 import { UploadImgService } from 'src/services/upload-img.service';
+import heic2any from "heic2any";
 
 @Component({
   selector: 'app-iscrizione',
@@ -52,6 +53,14 @@ export class IscrizioneComponent implements OnInit {
 
   ngOnInit() {
 
+    if (this.userData.gestore != "") {
+      
+      const starCountRef = ref(this.db, 'squadre/' + this.userData.gestore);
+      onValue(starCountRef, (snapshot) => {
+        this.squadData = snapshot.val()
+      })
+    }
+
     const starCountRef1 = ref(
       this.db,
       'squadre/' + this.squadData.idsquadra + '/stagioni'
@@ -83,15 +92,27 @@ export class IscrizioneComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imageUrl = e.target.result;
+        console.log(this.imageUrl);
       };
       reader.readAsDataURL(inputElement.files[0]);
     }
   }
 
-  uploadFile(cartella: any): void {
+  async uploadFile(cartella: any) {
+    let jpgFile:any = this.selectedFile;
+    if (jpgFile && jpgFile.name.includes(".heic")){
+      const blob:any = await heic2any({
+        blob: jpgFile,
+        toType: 'image/*',
+      });
+    
+      console.log(jpgFile.name)
+      jpgFile = new File([blob], `${jpgFile.name.replace('.heic', '.jpg')}`, { type: 'image/jpeg' });
+      
+    }
     if (this.selectedFile) {
       this.uis.uploadFile(
-        this.selectedFile,
+        jpgFile,
         this.squadData.idsquadra,
         this.userData.atletaid,
         cartella,
@@ -297,6 +318,23 @@ export class IscrizioneComponent implements OnInit {
         nome: this.squadData.nomesquadra
       }
     );
+
+  }
+
+  errorMes:number = 0;
+  controlStagione(sez:any){
+    if(this.stagione__scelta != 0 && this.stagione__scelta != "" && this.stagione__scelta){
+      this.sezione_completamento = sez
+      if(sez == 2){
+        this.completamento[1] = 1;
+      }
+    }
+    else{
+      this.errorMes = 1;
+      setInterval(() => {
+        this.errorMes = 0;
+      }, 3000)
+    }
 
   }
 }

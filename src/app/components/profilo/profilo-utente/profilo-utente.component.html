@@ -220,7 +220,7 @@
         <app-home-container (scegliSquadra)="this.section = $event" (changeProfilevent)="changeProfile($event)" [profileData]="profileData" *ngIf="this.section == 0"></app-home-container>
         <app-diario [userData]="userData" *ngIf="this.section == 1"></app-diario>
         <app-allenatore-container [userData]="userData" *ngIf="this.section == 2"></app-allenatore-container>
-        <app-squadra-container [userData]="userData" (sectionEmitter)="changeSection($event)" *ngIf="this.section == 3"></app-squadra-container>
+        <app-squadra-container [centrovar]="centrovar" [squadraScelta]="squadraScelta" [userData]="userData" (sectionEmitter)="changeSection($event)" *ngIf="this.section == 3"></app-squadra-container>
         <app-impostazioni [userData]="userData" *ngIf="this.section == 4"></app-impostazioni>
     </div>
 </div>

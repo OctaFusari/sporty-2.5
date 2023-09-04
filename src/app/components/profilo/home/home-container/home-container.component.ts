@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { getDatabase, onValue, ref, update } from 'firebase/database';
 import { ProfiloUtenteComponent } from '../../profilo-utente/profilo-utente.component';
+import { SquadraContainerComponent } from '../../squadra/squadra-container/squadra-container.component';
 import { atleta } from 'src/app/objects/atleta';
+
 @Component({
   selector: 'app-home-container',
   templateUrl: './home-container.component.html',

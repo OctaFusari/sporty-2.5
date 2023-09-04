@@ -14,15 +14,16 @@ export class SquadraContainerComponent implements OnInit {
   constructor(public pu: ProfiloUtenteComponent) { }
 
   @Input() userData: any = "";
+  @Input() squadraScelta: any = "";
+  @Input() centrovar: any = 0;
+  
   db = getDatabase();
   
   sezione_iscrizione:number = 0;
   prova:any[] = [1,0,0,0,0]
   sezioneSquadra: number = 0;
   arraySquadre: any[] = [];
-  squadraScelta: any = "";
   message: number = 0;
-  centrovar: any = 0;
   stagioneid:any;
   stagioni_squadra_selezionata: any[] = [];
   stagioneScelta:any;
@@ -51,6 +52,8 @@ export class SquadraContainerComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.squadraScelta)
+    console.log(this.centrovar)
     if(this.centrovar != 3){
       this.arraySquadre = [];
     
@@ -138,7 +141,7 @@ export class SquadraContainerComponent implements OnInit {
     } else if (pass != this.squadraScelta.passwordteam) {
       this.message = 2
     }
-    setTimeout(() => {
+    setInterval(() => {
       this.message = 0;
     }, 2000)
   }

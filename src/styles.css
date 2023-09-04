@@ -131,7 +131,7 @@ svg:hover {
     fill: var(--sporty-blue-trasparent);
 }
 
-select{
+select {
     color: var(--text) !important;
 }
 
@@ -302,6 +302,14 @@ button {
 .circle__button {
     height: 120px;
     width: 120px;
+    border-radius: 100%;
+    padding: 0.8vw;
+    margin: 0.8vw;
+}
+
+.circle__button__big {
+    height: 180px;
+    width: 180px;
     border-radius: 100%;
     padding: 0.8vw;
     margin: 0.8vw;
