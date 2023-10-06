@@ -11,6 +11,7 @@ import {
 import { SquadraContainerComponent } from '../squadra-container/squadra-container.component';
 import { UploadImgService } from 'src/services/upload-img.service';
 import heic2any from "heic2any";
+import { ImpostazioniComponent } from '../../impostazioni/impostazioni.component';
 
 @Component({
   selector: 'app-iscrizione',
@@ -46,7 +47,8 @@ export class IscrizioneComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     public uis: UploadImgService,
-    public sc: SquadraContainerComponent
+    public sc: SquadraContainerComponent,
+    public iu: ImpostazioniComponent
   ) { }
 
   open_img:number = 0;
