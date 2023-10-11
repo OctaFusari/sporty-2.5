@@ -13,6 +13,7 @@ import { UploadImgService } from 'src/services/upload-img.service';
 import heic2any from "heic2any";
 import { ImpostazioniComponent } from '../../impostazioni/impostazioni.component';
 
+import { atleta } from 'src/app/objects/atleta';
 @Component({
   selector: 'app-iscrizione',
   templateUrl: './iscrizione.component.html',
@@ -47,13 +48,13 @@ export class IscrizioneComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     public uis: UploadImgService,
-    public sc: SquadraContainerComponent,
-    public iu: ImpostazioniComponent
+    public sc: SquadraContainerComponent
   ) { }
 
   open_img:number = 0;
 
   ngOnInit() {
+    console.log(this.userData)
 
     if (this.userData.gestore != "") {
       
@@ -94,7 +95,6 @@ export class IscrizioneComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imageUrl = e.target.result;
-        console.log(this.imageUrl);
       };
       reader.readAsDataURL(inputElement.files[0]);
     }
@@ -108,7 +108,6 @@ export class IscrizioneComponent implements OnInit {
         toType: 'image/*',
       });
     
-      console.log(jpgFile.name)
       jpgFile = new File([blob], `${jpgFile.name.replace('.heic', '.jpg')}`, { type: 'image/jpeg' });
       
     }
@@ -203,7 +202,6 @@ export class IscrizioneComponent implements OnInit {
       if(this.documenti__scelti[i].approvazioni){
         if(this.userData.atletaid in this.documenti__scelti[i].approvazioni){
           this.documenti__approvati.push(this.documenti__scelti[i].id)
-          console.log("entrato")
           let htmlText = '';
           const htmlContainer = document.getElementById(this.documenti__scelti[i].id);
           htmlText = '<path d="m9.55 18-5.7-5.7 1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4Z" />'
@@ -277,6 +275,7 @@ export class IscrizioneComponent implements OnInit {
       ),
       {
         id: this.userData.atletaid,
+        id__account: this.userData.atletaid,
         nome:this.userData.nome,
         cognome:this.userData.cognome,
         email:this.userData.email,
@@ -338,5 +337,58 @@ export class IscrizioneComponent implements OnInit {
       }, 3000)
     }
 
+  }
+  
+  message:number = 0;
+  updateAtleta(nome:any, cognome:any, email:any, datadinascita:any, luogodinascita:any, codicefiscale:any, residenza:any, telefono:any){
+    let atleta:atleta
+
+    const db = getDatabase();
+    try{
+      if(nome != "" && cognome != ""){
+        atleta = {
+          atletaid:this.userData.atletaid,
+          nome:nome,
+          cognome:cognome,
+          email:email,
+          datadinascita:datadinascita,
+          luogodinascita:luogodinascita,
+          codicefiscale:codicefiscale,
+          residenza:residenza,
+          telefono:telefono,
+          immagini:this.userData.immagini,
+          conferma:this.userData.conferma,
+          stagione:this.userData.stagione,
+          squadra:this.userData.squadra,
+          datascadenza: this.userData.datascadenza,
+          corso:this.userData.corso,
+          documenti:this.userData.documenti,
+          messaggi:this.userData.messaggi,
+          allenamenti:this.userData.allenamenti,
+          tema:this.userData.tema,
+          gestore:this.userData.gestore
+        };
+      
+        const updates:any = {};
+        updates['utenti/' + localStorage.getItem("sportyId")+"/atleti/"+localStorage.getItem("Sportyprofileid")] = atleta;
+      
+        update(ref(db), updates);
+  
+        this.message = 1
+        setInterval(() => {
+          this.message = 0;
+        },2000)
+      }else{
+        this.message = 2
+        setInterval(() => {
+          this.message = 0;
+        },2000)
+      }
+    }catch{
+      this.message = 3
+      setInterval(() => {
+        this.message = 0;
+      },2000)
+    }
   }
 }

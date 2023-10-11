@@ -133,8 +133,6 @@ export class UtentiComponent implements OnInit {
     onValue(starCountRef5, (snapshot) => {
       prova = snapshot.val();
     });
-
-    console.log(prova)
     this.sezione__utenti = 1;
 
   }
@@ -148,8 +146,10 @@ export class UtentiComponent implements OnInit {
       );
       onValue(starCountRef4, (snapshot) => {
         data[i].corso = snapshot.val().titolo
+        console.log(data);
       });
     }
+    
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
@@ -158,5 +158,7 @@ export class UtentiComponent implements OnInit {
   }
   openpopupgalleria:number = 0;
   openpupupdoc:number = 0;
+
+  
 
 }
